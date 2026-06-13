@@ -732,6 +732,92 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .tool-track{gap:14px;animation-duration:42s}
 .tool-track.rev{animation-direction:reverse;animation-duration:48s}
 
+/* ---- Analytics Dashboard in hero collage ---- */
+.dashboard{position:relative;width:100%;height:100%;display:flex;flex-direction:column;gap:16px;padding:12px}
+.dashboard-header{display:flex;justify-content:space-between;align-items:center}
+.dashboard-title{font-size:12px;font-weight:600;color:var(--ink)}
+.dashboard-stat{font-size:14px;font-weight:700;color:var(--brand)}
+.dashboard-bars{display:flex;align-items:flex-end;gap:6px;height:80px}
+.dashboard-bar{flex:1;background:linear-gradient(180deg,#2f6ad6,#5a3fd6);border-radius:4px 4px 0 0;opacity:.6;animation:bar-grow 2s ease-in-out infinite}
+.dashboard-bar:nth-child(1){height:40%;animation-delay:0s}
+.dashboard-bar:nth-child(2){height:60%;animation-delay:.2s;opacity:.8}
+.dashboard-bar:nth-child(3){height:50%;animation-delay:.4s}
+.dashboard-bar:nth-child(4){height:75%;animation-delay:.6s;opacity:1}
+@keyframes bar-grow{0%,100%{opacity:.5;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---- Orbiting logos animation for impact section ---- */
+.orbit-logos{position:absolute;bottom:0;right:0;width:140px;height:140px}
+.orbit-logos svg{width:100%;height:100%}
+.orbit-item{animation:orbit-rotate 20s linear infinite}
+.orbit-item:nth-child(1){animation-delay:0s}
+.orbit-item:nth-child(2){animation-delay:-5s}
+.orbit-item:nth-child(3){animation-delay:-10s}
+.orbit-item:nth-child(4){animation-delay:-15s}
+@keyframes orbit-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* ---- Enhanced Card Graphics ---- */
+.card-graphic{height:180px;background:var(--bg-tint);border-radius:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-graphic svg{width:100%;height:100%}
+
+/* Node/Brain diagram for AI Agents */
+.node-diagram{position:relative;width:100%;height:100%}
+.node-dot{position:absolute;width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 8px rgba(0,0,0,.08)}
+.node-dot:nth-child(1){top:10%;left:50%;transform:translateX(-50%)}
+.node-dot:nth-child(2){top:35%;left:20%;animation:float-node 3s ease-in-out infinite}
+.node-dot:nth-child(3){top:35%;right:20%;animation:float-node 3s ease-in-out infinite .5s}
+.node-dot:nth-child(4){bottom:10%;left:50%;transform:translateX(-50%);animation:bounce-node 2s ease-in-out infinite}
+@keyframes float-node{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes bounce-node{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+
+/* Flow arrows for Workflow Automation */
+.flow-diagram{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:space-around}
+.flow-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.flow-logo{width:32px;height:32px;background:#fff;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 4px rgba(0,0,0,.06)}
+.flow-arrow{color:var(--brand);font-size:20px;animation:pulse-arrow 1.5s ease-in-out infinite}
+@keyframes pulse-arrow{0%,100%{opacity:.5;transform:scaleX(1)}50%{opacity:1;transform:scaleX(1.1)}}
+
+/* Analytics dashboard chart */
+.analytics-chart{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:space-around;padding:12px;gap:8px}
+.chart-col{flex:1;background:linear-gradient(180deg,#2f6ad6,#5a3fd6);border-radius:4px 4px 0 0;min-height:20px;animation:chart-pulse 2.5s ease-in-out infinite}
+.chart-col:nth-child(1){height:45%;animation-delay:0s}
+.chart-col:nth-child(2){height:65%;animation-delay:.2s}
+.chart-col:nth-child(3){height:55%;animation-delay:.4s}
+.chart-col:nth-child(4){height:80%;animation-delay:.6s}
+@keyframes chart-pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* Phone call animation */
+.phone-call-flow{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:space-around}
+.phone-icon{width:40px;height:40px;background:#fff;border:1.5px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.08);animation:pulse-glow 2s ease-in-out infinite}
+.whatsapp-icon{width:40px;height:40px;background:#fff;border:1.5px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.flow-line{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--brand),transparent);animation:flow-pulse 1.5s ease-in-out infinite;margin:0 8px}
+@keyframes pulse-glow{0%,100%{box-shadow:0 2px 6px rgba(0,0,0,.08)}50%{box-shadow:0 0 12px rgba(47,106,214,.4)}}
+@keyframes flow-pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* Document flow animation */
+.doc-flow{position:relative;width:100%;height:100%;display:flex;align-items:center;gap:20px}
+.doc-stack-sm{display:flex;flex-direction:column;gap:6px}
+.doc-item{width:36px;height:48px;background:#fff;border:1.5px solid var(--border);border-radius:6px;animation:doc-stack-animate 2s ease-in-out infinite}
+.doc-item:nth-child(1){animation-delay:0s;transform:rotateZ(-8deg)}
+.doc-item:nth-child(2){animation-delay:.3s;transform:rotateZ(0)}
+.doc-item:nth-child(3){animation-delay:.6s;transform:rotateZ(8deg)}
+@keyframes doc-stack-animate{0%,100%{transform:translateY(0) rotateZ(var(--rot,0deg))}50%{transform:translateY(-4px) rotateZ(var(--rot,0deg))}}
+.arrow-to-brain{color:var(--brand);font-size:24px;animation:arrow-bounce 1.5s ease-in-out infinite}
+@keyframes arrow-bounce{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.brain-icon{width:50px;height:50px;background:var(--brand-soft);border:2px solid var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
+
+/* Document scanning animation */
+.doc-scan{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:16px}
+.scan-docs{display:flex;flex-direction:column;gap:8px}
+.scan-doc{width:44px;height:60px;background:#fff;border:1.5px solid var(--border);border-radius:6px;position:relative;animation:scan-bounce 2s ease-in-out infinite}
+.scan-doc::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--brand);border-radius:6px 6px 0 0;animation:scan-line 1.5s ease-in-out infinite}
+.scan-doc:nth-child(1){animation-delay:0s}
+.scan-doc:nth-child(2){animation-delay:.25s}
+.scan-doc:nth-child(3){animation-delay:.5s}
+@keyframes scan-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes scan-line{0%{top:15%;opacity:.3}50%{top:50%;opacity:1}100%{top:85%;opacity:.3}}
+.checkmark-icon{width:50px;height:50px;background:var(--ok);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;animation:check-bounce 2s ease-in-out infinite;animation-delay:.3s}
+@keyframes check-bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
 /* respect reduced motion */
 @media (prefers-reduced-motion:reduce){
   .marquee-track,.orbit-ring,.ochip img{animation:none!important}
