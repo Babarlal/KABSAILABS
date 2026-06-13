@@ -42,7 +42,7 @@ img{max-width:100%;display:block}
 
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .container.narrow{max-width:880px}
-.section{padding:84px 0}
+.section{padding:94px 0}
 .section.tight{padding:52px 0}
 .tint{background:var(--bg-tint)}
 
@@ -100,7 +100,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-.02e
 .mobile-menu .m-group{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:18px 0 4px}
 .mobile-menu .btn{margin-top:18px}
 
-.hero{position:relative;background:var(--bg-tint);padding:100px 0 120px}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
 .hero-grid.solo{grid-template-columns:1fr;max-width:840px}
 .hero .up{font-family:var(--font-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;font-weight:500}
@@ -110,7 +109,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-.02e
 .pill{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);border:1px solid var(--border);background:#fff;padding:7px 15px;border-radius:100px;box-shadow:var(--shadow)}
 .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(31,157,107,.15)}
 
-.collage{position:relative;min-height:440px}
 .win{position:absolute;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg)}
 .win-bar{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid var(--border)}
 .win-bar i{width:10px;height:10px;border-radius:50%;background:#e2e7ee;display:block}
@@ -147,7 +145,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-.02e
 .build-panel .pane{padding:30px;border-right:1px solid var(--border);min-height:280px;position:relative;display:flex;align-items:center;justify-content:center}
 .build-panel .pane:last-child{border-right:none}
 
-.trust{padding:30px 0 6px}
+.trust{padding:64px 0}
 .trust .lbl,.strip-label{text-align:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:20px}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marquee-track{display:flex;gap:46px;width:max-content;animation:scroll 34s linear infinite;align-items:center}
@@ -447,16 +445,10 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .bubble.them{background:var(--bg-tint);color:var(--text);border:1px solid var(--border);border-bottom-left-radius:4px}
 .bubble.you{background:var(--ink);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
 
-/* hero collage */
-.collage{position:relative;min-height:520px}
-.collage .c-node{position:absolute;left:0;bottom:20px;width:60%;max-width:340px}
-.collage .c-chat{position:absolute;right:0;top:20px;width:70%;max-width:320px}
+/* hero collage — kpi badge styling (layout lives in the consolidated block below) */
 .collage .nodegraph{max-width:100%;height:auto}
 .kpi{position:absolute;background:#fff;border:1px solid var(--border);border-radius:11px;padding:9px 13px;font-size:12px;color:var(--muted);box-shadow:0 14px 30px -16px rgba(20,30,50,.4);font-weight:500}
 .kpi .up{color:var(--ok);font-weight:700;margin-right:4px}
-@media (max-width:980px){.collage{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .collage .c-node,.collage .c-chat{position:static;width:auto}.kpi{display:none}}
-@media (max-width:620px){.collage{grid-template-columns:1fr}}
 
 /* build panel (3 graphic columns) */
 .build-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-top:40px}
@@ -596,7 +588,6 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 
 /* more breathing room (spacious, like reference) */
 .section{padding:94px 0}
-.hero{padding:74px 0 88px}
 .hero-grid{gap:60px;align-items:center}
 
 /* ---- node graph (logos + signal pulses) ---- */
@@ -609,16 +600,15 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .c-node .ngraph{max-width:230px}
 
 /* ---- hero collage (roomy, no clipping) ---- */
-.collage{position:relative;min-height:430px}
+.hero{padding:90px 0 96px}
+.collage{position:relative;min-height:470px}
 .collage .win{position:absolute}
-.collage .c-chat{top:0;right:0;width:76%;z-index:3}
-.collage .c-node{left:0;bottom:0;width:78%;z-index:1}
-.collage .c-node .win-body{padding:12px}
-.collage .kpi{right:3%;bottom:7%;z-index:4}
-@media (max-width:980px){
-  .collage{min-height:0;display:grid;grid-template-columns:1fr;gap:16px;max-width:460px;margin:0 auto}
+.collage .c-chat{top:0;right:0;width:72%;z-index:3}
+.collage .c-node{left:0;bottom:0;width:72%;z-index:1}
+.collage .kpi{right:4%;bottom:4%;z-index:4}
+@media(max-width:980px){
+  .collage{min-height:0;display:grid;grid-template-columns:1fr;gap:18px;max-width:440px;margin:0 auto}
   .collage .win{position:static;width:auto}
-  .collage .c-node .ngraph{max-width:220px}
   .collage .kpi{display:none}
 }
 
@@ -823,3 +813,37 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
   .marquee-track,.orbit-ring,.ochip img{animation:none!important}
   .barchart i,.impact-bars.anim i{transform:none!important;transition:none!important}
 }
+
+/* ---- analytics panel viz (floating tool logos + growing bars) ---- */
+.analytics-viz{position:relative;width:100%;max-width:190px;aspect-ratio:1/1;margin:0 auto}
+.analytics-viz .av-bars{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);display:flex;align-items:flex-end;gap:6px;height:52px}
+.analytics-viz .av-bars i{width:12px;background:linear-gradient(180deg,#86abe8,#2f6ad6);border-radius:3px 3px 0 0;animation:av-grow 2.6s ease-in-out infinite alternate}
+.analytics-viz .av-bars i:nth-child(2){animation-delay:.2s}
+.analytics-viz .av-bars i:nth-child(3){animation-delay:.4s}
+.analytics-viz .av-bars i:nth-child(4){animation-delay:.6s}
+.analytics-viz .av-chip{position:absolute;width:34px;height:34px;border-radius:9px;background:#fff;border:1px solid var(--border);box-shadow:0 6px 14px -8px rgba(20,30,50,.3);display:flex;align-items:center;justify-content:center;animation:av-float 4s ease-in-out infinite}
+.analytics-viz .av-chip img{width:18px;height:18px;object-fit:contain}
+.analytics-viz .c1{top:0;left:6%}
+.analytics-viz .c2{top:4%;right:4%;animation-delay:.6s}
+.analytics-viz .c3{bottom:4%;left:2%;animation-delay:1.2s}
+.analytics-viz .c4{bottom:0;right:8%;animation-delay:1.8s}
+@keyframes av-grow{from{height:28%}to{height:100%}}
+@keyframes av-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ---- impact card revolving logo ring ---- */
+.impact-big{position:relative;overflow:hidden}
+.impact-big::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 0%,rgba(47,106,214,.28),transparent 60%);animation:imp-glow 6s ease-in-out infinite;pointer-events:none}
+@keyframes imp-glow{0%,100%{opacity:.55}50%{opacity:1}}
+.impact-big>*{position:relative;z-index:1}
+.impact-orbit{position:relative;width:170px;height:170px;margin:20px auto 0}
+.impact-orbit .io-ring{position:absolute;inset:0;animation:orbit-spin 24s linear infinite}
+.impact-orbit .io-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;z-index:2}
+.impact-orbit .io-core img{width:26px;height:26px}
+.impact-orbit .io-chip{position:absolute;left:50%;top:50%;width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid rgba(255,255,255,.25);box-shadow:0 6px 14px -8px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y)))}
+.impact-orbit .io-chip img{width:17px;height:17px;object-fit:contain;animation:orbit-spin-rev 24s linear infinite}
+
+/* ---- final CTA band — premium animated background ---- */
+.cta-band{position:relative;overflow:hidden;background:#0f172a}
+.cta-band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;opacity:.7;pointer-events:none}
+.cta-band::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(47,106,214,.35),transparent 60%);pointer-events:none}
+.cta-band>*{position:relative;z-index:1}
