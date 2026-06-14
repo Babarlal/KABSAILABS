@@ -179,6 +179,15 @@ function loadGTM(){
   document.body.insertBefore(ns, document.body.firstChild);
 }
 
+/* ---------- Vercel Speed Insights ---------- */
+function loadSpeedInsights(){
+  window.si = window.si || function(){ (window.siq = window.siq || []).push(arguments); };
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = '/_vercel/speed-insights/script.js';
+  document.head.appendChild(s);
+}
+
 /* ---------- Calendly ---------- */
 function setupCalendly(){
   if (!CONFIG.CALENDLY_URL) return;
@@ -275,5 +284,5 @@ document.addEventListener('DOMContentLoaded', function(){
   if(h){ h.innerHTML = (layout!=='lp' ? buildAnnounce() : '') + buildHeader(); }
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=buildFooter();
   if (layout !== 'lp'){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
-  setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupCalendly(); loadGTM(); respectReducedMotion();
+  setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion();
 });
