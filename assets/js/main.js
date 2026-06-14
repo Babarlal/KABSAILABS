@@ -1,3 +1,19 @@
+/* ===== Google Analytics 4 (gtag.js) ===== */
+(function(){
+  var GA_ID = "G-EMPMVS2NYX";
+  if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')){
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+})();
+
 /* ============================================================
    KABS AI LABS — site script (light theme)
    Header, announcement bar, and footer live HERE (one place to
