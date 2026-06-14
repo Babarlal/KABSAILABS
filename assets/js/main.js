@@ -286,3 +286,78 @@ document.addEventListener('DOMContentLoaded', function(){
   if (layout !== 'lp'){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
   setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion();
 });
+
+/* ===== booking popup (Calendly popup widget / WhatsApp) — shows every visit, 5s after load ===== */
+(function(){
+  var CALENDLY_URL = "https://calendly.com/babarlal-kabsailabs";
+  var WHATSAPP     = "14068677425";
+  var DELAY        = 5000;          // 5 seconds
+  var WA_MSG       = "Hi KABS AI LABS, I'd like to book a quick call about automating my business.";
+
+  // load Calendly assets up front so the popup opens instantly
+  (function(){
+    if (!document.querySelector('link[href*="assets.calendly.com/assets/external/widget.css"]')){
+      var l=document.createElement("link"); l.rel="stylesheet"; l.href="https://assets.calendly.com/assets/external/widget.css"; document.head.appendChild(l);
+    }
+    if (!window.Calendly && !document.querySelector('script[src*="assets.calendly.com/assets/external/widget.js"]')){
+      var s=document.createElement("script"); s.src="https://assets.calendly.com/assets/external/widget.js"; s.async=true; document.head.appendChild(s);
+    }
+  })();
+
+  var waHref = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(WA_MSG);
+
+  function openCalendly(){
+    if (window.Calendly && window.Calendly.initPopupWidget){ window.Calendly.initPopupWidget({url: CALENDLY_URL}); }
+    else { window.open(CALENDLY_URL, "_blank", "noopener"); }
+  }
+
+  function inject(){
+    if (!document.body || document.getElementById("kabsPop")) return;
+    var css = document.createElement("style");
+    css.textContent =
+      '.kabs-pop-ov{position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}'
+    + '.kabs-pop-ov.show{opacity:1}'
+    + '.kabs-pop{background:#fff;border:1px solid #e5e9f0;border-radius:18px;max-width:420px;width:100%;padding:30px 28px 24px;position:relative;box-shadow:0 40px 80px -30px rgba(15,23,42,.5);transform:translateY(12px) scale(.97);transition:transform .3s ease;font-family:Inter,system-ui,sans-serif}'
+    + '.kabs-pop-ov.show .kabs-pop{transform:none}'
+    + '.kabs-pop-x{position:absolute;top:14px;right:14px;width:30px;height:30px;border:none;background:#f4f6f8;border-radius:8px;color:#5b6675;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}'
+    + '.kabs-pop-x:hover{background:#e9edf3}'
+    + '.kabs-pop-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#2f6ad6;background:#eef4ff;border-radius:100px;padding:5px 12px;margin-bottom:14px}'
+    + '.kabs-pop h3{font-family:"Space Grotesk",Inter,sans-serif;font-size:22px;line-height:1.2;color:#141922;margin:0 0 8px}'
+    + '.kabs-pop p{font-size:14.5px;line-height:1.55;color:#5b6675;margin:0 0 20px}'
+    + '.kabs-pop-btns{display:flex;flex-direction:column;gap:10px}'
+    + '.kabs-pop-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:13px 18px;border:none;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .15s ease}'
+    + '.kabs-pop-btn:hover{transform:translateY(-1px)}'
+    + '.kabs-pop-call{background:#141922;color:#fff}'
+    + '.kabs-pop-wa{background:#25D366;color:#fff}'
+    + '.kabs-pop-later{display:block;width:100%;text-align:center;margin-top:14px;font-size:13px;color:#9aa6be;background:none;border:none;cursor:pointer}'
+    + '.kabs-pop-later:hover{color:#5b6675}'
+    + '@media(prefers-reduced-motion:reduce){.kabs-pop-ov,.kabs-pop{transition:none}}';
+    document.head.appendChild(css);
+
+    var ov = document.createElement("div");
+    ov.className="kabs-pop-ov"; ov.id="kabsPop";
+    ov.innerHTML =
+      '<div class="kabs-pop" role="dialog" aria-modal="true" aria-label="Book a meeting">'
+    +   '<button class="kabs-pop-x" aria-label="Close">×</button>'
+    +   '<span class="kabs-pop-badge">✦ Free 30-min audit</span>'
+    +   '<h3>Ready to put AI to work?</h3>'
+    +   '<p>Book a free call and we\'ll map the 3 highest-ROI automations for your business — or message us on WhatsApp, whatever\'s easier.</p>'
+    +   '<div class="kabs-pop-btns">'
+    +     '<button class="kabs-pop-btn kabs-pop-call" id="kabsBook">📅 Book a call</button>'
+    +     '<a class="kabs-pop-btn kabs-pop-wa" href="' + waHref + '" target="_blank" rel="noopener">💬 Message us on WhatsApp</a>'
+    +   '</div>'
+    +   '<button class="kabs-pop-later">Maybe later</button>'
+    + '</div>';
+    document.body.appendChild(ov);
+    requestAnimationFrame(function(){ ov.classList.add("show"); });
+
+    function close(){ ov.classList.remove("show"); setTimeout(function(){ if(ov.parentNode) ov.parentNode.removeChild(ov); }, 300); document.removeEventListener("keydown", onKey); }
+    function onKey(e){ if(e.key === "Escape") close(); }
+    ov.querySelector(".kabs-pop-x").addEventListener("click", close);
+    ov.querySelector(".kabs-pop-later").addEventListener("click", close);
+    ov.querySelector("#kabsBook").addEventListener("click", function(){ openCalendly(); close(); });
+    ov.addEventListener("click", function(e){ if(e.target === ov) close(); });
+    document.addEventListener("keydown", onKey);
+  }
+  setTimeout(inject, DELAY);
+})();
