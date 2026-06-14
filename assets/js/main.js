@@ -329,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function inject(){
     if (!document.body || document.getElementById("kabsPop")) return;
+    try { if (sessionStorage.getItem("kabsPopShown")) return; } catch(e){}  // once per visit
     var css = document.createElement("style");
     css.textContent =
       '.kabs-pop-ov{position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}'
@@ -365,6 +366,7 @@ document.addEventListener('DOMContentLoaded', function(){
     +   '<button class="kabs-pop-later">Maybe later</button>'
     + '</div>';
     document.body.appendChild(ov);
+    try { sessionStorage.setItem("kabsPopShown", "1"); } catch(e){}  // don't show again this visit
     requestAnimationFrame(function(){ ov.classList.add("show"); });
 
     function close(){ ov.classList.remove("show"); setTimeout(function(){ if(ov.parentNode) ov.parentNode.removeChild(ov); }, 300); document.removeEventListener("keydown", onKey); }
