@@ -1,0 +1,49 @@
+# KABS AI LABS
+
+> KABS AI LABS builds AI agents, workflow automation, and analytics dashboards end-to-end for agencies, SaaS, eCommerce, and service businesses — automating operations so teams can scale without hiring. Systems run 24/7 and plug into the tools clients already use.
+
+## Key facts
+
+- **Name:** KABS AI LABS
+- **Website:** https://kabsailabs.com
+- **What we do:** Custom AI agents (chat & voice), workflow automation, and analytics dashboards, built and integrated end-to-end.
+- **Who we serve:** Marketing agencies, real estate, eCommerce, SaaS, and healthcare/service businesses.
+- **Contact:** hello@kabsailabs.com · WhatsApp +1 406 867 7425
+- **Typical results:** 40+ hours/week saved, 24/7 operation, scaling without added headcount.
+- **Track record:** 500+ workflows built, 30k+ hours saved, 120+ projects delivered, 98% client satisfaction.
+- **Delivery time:** Focused builds ship in 4–6 weeks; larger multi-system builds run 2–4 months in 1–2 week increments.
+- **Getting started:** Book a free 30-minute automation audit — no commitment until a fixed-price quote is approved.
+
+## Services
+
+- [AI agents](https://kabsailabs.com/services/ai-automation): Chat and voice agents that answer, qualify, and act on your behalf.
+- [Workflow automation](https://kabsailabs.com/services/workflow-automation): Connect every tool so data flows and tasks run without a human.
+- [Analytics & dashboards](https://kabsailabs.com/services/analytics): One trustworthy view of the numbers that drive decisions.
+- [RAG / knowledge base](https://kabsailabs.com/services/rag-knowledge-base): Agents that answer from your own documents and data.
+- [Voice AI](https://kabsailabs.com/services/voice-ai): Voice agents that book appointments and handle inbound calls.
+- [AI for trades](https://kabsailabs.com/services/ai-for-trades): Automation for plumbing, HVAC, and field-service businesses.
+- [AI for legal & medical docs](https://kabsailabs.com/services/ai-legal-medical-docs): Summarize and process complex documents.
+- [GoHighLevel automation](https://kabsailabs.com/services/gohighlevel-automation): Done-for-you automation inside GoHighLevel.
+- [White-label / agency partners](https://kabsailabs.com/services/white-label): Resell automation under your own brand.
+
+## Industries
+
+- [Marketing agencies](https://kabsailabs.com/services/industries/marketing-agencies)
+- [Real estate](https://kabsailabs.com/services/industries/real-estate)
+- [eCommerce](https://kabsailabs.com/services/industries/ecommerce)
+- [SaaS](https://kabsailabs.com/services/industries/saas)
+- [Healthcare](https://kabsailabs.com/services/industries/healthcare)
+
+## Tools we integrate
+
+OpenAI, Claude, Gemini, Perplexity, Python, LangChain, Hugging Face, n8n, Make, Zapier, HubSpot, Salesforce, GoHighLevel, Slack, Airtable, Notion, Stripe, Twilio, Supabase, PostgreSQL, MongoDB, GA4, Power BI, Looker Studio, Microsoft 365, Google Cloud.
+
+## Key pages
+
+- [Home](https://kabsailabs.com/)
+- [Services](https://kabsailabs.com/services)
+- [Case studies](https://kabsailabs.com/case-studies)
+- [About](https://kabsailabs.com/about)
+- [Book a free audit](https://kabsailabs.com/audit)
+- [Contact](https://kabsailabs.com/contact)
+- [Blog](https://kabsailabs.com/blog)
