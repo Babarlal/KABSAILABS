@@ -18,6 +18,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <script src="/assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://kabsailabs.com/",
+      "logo": "https://www.kabsailabs.com/assets/img/favicon.svg",
+      "description": "KABS AI LABS builds AI agents, workflow automation, and analytics dashboards end-to-end.",
+      "email": "hello@kabsailabs.com",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@kabsailabs.com",
+          "availableLanguage": ["English"],
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "telephone": "+1-406-867-7425",
+          "availableLanguage": ["English"],
+          "areaServed": "Worldwide"
+        }
+      ]
+    },
+    {
+      "@type": "ContactPage",
+      "url": "https://kabsailabs.com/contact",
+      "name": "Contact — KABS AI LABS",
+      "description": "Get in touch with KABS AI LABS. Tell us what's slowing you down and we'll help you automate it.",
+      "about": { "@id": "https://kabsailabs.com/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kabsailabs.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://kabsailabs.com/contact" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body data-path="/contact" data-layout="default">
 <a class="skip" href="#main">Skip to content</a>

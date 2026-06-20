@@ -18,6 +18,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <script src="/assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://kabsailabs.com/",
+      "logo": "https://www.kabsailabs.com/assets/img/favicon.svg",
+      "description": "KABS AI LABS is an AI automation studio building AI agents, workflow automation, and analytics dashboards end-to-end.",
+      "email": "hello@kabsailabs.com",
+      "knowsAbout": ["AI agents", "Workflow automation", "Analytics dashboards", "RAG knowledge bases", "Voice AI", "Business process automation"],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@kabsailabs.com",
+          "telephone": "+1-406-867-7425",
+          "availableLanguage": ["English"],
+          "areaServed": "Worldwide"
+        }
+      ]
+    },
+    {
+      "@type": "AboutPage",
+      "url": "https://kabsailabs.com/about",
+      "name": "About — KABS AI LABS",
+      "description": "KABS AI LABS is an AI automation studio building agents, automation, and analytics end-to-end.",
+      "about": { "@id": "https://kabsailabs.com/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kabsailabs.com/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://kabsailabs.com/about" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body data-path="/about" data-layout="default">
 <a class="skip" href="#main">Skip to content</a>
