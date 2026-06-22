@@ -5,7 +5,7 @@
 ## Key facts
 
 - **Name:** KABS AI LABS
-- **Website:** https://kabsailabs.com
+- **Website:** https://www.kabsailabs.com
 - **What we do:** Custom AI agents (chat & voice), workflow automation, and analytics dashboards, built and integrated end-to-end.
 - **Who we serve:** Marketing agencies, real estate, eCommerce, SaaS, and healthcare/service businesses.
 - **Contact:** hello@kabsailabs.com · WhatsApp +1 406 867 7425
@@ -16,23 +16,23 @@
 
 ## Services
 
-- [AI agents](https://kabsailabs.com/services/ai-automation): Chat and voice agents that answer, qualify, and act on your behalf.
-- [Workflow automation](https://kabsailabs.com/services/workflow-automation): Connect every tool so data flows and tasks run without a human.
-- [Analytics & dashboards](https://kabsailabs.com/services/analytics): One trustworthy view of the numbers that drive decisions.
-- [RAG / knowledge base](https://kabsailabs.com/services/rag-knowledge-base): Agents that answer from your own documents and data.
-- [Voice AI](https://kabsailabs.com/services/voice-ai): Voice agents that book appointments and handle inbound calls.
-- [AI for trades](https://kabsailabs.com/services/ai-for-trades): Automation for plumbing, HVAC, and field-service businesses.
-- [AI for legal & medical docs](https://kabsailabs.com/services/ai-legal-medical-docs): Summarize and process complex documents.
-- [GoHighLevel automation](https://kabsailabs.com/services/gohighlevel-automation): Done-for-you automation inside GoHighLevel.
-- [White-label / agency partners](https://kabsailabs.com/services/white-label): Resell automation under your own brand.
+- [AI agents](https://www.kabsailabs.com/services/ai-automation): Chat and voice agents that answer, qualify, and act on your behalf.
+- [Workflow automation](https://www.kabsailabs.com/services/workflow-automation): Connect every tool so data flows and tasks run without a human.
+- [Analytics & dashboards](https://www.kabsailabs.com/services/analytics): One trustworthy view of the numbers that drive decisions.
+- [RAG / knowledge base](https://www.kabsailabs.com/services/rag-knowledge-base): Agents that answer from your own documents and data.
+- [Voice AI](https://www.kabsailabs.com/services/voice-ai): Voice agents that book appointments and handle inbound calls.
+- [AI for trades](https://www.kabsailabs.com/services/ai-for-trades): Automation for plumbing, HVAC, and field-service businesses.
+- [AI for legal & medical docs](https://www.kabsailabs.com/services/ai-legal-medical-docs): Summarize and process complex documents.
+- [GoHighLevel automation](https://www.kabsailabs.com/services/gohighlevel-automation): Done-for-you automation inside GoHighLevel.
+- [White-label / agency partners](https://www.kabsailabs.com/services/white-label): Resell automation under your own brand.
 
 ## Industries
 
-- [Marketing agencies](https://kabsailabs.com/services/industries/marketing-agencies)
-- [Real estate](https://kabsailabs.com/services/industries/real-estate)
-- [eCommerce](https://kabsailabs.com/services/industries/ecommerce)
-- [SaaS](https://kabsailabs.com/services/industries/saas)
-- [Healthcare](https://kabsailabs.com/services/industries/healthcare)
+- [Marketing agencies](https://www.kabsailabs.com/services/industries/marketing-agencies)
+- [Real estate](https://www.kabsailabs.com/services/industries/real-estate)
+- [eCommerce](https://www.kabsailabs.com/services/industries/ecommerce)
+- [SaaS](https://www.kabsailabs.com/services/industries/saas)
+- [Healthcare](https://www.kabsailabs.com/services/industries/healthcare)
 
 ## Tools we integrate
 
@@ -40,10 +40,10 @@ OpenAI, Claude, Gemini, Perplexity, Python, LangChain, Hugging Face, n8n, Make, 
 
 ## Key pages
 
-- [Home](https://kabsailabs.com/)
-- [Services](https://kabsailabs.com/services)
-- [Case studies](https://kabsailabs.com/case-studies)
-- [About](https://kabsailabs.com/about)
-- [Book a free audit](https://kabsailabs.com/audit)
-- [Contact](https://kabsailabs.com/contact)
-- [Blog](https://kabsailabs.com/blog)
+- [Home](https://www.kabsailabs.com/)
+- [Services](https://www.kabsailabs.com/services)
+- [Case studies](https://www.kabsailabs.com/case-studies)
+- [About](https://www.kabsailabs.com/about)
+- [Book a free audit](https://www.kabsailabs.com/audit)
+- [Contact](https://www.kabsailabs.com/contact)
+- [Blog](https://www.kabsailabs.com/blog)

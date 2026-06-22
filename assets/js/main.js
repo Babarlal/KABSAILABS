@@ -27,8 +27,8 @@ var CONFIG = {
   whatsapp:    "14068677425",                 // digits only, no + or spaces
   domain:      "kabsailabs.com",
   GTM_ID:      "",                            // "GTM-XXXXXXX" to enable GA4/GTM everywhere
-  CALENDLY_URL:"",                            // your Calendly link -> data-cta buttons open a popup
-  ctaFallback: "/audit"
+  CALENDLY_URL:"https://calendly.com/babarlal-kabsailabs", // data-cta buttons open this scheduler popup
+  ctaFallback: "/audit"                       // used only if Calendly fails to load
 };
 
 /* ---------- announcement bar items (edit freely) ---------- */
@@ -176,6 +176,30 @@ function buildFooter(){
     '</div></div></footer>';
 }
 
+/* ---------- cookie / analytics notice ---------- */
+function setupCookieNotice(){
+  try { if (localStorage.getItem('kabsCookieOk')) return; } catch(e){}
+  var bar = document.createElement('div');
+  bar.className = 'cookie-bar';
+  bar.setAttribute('role','region');
+  bar.setAttribute('aria-label','Cookie notice');
+  bar.innerHTML =
+    '<span>We use cookies and analytics to understand how the site is used. See our <a href="/privacy">Privacy Policy</a>.</span>'
+  + '<button type="button" class="cookie-ok">Got it</button>';
+  var css = document.createElement('style');
+  css.textContent =
+    '.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:680px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:#0f172a;color:#e7ecf5;border:1px solid #24304d;border-radius:12px;padding:12px 16px;font-family:Inter,system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(15,23,42,.6)}'
+  + '.cookie-bar a{color:#8fb2f0;text-decoration:underline}'
+  + '.cookie-ok{flex:none;background:#2f6ad6;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit}'
+  + '.cookie-ok:hover{background:#2a5ec0}';
+  document.head.appendChild(css);
+  document.body.appendChild(bar);
+  bar.querySelector('.cookie-ok').addEventListener('click', function(){
+    try { localStorage.setItem('kabsCookieOk','1'); } catch(e){}
+    if (bar.parentNode) bar.parentNode.removeChild(bar);
+  });
+}
+
 /* ---------- floating whatsapp ---------- */
 function buildFab(){
   return '<div class="fab"><a class="fab-btn" href="'+waLink()+'" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">'+
@@ -207,8 +231,12 @@ function loadSpeedInsights(){
 /* ---------- Calendly ---------- */
 function setupCalendly(){
   if (!CONFIG.CALENDLY_URL) return;
-  var css=document.createElement('link');css.rel='stylesheet';css.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(css);
-  var js=document.createElement('script');js.src='https://assets.calendly.com/assets/external/widget.js';js.async=true;document.head.appendChild(js);
+  if (!document.querySelector('link[href*="assets.calendly.com/assets/external/widget.css"]')){
+    var css=document.createElement('link');css.rel='stylesheet';css.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(css);
+  }
+  if (!window.Calendly && !document.querySelector('script[src*="assets.calendly.com/assets/external/widget.js"]')){
+    var js=document.createElement('script');js.src='https://assets.calendly.com/assets/external/widget.js';js.async=true;document.head.appendChild(js);
+  }
   document.querySelectorAll('[data-cta]').forEach(function(el){
     el.addEventListener('click', function(e){
       if (window.Calendly){ e.preventDefault(); window.Calendly.initPopupWidget({url:CONFIG.CALENDLY_URL}); }
@@ -262,6 +290,56 @@ function respectReducedMotion(){
   if(!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('animate, animateMotion, animateTransform').forEach(function(a){ a.remove(); });
 }
+/* case-study share buttons — wire to the current page URL at runtime */
+function setupShare(){
+  var boxes = document.querySelectorAll('.share'); if(!boxes.length) return;
+  var url = location.href.split('#')[0];
+  var title = (document.querySelector('h1') ? document.querySelector('h1').textContent : document.title).trim();
+  var u = encodeURIComponent(url), t = encodeURIComponent(title);
+  boxes.forEach(function(box){
+    box.querySelectorAll('a[data-share]').forEach(function(a){
+      var kind = a.getAttribute('data-share');
+      if (kind === 'linkedin'){
+        a.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + u;
+        a.target = '_blank'; a.rel = 'noopener';
+      } else if (kind === 'x'){
+        a.href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t;
+        a.target = '_blank'; a.rel = 'noopener';
+      } else if (kind === 'copy'){
+        a.href = url;
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var done = function(){ var o=a.textContent; a.textContent='✓'; setTimeout(function(){ a.textContent=o; }, 1200); };
+          if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, function(){}); }
+          else { window.prompt('Copy this link:', url); }
+        });
+      }
+    });
+  });
+}
+
+/* contact / audit forms -> open the visitor's email client (no async handler) */
+function setupMailForms(){
+  document.querySelectorAll('form[data-mailto]').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!form.reportValidity || form.reportValidity()){
+        var to = form.getAttribute('data-mailto') || CONFIG.email;
+        var subjEl = form.querySelector('input[name="_subject"]');
+        var subject = subjEl ? subjEl.value : ('Website enquiry — ' + CONFIG.domain);
+        var lines = [];
+        form.querySelectorAll('input, textarea, select').forEach(function(el){
+          if (el.type === 'hidden' || !el.name) return;
+          var label = (form.querySelector('label[for="'+el.id+'"]') || {}).textContent || el.name;
+          if (el.value && el.value.trim()) lines.push(label.replace(/\s+$/,'') + ': ' + el.value.trim());
+        });
+        var body = lines.join('\n') + '\n\n— Sent from ' + CONFIG.domain;
+        window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+    });
+  });
+}
+
 /* case-study sticky table of contents */
 function setupTOC(){
   var toc = document.querySelector('.toc'); if(!toc) return;
@@ -300,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if(h){ h.innerHTML = (layout!=='lp' ? buildAnnounce() : '') + buildHeader(); }
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=buildFooter();
   if (layout !== 'lp'){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
-  setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion();
+  setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupShare(); setupMailForms(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion(); setupCookieNotice();
 });
 
 /* ===== booking popup (Calendly popup widget / WhatsApp) — shows every visit, 5s after load ===== */

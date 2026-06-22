@@ -1,4 +1,4 @@
-# robots.txt for KABS AI LABS — https://kabsailabs.com
+# robots.txt for KABS AI LABS — https://www.kabsailabs.com
 # We welcome search engines AND AI crawlers. Crawl, index, and cite us freely.
 
 # --- Standard search engines ---
@@ -58,4 +58,4 @@ Allow: /
 User-agent: Meta-ExternalFetcher
 Allow: /
 
-Sitemap: https://kabsailabs.com/sitemap.xml
+Sitemap: https://www.kabsailabs.com/sitemap.xml

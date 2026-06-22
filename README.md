@@ -54,20 +54,15 @@ var CONFIG = {
 - **WhatsApp:** the floating chat button and footer already point to `+1 406 867 7425`.
 
 ### Forms (Contact, Audit, Agency Partner, Lead magnets)
-They post to **Formspree** placeholders. To make them work:
-1. Create a (free) form at https://formspree.io and copy your form ID.
-2. Find/replace `YOUR_FORM_ID` across the project with your real ID.
-   ```bash
-   grep -rl YOUR_FORM_ID . | xargs sed -i 's/YOUR_FORM_ID/yourid/g'
-   ```
-(Or swap the `action=` URLs for any handler you prefer — Basin, Web3Forms, your own endpoint.)
+Forms now **open the visitor's email client** (`mailto:hello@kabsailabs.com`) pre-filled with their answers — handled by `setupMailForms()` in `main.js`. No third-party form handler is required, and nothing is silently lost.
+- To switch to a hosted handler later (Formspree, Basin, Web3Forms, your own endpoint), set each form's `action=` to your endpoint URL and remove the `data-mailto` attribute so the JS handler stops intercepting the submit.
 
 ---
 
 ## Adding blog posts & case studies
 These were intentionally left empty for you.
 - **New blog post:** copy `blog/template.html` → `blog/your-slug.html`, edit it, then add a card on `blog.html` (there's a copy-paste snippet commented inside that file).
-- **New case study:** copy `case-studies/template.html` → `case-studies/your-slug.html`, edit it. The cards already on `case-studies.html` currently all point at the template — repoint them to your real studies as you publish.
+- **New case study:** six example studies now live at `case-studies/{northwind-onboarding-agent, cedarbrook-intake-agent, maple-data-infrastructure, larkfield-lifecycle-automation, brightleaf-voice-ai, atlas-ai-receptionist}.html`, each labeled as an illustrative example. The cards on `case-studies.html` point to them. To add a real one, copy any of those (or `case-studies/template.html`, which is `noindex`) → `case-studies/your-slug.html`, edit it, add it to `sitemap.xml`, and link a card from `case-studies.html`.
 
 With `cleanUrls`, `blog/your-slug.html` is served at `/blog/your-slug`.
 
@@ -90,9 +85,11 @@ The pages were produced by `build.py` (kept one level up, outside this folder). 
 
 ## Before you go live — quick checklist
 - [ ] Replace logo files + `LOGO` in `main.js`
-- [ ] Set `GTM_ID` and `CALENDLY_URL`
-- [ ] Replace `YOUR_FORM_ID` in all forms
-- [ ] Swap the placeholder testimonials/case studies for real ones
+- [ ] Set `GTM_ID` (Calendly is already wired to `https://calendly.com/babarlal-kabsailabs`)
+- [ ] (Optional) Point forms at a hosted handler instead of `mailto:` — see Forms above
+- [ ] Swap the illustrative case studies / stats for real ones as you ship them
+- [ ] Export `assets/img/og-image.svg` to a 1200×630 **PNG** for full social-preview support (LinkedIn/X don't always render SVG), then update the `og:image`/`twitter:image` URLs
+- [ ] Confirm the domain redirect: `kabsailabs.com` → `www.kabsailabs.com` (vercel.json handles it; also set www as primary in Vercel project domains)
 - [ ] Have a professional review `/terms` and `/privacy`
 
 ## Tool logos (homepage)

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="KABS AI LABS — AI agents, automation & analytics">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#16223f"/>
+    </linearGradient>
+    <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f6ad6"/>
+      <stop offset="1" stop-color="#5a3fd6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="12%" r="70%">
+      <stop offset="0" stop-color="#2f6ad6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2f6ad6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- logo mark -->
+  <g transform="translate(96,150)">
+    <rect x="0" y="0" width="96" height="96" rx="24" fill="url(#kg)"/>
+    <path d="M32 26v44M32 48l26-22M32 48l26 22" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="216" y="200" font-family="Space Grotesk, Inter, sans-serif" font-size="44" font-weight="700" fill="#ffffff" letter-spacing="-0.5">KABS</text>
+  <text x="216" y="240" font-family="JetBrains Mono, monospace" font-size="22" fill="#9fb2d6" letter-spacing="6">AI LABS</text>
+  <!-- headline -->
+  <text x="96" y="360" font-family="Space Grotesk, Inter, sans-serif" font-size="68" font-weight="700" fill="#ffffff" letter-spacing="-1.5">AI agents, automation</text>
+  <text x="96" y="436" font-family="Space Grotesk, Inter, sans-serif" font-size="68" font-weight="700" letter-spacing="-1.5"><tspan fill="#ffffff">&amp; analytics, </tspan><tspan fill="#7aa6ef">built end-to-end.</tspan></text>
+  <!-- subline -->
+  <text x="96" y="506" font-family="Inter, sans-serif" font-size="30" fill="#aebbd4">We build the systems that replace manual work and run 24/7.</text>
+  <text x="96" y="572" font-family="JetBrains Mono, monospace" font-size="24" fill="#7aa6ef">www.kabsailabs.com</text>
+</svg>
