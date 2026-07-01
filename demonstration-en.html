@@ -123,6 +123,13 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;heig
   .hero h1{font-size:31px}
   .wrap{padding:0 22px}.top{padding:20px 22px 14px}
 }
+@media (max-width:768px){
+  /* mobile: stack summary + WhatsApp mockup into ONE column (summary first, phone below) */
+  .deliver{flex-direction:column;gap:18px}
+  .deliver .dl,.deliver .dr{flex:1 1 auto;width:100%}
+  .srow .k{flex-basis:84px}            /* let values take the remaining width */
+  .srow .v{min-width:0;overflow-wrap:break-word}
+}
 @media (prefers-reduced-motion:no-preference){
   .wave i{animation:wv 1.1s ease-in-out infinite}
   .toast{animation:rise .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:.5s}
