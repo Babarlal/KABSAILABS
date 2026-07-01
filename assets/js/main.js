@@ -120,14 +120,16 @@ function buildHeader(){
       '<div class="nav-right"><a class="btn btn-accent" href="'+(CONFIG.CALENDLY_URL||CONFIG.ctaFallback)+'" data-cta>Book a free demo</a></div>'+
     '</div></div></header>';
   }
-  var mega = '<div class="menu-panel" role="menu">'+
+  var mega = '<div class="menu-panel" id="services-menu" role="menu">'+
       menuCol('Services', NAV.services)+ menuCol('Industries', NAV.industries)+ menuCol('Resources', NAV.resources)+
     '</div>';
   return '<header class="site-header"><div class="container"><div class="nav">'+
     '<a class="logo" href="/" aria-label="KABS AI LABS home">'+LOGO+'</a>'+
     '<nav class="nav-main" aria-label="Primary">'+
       '<a class="nav-link" href="/">Home</a>'+
-      '<div class="has-menu"><a class="nav-link" href="/services" aria-haspopup="true">Services <span aria-hidden="true">&#9662;</span></a>'+mega+'</div>'+
+      '<div class="has-menu"><a class="nav-link" href="/services">Services</a>'+
+        '<button type="button" class="menu-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="services-menu" aria-label="Open Services menu"><span aria-hidden="true">&#9662;</span></button>'+
+      mega+'</div>'+
       '<a class="nav-link" href="/case-studies">Work</a>'+
       '<a class="nav-link" href="/blog">Blog</a>'+
       '<a class="nav-link" href="/about">About</a>'+
@@ -259,6 +261,15 @@ function setupNav(){
       burger.setAttribute('aria-expanded', open ? 'true':'false');
       burger.innerHTML = open ? '&times;' : '&#9776;';
     });
+  }
+  // Services dropdown: click + keyboard + touch toggle (progressive enhancement over CSS hover)
+  var hasMenu = document.querySelector('.has-menu'),
+      mToggle = hasMenu && hasMenu.querySelector('.menu-toggle');
+  if (hasMenu && mToggle){
+    var setOpen = function(open){ hasMenu.classList.toggle('open', open); mToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); };
+    mToggle.addEventListener('click', function(){ setOpen(!hasMenu.classList.contains('open')); }); // real <button>: Enter/Space fire click
+    document.addEventListener('click', function(e){ if (!hasMenu.contains(e.target)) setOpen(false); }); // outside-click closes
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && hasMenu.classList.contains('open')){ setOpen(false); mToggle.focus(); } });
   }
 }
 function duplicateMarquees(){

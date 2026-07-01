@@ -87,7 +87,12 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-.02e
 
 .has-menu{position:relative}
 .menu-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px;display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:22px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;min-width:600px;z-index:120}
-.has-menu:hover .menu-panel,.has-menu:focus-within .menu-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.has-menu:hover .menu-panel,.has-menu:focus-within .menu-panel,.has-menu.open .menu-panel{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.menu-toggle{background:none;border:0;margin:0;padding:8px 4px;color:var(--muted);cursor:pointer;font:inherit;display:inline-flex;align-items:center}
+.menu-toggle:hover{color:var(--ink)}
+/* no-JS fallback nav (only shown when JS is disabled; main.js replaces it otherwise) */
+.nojs-nav{display:flex;gap:18px;flex-wrap:wrap;align-items:center;max-width:var(--maxw);margin:0 auto;padding:16px 24px;border-bottom:1px solid var(--border);font-weight:600}
+.nojs-nav a{color:var(--ink)}
 .menu-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px;font-weight:500}
 .menu-col a{display:block;color:var(--muted);font-size:14px;padding:7px 0;transition:color .15s}
 .menu-col a:hover{color:var(--brand)}
