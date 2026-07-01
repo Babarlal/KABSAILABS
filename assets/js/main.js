@@ -62,7 +62,8 @@ var NAV = {
     ["Healthcare", "/services/industries/healthcare"]
   ],
   resources: [
-    ["Démonstration", "/demonstration"],
+    ["Démonstration (FR)", "/demonstration"],
+    ["Demo (English)", "/demonstration-en"],
     ["Case Studies", "/case-studies"],
     ["Blog", "/blog"],
     ["AI Receptionist Blueprint", "/resources/dental-ai-receptionist-blueprint"],
