@@ -298,6 +298,36 @@ function revealBars(){
   }, {threshold:.35});
   els.forEach(function(el){ io.observe(el); });
 }
+/* scroll-reveal: fade/slide major blocks in as they enter the viewport.
+   Progressive enhancement — the .reveal class (which hides via CSS) is only
+   ADDED here, so no-JS visitors always see full content. Reduced-motion users
+   are skipped entirely (never hidden). Classes are stripped on animationend so
+   the resting element keeps its natural state and hover transforms stay intact. */
+function scrollReveal(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel = '.section-head,.build-panel>div,.card,.impact-big,.impact-cell,'
+          + '.impact-banner,.voice-card,.step,.flow-step,.cs-figure,.quote,.compare>.col,'
+          + '.live-band,.case-band,.feedback,.related-grid>*,.learn-pills';
+  var els = [].slice.call(document.querySelectorAll(sel));
+  if(!els.length) return;
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  els.forEach(function(el){                       // light stagger for siblings in a group
+    var sibs = [].slice.call(el.parentNode.children).filter(function(c){ return c.classList.contains('reveal'); });
+    var i = sibs.indexOf(el);
+    if(i > 0) el.style.setProperty('--rd', (Math.min(i,4) * 0.06) + 's');
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target;
+      el.classList.add('in');
+      io.unobserve(el);
+      el.addEventListener('animationend', function(){ el.classList.remove('reveal','in'); el.style.removeProperty('--rd'); }, {once:true});
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+}
 /* honor reduced-motion: drop SVG signal pulses */
 function respectReducedMotion(){
   if(!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -391,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if(h){ h.innerHTML = (layout!=='lp' ? buildAnnounce() : '') + buildHeader(); }
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=buildFooter();
   if (layout !== 'lp'){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
-  setupNav(); duplicateMarquees(); countUp(); revealBars(); setupTOC(); setupShare(); setupMailForms(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion(); setupCookieNotice();
+  setupNav(); duplicateMarquees(); countUp(); revealBars(); scrollReveal(); setupTOC(); setupShare(); setupMailForms(); setupCalendly(); loadGTM(); loadSpeedInsights(); respectReducedMotion(); setupCookieNotice();
 });
 
 /* ===== booking popup (Calendly popup widget / WhatsApp) — shows every visit, 5s after load ===== */
