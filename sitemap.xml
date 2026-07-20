@@ -17,6 +17,7 @@
   <url><loc>https://www.kabsailabs.com/services/industries/ecommerce</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.kabsailabs.com/services/industries/saas</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.kabsailabs.com/services/industries/healthcare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.kabsailabs.com/industries/plumbers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.kabsailabs.com/case-studies</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.kabsailabs.com/case-studies/northwind-onboarding-agent</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.kabsailabs.com/case-studies/cedarbrook-intake-agent</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

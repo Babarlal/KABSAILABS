@@ -55,6 +55,7 @@ var NAV = {
     ["White Label", "/services/white-label"]
   ],
   industries: [
+    ["Plumbers", "/industries/plumbers"],
     ["Marketing Agencies", "/services/industries/marketing-agencies"],
     ["Real Estate", "/services/industries/real-estate"],
     ["eCommerce", "/services/industries/ecommerce"],

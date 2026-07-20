@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Receptionist for Plumbers — Never Miss Another Call | KABS AI LABS</title>
+<meta name="description" content="An AI receptionist that answers every plumbing call — nights, weekends, mid-job. It qualifies the job, flags emergencies, and texts you the details before you've wiped your hands.">
+<link rel="canonical" href="https://www.kabsailabs.com/industries/plumbers">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Receptionist for Plumbers — Never Miss Another Call">
+<meta property="og:description" content="Answers every call, qualifies the job, flags emergencies, texts you the details. Built by KABS AI LABS.">
+<meta property="og:url" content="https://www.kabsailabs.com/industries/plumbers">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS — AI agents, automation &amp; analytics, built end-to-end.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.svg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="/assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Service",
+            "name": "AI Receptionist for Plumbers",
+            "serviceType": "AI Voice Receptionist",
+            "url": "https://www.kabsailabs.com/industries/plumbers",
+            "description": "An AI receptionist that answers every plumbing call — nights, weekends, mid-job. It qualifies the job, flags emergencies, and texts you the details before you've wiped your hands.",
+            "provider": {
+                "@type": "Organization",
+                "@id": "https://www.kabsailabs.com/#organization",
+                "name": "KABS AI LABS"
+            },
+            "areaServed": "Worldwide"
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.kabsailabs.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.kabsailabs.com/industries" },
+                { "@type": "ListItem", "position": 3, "name": "AI Receptionist for Plumbers", "item": "https://www.kabsailabs.com/industries/plumbers" }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Does it sound like a robot?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "No. It's a natural voice and a real back-and-forth conversation — the caller asks something, it answers, it asks the next question. Most people don't clock it. Book the call and you can ring it yourself before you decide anything." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I have to change my phone number?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "No. It sits behind the number you already advertise. You choose when it answers — only after hours, only when you don't pick up within a few rings, or every call. Your choice." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What if it can't answer something?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "It's built to say it'll have someone call you back rather than guess. It won't invent a price or promise a time slot it can't keep — that's deliberate, because a wrong quote costs you more than a missed one." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can it quote a price?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "It can give the starting prices you tell it to give, exactly as you've written them. It won't guarantee a final number over the phone — that stays with you, on site." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Where do the jobs go?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "Wherever you already work. A spreadsheet, your CRM, a text to your phone, or all three. If you don't run anything yet, we'll set up something simple." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How long until it's live?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "About a week for a standard setup — we write it around your services, your area, and your prices, then you test it before it takes a single real call." }
+                }
+            ]
+        }
+    ]
+}
+</script>
+<style>
+/* ============================================================
+   /industries/plumbers — page-scoped styles.
+   All custom widgets are namespaced .pl-* and keyed to the
+   site's global tokens (var(--brand), --ink, --border, …) so
+   this page can't drift from the rest of the site.
+   Only two functional colors have no global token: an alert
+   red (emergency flag) and a lighter "resolved" green that
+   reads on the dark call card.
+   ============================================================ */
+.pl{--pl-alert:#e4572e;--pl-go:#39d3b0}
+
+/* Hero */
+.pl-hero{padding:clamp(40px,7vw,80px) 0 clamp(48px,8vw,90px)}
+.pl-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+@media(max-width:900px){.pl-hero-grid{grid-template-columns:1fr;gap:40px}}
+.pl-hero h1{font-size:clamp(30px,5.4vw,60px);line-height:1.03;letter-spacing:-.03em;overflow-wrap:break-word}
+.pl-hero h1 .sw{color:var(--brand)}
+.pl-lede{color:var(--muted);font-size:clamp(16px,2.1vw,19px);max-width:56ch;margin-top:20px}
+.pl-trust{margin-top:26px;display:flex;flex-wrap:wrap;gap:18px;font-size:13.5px;color:var(--muted)}
+.pl-trust span{display:flex;align-items:center;gap:7px}
+.pl-trust .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none}
+
+/* Signature: the live call */
+.pl-phone{background:var(--dark);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid #26303f}
+.pl-phone-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.09)}
+.pl-ring{display:flex;align-items:center;gap:9px;color:#fff;font-size:13px;font-weight:600}
+.pl-ring .pip{width:8px;height:8px;border-radius:50%;background:var(--pl-alert);animation:pl-ring 1.6s infinite}
+@keyframes pl-ring{0%{box-shadow:0 0 0 0 rgba(228,87,46,.6)}70%{box-shadow:0 0 0 10px rgba(228,87,46,0)}100%{box-shadow:0 0 0 0 rgba(228,87,46,0)}}
+.pl-phone-bar .meta{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#7d92a6}
+.pl-tape{padding:18px;min-height:268px;display:flex;flex-direction:column;gap:11px}
+.pl-line{display:flex;gap:10px}
+.pl-tape.armed .pl-line{opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease}
+.pl-tape.armed .pl-line.in{opacity:1;transform:none}
+.pl-who{flex:none;width:52px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding-top:4px;color:#6d8296}
+.pl-line.agent .pl-who{color:#7fa8e0}
+.pl-said{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 13px;font-size:14.5px;color:#e6eef6;line-height:1.45}
+.pl-line.agent .pl-said{background:rgba(47,106,214,.16);border-color:rgba(47,106,214,.3)}
+
+.pl-job{border-top:1px solid rgba(255,255,255,.09);padding:16px 18px 18px}
+.pl-phone.armed .pl-job{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.pl-phone.armed .pl-job.in{opacity:1;transform:none}
+.pl-job-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7d92a6}
+.pl-flag{color:#fff;background:var(--pl-alert);padding:3px 9px;border-radius:99px;font-size:10.5px;letter-spacing:.1em;font-weight:700}
+.pl-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+@media(max-width:420px){.pl-fields{grid-template-columns:1fr}}
+.pl-f .k{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#6d8296;margin-bottom:2px}
+.pl-f .v{font-size:14px;color:#fff;font-weight:600}
+.pl-sent{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--pl-go);font-weight:600}
+.pl-replay{background:none;border:1px solid rgba(255,255,255,.2);color:#cfdae4;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:8px;cursor:pointer;margin-left:auto}
+.pl-replay:hover{border-color:#fff;color:#fff}
+
+/* The math — inline calculator */
+.pl-math{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,56px);align-items:center}
+@media(max-width:900px){.pl-math{grid-template-columns:1fr}}
+.pl-dial{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(22px,3.5vw,30px);box-shadow:var(--shadow)}
+.pl-readout-k{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.pl-readout{font-family:var(--font-mono);font-weight:600;font-size:clamp(38px,7vw,58px);line-height:1;letter-spacing:-.02em;color:var(--pl-alert);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:2px}
+.pl-readout .cur{font-size:.52em;opacity:.75;transform:translateY(-.32em)}
+.pl-readout .per{font-size:.26em;color:var(--muted);margin-left:8px;align-self:center;letter-spacing:.04em}
+.pl-sliders{margin-top:26px;display:grid;gap:20px}
+.pl-sl label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;font-size:14px}
+.pl-sl .v{font-family:var(--font-mono);font-weight:600;color:var(--brand)}
+.pl-sl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:99px;background:var(--border-2);outline:none;cursor:pointer}
+.pl-sl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--brand);cursor:pointer;box-shadow:0 3px 10px -2px rgba(47,106,214,.5)}
+.pl-sl input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--brand);cursor:pointer;box-shadow:0 3px 10px -2px rgba(47,106,214,.5)}
+.pl-recap{margin-top:22px;padding-top:18px;border-top:1px dashed var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.pl-recap .k{font-size:13px;color:var(--muted)}
+.pl-recap .v{font-family:var(--font-mono);font-size:clamp(19px,3vw,24px);font-weight:600;color:var(--ok)}
+.pl-smallprint{margin-top:14px;font-size:11.5px;color:var(--faint);line-height:1.5}
+
+/* Steps */
+.pl-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:18px;margin-top:44px}
+.pl-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow)}
+.pl-step .n{font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--brand);margin-bottom:12px;display:block}
+.pl-step h3{font-size:18px}
+.pl-step p{margin-top:8px;font-size:14.5px;color:var(--muted)}
+
+/* Dark "what you get back" band + captures */
+.pl-dark{background:var(--dark);color:#fff}
+.pl-dark .eyebrow{color:#7fa8e0}
+.pl-dark .section-title{color:#fff}
+.pl-dark .pl-lede{color:#aeb9c7}
+.pl-captures{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-top:36px}
+.pl-cap{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:11px;padding:15px 16px}
+.pl-cap .k{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8ba0b3;margin-bottom:5px}
+.pl-cap .v{font-size:14.5px;color:#fff;font-weight:600}
+.pl-dark .btn-primary{background:#fff;color:var(--ink)}
+.pl-dark .btn-primary:hover{background:#fff;filter:brightness(.95)}
+.pl-dark .btn-ghost{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.pl-dark .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+.pl-breadcrumb{font-size:13.5px;color:var(--muted);margin-bottom:18px}
+.pl-breadcrumb a:hover{color:var(--ink)}
+</style>
+</head>
+<body data-path="/industries/plumbers" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main" class="pl">
+
+<!-- ============ HERO ============ -->
+<section class="pl-hero">
+  <div class="container pl-hero-grid">
+    <div>
+      <p class="pl-breadcrumb"><a href="/">Home</a> / Industries</p>
+      <p class="eyebrow">✦ For plumbing businesses</p>
+      <h1>You can't answer the phone with your hands <span class="sw">under a sink</span>.</h1>
+      <p class="pl-lede">So we built something that does. It picks up every call — nights, weekends, mid-job — works out what's wrong, flags the emergencies, and texts you the job before you've wiped your hands.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/audit" data-cta>Book a free 15-min call →</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="pl-trust">
+        <span><i class="dot"></i> Answers 24/7</span>
+        <span><i class="dot"></i> Keeps your number</span>
+        <span><i class="dot"></i> Live in about a week</span>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: a call playing out -->
+    <div class="pl-phone" id="pl-demo">
+      <div class="pl-phone-bar">
+        <div class="pl-ring"><i class="pip"></i> Incoming call</div>
+        <div class="meta">7:42 PM · after hours</div>
+      </div>
+
+      <div class="pl-tape" id="pl-tape">
+        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Yeah, hi — I've got water coming through the kitchen ceiling.</div></div>
+        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">That sounds urgent. Can I take your name and the address?</div></div>
+        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Dave Whitmore, 42 Alder Road.</div></div>
+        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">Thanks Dave. Is the water still running now?</div></div>
+        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Yeah, it's coming down steady.</div></div>
+        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">I'm flagging this as an emergency — someone will call you straight back.</div></div>
+      </div>
+
+      <div class="pl-job" id="pl-job">
+        <div class="pl-job-head">
+          <span>Job created</span>
+          <span class="pl-flag">Emergency</span>
+        </div>
+        <div class="pl-fields">
+          <div class="pl-f"><div class="k">Name</div><div class="v">Dave Whitmore</div></div>
+          <div class="pl-f"><div class="k">Address</div><div class="v">42 Alder Road</div></div>
+          <div class="pl-f"><div class="k">Problem</div><div class="v">Ceiling leak, active</div></div>
+          <div class="pl-f"><div class="k">Callback</div><div class="v">Within the hour</div></div>
+        </div>
+        <div class="pl-sent">
+          <span>✓</span> Sent to your phone · logged in your CRM
+          <button class="pl-replay" id="pl-replay" type="button">Replay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MATH ============ -->
+<section class="section tint">
+  <div class="container pl-math">
+    <div>
+      <p class="eyebrow">✦ The maths</p>
+      <h2 class="section-title">Work out what the missed ones are costing you.</h2>
+      <p class="pl-lede" style="margin-top:16px">Most plumbers have never put a number on it. Drag the sliders to your week and see what's walking to the next plumber on the list.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/audit" data-cta>Get this number properly →</a>
+      </div>
+    </div>
+
+    <div class="pl-dial">
+      <div class="pl-readout-k">Work lost — per month</div>
+      <div class="pl-readout"><span class="cur">$</span><span id="pl-amount">0</span><span class="per">/mo</span></div>
+
+      <div class="pl-sliders">
+        <div class="pl-sl">
+          <label for="pl-c"><span>Calls you miss a week</span><span class="v" id="pl-cV">12</span></label>
+          <input type="range" id="pl-c" min="2" max="60" value="12" step="1" aria-label="Calls missed per week">
+        </div>
+        <div class="pl-sl">
+          <label for="pl-j"><span>Average job value</span><span class="v" id="pl-jV">$320</span></label>
+          <input type="range" id="pl-j" min="80" max="2500" value="320" step="20" aria-label="Average job value">
+        </div>
+        <div class="pl-sl">
+          <label for="pl-b"><span>How many would've booked</span><span class="v" id="pl-bV">30%</span></label>
+          <input type="range" id="pl-b" min="5" max="70" value="30" step="1" aria-label="Percent who would book">
+        </div>
+      </div>
+
+      <div class="pl-recap">
+        <span class="k">Recoverable in a year</span>
+        <span class="v">$<span id="pl-yr">0</span></span>
+      </div>
+      <p class="pl-smallprint">A rough guide based on the numbers you enter, not a quote. Every business is different — that's what the call is for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how">
+  <div class="container">
+    <p class="eyebrow">✦ How it works</p>
+    <h2 class="section-title">From ringing phone to job on your screen.</h2>
+    <p class="pl-lede" style="margin-top:14px">Five things happen on every call, whether you're on a job, asleep, or on a ladder.</p>
+
+    <div class="pl-steps">
+      <div class="pl-step">
+        <span class="n">01</span>
+        <h3>It picks up</h3>
+        <p>First ring, any hour. No menu, no "press 1" — the caller just talks like they would to a person.</p>
+      </div>
+      <div class="pl-step">
+        <span class="n">02</span>
+        <h3>It asks the right things</h3>
+        <p>Name, address, what's broken, how bad. The questions you'd ask if you could take the call yourself.</p>
+      </div>
+      <div class="pl-step">
+        <span class="n">03</span>
+        <h3>It sorts urgent from routine</h3>
+        <p>A burst pipe at midnight and a quote for next week don't get treated the same way.</p>
+      </div>
+      <div class="pl-step">
+        <span class="n">04</span>
+        <h3>It writes the job down</h3>
+        <p>Every call becomes a proper record — logged in your sheet and filed in your CRM, no typing.</p>
+      </div>
+      <div class="pl-step">
+        <span class="n">05</span>
+        <h3>It texts you</h3>
+        <p>Name, number, address, problem. You ring back already knowing what you're walking into.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT CAPTURES ============ -->
+<section class="section pl-dark">
+  <div class="container">
+    <p class="eyebrow">✦ What you get back</p>
+    <h2 class="section-title" style="max-width:20ch">Not a voicemail. A job sheet.</h2>
+    <p class="pl-lede" style="margin-top:14px">Every call comes back as clean, filled-in fields — not a two-minute message you have to listen to twice.</p>
+
+    <div class="pl-captures">
+      <div class="pl-cap"><div class="k">Name</div><div class="v">Who called</div></div>
+      <div class="pl-cap"><div class="k">Phone</div><div class="v">Ready to ring back</div></div>
+      <div class="pl-cap"><div class="k">Address</div><div class="v">Where to go</div></div>
+      <div class="pl-cap"><div class="k">Problem</div><div class="v">What's broken</div></div>
+      <div class="pl-cap"><div class="k">Urgency</div><div class="v">Emergency or routine</div></div>
+      <div class="pl-cap"><div class="k">Timing</div><div class="v">When they're free</div></div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/audit" data-cta>Book a free 15-min call →</a>
+      <a class="btn btn-ghost" href="/case-studies">See it running</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section">
+  <div class="container narrow">
+    <p class="eyebrow">? Straight answers</p>
+    <h2 class="section-title">The questions plumbers actually ask.</h2>
+
+    <div class="faq">
+      <details>
+        <summary>Does it sound like a robot?<span class="pm">+</span></summary>
+        <div class="faq-a">No. It's a natural voice and a real back-and-forth conversation — the caller asks something, it answers, it asks the next question. Most people don't clock it. Book the call and you can ring it yourself before you decide anything.</div>
+      </details>
+      <details>
+        <summary>Do I have to change my phone number?<span class="pm">+</span></summary>
+        <div class="faq-a">No. It sits behind the number you already advertise. You choose when it answers — only after hours, only when you don't pick up within a few rings, or every call. Your choice.</div>
+      </details>
+      <details>
+        <summary>What if it can't answer something?<span class="pm">+</span></summary>
+        <div class="faq-a">It's built to say it'll have someone call you back rather than guess. It won't invent a price or promise a time slot it can't keep — that's deliberate, because a wrong quote costs you more than a missed one.</div>
+      </details>
+      <details>
+        <summary>Can it quote a price?<span class="pm">+</span></summary>
+        <div class="faq-a">It can give the starting prices you tell it to give, exactly as you've written them. It won't guarantee a final number over the phone — that stays with you, on site.</div>
+      </details>
+      <details>
+        <summary>Where do the jobs go?<span class="pm">+</span></summary>
+        <div class="faq-a">Wherever you already work. A spreadsheet, your CRM, a text to your phone, or all three. If you don't run anything yet, we'll set up something simple.</div>
+      </details>
+      <details>
+        <summary>How long until it's live?<span class="pm">+</span></summary>
+        <div class="faq-a">About a week for a standard setup — we write it around your services, your area, and your prices, then you test it before it takes a single real call.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Stop losing jobs to the next plumber on the list.</h2>
+      <p>Book a free 15-minute call. We'll ring the agent together so you can hear it, then tell you honestly whether it's worth it for your business.</p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="/audit" data-cta>Book a free 15-min call →</a>
+        <a class="btn btn-ghost" href="/contact">Or just send a message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="site-footer"></div>
+
+<script>
+/* /industries/plumbers — page interactions: call simulation + calculator.
+   Both respect prefers-reduced-motion by showing the finished state instantly.
+   Widgets default to fully visible (no-JS safe); JS only ADDS the .armed
+   class that hides pieces before animating them in. */
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- call simulation ---- */
+  var demo = document.getElementById('pl-demo');
+  if (demo){
+    var tape  = document.getElementById('pl-tape');
+    var lines = Array.prototype.slice.call(tape.querySelectorAll('.pl-line'));
+    var job   = document.getElementById('pl-job');
+    var replay = document.getElementById('pl-replay');
+    var timers = [];
+
+    function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+    function play(){
+      clearTimers();
+      if (reduced){                                  // finished state, no motion
+        demo.classList.remove('armed'); tape.classList.remove('armed');
+        return;
+      }
+      demo.classList.add('armed'); tape.classList.add('armed');
+      lines.forEach(function(l){ l.classList.remove('in'); });
+      job.classList.remove('in');
+      lines.forEach(function(l,i){
+        timers.push(setTimeout(function(){ l.classList.add('in'); }, 500 + i*850));
+      });
+      timers.push(setTimeout(function(){ job.classList.add('in'); }, 500 + lines.length*850 + 400));
+    }
+
+    if (!reduced){
+      if ('IntersectionObserver' in window){
+        var seen = false;
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if (e.isIntersecting && !seen){ seen = true; play(); } });
+        }, {threshold:.35});
+        io.observe(demo);
+      } else { play(); }
+    }
+    replay.addEventListener('click', play);
+  }
+
+  /* ---- the maths ---- */
+  var c = document.getElementById('pl-c'), j = document.getElementById('pl-j'), b = document.getElementById('pl-b');
+  if (c && j && b){
+    var cV = document.getElementById('pl-cV'), jV = document.getElementById('pl-jV'), bV = document.getElementById('pl-bV');
+    var amount = document.getElementById('pl-amount'), yr = document.getElementById('pl-yr');
+    var shown = 0, target = 0, raf = null, RECOVER = 0.7;
+    var fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
+
+    function tick(){
+      var d = target - shown;
+      if (Math.abs(d) < 1){ shown = target; amount.textContent = fmt(shown); raf = null; return; }
+      shown += d * 0.18; amount.textContent = fmt(shown); raf = requestAnimationFrame(tick);
+    }
+    function update(){
+      cV.textContent = c.value;
+      jV.textContent = '$' + (+j.value).toLocaleString('en-US');
+      bV.textContent = b.value + '%';
+      var lost = (+c.value) * 4.33 * (+j.value) * ((+b.value)/100);
+      target = lost;
+      yr.textContent = fmt(lost * RECOVER * 12);
+      if (reduced){ shown = target; amount.textContent = fmt(shown); }
+      else if (!raf){ raf = requestAnimationFrame(tick); }
+    }
+    [c,j,b].forEach(function(el){ el.addEventListener('input', update); });
+    update();
+  }
+})();
+</script>
+</body>
+</html>
