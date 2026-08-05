@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Demo — Talk to our AI Receptionist | KABS AI LABS</title>
+<meta name="description" content="Talk live to the KABS AI LABS AI receptionist right in your browser. Ask it anything a caller would — see how it answers, qualifies, and books.">
+<link rel="canonical" href="https://www.kabsailabs.com/demo">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Live Demo — Talk to our AI Receptionist | KABS AI LABS">
+<meta property="og:description" content="Talk live to the KABS AI LABS AI receptionist right in your browser.">
+<meta property="og:url" content="https://www.kabsailabs.com/demo">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS — AI agents, automation &amp; analytics, built end-to-end.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.svg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="/assets/js/main.js" defer></script>
+<style>
+.demo-wrap{max-width:640px;margin:0 auto;text-align:center}
+.demo-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:44px 32px;margin-top:36px}
+.demo-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:19px;padding:20px 40px;border-radius:100px;border:none;cursor:pointer;background:var(--accent);color:#fff;box-shadow:0 16px 34px -14px rgba(47,106,214,.6);transition:transform .15s ease,filter .18s ease,background .18s ease}
+.demo-btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.demo-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.demo-btn.live{background:#c23b3b}
+.demo-status{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px}
+.demo-status .dot{width:8px;height:8px;border-radius:50%;background:var(--border-2);transition:background .18s ease}
+.demo-status.is-live .dot{background:var(--ok);box-shadow:0 0 0 0 rgba(31,157,107,.45);animation:demo-pulse 1.8s infinite}
+.demo-status.is-connecting .dot{background:#e0a72f}
+.demo-status.is-error .dot{background:#c23b3b}
+@keyframes demo-pulse{0%{box-shadow:0 0 0 0 rgba(31,157,107,.45)}70%{box-shadow:0 0 0 8px rgba(31,157,107,0)}100%{box-shadow:0 0 0 0 rgba(31,157,107,0)}}
+.demo-transcript{margin-top:28px;text-align:left;background:var(--bg-tint);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;min-height:120px;max-height:340px;overflow-y:auto;font-size:14.5px;line-height:1.6;color:var(--text)}
+.demo-transcript:empty::before,.demo-transcript.is-empty::before{content:"Transcript will appear here once the call starts.";color:var(--faint)}
+.demo-transcript p{margin:0 0 10px;white-space:pre-wrap}
+.demo-transcript p:last-child{margin-bottom:0}
+.demo-note{font-size:13px;color:var(--muted);margin-top:18px}
+.demo-error{margin-top:16px;background:#fdecec;border:1px solid #f3c6c6;color:#9a2f2f;border-radius:var(--radius);padding:12px 16px;font-size:13.5px;text-align:left}
+.demo-error:empty{display:none}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": "https://www.kabsailabs.com/assets/img/favicon.svg"
+    },
+    {
+      "@type": "WebPage",
+      "url": "https://www.kabsailabs.com/demo",
+      "name": "Live Demo — Talk to our AI Receptionist",
+      "description": "Talk live to the KABS AI LABS AI receptionist right in your browser.",
+      "isPartOf": { "@id": "https://www.kabsailabs.com/#website" }
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/demo" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<section class="hero">
+<div class="container demo-wrap">
+<span class="chip-eyebrow"><span class="sparkle">✦</span> LIVE DEMO</span>
+<h1>Talk to our <span class="hl">AI receptionist</span></h1>
+<p class="hero-sub" style="margin-left:auto;margin-right:auto">Click below and speak naturally — ask it what it can do, book a slot, or try to stump it. This is the same voice agent we build for clients.</p>
+
+<div class="demo-card">
+<button type="button" class="demo-btn" id="callBtn">📞 Start Call</button>
+<div class="demo-status" id="callStatus"><span class="dot"></span><span id="callStatusText">Idle</span></div>
+<div class="demo-error" id="callError"></div>
+<div class="demo-transcript is-empty" id="callTranscript"></div>
+<p class="demo-note">For best quality, use headphones.</p>
+</div>
+</div>
+</section>
+</main>
+<div id="site-footer"></div>
+
+<script type="module">
+import { RetellWebClient } from "https://esm.sh/retell-client-js-sdk@2";
+
+var btn = document.getElementById("callBtn");
+var statusEl = document.getElementById("callStatus");
+var statusText = document.getElementById("callStatusText");
+var transcriptEl = document.getElementById("callTranscript");
+var errorEl = document.getElementById("callError");
+
+var client = null;
+var isCallActive = false;
+
+function setStatus(mode, text){
+  statusEl.className = "demo-status" + (mode ? " is-" + mode : "");
+  statusText.textContent = text;
+}
+function setError(msg){
+  errorEl.textContent = msg || "";
+}
+function renderTranscript(items){
+  if (!items || !items.length){
+    transcriptEl.classList.add("is-empty");
+    transcriptEl.innerHTML = "";
+    return;
+  }
+  transcriptEl.classList.remove("is-empty");
+  transcriptEl.innerHTML = items.map(function(t){
+    var role = t.role === "agent" ? "AI receptionist" : "You";
+    return "<p><b>" + role + ":</b> " + (t.content || "") + "</p>";
+  }).join("");
+  transcriptEl.scrollTop = transcriptEl.scrollHeight;
+}
+function resetUI(){
+  isCallActive = false;
+  btn.textContent = "📞 Start Call";
+  btn.classList.remove("live");
+  btn.disabled = false;
+  setStatus("", "Idle");
+}
+
+async function startCall(){
+  setError("");
+  btn.disabled = true;
+  setStatus("connecting", "Connecting…");
+
+  try {
+    var res = await fetch("/api/create-web-call", { method: "POST" });
+    if (!res.ok) throw new Error("Could not start the call. Please try again.");
+    var data = await res.json();
+    if (!data.accessToken) throw new Error("Could not start the call. Please try again.");
+
+    client = new RetellWebClient();
+
+    client.on("call_started", function(){
+      isCallActive = true;
+      btn.textContent = "🔴 End Call";
+      btn.classList.add("live");
+      btn.disabled = false;
+      setStatus("live", "Live");
+    });
+
+    client.on("update", function(update){
+      if (update && update.transcript) renderTranscript(update.transcript);
+    });
+
+    client.on("call_ended", function(){
+      resetUI();
+    });
+
+    client.on("error", function(err){
+      var msg = (err && err.message) ? err.message : "Something went wrong during the call.";
+      if (/permission|denied|NotAllowed/i.test(msg)) {
+        msg = "Microphone access was denied. Please allow microphone access in your browser and try again.";
+      }
+      setError(msg);
+      try { client.stopCall(); } catch (e) {}
+      resetUI();
+    });
+
+    await client.startCall({ accessToken: data.accessToken });
+  } catch (err) {
+    var msg = (err && err.message) ? err.message : "Could not start the call. Please try again.";
+    if (/permission|denied|NotAllowed/i.test(msg) || (err && err.name === "NotAllowedError")) {
+      msg = "Microphone access was denied. Please allow microphone access in your browser and try again.";
+    }
+    setError(msg);
+    resetUI();
+  }
+}
+
+function endCall(){
+  if (client) {
+    try { client.stopCall(); } catch (e) {}
+  }
+  resetUI();
+}
+
+btn.addEventListener("click", function(){
+  if (isCallActive) { endCall(); } else { startCall(); }
+});
+</script>
+</body>
+</html>

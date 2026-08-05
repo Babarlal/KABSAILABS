@@ -1,0 +1,21 @@
+<svg viewBox="0 0 720 264" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: Every return by hand becomes Routine ones handled alone">
+<defs>
+<pattern id="g16" width="18" height="18" patternUnits="userSpaceOnUse">
+<path d="M18 0H0v18" fill="none" stroke="#DDE4EC" stroke-width=".6"/></pattern>
+<marker id="a16" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path d="M0 0l10 5-10 5z" fill="#2E75B6"/></marker>
+</defs>
+<rect width="720" height="264" fill="#F2F6FA"/>
+<rect width="720" height="264" fill="url(#g16)"/>
+<text x="26" y="30" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1.6" fill="#5B6672">FIG. 16</text>
+<rect x="26" y="58" width="256" height="150" rx="6" fill="#fff" stroke="#C6D2DE" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="46" y="88" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.5" fill="#5B6672">BEFORE</text>
+<text x="46" y="120" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="15.5" font-weight="600" fill="#5B6672"><tspan x="46" y="120">Every return by</tspan><tspan x="46" y="137">hand</tspan></text>
+<line x1="300" y1="133" x2="404" y2="133" stroke="#2E75B6" stroke-width="2" marker-end="url(#a16)"/>
+<rect x="438" y="58" width="256" height="150" rx="6" fill="#fff" stroke="#2E75B6" stroke-width="1.5"/>
+<rect x="438" y="58" width="256" height="4" rx="2" fill="#2E75B6"/>
+<text x="458" y="92" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.5" fill="#2E75B6">AFTER</text>
+<text x="458" y="124" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="15.5" font-weight="700" fill="#14181D"><tspan x="458" y="124">Routine ones</tspan><tspan x="458" y="141">handled alone</tspan></text>
+<g transform="translate(636,166) scale(1.5)" fill="none" stroke="#2E75B6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><path d="M12 3l8 4.2v9.6L12 21l-8-4.2V7.2z"/><path d="M4 7.2l8 4.3 8-4.3M12 11.5V21"/></g>
+<text x="26" y="240" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A96A3">KABS AI LABS — SYSTEM DIAGRAM</text>
+</svg>
