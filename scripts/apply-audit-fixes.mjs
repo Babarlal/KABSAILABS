@@ -25,7 +25,9 @@ import { join, extname, relative } from 'node:path';
 const ROOT = process.argv.find(a => a.startsWith('--root='))?.split('=')[1] || process.cwd();
 const WRITE = process.argv.includes('--write');
 const BACKUP = process.argv.includes('--backup');
-const SKIP_DIRS = new Set(['node_modules', '.git', '.vercel', 'dist', 'build', '.next']);
+// kabs-fixes is the staging copy of this package. Processing it would rewrite
+// the pristine originals we diff against, so it is skipped.
+const SKIP_DIRS = new Set(['node_modules', '.git', '.vercel', 'dist', 'build', '.next', 'kabs-fixes']);
 
 /* ---------- fixes ---------- */
 
@@ -148,7 +150,9 @@ const fixes = [
     label: 'add /demo to the no-JS nav fallback',
     apply(html) {
       return html.replace(
-        /(<nav class="nojs-nav" aria-label="Primary"><a href="\/">Home<\/a><a href="\/services">Services<\/a>)/g,
+        /(<nav class="nojs-nav" aria-label="Primary"><a href="\/">Home<\/a><a href="\/services">Services<\/a>)(<a href="\/demo">Live demo<\/a>)?/g,
+        // Idempotent: pages that already list /demo (e.g. thank-you.html, which
+        // ships with it) must not get a second copy on a re-run.
         '$1<a href="/demo">Live demo</a>'
       );
     }
