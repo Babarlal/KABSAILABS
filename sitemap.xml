@@ -1,39 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  KABS AI LABS sitemap.
+
+  Changes from the previous version:
+  - Added /demo (the live voice agent). It was missing, which meant your single
+    best asset was invisible to search.
+  - Added /demonstration and /demonstration-en, which were linked from the nav
+    but absent here. If those are private client proposals, do the opposite:
+    remove them from the nav, add <meta name="robots" content="noindex"> to each,
+    and delete these two entries.
+  - Added /thank-you as noindex (not listed here — correct, it shouldn't be).
+  - Added <lastmod>. This is the only one of the three optional fields Google
+    actually uses. Set real dates and keep them current; a lastmod that never
+    changes is worse than none.
+  - Dropped <priority> and <changefreq>. Google ignores both.
+
+  lastmod is generated from git history: the commit date of each page's
+  last change. Regenerate after content edits rather than hand-editing.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.kabsailabs.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.kabsailabs.com/services</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/ai-automation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/workflow-automation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/rag-knowledge-base</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/voice-ai</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/ai-for-trades</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/ai-legal-medical-docs</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/analytics</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/analytics/ga4-gtm</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/gohighlevel-automation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/white-label</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/marketing-agencies</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/real-estate</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/ecommerce</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/saas</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/healthcare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/industries/plumbers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/northwind-onboarding-agent</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/cedarbrook-intake-agent</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/maple-data-infrastructure</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/larkfield-lifecycle-automation</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/brightleaf-voice-ai</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/case-studies/atlas-ai-receptionist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.kabsailabs.com/resources/dental-ai-receptionist-blueprint</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/resources/dental-front-desk-checklist</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/lp/dental-voice-ai</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/audit</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/contact/agency-partner</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/blog</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/careers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/terms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.kabsailabs.com/privacy</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://www.kabsailabs.com/</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Interactive demo — your strongest conversion asset -->
+  <url><loc>https://www.kabsailabs.com/demo</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Services -->
+  <url><loc>https://www.kabsailabs.com/services</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/ai-automation</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/workflow-automation</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/rag-knowledge-base</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/voice-ai</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/ai-for-trades</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/ai-legal-medical-docs</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/analytics</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/analytics/ga4-gtm</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/gohighlevel-automation</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/white-label</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Industries -->
+  <url><loc>https://www.kabsailabs.com/services/industries/marketing-agencies</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/real-estate</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/ecommerce</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/saas</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/healthcare</loc><lastmod>2026-08-10</lastmod></url>
+  <!-- TODO: this sits outside the /services/industries/ cluster. Consider a 301
+       to /services/industries/plumbers so the URL taxonomy is consistent. -->
+  <url><loc>https://www.kabsailabs.com/industries/plumbers</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Case studies -->
+  <url><loc>https://www.kabsailabs.com/case-studies</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/northwind-onboarding-agent</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/cedarbrook-intake-agent</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/maple-data-infrastructure</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/larkfield-lifecycle-automation</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/brightleaf-voice-ai</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies/atlas-ai-receptionist</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Demo walkthroughs. See the note at the top of this file: if these are
+       private client proposals, remove them and noindex the pages instead. -->
+  <url><loc>https://www.kabsailabs.com/demonstration-en</loc><lastmod>2026-07-01</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/demonstration</loc><lastmod>2026-07-01</lastmod></url>
+
+  <!-- Resources & landing pages -->
+  <url><loc>https://www.kabsailabs.com/resources/dental-ai-receptionist-blueprint</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/resources/dental-front-desk-checklist</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/lp/dental-voice-ai</loc><lastmod>2026-08-10</lastmod></url>
+
+  <!-- Conversion & company -->
+  <url><loc>https://www.kabsailabs.com/audit</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/contact</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/contact/agency-partner</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/about</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/careers</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/terms</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/privacy</loc><lastmod>2026-08-10</lastmod></url>
+
 </urlset>
