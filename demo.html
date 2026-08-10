@@ -112,16 +112,23 @@ function setError(msg){
   errorEl.textContent = msg || "";
 }
 function renderTranscript(items){
+  transcriptEl.textContent = "";
   if (!items || !items.length){
     transcriptEl.classList.add("is-empty");
-    transcriptEl.innerHTML = "";
     return;
   }
   transcriptEl.classList.remove("is-empty");
-  transcriptEl.innerHTML = items.map(function(t){
-    var role = t.role === "agent" ? "AI receptionist" : "You";
-    return "<p><b>" + role + ":</b> " + (t.content || "") + "</p>";
-  }).join("");
+  // Build nodes and set textContent per line. Transcript content is remote
+  // (speech-to-text of whatever the caller said) and was previously
+  // concatenated straight into innerHTML.
+  items.forEach(function(t){
+    var p = document.createElement("p");
+    var b = document.createElement("b");
+    b.textContent = (t.role === "agent" ? "AI receptionist" : "You") + ":";
+    p.appendChild(b);
+    p.appendChild(document.createTextNode(" " + (t.content || "")));
+    transcriptEl.appendChild(p);
+  });
   transcriptEl.scrollTop = transcriptEl.scrollHeight;
 }
 function resetUI(){
