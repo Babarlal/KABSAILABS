@@ -92,6 +92,9 @@ const fixes = [
     apply(html) {
       return html.replace(/<form\b([^>]*)>/g, (tag, attrs) => {
         if (!/data-mailto=/.test(attrs)) return tag;
+        // Idempotent: data-mailto stays on the tag as a fallback marker, so
+        // without this guard a re-run would prepend action/method a second time.
+        if (/data-form\b/.test(attrs) || /action="\/api\/submit-form"/.test(attrs)) return tag;
         let a = attrs
           .replace(/\s*action="mailto:[^"]*"/g, '')
           .replace(/\s*enctype="text\/plain"/g, '')
