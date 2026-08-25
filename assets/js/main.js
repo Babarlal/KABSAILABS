@@ -25,7 +25,7 @@ var CONFIG = {
   domain:       "kabsailabs.com",
   GTM_ID:       "",                            // "GTM-XXXXXXX" to enable GTM everywhere
   GA_ID:        "G-EMPMVS2NYX",
-  CALENDLY_URL: "https://calendly.com/babarlal-kabsailabs",
+  CALENDLY_URL: "https://calendly.com/babarlal17/30min",
   ctaFallback:  "/audit",                      // used only if Calendly fails to load
   formEndpoint: "/api/submit-form",
   thankYouUrl:  "/thank-you",

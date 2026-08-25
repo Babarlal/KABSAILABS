@@ -85,7 +85,7 @@ The pages were produced by `build.py` (kept one level up, outside this folder). 
 
 ## Before you go live — quick checklist
 - [ ] Replace logo files + `LOGO` in `main.js`
-- [ ] Set `GTM_ID` (Calendly is already wired to `https://calendly.com/babarlal-kabsailabs`)
+- [ ] Set `GTM_ID` (Calendly is already wired to `https://calendly.com/babarlal17/30min`)
 - [ ] (Optional) Point forms at a hosted handler instead of `mailto:` — see Forms above
 - [ ] Swap the illustrative case studies / stats for real ones as you ship them
 - [ ] Export `assets/img/og-image.svg` to a 1200×630 **PNG** for full social-preview support (LinkedIn/X don't always render SVG), then update the `og:image`/`twitter:image` URLs

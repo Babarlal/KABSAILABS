@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Automation Audit — KABS AI LABS</title>
-<meta name="description" content="Request a free automation audit. We’ll find the 3 highest-ROI fixes in your workflow.">
+<title>Book Your Operational Audit | KABS AI LABS</title>
+<meta name="description" content="Book a 30 minute operational audit. Answer two quick questions, leave your details, then pick a time. We come back with the three biggest time wasters in your week.">
 <link rel="canonical" href="https://www.kabsailabs.com/audit">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Free Automation Audit — KABS AI LABS">
-<meta property="og:description" content="Request a free automation audit. We’ll find the 3 highest-ROI fixes in your workflow.">
+<meta property="og:title" content="Book Your Operational Audit | KABS AI LABS">
+<meta property="og:description" content="Book a 30 minute operational audit. Answer two quick questions, leave your details, then pick a time.">
 <meta property="og:url" content="https://www.kabsailabs.com/audit">
 <meta property="og:site_name" content="KABS AI LABS">
 <meta name="twitter:card" content="summary_large_image">
@@ -16,22 +16,369 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="KABS AI LABS — AI agents, automation &amp; analytics, built end-to-end.">
+<meta property="og:image:alt" content="KABS AI LABS. AI agents, automation and analytics.">
 <meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://calendly.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/audit-patches.css">
 <script src="/assets/js/main.js" defer></script>
+<style>
+/* ============================================================
+   /audit booking flow. Three steps: questions, details, calendar.
+   Mobile first. Scoped under .au so nothing here leaks sitewide.
+   ============================================================ */
+.au{padding:28px 0 72px}
+.au .container{max-width:720px}
+
+.au-prog{display:flex;gap:8px;list-style:none;margin:0 0 22px;padding:0}
+.au-prog li{flex:1;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);padding-top:9px;border-top:3px solid var(--border)}
+.au-prog li[data-on="1"]{color:var(--brand);border-top-color:var(--brand)}
+
+.au-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:26px 20px 28px}
+@media(min-width:720px){.au-card{padding:36px 34px 38px}.au{padding:36px 0 90px}}
+.au-panel[hidden]{display:none}
+
+.au h1{font-size:clamp(27px,6.4vw,38px);letter-spacing:-.025em}
+.au-sub{color:var(--muted);font-size:15.5px;margin-top:10px;max-width:52ch}
+
+.au-q{border:0;margin:26px 0 0;padding:0;min-width:0}
+.au-q legend{font-family:var(--font-display);font-weight:700;color:var(--ink);font-size:17px;line-height:1.3;padding:0;margin-bottom:12px}
+.au-chips{display:flex;flex-wrap:wrap;gap:9px}
+.au-chip{position:relative;display:inline-flex}
+.au-chip input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.au-chip span{display:inline-flex;align-items:center;min-height:44px;padding:10px 17px;border:1px solid var(--border-2);border-radius:100px;background:var(--surface);color:var(--text);font-size:14.5px;font-weight:500;cursor:pointer;transition:background .16s,border-color .16s,color .16s}
+.au-chip span:hover{background:var(--bg-tint)}
+.au-chip input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}
+.au-chip input:focus-visible+span{outline:3px solid var(--brand);outline-offset:2px}
+
+.au-other{margin-top:13px}
+.au-other[hidden]{display:none}
+.au-label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.au-hint{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:2px}
+.au-input{width:100%;min-height:48px;padding:12px 14px;font:inherit;font-size:16px;color:var(--text);background:var(--surface);border:1px solid var(--border-2);border-radius:12px}
+.au-input:focus{outline:3px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.au-field{margin-top:16px}
+
+.au-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.au-next{min-height:52px;font-size:16px;flex:1 1 100%;justify-content:center}
+@media(min-width:520px){.au-next{flex:0 1 auto;min-width:260px}}
+.au-next[disabled]{opacity:.42;cursor:not-allowed;transform:none}
+.au-next[disabled]:hover{transform:none;background:var(--ink)}
+.au-back{background:none;border:0;padding:12px 4px;min-height:44px;font:inherit;font-size:14.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.au-back:hover{color:var(--ink)}
+
+.au-recap{margin:20px 0 4px;padding:15px 17px;background:var(--bg-tint);border:1px solid var(--border);border-radius:14px}
+.au-recap dl{display:grid;gap:9px;margin:0}
+.au-recap dt{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.au-recap dd{margin:2px 0 0;font-size:15.5px;font-weight:600;color:var(--ink)}
+
+.au-note{margin-top:15px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.au-note a{color:var(--brand);text-decoration:underline;text-underline-offset:2px}
+
+.au-err{margin-top:14px;font-size:14px;line-height:1.5;background:#fdecec;border:1px solid #f3c6c6;color:#9a2f2f;border-radius:10px;padding:10px 14px}
+.au-err[hidden]{display:none}
+
+.au-cal{margin-top:20px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg-tint)}
+.au-cal iframe{display:block;width:100%;height:1060px;border:0}
+@media(min-width:820px){.au-cal iframe{height:760px}}
+.au-fallback{margin-top:14px;font-size:14px;color:var(--muted)}
+.au-fallback a{color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+.au-done{margin-top:18px;padding:14px 17px;border-radius:14px;background:#e9f7f0;border:1px solid #bfe6d5;color:#15694a;font-size:15px;font-weight:600}
+.au-done[hidden]{display:none}
+
+.au-chip span,.au-next,.au-back{-webkit-tap-highlight-color:transparent}
+@media(prefers-reduced-motion:reduce){
+  .au-chip span,.btn{transition:none!important}
+  .btn:hover,.au-next:hover{transform:none!important}
+}
+</style>
 </head>
 <body data-path="/audit" data-layout="default">
 <a class="skip" href="#main">Skip to content</a>
 <div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a></nav></noscript></div>
 <main id="main">
-<section class="page-head"><div class="container"><p class="breadcrumb"><a href="/">Home</a> / Free Audit</p></div></section><section class="section" style="padding-top:24px"><div class="container split"><div><span class="chip-eyebrow"><span class="sparkle">✦</span> Free audit</span><h1 style="font-size:clamp(30px,4.4vw,46px);letter-spacing:-.025em">Find your 3 biggest time-wasters in 30 minutes.</h1><p class="lead">Tell us about your workflow. We’ll come back with the three highest-ROI things to automate first — no commitment, no hard sell.</p><div style="margin-top:24px"><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">A clear, prioritized list</h3><p>The specific fixes worth doing, ranked by payback.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">A rough scope &amp; timeline</h3><p>So you know what each fix takes before committing.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Honest advice</h3><p>If you don’t need us, we’ll tell you.</p></div></div></div></div><div class="form-aside"><h3 style="font-size:20px;margin-bottom:6px">Book your free audit</h3><p style="color:var(--muted);font-size:14px;margin-bottom:14px">Pick a 30-minute slot — or send the details below and we’ll reply within one business day.</p><a class="btn btn-primary" href="https://calendly.com/babarlal-kabsailabs" data-cta style="display:block;text-align:center;margin-bottom:18px">📅 Book a 30-min call →</a><form action="/api/submit-form" method="post" class="form" data-mailto="hello@kabsailabs.com" data-form><input type="hidden" name="_subject" value="Free audit request"><div class="field row2"><div class="field"><label for="a-name">Name</label><input type="text" id="a-name" name="name" required autocomplete="name"></div><div class="field"><label for="a-email">Work email</label><input id="a-email" type="email" name="email" required autocomplete="email" inputmode="email"></div></div><div class="field"><label for="a-co">Company</label><input type="text" id="a-co" name="company" autocomplete="organization"></div><div class="field"><label for="a-site">Website</label><input type="text" id="a-site" name="website" placeholder="https://" autocomplete="url" inputmode="url"></div><div class="field"><label for="a-pain">What’s eating the most time right now?</label><textarea id="a-pain" name="bottleneck" placeholder="e.g. following up with leads, manual reporting, answering the same questions…"></textarea></div><button class="btn btn-primary" type="submit">Email us the details →</button><p class="form-note">Submitting opens your email app with the details ready to send — we reply within one business day. By sending, you agree to our <a href="/privacy">Privacy Policy</a>.</p></form></div></div></section>
+<section class="page-head"><div class="container"><p class="breadcrumb"><a href="/">Home</a> / Operational audit</p></div></section>
+
+<section class="au"><div class="container">
+
+  <ol class="au-prog" id="auProg">
+    <li data-on="1" aria-current="step">Questions</li>
+    <li>Details</li>
+    <li>Time</li>
+  </ol>
+
+  <div class="au-card">
+
+    <!-- ============ step 1: two questions ============ -->
+    <div class="au-panel" id="auStep1">
+      <h1>Two quick questions.</h1>
+      <p class="au-sub">Answer these and we come back with the three biggest time wasters in your week.</p>
+
+      <fieldset class="au-q">
+        <legend>What kind of business are you?</legend>
+        <div class="au-chips">
+          <label class="au-chip"><input type="radio" name="industry" value="Trades and home services"><span>Trades and home services</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Health and clinics"><span>Health and clinics</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Real estate"><span>Real estate</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Hospitality"><span>Hospitality</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Retail and ecommerce"><span>Retail and ecommerce</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Professional services"><span>Professional services</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Fitness and studios"><span>Fitness and studios</span></label>
+          <label class="au-chip"><input type="radio" name="industry" value="Something else" data-other="1"><span>Something else</span></label>
+        </div>
+        <div class="au-other" id="auIndustryOther" hidden>
+          <label class="au-label" for="auIndustryOtherInput">Tell us in a few words</label>
+          <input class="au-input" type="text" id="auIndustryOtherInput" maxlength="90" autocomplete="off" placeholder="Your line of work">
+        </div>
+      </fieldset>
+
+      <fieldset class="au-q">
+        <legend>Which task eats the most hours each week?</legend>
+        <div class="au-chips">
+          <label class="au-chip"><input type="radio" name="task" value="Admin and data entry"><span>Admin and data entry</span></label>
+          <label class="au-chip"><input type="radio" name="task" value="Scheduling and bookings"><span>Scheduling and bookings</span></label>
+          <label class="au-chip"><input type="radio" name="task" value="Quotes and invoicing"><span>Quotes and invoicing</span></label>
+          <label class="au-chip"><input type="radio" name="task" value="Customer replies and follow up"><span>Customer replies and follow up</span></label>
+          <label class="au-chip"><input type="radio" name="task" value="Reports and spreadsheets"><span>Reports and spreadsheets</span></label>
+          <label class="au-chip"><input type="radio" name="task" value="Something else" data-other="1"><span>Something else</span></label>
+        </div>
+        <div class="au-other" id="auTaskOther" hidden>
+          <label class="au-label" for="auTaskOtherInput">Tell us in a few words</label>
+          <input class="au-input" type="text" id="auTaskOtherInput" maxlength="90" autocomplete="off" placeholder="What takes the hours">
+        </div>
+      </fieldset>
+
+      <div class="au-actions">
+        <button class="btn btn-primary au-next" type="button" id="auContinue" disabled>Continue</button>
+      </div>
+    </div>
+
+    <!-- ============ step 2: details ============ -->
+    <div class="au-panel" id="auStep2" hidden>
+      <h1>Your details.</h1>
+      <p class="au-sub">So we can send the calendar invite and the notes.</p>
+
+      <div class="au-recap">
+        <dl>
+          <div><dt>Business</dt><dd id="auRecapIndustry"></dd></div>
+          <div><dt>Biggest time sink</dt><dd id="auRecapTask"></dd></div>
+        </dl>
+      </div>
+
+      <form id="auForm" novalidate>
+        <div class="au-field">
+          <label class="au-label" for="auName">Name</label>
+          <input class="au-input" type="text" id="auName" name="name" autocomplete="name" required>
+        </div>
+        <div class="au-field">
+          <label class="au-label" for="auEmail">Email</label>
+          <input class="au-input" type="email" id="auEmail" name="email" autocomplete="email" inputmode="email" required>
+        </div>
+        <div class="au-field">
+          <label class="au-label" for="auMobile">Mobile <span class="au-hint">Optional</span></label>
+          <input class="au-input" type="tel" id="auMobile" name="mobile" autocomplete="tel" inputmode="tel">
+        </div>
+
+        <p class="au-err" id="auError" role="alert" hidden></p>
+
+        <div class="au-actions">
+          <button class="btn btn-primary au-next" type="submit" id="auSubmit">Book My Operational Audit</button>
+          <button class="au-back" type="button" data-back="1">Back</button>
+        </div>
+
+        <p class="au-note">We only use your details to arrange your audit. See our <a href="/privacy">Privacy Policy</a></p>
+      </form>
+    </div>
+
+    <!-- ============ step 3: pick a time ============ -->
+    <div class="au-panel" id="auStep3" hidden>
+      <h1>Pick a time.</h1>
+      <p class="au-sub">Your answers travel with the booking, so the call starts where you left off.</p>
+
+      <p class="au-done" id="auDone" hidden>Booked, check your email</p>
+
+      <div class="au-cal">
+        <iframe id="auCal" title="Choose a time for your operational audit" src="about:blank" loading="lazy"></iframe>
+      </div>
+
+      <p class="au-fallback">Calendar not loading? <a id="auCalLink" href="https://calendly.com/babarlal17/30min" target="_blank" rel="noopener">Open it in a new tab</a></p>
+    </div>
+
+  </div>
+</div></section>
 </main>
 <div id="site-footer"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- CONFIG ---------- */
+  var CALENDLY_URL = 'https://calendly.com/babarlal17/30min';
+  var WEBHOOK_URL  = 'https://script.google.com/macros/s/AKfycbyFP-P9I80X_QE02eQ8i4SioyqVlTeV36wEdbeF1V7Se3G2k4OE6zb4zk5El53b7-V9/exec';
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  var prog     = $('auProg');
+  var panels   = [$('auStep1'), $('auStep2'), $('auStep3')];
+  var continueBtn = $('auContinue');
+  var form     = $('auForm');
+  var submitBtn= $('auSubmit');
+  var errBox   = $('auError');
+  var cal      = $('auCal');
+  var calLink  = $('auCalLink');
+  var doneMsg  = $('auDone');
+
+  /* Each question pairs a radio group with the text box its
+     "Something else" option reveals. Continue stays locked until
+     both groups answer and every revealed box has content. */
+  var QUESTIONS = [
+    { name:'industry', wrap:$('auIndustryOther'), input:$('auIndustryOtherInput') },
+    { name:'task',     wrap:$('auTaskOther'),     input:$('auTaskOtherInput')     }
+  ];
+
+  function checked(name){
+    return document.querySelector('input[name="' + name + '"]:checked');
+  }
+
+  function answer(q){
+    var sel = checked(q.name);
+    if (!sel) return '';
+    if (sel.getAttribute('data-other')){
+      var txt = q.input.value.trim();
+      return txt ? 'Other: ' + txt : '';
+    }
+    return sel.value;
+  }
+
+  function refresh(){
+    var ready = true;
+    QUESTIONS.forEach(function(q){
+      var sel = checked(q.name);
+      var isOther = !!(sel && sel.getAttribute('data-other'));
+      q.wrap.hidden = !isOther;
+      if (!sel || (isOther && !q.input.value.trim())) ready = false;
+    });
+    continueBtn.disabled = !ready;
+  }
+
+  QUESTIONS.forEach(function(q){
+    document.querySelectorAll('input[name="' + q.name + '"]').forEach(function(radio){
+      radio.addEventListener('change', function(){
+        refresh();
+        if (radio.getAttribute('data-other') && radio.checked) q.input.focus();
+      });
+    });
+    q.input.addEventListener('input', refresh);
+  });
+  refresh();
+
+  /* ---------- step machine ---------- */
+  function goto(n){
+    panels.forEach(function(p, i){ p.hidden = (i !== n - 1); });
+    Array.prototype.forEach.call(prog.children, function(li, i){
+      if (i < n) li.setAttribute('data-on', '1'); else li.removeAttribute('data-on');
+      if (i === n - 1) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+    var behaviour = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth';
+    try { window.scrollTo({ top: 0, behavior: behaviour }); } catch (e) { window.scrollTo(0, 0); }
+    var h1 = panels[n - 1].querySelector('h1');
+    if (h1){ h1.setAttribute('tabindex', '-1'); h1.focus(); }
+  }
+
+  continueBtn.addEventListener('click', function(){
+    if (continueBtn.disabled) return;
+    /* textContent, never innerHTML: the "Something else" text is visitor input */
+    $('auRecapIndustry').textContent = answer(QUESTIONS[0]);
+    $('auRecapTask').textContent     = answer(QUESTIONS[1]);
+    goto(2);
+  });
+
+  document.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click', function(){ goto(1); });
+  });
+
+  /* ---------- step 2 submit ---------- */
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+  function fail(msg, el){
+    errBox.textContent = msg;
+    errBox.hidden = false;
+    if (el) el.focus();
+  }
+
+  function calendlyUrl(name, email, notes){
+    return CALENDLY_URL +
+      '?hide_gdpr_banner=1' +
+      '&name='  + encodeURIComponent(name) +
+      '&email=' + encodeURIComponent(email) +
+      '&a1='    + encodeURIComponent(notes);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errBox.hidden = true;
+
+    var name   = $('auName').value.trim();
+    var email  = $('auEmail').value.trim();
+    var mobile = $('auMobile').value.trim();
+
+    if (!name)              return fail('Please enter your name.', $('auName'));
+    if (!validEmail(email)) return fail('Please enter a valid email address.', $('auEmail'));
+
+    var industry = answer(QUESTIONS[0]);
+    var task     = answer(QUESTIONS[1]);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'One moment';
+
+    var lead = {
+      name: name,
+      email: email,
+      mobile: mobile,
+      industry: industry,
+      task_time_sink: task,
+      source: 'booking_page',
+      page_url: window.location.href,
+      timestamp_utc: new Date().toISOString()
+    };
+
+    /* no-cors means the reply is opaque. A new sheet row and the email
+       are the proof it landed, so we never block the booking on it. */
+    function proceed(){
+      var notes = 'Industry: ' + industry + ' | Biggest time sink: ' + task + ' | Mobile: ' + (mobile || 'not given');
+      var url = calendlyUrl(name, email, notes);
+      cal.src = url;
+      calLink.href = url;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Book My Operational Audit';
+      goto(3);
+    }
+
+    try {
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(lead)
+      }).then(proceed, proceed);
+    } catch (err) {
+      proceed();
+    }
+  });
+
+  /* ---------- step 3: Calendly confirmation ---------- */
+  window.addEventListener('message', function(e){
+    if (String(e.origin).indexOf('calendly.com') === -1) return;
+    var d = e.data;
+    if (d && d.event === 'calendly.event_scheduled') doneMsg.hidden = false;
+  });
+})();
+</script>
 </body>
 </html>
