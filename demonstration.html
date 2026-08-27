@@ -31,7 +31,13 @@ strong{font-weight:700;color:var(--ink)}
   padding:26px 40px 18px;border-bottom:1px solid var(--line);max-width:860px;margin:0 auto}
 .brand{font-family:'Space Grotesk';font-weight:700;font-size:21px;color:var(--ink);letter-spacing:-.01em;white-space:nowrap;flex:0 0 auto}
 .brand .b{color:var(--blue)}
-.tag{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.03em}
+.tag{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.03em;text-align:right}
+/* back to the main site: these pages are standalone and previously had no way home */
+a.brand{text-decoration:none;display:inline-block}
+a.brand:hover{opacity:.82}
+a.brand:focus-visible,.tag a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.tag a{color:var(--blue);font-weight:700;text-decoration:none}
+.tag a:hover{text-decoration:underline}
 
 /* hero */
 .hero{display:flex;gap:34px;align-items:center;padding:40px 0 26px}
@@ -233,8 +239,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;heig
 @media (max-width:680px){.pbtn{width:42px;height:42px}.ptime{min-width:64px;font-size:11px}}
 </style></head><body>
 <div class="top">
-  <div class="brand">KABS <span class="b">AI LABS</span></div>
-  <div class="tag">Proposition · Réceptionniste IA · <a href="/demonstration-en" style="color:var(--blue);font-weight:700;text-decoration:none">EN</a></div>
+  <a class="brand" href="/" aria-label="Accueil KABS AI LABS">KABS <span class="b">AI LABS</span></a>
+  <div class="tag"><a href="/">&larr; Retour au site</a> · Proposition · Réceptionniste IA · <a href="/demonstration-en">EN</a></div>
 </div>
 <div class="wrap">
   <div class="hero">
