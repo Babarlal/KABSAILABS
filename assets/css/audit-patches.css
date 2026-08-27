@@ -135,3 +135,19 @@ summary:focus-visible,
 /* --- 11. Belt-and-braces: no horizontal scroll anywhere. --- */
 html, body{ overflow-x: hidden; }
 .marquee{ overflow: hidden; }
+
+/* --- 12. Services dropdown closed when the cursor crossed into it.
+       .menu-panel sits at top: calc(100% + 14px), so that 14px gap was
+       dead space: the pointer left .has-menu and the panel hid instantly.
+       This transparent bridge is a child of the panel, so hovering it
+       keeps .has-menu:hover true all the way down. It only exists while
+       the panel is open, because it inherits visibility:hidden when closed. --- */
+.menu-panel::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+  background: transparent;
+}
