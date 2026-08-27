@@ -208,6 +208,14 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;heig
 /* ===== demo — real call audio players ===== */
 .demo{padding:24px 0}
 .demo-grid{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+/* placeholder shown until English recordings exist; see TODO(asset) in the demo section */
+.demo-pending{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding:18px 20px;
+  border:1px dashed var(--line);border-radius:14px;background:#F7F9FC}
+.demo-pending .dp-ic{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#E6EDFA;
+  color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:15px}
+.demo-pending .dp-tx b{font-family:'Space Grotesk','Inter',sans-serif;font-size:15px;color:var(--ink)}
+.demo-pending .dp-tx p{font-size:13.5px;color:var(--ink2);margin:5px 0 0;line-height:1.55}
+.demo-pending .dp-tx a{color:var(--blue);font-weight:600}
 .player{border:1px solid var(--line);border-radius:14px;background:#fff;padding:15px 16px;
   box-shadow:0 12px 34px -24px rgba(11,18,32,.45)}
 .player .phead{margin-bottom:12px}
@@ -282,7 +290,18 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;heig
   <div class="section demo">
     <div class="eyebrow">Demo</div>
     <h2>Hear the agent in action</h2>
-    <p class="lead">Three real calls — the agent answers, understands, and books the appointment. Click the waveform to seek; only one player plays at a time. <span style="color:var(--muted)">(Recordings are in French.)</span></p>
+    <p class="lead">English recordings of the agent are being produced. They will appear here.</p>
+    <!-- TODO(asset): English demo media. Drop the file into assets/audio/ or assets/video/,
+         then either add an entry to the REC array further down this file, or replace the
+         .demo-pending block below with a <video> element. Do NOT point this page at the
+         French recordings in assets/audio/. -->
+    <div class="demo-pending">
+      <div class="dp-ic" aria-hidden="true">&#9654;</div>
+      <div class="dp-tx">
+        <b>English recordings coming shortly</b>
+        <p>The French version of this page already has three full call recordings. If you want to hear the agent working today, <a href="/demonstration">listen to those</a>. The behaviour is identical, only the language differs.</p>
+      </div>
+    </div>
     <div id="demo-players" class="demo-grid"></div>
   </div>
 
@@ -378,17 +397,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;heig
 <script>
 /* Real call recordings — edit titles / descriptions / files here */
 (function(){
-  var REC=[
-    {t:"Emergency — water heater down",
-     d:"The agent handles the emergency, asks the right questions, and arranges a callback within the hour.",
-     s:"assets/audio/appel-1-urgence-chauffe-eau.wav"},
-    {t:"Service area verified",
-     d:"The caller gives an out-of-area address — the agent catches it and corrects it before booking.",
-     s:"assets/audio/appel-2-zone-verifiee.wav"},
-    {t:"Booking an appointment — leak",
-     d:"From call to booking: name, address and phone number captured and confirmed.",
-     s:"assets/audio/appel-3-prise-rdv-fuite.wav"}
-  ];
+  /* TODO(asset): English recordings. Empty on purpose. The three files in
+     assets/audio/ are the French recordings used by /demonstration, and must not
+     be served from this page. Add {t,d,s} entries here once English media exists
+     and the players will render themselves. */
+  var REC=[];
   var BARS=44,
       PLAY='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
       PAUSE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
