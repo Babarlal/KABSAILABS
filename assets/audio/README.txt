@@ -1,12 +1,21 @@
-Drop the 3 démonstration recordings in THIS folder, with these exact names
-(they are referenced by /demonstration via assets/js/demo-player.js):
+These three recordings are the French demo calls played on /demonstration.
 
   appel-1-urgence-chauffe-eau.wav
   appel-2-zone-verifiee.wav
   appel-3-prise-rdv-fuite.wav
 
-WAV and MP3 both play fine in the browser. If you swap to .mp3, update the
-`src` values in the RECORDINGS array at the top of assets/js/demo-player.js.
+They are declared in the REC array inside demonstration.html itself, in the
+inline script near the bottom of the file. There is no separate player
+script. An earlier version of this note pointed at assets/js/demo-player.js,
+which does not exist.
 
-If a file is missing, its player renders disabled (greyed out) instead of
-crashing the page.
+If a file is missing, its player renders greyed out and disabled instead of
+breaking the page.
+
+WAV and MP3 both play in every current browser. These WAVs are large, 5 MB
+to 10 MB each, so prefer MP3 for any replacement. If you change a file
+extension, update the matching s: value in the REC array.
+
+The English page, demonstration-en.html, must not use these files. Its REC
+array is deliberately empty until English recordings exist. See the
+TODO(asset) markers in that file.
