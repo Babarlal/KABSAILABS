@@ -1,0 +1,81 @@
+/* KABS AI Labs blog post styles.
+   Scoped fork of blog.css. blog.css was a standalone sheet: it declared its own
+   :root tokens and styled bare body/a/h1/h2/h3, so loading it alongside styles.css
+   made the two fight. Five token names collide with different values
+   (--ink --muted --border --brand --radius; note --radius is 6px here and 14px on
+   the site), and blog.css uses them in 45 places.
+
+   Fix: the tokens now sit on .blogpost instead of :root, so they cascade to the
+   article and stop at the shared header and footer. Every rule is scoped to
+   .blogpost for the same reason. Dropped whatever styles.css already provides,
+   plus the old standalone chrome. */
+
+/* tokens scoped to the article: they must not reach the shared chrome */
+.blogpost{--ink:#14181D; --paper:#FFFFFF; --tint:#F2F6FA; --brand:#2E75B6; --brand-deep:#1B4B78; --signal:#E8792B; --muted:#5B6672; --border:#DDE4EC; --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace; --wrap:720px; --radius:6px;
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);background:var(--paper)}
+.blogpost img, .blogpost svg{max-width:100%;height:auto;display:block}
+.blogpost a{color:var(--brand-deep);text-decoration:underline;text-underline-offset:2px}
+.blogpost a:hover{color:var(--brand)}
+.blogpost a:focus-visible, .blogpost button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+.blogpost .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 22px}
+.blogpost .wrap-wide{max-width:1040px}
+.blogpost .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em; text-transform:uppercase;color:var(--brand);margin:0 0 14px}
+.blogpost .kicker .num{color:var(--muted)}
+.blogpost article{padding:52px 0 72px}
+.blogpost h1{font-size:clamp(29px,5.1vw,44px);line-height:1.14;letter-spacing:-.022em; margin:0 0 18px;font-weight:800}
+.blogpost .standfirst{font-size:clamp(18px,2.4vw,20.5px);line-height:1.55;color:var(--muted);margin:0 0 34px}
+.blogpost h2{font-size:clamp(22px,3.1vw,27px);line-height:1.24;letter-spacing:-.015em; margin:52px 0 16px;font-weight:700}
+.blogpost h3{font-size:18px;margin:0 0 6px;font-weight:700;letter-spacing:-.005em}
+.blogpost p{margin:0 0 18px}
+.blogpost .said{margin:0 0 34px;padding:20px 24px;background:var(--tint); border-left:3px solid var(--signal);border-radius:0 var(--radius) var(--radius) 0}
+.blogpost .said p{margin:0;font-size:19px;line-height:1.5;font-weight:600;letter-spacing:-.01em}
+.blogpost .said .attrib{font-family:var(--mono);font-size:11px;letter-spacing:.1em; text-transform:uppercase;color:var(--muted);margin-top:9px;font-weight:400}
+.blogpost .hero-fig{margin:0 0 36px}
+.blogpost .hero-fig figcaption{font-family:var(--mono);font-size:11.5px;color:var(--muted); margin-top:9px;letter-spacing:.04em}
+.blogpost .steps{list-style:none;margin:0 0 12px;padding:0;counter-reset:s}
+.blogpost .steps li{counter-increment:s;position:relative;padding:0 0 22px 46px;margin:0}
+.blogpost .steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px; font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brand); border:1px solid var(--border);border-radius:3px;padding:3px 6px;background:var(--tint)}
+.blogpost .steps li p{margin:0;color:var(--muted);font-size:16px}
+.blogpost .costplate{border:1.5px solid var(--ink);border-radius:var(--radius); margin:34px 0;overflow:hidden;background:var(--paper)}
+.blogpost .costplate .cap{background:var(--ink);color:#fff;font-family:var(--mono); font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px}
+.blogpost .costplate .body{padding:6px 18px 16px}
+.blogpost .costplate .ln{display:flex;justify-content:space-between;align-items:baseline; gap:16px;padding:10px 0;border-bottom:1px dotted var(--border)}
+.blogpost .costplate .ln span:first-child{color:var(--muted);font-size:15.5px}
+.blogpost .costplate .ln span:last-child{font-family:var(--mono);font-weight:600;font-size:16px;white-space:nowrap}
+.blogpost .costplate .sum{display:flex;gap:12px;align-items:baseline;padding:15px 0 4px; border-top:2px solid var(--ink);margin-top:6px}
+.blogpost .costplate .sum .eq{font-family:var(--mono);color:var(--signal);font-weight:700;font-size:17px}
+.blogpost .costplate .sum strong{font-size:17.5px;line-height:1.4;letter-spacing:-.01em}
+.blogpost .costplate .note{font-family:var(--mono);font-size:11px;color:var(--muted); padding:0 18px 14px;letter-spacing:.03em}
+.blogpost .check{list-style:none;margin:0 0 18px;padding:0}
+.blogpost .check li{position:relative;padding:0 0 11px 30px;color:var(--ink)}
+.blogpost .check li::before{content:"";position:absolute;left:4px;top:8px;width:9px;height:9px; border:1.5px solid var(--brand);border-radius:2px}
+.blogpost .plain{list-style:none;margin:0 0 18px;padding:0}
+.blogpost .plain li{position:relative;padding:0 0 9px 20px;color:var(--muted)}
+.blogpost .plain li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:1.5px;background:var(--brand)}
+.blogpost .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px;background:var(--border);border:1px solid var(--border); border-radius:var(--radius);overflow:hidden;margin:30px 0}
+.blogpost .strip div{background:var(--paper);padding:16px 18px}
+.blogpost .strip dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em; text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.blogpost .strip dd{margin:0;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+.blogpost .cta{margin:56px 0 0;padding:28px;background:var(--ink);color:#fff;border-radius:var(--radius)}
+.blogpost .cta h2{margin:0 0 10px;color:#fff;font-size:22px}
+.blogpost .cta p{color:#B6C2CE;margin:0 0 20px;font-size:16px}
+.blogpost .btn{display:inline-block;background:#fff;color:var(--ink);font-weight:650; padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-size:15.5px}
+.blogpost .btn:hover{background:#E8EEF4;color:var(--ink)}
+.blogpost .idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:16px;margin:36px 0 0}
+.blogpost .card{border:1px solid var(--border);border-radius:var(--radius);padding:20px; background:var(--paper);text-decoration:none;color:inherit;display:block;transition:border-color .15s,transform .15s}
+.blogpost .card:hover{border-color:var(--brand);transform:translateY(-2px);color:inherit}
+.blogpost .card .n{font-family:var(--mono);font-size:11px;color:var(--brand);letter-spacing:.1em}
+.blogpost .card h3{margin:8px 0 7px;font-size:17px;line-height:1.32}
+.blogpost .card p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.5}
+.blogpost .grouphead{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase; color:var(--muted);margin:44px 0 0;padding-bottom:9px;border-bottom:1px solid var(--border)}
+.blogpost .pn{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid var(--border)}
+.blogpost .pn a{flex:1 1 240px;border:1px solid var(--border);border-radius:var(--radius); padding:14px 16px;text-decoration:none;color:inherit}
+.blogpost .pn a:hover{border-color:var(--brand)}
+.blogpost .pn .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em; text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.blogpost .pn .t{font-weight:650;font-size:15px;line-height:1.35}
+@media (max-width:560px){
+  .blogpost{font-size:16.5px}
+  .blogpost article{padding:34px 0 52px}
+  .blogpost .costplate .ln{flex-direction:column;gap:2px}
+  .blogpost .costplate .ln span:last-child{font-size:15px}
+}
