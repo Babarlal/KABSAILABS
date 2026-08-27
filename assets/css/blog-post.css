@@ -10,8 +10,11 @@
    .blogpost for the same reason. Dropped whatever styles.css already provides,
    plus the old standalone chrome. */
 
-/* tokens scoped to the article: they must not reach the shared chrome */
-.blogpost{--ink:#14181D; --paper:#FFFFFF; --tint:#F2F6FA; --brand:#2E75B6; --brand-deep:#1B4B78; --signal:#E8792B; --muted:#5B6672; --border:#DDE4EC; --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace; --wrap:720px; --radius:6px;
+/* tokens scoped to the article: they must not reach the shared chrome.
+   --sans and --mono mirror styles.css --font-body and --font-mono so the article
+   sets in the same faces as the rest of the site. Sizes and rhythm stay the
+   blog's own: 17px/1.65, not the site's 16px/1.6. */
+.blogpost{--ink:#14181D; --paper:#FFFFFF; --tint:#F2F6FA; --brand:#2E75B6; --brand-deep:#1B4B78; --signal:#E8792B; --muted:#5B6672; --border:#DDE4EC; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --wrap:720px; --radius:6px;
   font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);background:var(--paper)}
 .blogpost img, .blogpost svg{max-width:100%;height:auto;display:block}
 .blogpost a{color:var(--brand-deep);text-decoration:underline;text-underline-offset:2px}
