@@ -12,7 +12,28 @@
      4. REPLACE_DATE       → publish date, format YYYY-MM-DD (e.g. 2026-06-21)
      5. REPLACE_UPDATED    → last-updated date YYYY-MM-DD (same as publish if new)
      6. data-path on <body> → /blog/REPLACE_SLUG
+     7. REPLACE_NUM        → position in the series, e.g. 07 / 24 (or delete the span)
+     8. REPLACE_CATEGORY   → series or category name shown in the kicker
+     9. REPLACE_QUOTE      → the pull quote, and REPLACE_ATTRIBUTION under it
+                             (or delete the div.said block if there is no quote)
+    10. REPLACE_PREV_*     → previous and next post slug and title in nav.pn
      Then: write the article body, and add a card on /blog.html
+
+     STRUCTURE: posts use the .blogpost wrapper and assets/css/blog-post.css,
+     not the .prose pattern. Keep the wrapper: article styling is scoped to it
+     and stops before the shared header and footer.
+
+     COMPONENTS available inside .blogpost (see blog-post.css):
+       p.kicker            eyebrow line, optional span.num for "07 / 24"
+       p.standfirst        the summary line under the h1
+       figure.hero-fig     inline SVG diagram + figcaption
+       div.said            pull quote, with div.attrib underneath
+       ol.steps            numbered steps, each li has an h3 + p
+       div.costplate       cost panel: .cap, .body with .ln rows, .sum, .note
+       ul.check / ul.plain ticked and dashed lists
+       dl.strip            fact strip, each item a div with dt + dd
+       div.cta             dark call to action, with a.btn
+       nav.pn              previous / next, each link has span.lbl + span.t
      ============================================================ -->
 
 <title>REPLACE_TITLE — KABS AI LABS</title>
@@ -38,6 +59,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/audit-patches.css">
+<link rel="stylesheet" href="/assets/css/blog-post.css">
 <script src="/assets/js/main.js" defer></script>
 <script type="application/ld+json">
 {
@@ -76,7 +98,31 @@
 <a class="skip" href="#main">Skip to content</a>
 <div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/contact">Contact</a></nav></noscript></div>
 <main id="main">
-<article class="section"><div class="container prose"><p class="breadcrumb"><a href="/">Home</a> / <a href="/blog">Blog</a> / Post</p><!-- ===== EDIT BELOW : blog post body ===== --><p class="mono" style="color:var(--faint);margin-bottom:10px">Category · Month 2026 · X min read</p><h1 style="font-size:clamp(28px,4.4vw,44px);letter-spacing:-.025em;margin-bottom:8px">Your post title</h1><p class="lead" style="margin-bottom:30px">A short summary line for the article.</p><p>Start writing here. Use &lt;h2&gt; for headings, &lt;p&gt; for paragraphs, &lt;ul&gt;&lt;li&gt; for lists.</p><h2>A section heading</h2><p>Body copy…</p><!-- ===== END EDIT ===== --></div></article><section class="section"><div class="container"><div class="cta-band"><h2>Ready to put AI to work?</h2><p>Book a free automation audit. We'll show you the 3 highest-ROI fixes in your workflow — no commitment.</p><div class="btn-row"><a class="btn btn-accent" href="/audit" data-cta>Book a free audit →</a><a class="btn btn-ghost" href="/case-studies">See our work</a></div></div></div></section>
+<div class="blogpost">
+<article><div class="wrap">
+<!-- ===== EDIT BELOW : blog post body ===== -->
+<p class="kicker"><span class="num">REPLACE_NUM</span> &nbsp;&middot;&nbsp; REPLACE_CATEGORY</p>
+<h1>REPLACE_TITLE</h1>
+<p class="standfirst">REPLACE_SUMMARY</p>
+
+<!-- Optional opening diagram. Inline SVG only, no external images.
+     TODO(asset): supply the diagram, or delete this figure. -->
+
+<div class="said"><p>&ldquo;REPLACE_QUOTE&rdquo;</p><div class="attrib">REPLACE_ATTRIBUTION</div></div>
+
+<h2>A section heading</h2>
+<p>Body copy. Use h2 for sections, h3 inside steps, p for paragraphs.</p>
+
+<div class="cta">
+<h2>Not sure which one you need?</h2>
+<p>Tell us the part of your week you dread most. If we cannot help, we will say so and point you somewhere that can.</p>
+<a class="btn" href="/contact">Talk to us</a>
+</div>
+
+<nav class="pn"><a href="/blog/REPLACE_PREV_SLUG"><span class="lbl">Previous</span><span class="t">REPLACE_PREV_TITLE</span></a><a href="/blog/REPLACE_NEXT_SLUG"><span class="lbl">Next</span><span class="t">REPLACE_NEXT_TITLE</span></a></nav>
+<!-- ===== END EDIT ===== -->
+</div></article>
+</div>
 </main>
 <div id="site-footer"></div>
 </body>
