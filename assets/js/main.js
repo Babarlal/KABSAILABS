@@ -418,12 +418,17 @@ function countUp(){
 }
 
 function revealBars(){
-  var els = document.querySelectorAll('.barchart, .impact-bars.anim');
-  if(!('IntersectionObserver' in window) || !els.length) return;
+  /* The selector used to require .anim, which no page ever set, so the bars
+     never animated. main.js adds .anim itself now, and only when motion is
+     allowed: without JS or with reduced motion the bars stay at full height
+     instead of collapsing to scaleY(0) with nothing to restore them. */
+  var els = document.querySelectorAll('.barchart, .impact-bars');
+  if(!els.length) return;
+  if(!('IntersectionObserver' in window) || reducedMotion()) return;
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   }, {threshold:.35});
-  els.forEach(function(el){ io.observe(el); });
+  els.forEach(function(el){ el.classList.add('anim'); io.observe(el); });
 }
 
 function scrollReveal(){

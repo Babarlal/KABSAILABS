@@ -479,9 +479,17 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .impact-cell .ibic{background:var(--bg-tint);color:var(--muted)}
 .impact-num{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;line-height:1}
 .lab{color:var(--muted);font-size:14px;margin-top:4px}
-.impact-bars{display:flex;align-items:flex-end;gap:9px;height:64px;margin-top:auto}
-.impact-bars i{flex:1;background:rgba(255,255,255,.14);border-radius:5px 5px 0 0;display:block}
-.impact-bars i:last-child{background:#3f6fb0}
+/* Illustrative bar figures inside .impact-big.
+   The heights are inline on each page and are relative shapes, not measured
+   data. So the block carries an "Illustrative" note and shows no numeric
+   labels on purpose: labelling unsourced bars would lend them a precision
+   they do not have. Baseline and note are pseudo-elements, so all 14 pages
+   pick this up with no markup change. */
+.impact-bars{position:relative;display:flex;align-items:flex-end;gap:10px;height:78px;margin-top:auto;padding-bottom:17px}
+.impact-bars::before{content:"";position:absolute;left:0;right:0;bottom:16px;height:1px;background:rgba(255,255,255,.16)}
+.impact-bars::after{content:"Illustrative";position:absolute;right:0;bottom:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.impact-bars i{flex:1 1 0;min-width:6px;display:block;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07))}
+.impact-bars i:last-child{background:linear-gradient(180deg,#7aa6e4,#2f6ad6)}
 /* two cells, not three: the third row was empty on every page using this block */
 .impact-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
 .impact-cell{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;position:relative}
@@ -649,12 +657,14 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .barchart.in i:nth-child(6){transition-delay:.4s}
 
 /* impact bars animate on reveal */
-.impact-bars.anim i{transform:scaleY(0);transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+/* .anim is applied by main.js and only when motion is allowed, so without JS
+   the bars simply render at full height rather than collapsing to nothing. */
+.impact-bars.anim i{transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.22,.68,.24,1)}
 .impact-bars.anim.in i{transform:scaleY(1)}
-.impact-bars.anim.in i:nth-child(2){transition-delay:.1s}
-.impact-bars.anim.in i:nth-child(3){transition-delay:.2s}
-.impact-bars.anim.in i:nth-child(4){transition-delay:.3s}
-.impact-bars.anim.in i:nth-child(5){transition-delay:.4s}
+.impact-bars.anim.in i:nth-child(2){transition-delay:.08s}
+.impact-bars.anim.in i:nth-child(3){transition-delay:.16s}
+.impact-bars.anim.in i:nth-child(4){transition-delay:.24s}
+.impact-bars.anim.in i:nth-child(5){transition-delay:.32s}
 
 /* taller graphic wells in the build panel */
 .panel-graphic{height:auto;min-height:186px;padding:16px}
