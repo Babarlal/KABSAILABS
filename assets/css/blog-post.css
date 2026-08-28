@@ -25,7 +25,7 @@
 .blogpost .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em; text-transform:uppercase;color:var(--brand);margin:0 0 14px}
 .blogpost .kicker .num{color:var(--muted)}
 .blogpost article{padding:52px 0 72px}
-.blogpost h1{font-size:clamp(29px,5.1vw,44px);line-height:1.14;letter-spacing:-.022em; margin:0 0 18px;font-weight:800}
+.blogpost h1{font-size:clamp(29px,5.1vw,44px);line-height:1.14;letter-spacing:-.022em; margin:0 0 18px;font-weight:700}
 .blogpost .standfirst{font-size:clamp(18px,2.4vw,20.5px);line-height:1.55;color:var(--muted);margin:0 0 34px}
 .blogpost h2{font-size:clamp(22px,3.1vw,27px);line-height:1.24;letter-spacing:-.015em; margin:52px 0 16px;font-weight:700}
 .blogpost h3{font-size:18px;margin:0 0 6px;font-weight:700;letter-spacing:-.005em}
@@ -62,7 +62,7 @@
 .blogpost .cta{margin:56px 0 0;padding:28px;background:var(--ink);color:#fff;border-radius:var(--radius)}
 .blogpost .cta h2{margin:0 0 10px;color:#fff;font-size:22px}
 .blogpost .cta p{color:#B6C2CE;margin:0 0 20px;font-size:16px}
-.blogpost .btn{display:inline-block;background:#fff;color:var(--ink);font-weight:650; padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-size:15.5px}
+.blogpost .btn{display:inline-block;background:#fff;color:var(--ink);font-weight:600; padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-size:15.5px}
 .blogpost .btn:hover{background:#E8EEF4;color:var(--ink)}
 .blogpost .idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:16px;margin:36px 0 0}
 .blogpost .card{border:1px solid var(--border);border-radius:var(--radius);padding:20px; background:var(--paper);text-decoration:none;color:inherit;display:block;transition:border-color .15s,transform .15s}
@@ -75,7 +75,7 @@
 .blogpost .pn a{flex:1 1 240px;border:1px solid var(--border);border-radius:var(--radius); padding:14px 16px;text-decoration:none;color:inherit}
 .blogpost .pn a:hover{border-color:var(--brand)}
 .blogpost .pn .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em; text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
-.blogpost .pn .t{font-weight:650;font-size:15px;line-height:1.35}
+.blogpost .pn .t{font-weight:600;font-size:15px;line-height:1.35}
 @media (max-width:560px){
   .blogpost{font-size:16.5px}
   .blogpost article{padding:34px 0 52px}
