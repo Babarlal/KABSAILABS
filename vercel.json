@@ -8,6 +8,12 @@
       "has": [{ "type": "host", "value": "kabsailabs.com" }],
       "destination": "https://www.kabsailabs.com/:path*",
       "permanent": true
+    },
+    {
+      "_comment": "The About page was removed. Keep the indexed URL out of the 404 log and pass its ranking signal to the homepage.",
+      "source": "/about",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [

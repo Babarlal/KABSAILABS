@@ -43,7 +43,6 @@ OpenAI, Claude, Gemini, Perplexity, Python, LangChain, Hugging Face, n8n, Make, 
 - [Home](https://www.kabsailabs.com/)
 - [Services](https://www.kabsailabs.com/services)
 - [Case studies](https://www.kabsailabs.com/case-studies)
-- [About](https://www.kabsailabs.com/about)
 - [Book a free audit](https://www.kabsailabs.com/audit)
 - [Contact](https://www.kabsailabs.com/contact)
 - [Blog](https://www.kabsailabs.com/blog)
