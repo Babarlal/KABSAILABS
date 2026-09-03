@@ -40,7 +40,6 @@ var CONFIG = {
 
 /* ---------- announcement bar items (edit freely) ---------- */
 var ANNOUNCE = [
-  "New: White-Label GA4 &amp; GTM Setup for Agencies",
   "AI Voice Agents for Plumbers, HVAC &amp; Local Services",
   "Talk to our live AI receptionist — no phone call needed",
   "Agency Partners: Offer custom automation to your clients",
@@ -57,7 +56,6 @@ var NAV = {
     ["AI for Plumbers &amp; Trades", "/services/ai-for-trades"],
     ["AI for Legal &amp; Medical Docs", "/services/ai-legal-medical-docs"],
     ["Analytics", "/services/analytics"],
-    ["GA4 &amp; GTM Setup", "/services/analytics/ga4-gtm"],
     ["GoHighLevel Automation", "/services/gohighlevel-automation"],
     ["White Label", "/services/white-label"]
   ],

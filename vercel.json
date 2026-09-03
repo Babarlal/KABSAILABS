@@ -13,6 +13,11 @@
       "source": "/about",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/services/analytics/ga4-gtm",
+      "destination": "/services/analytics",
+      "permanent": true
     }
   ],
   "headers": [
