@@ -950,3 +950,9 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
   .hero::before,.chat-head .st::before{animation:none!important}
   .chatcard .bubble{opacity:1!important;transform:none!important;animation:none!important}
 }
+
+/* The impact cards now carry a build name where a stat used to sit, so the
+   title needs a size: .impact-num was 40-56px display type for a number.
+   .impact-big is a dark card, where the global h3 colour (--ink) is unreadable. */
+.impact-big h3,.impact-cell h3{font-size:19px;line-height:1.25;margin-bottom:8px}
+.impact-big h3{color:#fff}
