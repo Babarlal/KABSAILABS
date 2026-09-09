@@ -83,17 +83,15 @@ var NAV = {
   ]
 };
 
-/* ---------- logo (dark text for white background) ---------- */
-var LOGO = '' +
-'<svg viewBox="0 0 188 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KABS AI LABS">' +
-  '<defs><linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">' +
-    '<stop offset="0" stop-color="#2f6ad6"/><stop offset="1" stop-color="#5a3fd6"/>' +
-  '</linearGradient></defs>' +
-  '<rect x="1" y="3" width="30" height="30" rx="8" fill="url(#kg)"/>' +
-  '<path d="M11 11v14M11 18l8-7M11 18l8 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
-  '<text x="42" y="18" font-family="Space Grotesk, sans-serif" font-size="16.5" font-weight="700" fill="#141922" letter-spacing="-0.3">KABS</text>' +
-  '<text x="42" y="30" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5c6675" letter-spacing="2.4">AI LABS</text>' +
-'</svg>';
+/* ---------- logo (black mark, for light backgrounds) ----------
+   Header and footer both sit on light backgrounds (.site-header is white,
+   .site-footer is --bg-tint #f4f6f8), so one black mark serves all three
+   render points. The white file is at /assets/img/logo-kabs-white.png for
+   whenever a dark section needs it.
+   width/height are the file's real pixels (809x266) so the browser reserves
+   the right box before the image loads; .logo img in styles.css scales it by
+   height. Same file in header and footer, so the footer copy is a cache hit. */
+var LOGO = '<img src="/assets/img/logo-kabs-black.png" alt="KABS AI LABS" width="809" height="266" loading="eager" decoding="async">';
 
 /* ---------- helpers ---------- */
 function reducedMotion(){
