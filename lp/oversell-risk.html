@@ -288,6 +288,10 @@ footer .legal{margin-top:18px;color:#93A99C;max-width:60rem;font-size:.85rem}
 .risk-head .crumb{font-family:var(--mono);font-size:12px;color:#93A99C;margin-bottom:14px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
 </style>
+<!-- [NEEDS INPUT] Analytics: the site has no GTM container. CONFIG.GTM_ID in
+     assets/js/main.js is "" and index.html carries no analytics markup, so there is
+     no snippet to copy here. Paste the GTM head/body pair once a container exists;
+     until then the gtag() conversion call below is a no-op. -->
 </head>
 <body class="light">
 
@@ -374,7 +378,7 @@ footer .legal{margin-top:18px;color:#93A99C;max-width:60rem;font-size:.85rem}
             </fieldset>
             <p class="au-err" id="auError" role="alert" hidden></p>
             <div class="au-actions"><button class="btn au-next" type="submit" id="auSubmit">Book the free audit</button></div>
-            <p class="au-note">We only use your details to arrange your audit. See our <a class="link" href="/privacy">Privacy Policy</a>. [LEGAL PLACEHOLDER: consent wording if your region needs it.]</p>
+            <p class="au-note">We only use your details to arrange your audit. See our <a class="link" href="/privacy">Privacy Policy</a>.</p>
           </form>
         </div>
         <div class="au-panel" id="auStep2" hidden>
@@ -395,7 +399,7 @@ footer .legal{margin-top:18px;color:#93A99C;max-width:60rem;font-size:.85rem}
     <span class="wordmark"><img src="/assets/img/logo-mark.svg" alt="" onerror="this.style.display='none'">KABS AI LABS</span>
     <span class="small"><a class="link" href="/privacy">Privacy policy</a> · <a href="mailto:hello@kabsailabs.com">hello@kabsailabs.com</a></span>
   </div>
-  <p class="legal">[LEGAL PLACEHOLDER: registered business name and address.] One store, one channel? Shopify Flow plus a free app covers you. Come back when you add a channel. Shopify, Amazon, eBay, Etsy, Xero, QuickBooks, WhatsApp, n8n, Airtable and the other names on this page belong to their owners; we build on them and are not affiliated with them.</p>
+  <p class="legal">[NEEDS INPUT: registered business name and address.] One store, one channel? Shopify Flow plus a free app covers you. Come back when you add a channel. Shopify, Amazon, eBay, Etsy, Xero, QuickBooks, WhatsApp, n8n, Airtable and the other names on this page belong to their owners; we build on them and are not affiliated with them.</p>
 </footer>
 <div class="sticky" id="sticky"><a class="btn accent" href="#book">Book the free audit</a></div>
 <script>
