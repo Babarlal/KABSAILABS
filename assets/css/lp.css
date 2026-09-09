@@ -283,8 +283,14 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
    copy below can never collide with a channel label. layout() reads
    canvas.clientHeight, so the engine reframes itself to the smaller box. */
 @media (max-width:700px){
-  .lp .hero canvas,.lp .hero .labels{height:44%;inset:0 0 auto 0}
-  .lp .hero-copy{background:var(--ink)}
+  /* Percentages were fragile: if the copy is taller than the share left for it, it
+     rises back into the scene. So on phones the hero stops being an overlay and
+     becomes ordinary block flow: the canvas takes real height at the top, the copy
+     follows it. Overlap is then impossible whatever the copy length or svh does. */
+  .lp .hero{min-height:0;display:block}
+  .lp .hero canvas{position:relative;inset:auto;display:block;width:100%;height:38vh;z-index:1}
+  .lp .hero .labels{height:38vh;inset:0 0 auto 0}
+  .lp .hero-copy{background:var(--ink);padding-top:clamp(20px,4vh,34px)}
 }
 
 /* ---- the dark CTA band sits on --ink, so its ghost button needs light ink ---- */
