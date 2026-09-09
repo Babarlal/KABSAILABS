@@ -24,7 +24,7 @@
     if(!name) return fail('Please enter your name.',$('auName'));
     if(!validEmail(email)) return fail('Please enter a valid email address.',$('auEmail'));
     submitBtn.disabled=true; submitBtn.textContent='One moment';
-    var lead={name:name,email:email,mobile:mobile,store:store,channels:channels,oversell_estimate_month:est,industry:'Retail and ecommerce',task_time_sink:'Inventory sync / overselling',source:'inventory_sync_lp',page_url:location.href,timestamp_utc:new Date().toISOString()};
+    var lead={name:name,email:email,mobile:mobile,store:store,channels:channels,oversell_estimate_month:est,industry:'Retail and ecommerce',task_time_sink:'Inventory sync / overselling',source:(($('book')&&$('book').dataset.source)||'inventory_sync_lp'),page_url:location.href,timestamp_utc:new Date().toISOString()};
     function proceed(){ var notes='Store: '+(store||'not given')+' | Channels: '+(channels||'not given')+' | Oversell estimate: '+(est?'$'+est+'/mo':'not run')+' | Mobile: '+(mobile||'not given');
       var url=CALENDLY_URL+'?hide_gdpr_banner=1&name='+encodeURIComponent(name)+'&email='+encodeURIComponent(email)+'&a1='+encodeURIComponent(notes);
       cal.src=url; calLink.href=url; submitBtn.disabled=false; submitBtn.textContent='Book the free audit';

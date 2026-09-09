@@ -54,7 +54,15 @@ window.__three = new Promise(function(res){
   function project(w){ var d=[w[0]-view.cam[0],w[1]-view.cam[1],w[2]-view.cam[2]], z=d[0]*basis.f[0]+d[1]*basis.f[1]+d[2]*basis.f[2], x=d[0]*basis.r[0]+d[1]*basis.r[1]+d[2]*basis.r[2], y=d[0]*basis.u[0]+d[1]*basis.u[1]+d[2]*basis.u[2];
     return [view.w/2+x/z*basis.F, view.h/2-y/z*basis.F, z]; }
   function placeLabels(){ for(var i=0;i<5;i++){ var w=world(P[i]); w[1]+=(i?0.34:0.62)*view.scale; var q=project(w); labelEls[i].style.transform='translate('+q[0]+'px,'+q[1]+'px) translate(-50%,-100%)'; } }
-  function layout(){ var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight; view.w=w; view.h=h; var narrow=w<700;
+  function layout(){ var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight; view.w=w; view.h=h;
+    /* data-frame="card": a small square panel (the homepage hero visual). The narrow
+       branch is tuned for a full-bleed phone hero and packs the nodes so tightly that
+       the labels collide in a 430px box, so the card gets its own framing. */
+    /* A short canvas (the homepage card, or the phone hero band where the scene is
+       pinned to the top 44%) needs the graph spread across the box, not the tall
+       full-bleed framing, or the five labels land on top of each other. */
+    if(canvas.dataset.frame==='card' || h<540){ view.cam=[0,0,8.4]; view.look=[0,0,0]; view.scale=.86; view.gy=0; setupCam(); return; }
+    var narrow=w<700;
     view.cam=[0,narrow?1.4:1.7,narrow?9:7.6]; view.look=[0,narrow?1.0:0.4,0]; view.scale=narrow?.5:1; view.gy=narrow?1.7:0.9; setupCam(); }
   function step(now){ px+=(tx-px)*.05; var t=now/1000; rotY=Math.sin(t*.12)*.28+px; haloScale+=(1-haloScale)*.08;
     for(var fi=0;fi<4;fi++){ var f=flows[fi], c=curves[fi];
@@ -68,7 +76,7 @@ window.__three = new Promise(function(res){
   function loop(){ raf=requestAnimationFrame(function(now){ raf=null; step(now); render(); placeLabels(); if(visible&&!reduce) loop(); }); }
   function start(){ layout(); step(performance.now()); render(); placeLabels(); labelEls.forEach(function(el){el.classList.add('ready')});
     addEventListener('resize',function(){ layout(); if(typeof render.resize==='function') render.resize(); render(); placeLabels(); },{passive:true});
-    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible&&!raf&&!reduce) loop(); },{threshold:.05}).observe(canvas);
+    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible&&!raf&&!reduce) loop(); },{threshold:.05}).observe(wrap);
     if(!reduce){ schedule(MODE==='flow'?trigger:sale,1600); loop(); } }
   /* ---- renderer A: Three.js ---- */
   function threeRenderer(THREE){
@@ -101,5 +109,22 @@ window.__three = new Promise(function(res){
       var order=[0,1,2,3,4].map(function(i){ return [i,project(world(P[i]))]; }).sort(function(a,b){ return b[1][2]-a[1][2]; });
       order.forEach(function(o){ var i=o[0], q=o[1], rad=(i?0.2:0.42)*view.scale*basis.F/q[2]; if(!i){ ctx.strokeStyle=C.violet; ctx.globalAlpha=.5; ctx.beginPath(); ctx.arc(q[0],q[1],rad*1.5*haloScale,0,6.28); ctx.stroke(); ctx.globalAlpha=1; } ctx.fillStyle=nodeCol[i]; ctx.beginPath(); ctx.arc(q[0],q[1],rad,0,6.28); ctx.fill(); }); }
     r.resize=function(){ canvas.width=view.w*dpr; canvas.height=view.h*dpr; }; r.resize(); return r; }
-  window.__three.then(function(THREE){ render=(THREE&&threeRenderer(THREE))||flatRenderer(); if(render) start(); else canvas.remove(); }, function(){ render=flatRenderer(); if(render) start(); });
+  /* Paint straight away with the 2D renderer: the hero must never sit empty while a
+     CDN request is in flight. If Three.js arrives we swap in a fresh canvas and
+     upgrade, because a canvas that has handed out a 2D context can never return a
+     WebGL one. Any failure just leaves the 2D scene running. */
+  render=flatRenderer();
+  if(!render){ canvas.remove(); return; }
+  start();
+  window.__three.then(function(THREE){
+    if(!THREE||reduce) return;
+    try{
+      var fresh=canvas.cloneNode(false), prev=canvas;
+      prev.parentNode.insertBefore(fresh,prev);
+      canvas=fresh;
+      var up=threeRenderer(THREE);
+      if(up){ prev.remove(); render=up; layout(); render.resize(); render(); placeLabels(); }
+      else { fresh.remove(); canvas=prev; }
+    }catch(e){ /* stay on the 2D renderer */ }
+  },function(){});
 })();
