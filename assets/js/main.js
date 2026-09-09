@@ -41,9 +41,9 @@ var CONFIG = {
 /* ---------- announcement bar items (edit freely) ---------- */
 var ANNOUNCE = [
   "AI Voice Agents for Plumbers, HVAC &amp; Local Services",
-  "Talk to our live AI receptionist — no phone call needed",
+  "Talk to our live AI receptionist. No phone call needed",
   "Agency Partners: Offer custom automation to your clients",
-  "RAG &amp; Knowledge-Base systems for Legal &amp; Medical docs"
+  "RAG &amp; Knowledge Base systems for Legal &amp; Medical docs"
 ];
 
 /* ---------- nav model (edit links here) ---------- */
@@ -98,7 +98,7 @@ function reducedMotion(){
   return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 }
 function waLink(){
-  var msg = encodeURIComponent("Hi KABS AI LABS — I came from " + CONFIG.domain + " and would like to chat.");
+  var msg = encodeURIComponent("Hi KABS AI LABS. I came from " + CONFIG.domain + " and would like to chat.");
   return "https://wa.me/" + CONFIG.whatsapp + "?text=" + msg;
 }
 function col(title, items){
@@ -690,9 +690,9 @@ document.addEventListener('DOMContentLoaded', function(){
     ov.innerHTML =
       '<div class="kabs-pop" role="dialog" aria-modal="true" aria-labelledby="kabsPopTitle">'
     +   '<button class="kabs-pop-x" aria-label="Close">&times;</button>'
-    +   '<span class="kabs-pop-badge"><span aria-hidden="true">&#10022;</span> Free 30-min audit</span>'
+    +   '<span class="kabs-pop-badge"><span aria-hidden="true">&#10022;</span> Free 30 min audit</span>'
     +   '<h3 id="kabsPopTitle">Ready to stop doing it by hand?</h3>'
-    +   '<p>Book a free call and we\'ll map the 3 highest-ROI automations for your business — or message us on WhatsApp, whatever\'s easier.</p>'
+    +   '<p>Book a free call and we\'ll map the 3 highest-ROI automations for your business, or message us on WhatsApp, whatever\'s easier.</p>'
     +   '<div class="kabs-pop-btns">'
     +     '<button class="kabs-pop-btn kabs-pop-call" id="kabsBook">Book a call</button>'
     +     '<a class="kabs-pop-btn kabs-pop-wa" href="' + waHref + '" target="_blank" rel="noopener">Message us on WhatsApp</a>'
