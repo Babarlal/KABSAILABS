@@ -266,3 +266,12 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 .lp .risk-head .lede{margin-top:16px;max-width:34rem}
 .lp .risk-head .crumb{font-family:var(--mono);font-size:12px;color:#93A99C;margin-bottom:14px}
 @media (prefers-reduced-motion:reduce){.lp,.lp *{animation:none!important;transition:none!important;scroll-behavior:auto}}
+
+/* six-gap disclosure (eCommerce page): .row is the summary, the answer opens under it.
+   Mirrors the picker's pressed state so an open gap reads the same as a selected row. */
+.lp details.gap>summary.row{list-style:none}
+.lp details.gap>summary.row::-webkit-details-marker{display:none}
+.lp details.gap[open]>summary.row{padding-left:10px;color:var(--brand)}
+.lp details.gap[open]>summary.row .tick{background:var(--ink);box-shadow:none}
+.lp details.gap[open]>summary.row .tick svg{opacity:1}
+.lp details.gap>p{max-width:44rem;color:var(--muted);padding:2px 4px 20px}

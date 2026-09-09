@@ -24,107 +24,141 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/audit-patches.css">
+<link rel="stylesheet" href="/assets/css/lp.css">
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/lp-scene.js" defer></script>
 <script type="application/ld+json">
 {
-    "@context":  "https://schema.org",
-    "@graph":  [
-                   {
-                       "@type":  "Service",
-                       "name":  "AI Automation for eCommerce",
-                       "serviceType":  "AI Automation for eCommerce",
-                       "url":  "https://www.kabsailabs.com/services/industries/ecommerce",
-                       "description":  "We keep inventory, orders, payouts, support, returns and purchase orders in sync across Shopify, Amazon, your 3PL and your accounting software, so your team stops fixing manual errors.",
-                       "provider":  {
-                                        "@type":  "Organization",
-                                        "@id":  "https://www.kabsailabs.com/#organization",
-                                        "name":  "KABS AI LABS"
-                                    },
-                       "areaServed":  "Worldwide"
-                   },
-                   {
-                       "@type":  "BreadcrumbList",
-                       "itemListElement":  [
-                                               {
-                                                   "@type":  "ListItem",
-                                                   "position":  1,
-                                                   "name":  "Home",
-                                                   "item":  "https://www.kabsailabs.com/"
-                                               },
-                                               {
-                                                   "@type":  "ListItem",
-                                                   "position":  2,
-                                                   "name":  "Services",
-                                                   "item":  "https://www.kabsailabs.com/services"
-                                               },
-                                               {
-                                                   "@type":  "ListItem",
-                                                   "position":  3,
-                                                   "name":  "Industries",
-                                                   "item":  "https://www.kabsailabs.com/services/industries"
-                                               },
-                                               {
-                                                   "@type":  "ListItem",
-                                                   "position":  4,
-                                                   "name":  "AI Automation for eCommerce",
-                                                   "item":  "https://www.kabsailabs.com/services/industries/ecommerce"
-                                               }
-                                           ]
-                   },
-                   {
-                       "@type":  "FAQPage",
-                       "mainEntity":  [
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "What can you automate for an online store?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "The gaps between your systems: inventory sync and oversell prevention, order and payout reconciliation, order status support on chat, WhatsApp and phone, wholesale ordering, returns and refunds, and supplier invoices and POs. We do not do marketing automation."
-                                                                 }
-                                          },
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "Will it handle peak season?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "That is what it is for. Volume goes up, the copying and checking does not. The one thing we set up before peak season is buffers per channel, so a fast selling Amazon listing never pulls the floor out from under your own store."
-                                                                 }
-                                          },
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "We already use an inventory app. Why would we need you?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "Keep it. Apps handle the common case well. The gaps are the exceptions: bundles, backorders, a 3PL feed that arrives late, a channel the app does not cover. We build for the exceptions, on top of what you run."
-                                                                 }
-                                          },
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "How long does it take?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "Inventory sync between two channels is faster than a full wholesale portal. You get a written timeline after the Gap Review, before you commit to anything. Focused builds usually ship in 3 to 5 weeks."
-                                                                 }
-                                          },
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "Is this for us?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "It is a fit if you sell on Shopify plus at least one more channel and ship enough that a mistake costs real money. It is not a fit for dropshipping stores or single channel shops. We will say so on the call and point you somewhere useful."
-                                                                 }
-                                          },
-                                          {
-                                              "@type":  "Question",
-                                              "name":  "What happens when Amazon or Shopify changes something?",
-                                              "acceptedAnswer":  {
-                                                                     "@type":  "Answer",
-                                                                     "text":  "We stay on the build after launch. When something upstream changes, fixing it is our job."
-                                                                 }
-                                          }
-                                      ]
-                   }
-               ]
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "AI Automation for eCommerce",
+      "serviceType": "AI Automation for eCommerce",
+      "url": "https://www.kabsailabs.com/services/industries/ecommerce",
+      "description": "We keep inventory, orders, payouts, support, returns and purchase orders in sync across Shopify, Amazon, your 3PL and your accounting software, so your team stops fixing manual errors.",
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.kabsailabs.com/#organization",
+        "name": "KABS AI LABS"
+      },
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.kabsailabs.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Industries",
+          "item": "https://www.kabsailabs.com/services/industries"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "AI Automation for eCommerce",
+          "item": "https://www.kabsailabs.com/services/industries/ecommerce"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What can you automate for an online store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The gaps between your systems: inventory sync and oversell prevention, order and payout reconciliation, order status support on chat, WhatsApp and phone, wholesale ordering, returns and refunds, and supplier invoices and POs. We don't do marketing automation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will it handle peak season?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That's what it's for. Volume goes up, the copying and checking doesn't. The one thing we set up before peak season is buffers per channel, so a fast selling Amazon listing never pulls the floor out from under your own store."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "We already use an inventory app. Why would we need you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keep it. Apps handle the common case well. The gaps are the exceptions: bundles, backorders, a 3PL feed that arrives late, a channel the app doesn't cover. We build for the exceptions, on top of what you run. Quick check: since you got the app, has it been zero oversells, or just fewer?"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inventory sync between two channels is faster than a full wholesale portal. You get a written timeline after the Gap Review, before you commit to anything. Focused builds usually ship in 3 to 5 weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this for us?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's a fit if you sell on Shopify plus at least one more channel and ship enough that a mistake costs real money. It's not a fit for dropshipping stores or single channel shops. We'll say so on the call and point you somewhere useful."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens when Amazon or Shopify changes something?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We stay on the build after launch. When something upstream changes, fixing it is our job."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Shopify Flow already do this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For one store, mostly yes, and we will tell you so. Flow cannot see Amazon, eBay, Etsy or your 3PL. That gap is the whole job."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What about my email and SMS flows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not our job. Klaviyo owns that and does it properly. We build the stock side and leave your marketing alone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is it priced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A fixed price for the build and a monthly fee for keeping it running. Never per order, never per ticket. The quote comes after the audit, once we have seen your setup, because a two channel store and a six channel store are not the same build."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What breaks, and who fixes it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "APIs change. When one does, the sync pauses on that channel, a person gets the alert, and it is usually fixed before you notice. You get a message either way. That is the difference between a file and a system."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -132,7 +166,113 @@
 <a class="skip" href="#main">Skip to content</a>
 <div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
 <main id="main">
-<section class="hero"><div class="container hero-grid"><div><p class="breadcrumb"><a href="/">Home</a> / <a href="/services">Industries</a></p><span class="chip-eyebrow"><span class="sparkle">✦</span> For eCommerce brands selling on more than one channel</span><h1>Your store and your Amazon listing just sold <span class="hl">the same last unit. Again.</span></h1><p class="hero-sub">We build the missing connections between Shopify, Amazon, your 3PL, your accounting software and your support desk, so stock, orders, refunds and payouts stay in sync without anyone checking them by hand.</p><div class="btn-row"><a class="btn btn-primary" href="/audit" data-cta>Map my gaps in 30 minutes →</a><a class="btn btn-ghost" href="/case-studies">See what we’ve built</a></div></div><div class="win"><div class="win-bar"><i></i><i></i><i></i></div><div class="win-body"><div class="ngraph"><svg class="ng-lines" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><circle cx="150" cy="150" r="118" fill="none" stroke="#e9edf3"/><circle cx="150" cy="150" r="78" fill="none" stroke="#eef1f6"/><g stroke="#d7dde6" stroke-width="1.4"><line x1="150" y1="150" x2="150" y2="24"/><line x1="150" y1="150" x2="258" y2="84"/><line x1="150" y1="150" x2="258" y2="216"/><line x1="150" y1="150" x2="150" y2="276"/><line x1="150" y1="150" x2="42" y2="216"/><line x1="150" y1="150" x2="42" y2="84"/></g><circle r="3.4" fill="#2f6ad6" class="ng-pulse" opacity="0"><animateMotion path="M150,24 L150,150" dur="2.6s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.00s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#5a3fd6" class="ng-pulse" opacity="0"><animateMotion path="M258,84 L150,150" dur="2.6s" begin="0.42s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.42s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" class="ng-pulse" opacity="0"><animateMotion path="M258,216 L150,150" dur="2.6s" begin="0.84s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.84s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#2f6ad6" class="ng-pulse" opacity="0"><animateMotion path="M150,276 L150,150" dur="2.6s" begin="1.26s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.26s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#5a3fd6" class="ng-pulse" opacity="0"><animateMotion path="M42,216 L150,150" dur="2.6s" begin="1.68s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.68s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" class="ng-pulse" opacity="0"><animateMotion path="M42,84 L150,150" dur="2.6s" begin="2.10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="2.10s" repeatCount="indefinite"/></circle><circle cx="150" cy="150" r="34" fill="#eef4ff" stroke="#2f6ad6" stroke-width="2"/><path d="M141 150a9 9 0 0 1 18 0M146 144v12M154 144v12M150 140v20" stroke="#2f6ad6" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><div class="ng-sat" style="left:50%;top:7%"><img decoding="async" loading="lazy" src="/assets/img/logos/slack.svg" alt=""></div><div class="ng-sat" style="left:86%;top:27%"><img decoding="async" loading="lazy" src="/assets/img/logos/hubspot.svg" alt=""></div><div class="ng-sat" style="left:86%;top:73%"><img decoding="async" loading="lazy" src="/assets/img/logos/notion.svg" alt=""></div><div class="ng-sat" style="left:50%;top:93%"><img decoding="async" loading="lazy" src="/assets/img/logos/n8n.svg" alt=""></div><div class="ng-sat" style="left:14%;top:73%"><img decoding="async" loading="lazy" src="/assets/img/logos/openai.svg" alt=""></div><div class="ng-sat" style="left:14%;top:27%"><img decoding="async" loading="lazy" src="/assets/img/logos/gmail.svg" alt=""></div></div></div></div></div></section><section class="section"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">↗</span> Performance</span></div><div class="impact-wrap"><div class="impact-grid"><div class="impact-big"><div class="ibic">✱</div><div><div class="impact-num">One</div><div class="lab">stock count, shared live across every channel</div><div class="impact-bars"><i style="height:50%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:90%"></i></div></div></div><div class="impact-side"><div class="impact-cell"><span class="badge">Efficiency</span><div class="ibic">◷</div><div class="impact-num">Minutes</div><div class="lab">not hours, between a sale and every channel knowing about it</div></div><div class="impact-cell"><div class="ibic">◷</div><div class="impact-num">24/7</div><div class="lab">support that answers from order data and wakes a person when it should</div></div></div></div><div class="impact-banner"><div class="bl"><div class="bic">✧</div><div><h3 class="as-h4">Black Friday ready</h3><p>Volume goes up, the manual work doesn’t.</p></div></div></div></div></div></section><section class="section tint"><div class="container connect-grid"><div class="connect-visual"><div class="win"><div class="chat-head"><span class="chat-av">AI</span><div><div class="nm">KABS Agent</div><div class="st">Online</div></div></div><div class="bubble them">Answered 31 order status questions overnight. Two returns are outside the rules, waiting for you.</div><div class="bubble you">Thanks. Send the stock report.</div><div class="bubble them">Sent. Amazon and Shopify match on all SKUs. One bundle is low.</div></div></div><div><span class="chip-eyebrow"><span class="sparkle">✦</span> Six gaps we close</span><h2 class="section-title">Sell the last unit once.</h2><p class="lead">Every ecommerce brand owns five or six good tools. The trouble lives in the space between them, where a person copies numbers from one screen into another. That space is what we automate.</p><div style="margin-top:18px"><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Inventory &amp; oversell prevention</h3><p>One live stock count across Shopify, Amazon, your 3PL and every other channel.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Order &amp; payout reconciliation</h3><p>Orders, settlements and your ledger matched automatically. Finance sees only the mismatches.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Support that answers itself</h3><p>"Where is my order" answered on chat, WhatsApp and phone. A person steps in when it gets unusual.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Wholesale &amp; B2B ordering</h3><p>Stockists order and reorder at their own pricing. Orders land in your system without retyping.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Returns &amp; refunds</h3><p>Routine returns approved, labelled and refunded by your rules. Your team handles the exceptions.</p></div></div><div class="feat"><span class="ck">✓</span><div><h3 class="as-h4">Supplier invoices &amp; POs</h3><p>Invoices and purchase orders read, matched and posted. Less typing, fewer wrong numbers.</p></div></div></div></div></div></section><section class="section"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">✦</span> What We Build</span><h2 class="section-title">eCommerce services</h2><p class="lead">What we connect, grouped by who it helps.</p></div><div class="grid cols-3"><div class="card"><h3>Stock &amp; orders</h3><div class="feat"><span class="ck">✓</span><div><p>Inventory sync</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Oversell buffers per channel</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Bundles &amp; kits</p></div></div><div class="feat"><span class="ck">✓</span><div><p>3PL feeds</p></div></div><div class="feat"><span class="ck">✓</span><div><p>PO &amp; supplier invoices</p></div></div></div><div class="card"><h3>Money</h3><div class="feat"><span class="ck">✓</span><div><p>Payout reconciliation</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Amazon settlements</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Refund automation</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Ledger posting</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Exception lists for finance</p></div></div></div><div class="card"><h3>People</h3><div class="feat"><span class="ck">✓</span><div><p>Order status on chat &amp; WhatsApp</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Voice support</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Human handoff with context</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Wholesale portal</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Returns rules</p></div></div></div></div></div></section><section class="section tint"><div class="container"><div class="section-head"><h2 class="section-title">The transformation</h2><p class="lead">What changes when the busywork runs itself.</p></div><div class="compare"><div class="compare-col bad"><h3 class="as-h4">Without automation</h3><div class="compare-row"><span class="mk">✕</span><span>Amazon sold what Shopify didn’t know about</span></div><div class="compare-row"><span class="mk">✕</span><span>Finance can’t find four orders</span></div><div class="compare-row"><span class="mk">✕</span><span>"Where is my order" waits until Monday</span></div><div class="compare-row"><span class="mk">✕</span><span>Stockists reorder by email</span></div><div class="compare-row"><span class="mk">✕</span><span>Every return walked through by hand</span></div></div><div class="compare-col good"><h3 class="as-h4">With KABS</h3><div class="compare-row"><span class="mk">✓</span><span>The last unit sells once</span></div><div class="compare-row"><span class="mk">✓</span><span>Month end is a review, not a rebuild</span></div><div class="compare-row"><span class="mk">✓</span><span>Routine questions answered in minutes, hard ones reach a person with context</span></div><div class="compare-row"><span class="mk">✓</span><span>Wholesale orders create themselves</span></div><div class="compare-row"><span class="mk">✓</span><span>Returns inside the rules refund on scan</span></div></div></div></div></section><section class="section tint"><div class="container"><div class="section-head"><p class="eyebrow">Tools we work with</p><h2 class="section-title">We plug into the stack you already run.</h2></div><div class="tool-rows"><div class="marquee"><div class="marquee-track tool-track"><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/openai.svg" alt="">OpenAI</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/claude.svg" alt="">Claude</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/gemini.svg" alt="">Gemini</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/perplexity.svg" alt="">Perplexity</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/python.svg" alt="">Python</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/langchain.svg" alt="">LangChain</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/huggingface.svg" alt="">Hugging Face</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/n8n.svg" alt="">n8n</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/make.svg" alt="">Make</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/zapier.svg" alt="">Zapier</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/powerbi.svg" alt="">Power BI</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/looker.svg" alt="">Looker Studio</span></div></div><div class="marquee"><div class="marquee-track tool-track rev"><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/hubspot.svg" alt="">HubSpot</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/salesforce.svg" alt="">Salesforce</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/gohighlevel.svg" alt="">GoHighLevel</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/slack.svg" alt="">Slack</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/airtable.svg" alt="">Airtable</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/notion.svg" alt="">Notion</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/stripe.svg" alt="">Stripe</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/twilio.svg" alt="">Twilio</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/supabase.svg" alt="">Supabase</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/postgresql.svg" alt="">PostgreSQL</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/mongodb.svg" alt="">MongoDB</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/ga4.svg" alt="">GA4</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/microsoft365.svg" alt="">Microsoft 365</span><span class="tool-pill"><img decoding="async" loading="lazy" class="tlogo" src="/assets/img/logos/googlecloud.svg" alt="">Google Cloud</span></div></div></div></div></section><section class="section"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">⚙</span> Our Process</span><h2 class="section-title">How we build it</h2><p class="lead">A systematic approach that delivers real business value, fast.</p></div><div class="steps"><div class="step"><span class="n"></span><div><h3 class="as-h4">The Gap Review</h3><p>Thirty minutes. You tell us where the copying and checking happens. We map it while you talk and put rough hours next to each gap, using your numbers.</p></div></div><div class="step"><span class="n"></span><div><h3 class="as-h4">The arithmetic</h3><p>We write down what each gap costs and what closing it would take. If the fix costs more than the gap, we say so and you keep the map. Then you get a fixed price scope and timeline.</p></div></div><div class="step"><span class="n"></span><div><h3 class="as-h4">Build &amp; integration</h3><p>We build in 1 to 2 week steps and connect it to the tools you already run.</p></div></div><div class="step"><span class="n"></span><div><h3 class="as-h4">Testing</h3><p>Every flow runs against real orders in read only mode first. You approve each gap before it goes live.</p></div></div><div class="step"><span class="n"></span><div><h3 class="as-h4">Launch &amp; after</h3><p>We stay on the build. When Amazon or your 3PL changes something upstream, fixing it is our job.</p></div></div></div></div></section><section class="section tint"><div class="container connect-grid"><div class="connect-visual"><div class="ngraph"><svg class="ng-lines" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><circle cx="150" cy="150" r="118" fill="none" stroke="#e9edf3"/><circle cx="150" cy="150" r="78" fill="none" stroke="#eef1f6"/><g stroke="#d7dde6" stroke-width="1.4"><line x1="150" y1="150" x2="150" y2="24"/><line x1="150" y1="150" x2="258" y2="84"/><line x1="150" y1="150" x2="258" y2="216"/><line x1="150" y1="150" x2="150" y2="276"/><line x1="150" y1="150" x2="42" y2="216"/><line x1="150" y1="150" x2="42" y2="84"/></g><circle r="3.4" fill="#2f6ad6" class="ng-pulse" opacity="0"><animateMotion path="M150,24 L150,150" dur="2.6s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.00s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#5a3fd6" class="ng-pulse" opacity="0"><animateMotion path="M258,84 L150,150" dur="2.6s" begin="0.42s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.42s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" class="ng-pulse" opacity="0"><animateMotion path="M258,216 L150,150" dur="2.6s" begin="0.84s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.84s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#2f6ad6" class="ng-pulse" opacity="0"><animateMotion path="M150,276 L150,150" dur="2.6s" begin="1.26s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.26s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#5a3fd6" class="ng-pulse" opacity="0"><animateMotion path="M42,216 L150,150" dur="2.6s" begin="1.68s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.68s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" class="ng-pulse" opacity="0"><animateMotion path="M42,84 L150,150" dur="2.6s" begin="2.10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="2.10s" repeatCount="indefinite"/></circle><circle cx="150" cy="150" r="34" fill="#eef4ff" stroke="#2f6ad6" stroke-width="2"/><path d="M141 150a9 9 0 0 1 18 0M146 144v12M154 144v12M150 140v20" stroke="#2f6ad6" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><div class="ng-sat" style="left:50%;top:7%"><img decoding="async" loading="lazy" src="/assets/img/logos/slack.svg" alt=""></div><div class="ng-sat" style="left:86%;top:27%"><img decoding="async" loading="lazy" src="/assets/img/logos/hubspot.svg" alt=""></div><div class="ng-sat" style="left:86%;top:73%"><img decoding="async" loading="lazy" src="/assets/img/logos/notion.svg" alt=""></div><div class="ng-sat" style="left:50%;top:93%"><img decoding="async" loading="lazy" src="/assets/img/logos/n8n.svg" alt=""></div><div class="ng-sat" style="left:14%;top:73%"><img decoding="async" loading="lazy" src="/assets/img/logos/openai.svg" alt=""></div><div class="ng-sat" style="left:14%;top:27%"><img decoding="async" loading="lazy" src="/assets/img/logos/gmail.svg" alt=""></div></div></div><div><span class="chip-eyebrow"><span class="sparkle">✦</span> Connected Intelligence</span><h2 class="section-title">Built on top of what you already own</h2><p class="lead">We’re not a Shopify app and we don’t replace your tools. Keep your inventory app, your helpdesk, your accounting software. We build for the exceptions they don’t cover, on top of what you already run.</p><div style="margin-top:14px"><div class="feat"><span class="ck">✓</span><div><p>Shopify, Amazon Seller Central, ShipStation and most 3PL portals</p></div></div><div class="feat"><span class="ck">✓</span><div><p>QuickBooks and Xero</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Gorgias, Zendesk, WhatsApp and phone</p></div></div><div class="feat"><span class="ck">✓</span><div><p>Read only first, then one gap at a time</p></div></div></div></div></div></section><section class="section"><div class="container"><div class="case-band"><h2>What we’ve built</h2><p>We don’t publish client names or numbers we can’t prove. We publish the builds, with the workflow diagrams and the notes we wrote while building.</p><div class="case-stats"><div class="case-stat"><div class="cn" style="font-size:17px;line-height:1.35">WhatsApp support with human handoff</div></div><div class="case-stat"><div class="cn" style="font-size:17px;line-height:1.35">Invoice &amp; document extraction</div></div><div class="case-stat"><div class="cn" style="font-size:17px;line-height:1.35">Voice receptionist wired to a CRM</div></div></div><div class="btn-row"><a class="btn btn-accent" href="/blog">See the build notes →</a></div></div></div></section><section class="section tint"><div class="container"><div class="section-head"><h2 class="section-title">Learn more</h2></div><div class="learn-pills"><a href="/blog">Things we tell people not to automate →</a></div></div></section><section class="section"><div class="container narrow"><div class="section-head"><p class="eyebrow">FAQ</p><h2 class="section-title">eCommerce FAQ</h2></div><div class="faq"><details><summary>What can you automate for an online store?<span class="pm">+</span></summary><div class="faq-a">The gaps between your systems: inventory sync and oversell prevention, order and payout reconciliation, order status support on chat, WhatsApp and phone, wholesale ordering, returns and refunds, and supplier invoices and POs. We don’t do marketing automation.</div></details><details><summary>Will it handle peak season?<span class="pm">+</span></summary><div class="faq-a">That’s what it’s for. Volume goes up, the copying and checking doesn’t. The one thing we set up before peak season is buffers per channel, so a fast selling Amazon listing never pulls the floor out from under your own store.</div></details><details><summary>We already use an inventory app. Why would we need you?<span class="pm">+</span></summary><div class="faq-a">Keep it. Apps handle the common case well. The gaps are the exceptions: bundles, backorders, a 3PL feed that arrives late, a channel the app doesn’t cover. We build for the exceptions, on top of what you run. Quick check: since you got the app, has it been zero oversells, or just fewer?</div></details><details><summary>How long does it take?<span class="pm">+</span></summary><div class="faq-a">Inventory sync between two channels is faster than a full wholesale portal. You get a written timeline after the Gap Review, before you commit to anything. Focused builds usually ship in 3 to 5 weeks.</div></details><details><summary>Is this for us?<span class="pm">+</span></summary><div class="faq-a">It’s a fit if you sell on Shopify plus at least one more channel and ship enough that a mistake costs real money. It’s not a fit for dropshipping stores or single channel shops. We’ll say so on the call and point you somewhere useful.</div></details><details><summary>What happens when Amazon or Shopify changes something?<span class="pm">+</span></summary><div class="faq-a">We stay on the build after launch. When something upstream changes, fixing it is our job.</div></details></div></div></section><section class="section"><div class="container"><div class="cta-band"><h2>Sell the last unit once.</h2><p>Book a 30 minute Gap Review. Bring the Monday morning list. We’ll map it, do the arithmetic with you, and tell you plainly whether it’s worth fixing.</p><div class="btn-row"><a class="btn btn-accent" href="/audit" data-cta>Book the Gap Review →</a><a class="btn btn-ghost" href="/case-studies">See what we’ve built</a></div><p>If the call ends with "you don’t need us," you still leave with a map of your gaps and what each one costs.</p></div></div></section>
+<div class="lp">
+
+  <header class="hero" id="top">
+    <canvas id="scene" aria-hidden="true"></canvas>
+<div class="labels" id="labels" aria-hidden="true">
+    <div class="node-label hub" data-i="0">Shopify<span class="num">41</span></div>
+    <div class="node-label" data-i="1">Amazon<span class="num">41</span></div>
+    <div class="node-label" data-i="2">eBay<span class="num">41</span></div>
+    <div class="node-label" data-i="3">Etsy<span class="num">41</span></div>
+    <div class="node-label" data-i="4">Your 3PL<span class="num">41</span></div>
+  </div>
+    <div class="hero-copy">
+      <p class="up">For eCommerce brands selling on more than one channel</p>
+      <h1>Your store and your Amazon listing just sold <span class="hl">the same last unit. Again.</span></h1>
+      <p class="lede">We build the missing connections between Shopify, Amazon, your 3PL, your accounting software and your support desk, so stock, orders, refunds and payouts stay in sync without anyone checking them by hand.</p>
+      <div class="cta">
+        <a class="btn accent" href="/audit" data-cta>Book the free audit</a>
+        <a class="btn ghost" href="/lp/oversell-risk">Show me my oversell risk</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="picker wrap" id="gaps">
+    <p class="eyebrow">Six gaps we close</p>
+    <h2>Sell the last unit once.</h2>
+    <p class="lede">Every ecommerce brand owns five or six good tools. The trouble lives in the space between them, where a person copies numbers from one screen into another. That space is what we automate.</p>
+    <div class="rows">
+      <details class="gap" id="inventory">
+        <summary class="row">Inventory &amp; oversell prevention<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>One live stock count across Shopify, Amazon, your 3PL and every other channel.</p>
+      </details>
+      <details class="gap" id="accounting">
+        <summary class="row">Order &amp; payout reconciliation<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>Orders, settlements and your ledger matched automatically. Finance sees only the mismatches.</p>
+      </details>
+      <details class="gap" id="support">
+        <summary class="row">Support that answers itself<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>"Where is my order" answered on chat, WhatsApp and phone. A person steps in when it gets unusual.</p>
+      </details>
+      <details class="gap" id="wholesale">
+        <summary class="row">Wholesale &amp; B2B ordering<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>Stockists order and reorder at their own pricing. Orders land in your system without retyping.</p>
+      </details>
+      <details class="gap" id="returns">
+        <summary class="row">Returns &amp; refunds<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>Routine returns approved, labelled and refunded by your rules. Your team handles the exceptions.</p>
+      </details>
+      <details class="gap" id="purchase-orders">
+        <summary class="row">Supplier invoices &amp; POs<span class="tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span></summary>
+        <p>Invoices and purchase orders read, matched and posted. Less typing, fewer wrong numbers.</p>
+      </details>
+    </div>
+  </section>
+
+<section class="steps wrap">
+  <h2>What happens after you book</h2>
+  <ol>
+    <li><div><h3>You tell us where you sell.</h3><p>Two taps on the form. That already tells us which channel is the usual culprit.</p></div></li>
+    <li><div><h3>We look at your setup before the call.</h3><p>Store, channels, the apps already installed, and the last three oversells if you can find them. We do not want to spend your 30 minutes asking what we could have read.</p></div></li>
+    <li><div><h3>You get a plan, or the honest no.</h3><p>Either we quote a fixed price to build it, or we tell you Shopify Flow plus a free app covers you and we end the call there. Both happen.</p></div></li>
+    <li><div><h3>We build one source of truth.</h3><p>Every channel reads from it. A sale on any of them updates the rest in seconds. Focused builds ship in 4 to 6 weeks. Anything unusual goes to a person, not to a log nobody opens.</p></div></li>
+  </ol>
+</section>
+
+<section class="stance wrap">
+  <h2>Not a workflow file. <span class="hl">A system that stays up.</span></h2>
+  <p class="lede" style="margin-top:14px">A $12 template and a $25 gig both give you a file. The file works until an API changes on a Sunday. You get a system, a person who watches it, and a number that rings.</p>
+  <div class="pair">
+    <div class="not"><h3>What we will not sell you</h3><ul>
+      <li>Marketing automation. Klaviyo already does it well and we will not touch your flows.</li>
+      <li>Anything Shopify Flow gives away for free. If Flow covers it, we say so.</li>
+      <li>Per order or per ticket pricing. A fixed build fee and a monthly fee for keeping it up. That is it.</li>
+    </ul></div>
+    <div class="yes"><h3>What you get</h3><ul>
+      <li>One stock count, pushed to Shopify, Amazon, eBay, Etsy and your 3PL in seconds.</li>
+      <li>A person on call for the exceptions. Returns, damaged stock, the supplier who ships 90 when you ordered 100.</li>
+      <li>A message when something pauses, before a customer tells you.</li>
+    </ul></div>
+  </div>
+</section>
+
+  <section class="faq wrap">
+    <h2>Questions people ask on the call</h2>
+    <div class="list">
+      <details><summary>What can you automate for an online store?</summary><p>The gaps between your systems: inventory sync and oversell prevention, order and payout reconciliation, order status support on chat, WhatsApp and phone, wholesale ordering, returns and refunds, and supplier invoices and POs. We don’t do marketing automation.</p></details>
+      <details><summary>Will it handle peak season?</summary><p>That’s what it’s for. Volume goes up, the copying and checking doesn’t. The one thing we set up before peak season is buffers per channel, so a fast selling Amazon listing never pulls the floor out from under your own store.</p></details>
+      <details><summary>We already use an inventory app. Why would we need you?</summary><p>Keep it. Apps handle the common case well. The gaps are the exceptions: bundles, backorders, a 3PL feed that arrives late, a channel the app doesn’t cover. We build for the exceptions, on top of what you run. Quick check: since you got the app, has it been zero oversells, or just fewer?</p></details>
+      <details><summary>How long does it take?</summary><p>Inventory sync between two channels is faster than a full wholesale portal. You get a written timeline after the Gap Review, before you commit to anything. Focused builds usually ship in 3 to 5 weeks.</p></details>
+      <details><summary>Is this for us?</summary><p>It’s a fit if you sell on Shopify plus at least one more channel and ship enough that a mistake costs real money. It’s not a fit for dropshipping stores or single channel shops. We’ll say so on the call and point you somewhere useful.</p></details>
+      <details><summary>What happens when Amazon or Shopify changes something?</summary><p>We stay on the build after launch. When something upstream changes, fixing it is our job.</p></details>
+      <details><summary>Does Shopify Flow already do this?</summary><p>For one store, mostly yes, and we will tell you so. Flow cannot see Amazon, eBay, Etsy or your 3PL. That gap is the whole job.</p></details>
+      <details><summary>What about my email and SMS flows?</summary><p>Not our job. Klaviyo owns that and does it properly. We build the stock side and leave your marketing alone.</p></details>
+      <details><summary>How is it priced?</summary><p>A fixed price for the build and a monthly fee for keeping it running. Never per order, never per ticket. The quote comes after the audit, once we have seen your setup, because a two channel store and a six channel store are not the same build.</p></details>
+      <details><summary>What breaks, and who fixes it?</summary><p>APIs change. When one does, the sync pauses on that channel, a person gets the alert, and it is usually fixed before you notice. You get a message either way. That is the difference between a file and a system.</p></details>
+    </div>
+  </section>
+
+  <section class="cta-wrap">
+    <div class="cta-band">
+      <h2>Sell the last unit once.</h2>
+      <p>Book a 30 minute Gap Review. Bring the Monday morning list. We’ll map it, do the arithmetic with you, and tell you plainly whether it’s worth fixing.</p>
+      <div class="cta"><a class="btn accent" href="/audit" data-cta>Book the free audit</a><a class="btn ghost" href="/case-studies">See what we&#8217;ve built</a></div>
+      <p class="small" style="margin-top:16px">If the call ends with "you don’t need us," you still leave with a map of your gaps and what each one costs.</p>
+    </div>
+  </section>
+
+</div>
 </main>
 <div id="site-footer"></div>
 </body>
