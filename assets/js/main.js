@@ -691,7 +691,7 @@ document.addEventListener('DOMContentLoaded', function(){
       '<div class="kabs-pop" role="dialog" aria-modal="true" aria-labelledby="kabsPopTitle">'
     +   '<button class="kabs-pop-x" aria-label="Close">&times;</button>'
     +   '<span class="kabs-pop-badge"><span aria-hidden="true">&#10022;</span> Free 30-min audit</span>'
-    +   '<h3 id="kabsPopTitle">Ready to put AI to work?</h3>'
+    +   '<h3 id="kabsPopTitle">Ready to stop doing it by hand?</h3>'
     +   '<p>Book a free call and we\'ll map the 3 highest-ROI automations for your business — or message us on WhatsApp, whatever\'s easier.</p>'
     +   '<div class="kabs-pop-btns">'
     +     '<button class="kabs-pop-btn kabs-pop-call" id="kabsBook">Book a call</button>'
