@@ -28,6 +28,8 @@
      assets/js/main.js is "" and index.html carries no analytics markup, so there is
      no snippet to copy here. Paste the GTM head/body pair once a container exists;
      until then the gtag() conversion call below is a no-op. -->
+<script>/* ?palette=blue renders the blue/white scheme; nothing else changes */
+try{var p=new URLSearchParams(location.search).get("palette");if(p)document.documentElement.setAttribute("data-palette",p);}catch(e){}</script>
 </head>
 <body class="lp light">
 
