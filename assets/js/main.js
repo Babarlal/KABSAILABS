@@ -20,7 +20,7 @@
 /* ---------- CONFIG: edit these ---------- */
 var CONFIG = {
   brand:        "KABS AI LABS",
-  email:        "hello@kabsailabs.com",
+  email:        "babarlal@kabsailabs.com",
   whatsapp:     "14068677425",                 // digits only, no + or spaces
   domain:       "kabsailabs.com",
   GTM_ID:       "",                            // "GTM-XXXXXXX" to enable GTM everywhere

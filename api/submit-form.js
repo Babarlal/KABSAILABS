@@ -6,7 +6,7 @@
  *
  * Required env vars (Vercel → Settings → Environment Variables):
  *   RESEND_API_KEY   — from resend.com (free tier: 3k emails/mo). Or swap for your provider.
- *   LEAD_TO_EMAIL    — where leads land, e.g. hello@kabsailabs.com
+ *   LEAD_TO_EMAIL    — where leads land, e.g. babarlal@kabsailabs.com
  *   LEAD_FROM_EMAIL  — a verified sending address on your domain, e.g. website@kabsailabs.com
  *
  * Optional:
@@ -123,7 +123,7 @@ module.exports = async function handler(req, res) {
         },
         body: JSON.stringify({
           from: process.env.LEAD_FROM_EMAIL || 'website@kabsailabs.com',
-          to: [process.env.LEAD_TO_EMAIL || 'hello@kabsailabs.com'],
+          to: [process.env.LEAD_TO_EMAIL || 'babarlal@kabsailabs.com'],
           reply_to: email,
           subject: `[${formName}] ${name}${company ? ' — ' + company : ''}`,
           html
@@ -144,7 +144,7 @@ module.exports = async function handler(req, res) {
 
   if (!tasks.length) {
     console.error('submit-form: no delivery method configured', payload);
-    return res.status(500).json({ ok: false, error: 'Form is not configured. Please email hello@kabsailabs.com.' });
+    return res.status(500).json({ ok: false, error: 'Form is not configured. Please email babarlal@kabsailabs.com.' });
   }
 
   const results = await Promise.allSettled(tasks);
@@ -152,7 +152,7 @@ module.exports = async function handler(req, res) {
 
   if (!delivered) {
     console.error('submit-form: all delivery attempts failed', results, payload);
-    return res.status(502).json({ ok: false, error: 'We could not send that. Please email hello@kabsailabs.com directly.' });
+    return res.status(502).json({ ok: false, error: 'We could not send that. Please email babarlal@kabsailabs.com directly.' });
   }
 
   return res.status(200).json({ ok: true });
