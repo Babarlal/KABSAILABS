@@ -79,6 +79,8 @@ module.exports = async function handler(req, res) {
   const name = String(body.name || '').trim().slice(0, 200);
   const email = String(body.email || '').trim().slice(0, 200);
   const company = String(body.company || '').trim().slice(0, 200);
+  const agency = String(body.agency || '').trim().slice(0, 200);
+  const interest = String(body.interest || '').trim().slice(0, 200);
   const mobile = String(body.mobile || '').trim().slice(0, 40);
   const website = String(body.website || '').trim().slice(0, 300);
   const message = String(body.message || body.bottleneck || '').trim().slice(0, 5000);
@@ -93,7 +95,7 @@ module.exports = async function handler(req, res) {
   }
 
   const payload = {
-    form: formName, name, email, company, website, message, mobile,
+    form: formName, name, email, company, website, message, mobile, agency, interest,
     page: pageUrl, ip, receivedAt: new Date().toISOString(),
     // Aliases for the Apps Script receiver, which reads the /audit field names.
     // Sending both means one webhook can take audit and contact leads without
@@ -103,6 +105,7 @@ module.exports = async function handler(req, res) {
 
   const rows = [
     ['Name', name], ['Email', email], ['Mobile', mobile], ['Company', company],
+    ['Agency', agency], ['Interest', interest],
     ['Website', website], ['Message', message], ['Form', formName],
     ['Page', pageUrl], ['Received', payload.receivedAt]
   ].filter(([, v]) => v);
