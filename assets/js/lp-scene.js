@@ -22,7 +22,7 @@ window.__three = new Promise(function(res){
   function bez(c,t){ var u=1-t; return [u*u*c.a[0]+2*u*t*c.m[0]+t*t*c.b[0], u*u*c.a[1]+2*u*t*c.m[1]+t*t*c.b[1], u*u*c.a[2]+2*u*t*c.m[2]+t*t*c.b[2]]; }
   var flows=[]; for(var i=1;i<5;i++){ var N=22,t=[]; for(var k=0;k<N;k++) t.push(Math.random()); flows.push({i:i,N:N,t:t,burst:null,pts:[],cols:[]}); }
   var nodeCol=[C.brand,C.sat,C.sat,C.sat,C.sat], haloScale=1, rotY=0, px=0, tx=0;
-  var view={scale:1,gy:0,cam:[0,1.7,7.6],look:[0,.4,0],fov:36,w:1,h:1};
+  var view={scale:1,gx:0,gy:0,cam:[0,1.7,7.6],look:[0,.4,0],fov:36,w:1,h:1};
   var timeline=[]; function schedule(fn,ms){ timeline.push({at:performance.now()+ms,fn:fn}); }
   /* ---- label state ---- */
   var counts=[41,41,41,41,41];
@@ -46,7 +46,7 @@ window.__three = new Promise(function(res){
       schedule(function(){ for(var k=0;k<5;k++) setStatus(k,k?'listening':'ready',null); },3200); },680);
     schedule(trigger, 5200+Math.random()*1800); }
   /* ---- projection (used for labels in both renderers and for the 2D renderer) ---- */
-  function world(p){ var c=Math.cos(rotY),s=Math.sin(rotY),x=p[0]*view.scale,y=p[1]*view.scale,z=p[2]*view.scale; return [c*x+s*z, y+view.gy, -s*x+c*z]; }
+  function world(p){ var c=Math.cos(rotY),s=Math.sin(rotY),x=p[0]*view.scale,y=p[1]*view.scale,z=p[2]*view.scale; return [c*x+s*z+view.gx, y+view.gy, -s*x+c*z]; }
   var basis={};
   function setupCam(){ var f=[view.look[0]-view.cam[0],view.look[1]-view.cam[1],view.look[2]-view.cam[2]], l=Math.hypot(f[0],f[1],f[2]); f=[f[0]/l,f[1]/l,f[2]/l];
     var r=[-f[2],0,f[0]]; var rl=Math.hypot(r[0],r[1],r[2]); r=[r[0]/rl,r[1]/rl,r[2]/rl]; var u=[r[1]*f[2]-r[2]*f[1], r[2]*f[0]-r[0]*f[2], r[0]*f[1]-r[1]*f[0]];
@@ -54,7 +54,7 @@ window.__three = new Promise(function(res){
   function project(w){ var d=[w[0]-view.cam[0],w[1]-view.cam[1],w[2]-view.cam[2]], z=d[0]*basis.f[0]+d[1]*basis.f[1]+d[2]*basis.f[2], x=d[0]*basis.r[0]+d[1]*basis.r[1]+d[2]*basis.r[2], y=d[0]*basis.u[0]+d[1]*basis.u[1]+d[2]*basis.u[2];
     return [view.w/2+x/z*basis.F, view.h/2-y/z*basis.F, z]; }
   function placeLabels(){ for(var i=0;i<5;i++){ var w=world(P[i]); w[1]+=(i?0.34:0.62)*view.scale; var q=project(w); labelEls[i].style.transform='translate('+q[0]+'px,'+q[1]+'px) translate(-50%,-100%)'; } }
-  function layout(){ var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight; view.w=w; view.h=h;
+  function layout(){ var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight; view.w=w; view.h=h; view.gx=0;
     /* data-frame="card": a small square panel (the homepage hero visual). The narrow
        branch is tuned for a full-bleed phone hero and packs the nodes so tightly that
        the labels collide in a 430px box, so the card gets its own framing. */
@@ -62,8 +62,25 @@ window.__three = new Promise(function(res){
        pinned to the top 44%) needs the graph spread across the box, not the tall
        full-bleed framing, or the five labels land on top of each other. */
     if(canvas.dataset.frame==='card' || h<540){ view.cam=[0,0,8.4]; view.look=[0,0,0]; view.scale=.86; view.gy=0; setupCam(); return; }
-    var narrow=w<700;
-    view.cam=[0,narrow?1.4:1.7,narrow?9:7.6]; view.look=[0,narrow?1.0:0.4,0]; view.scale=narrow?.5:1; view.gy=narrow?1.7:0.9; setupCam(); }
+    if(w<700){ view.cam=[0,1.4,9]; view.look=[0,1.0,0]; view.scale=.5; view.gy=1.7; setupCam(); return; }
+    /* Desktop. F is (h/2)/tan(fov/2) against a fixed camera distance, so the scene's
+       on-screen size is a straight linear function of the HERO's height, while the
+       headline is clamped and keeps its size. A short laptop viewport therefore
+       shrinks the animation out of the composition. Give back most of the height the
+       hero lost against a reference tall hero, cap it so the ring always fits the
+       hero's width, and lift/shift it clear of the bottom-left copy as it grows.
+       A tall wide hero resolves to zoom 1, so that composition is untouched. */
+    var REF_H=980, camDist=7.6;
+    var F=(h/2)/Math.tan(view.fov*Math.PI/360);
+    var fit=(0.42*w*camDist)/(R*F);                     /* ring + labels stay inside the width */
+    var wGate=Math.max(0,Math.min(1,(w-900)/300));      /* fade the compensation out on narrow desktops */
+    var zoom=Math.max(1, 1+0.75*(REF_H/h-1));           /* only ever grows, never shrinks */
+    zoom=1+(zoom-1)*wGate;
+    zoom=Math.max(0.65, Math.min(zoom, 1.45, fit));
+    var grow=zoom-1;
+    view.cam=[0,1.7,camDist]; view.look=[0,.4,0];
+    view.scale=zoom; view.gy=.9+grow*1.6; view.gx=grow*1.2;
+    setupCam(); }
   function step(now){ px+=(tx-px)*.05; var t=now/1000; rotY=Math.sin(t*.12)*.28+px; haloScale+=(1-haloScale)*.08;
     for(var fi=0;fi<4;fi++){ var f=flows[fi], c=curves[fi];
       for(var k=0;k<f.N;k++){ var tt,col;
@@ -91,7 +108,7 @@ window.__three = new Promise(function(res){
     var D=260,dg=new THREE.BufferGeometry(),dp=new Float32Array(D*3); for(var i=0;i<D;i++){ dp[i*3]=(Math.random()-.5)*14; dp[i*3+1]=(Math.random()-.5)*8; dp[i*3+2]=(Math.random()-.5)*10; } dg.setAttribute('position',new THREE.BufferAttribute(dp,3)); scene.add(new THREE.Points(dg,new THREE.PointsMaterial({color:new THREE.Color(C.dim),size:.025,transparent:true,opacity:.55})));
     var group=new THREE.Group(); [ring,halo].concat(nodes,lines,ptsObjs).forEach(function(o){group.add(o)}); scene.add(group);
     var tmp=new THREE.Color();
-    function r(){ group.rotation.y=rotY; group.scale.setScalar(view.scale); group.position.y=view.gy; halo.scale.setScalar(haloScale); halo.rotation.y=performance.now()/4000; halo.rotation.z=performance.now()/9000;
+    function r(){ group.rotation.y=rotY; group.scale.setScalar(view.scale); group.position.x=view.gx; group.position.y=view.gy; halo.scale.setScalar(haloScale); halo.rotation.y=performance.now()/4000; halo.rotation.z=performance.now()/9000;
       nodes.forEach(function(n,i){ n.material.color.set(nodeCol[i]); });
       ptsObjs.forEach(function(o,fi){ var f=flows[fi], pa=o.geometry.attributes.position.array, ca=o.geometry.attributes.color.array; for(var k=0;k<f.N;k++){ var p=f.pts[k]||[0,0,0]; pa[k*3]=p[0];pa[k*3+1]=p[1];pa[k*3+2]=p[2]; tmp.set(f.cols[k]||C.dim); ca[k*3]=tmp.r;ca[k*3+1]=tmp.g;ca[k*3+2]=tmp.b; } o.geometry.attributes.position.needsUpdate=true; o.geometry.attributes.color.needsUpdate=true; });
       cam.position.set(view.cam[0],view.cam[1],view.cam[2]); cam.lookAt(view.look[0],view.look[1],view.look[2]); renderer.render(scene,cam); }
