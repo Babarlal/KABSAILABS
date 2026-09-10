@@ -93,7 +93,11 @@ module.exports = async function handler(req, res) {
 
   const payload = {
     form: formName, name, email, company, website, message,
-    page: pageUrl, ip, receivedAt: new Date().toISOString()
+    page: pageUrl, ip, receivedAt: new Date().toISOString(),
+    // Aliases for the Apps Script receiver, which reads the /audit field names.
+    // Sending both means one webhook can take audit and contact leads without
+    // the message, source or page arriving blank.
+    task_time_sink: message, source: formName, page_url: pageUrl, mobile: ''
   };
 
   const rows = [
