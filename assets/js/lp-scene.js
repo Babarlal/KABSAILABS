@@ -15,7 +15,14 @@ window.__three = new Promise(function(res){
   var canvas=document.getElementById('scene'); if(!canvas) return;
   var wrap=canvas.parentElement, labelEls=[].slice.call(document.querySelectorAll('.node-label'));
   var MODE=canvas.dataset.mode||'stock', reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var C={brand:'#BFE9CF',violet:'#7CCFA0',sat:'#E3E8E1',line:'#3F6656',dim:'#5E8A78',warn:'#E4552E',ok:'#BFE9CF'};
+  /* Scene colours come from the palette (see --scene-* in lp.css) so the canvas
+     follows whichever colour scheme is active. The literals are the green defaults. */
+  var cs=getComputedStyle(canvas);
+  function tok(n,d){ var v=cs.getPropertyValue(n); return (v&&v.trim())||d; }
+  var C={brand:tok('--scene-brand','#BFE9CF'),violet:tok('--scene-halo','#7CCFA0'),
+         sat:tok('--scene-sat','#E3E8E1'),line:tok('--scene-line','#3F6656'),
+         dim:tok('--scene-dim','#5E8A78'),warn:tok('--scene-warn','#E4552E'),
+         ok:tok('--scene-ok','#BFE9CF')};
   /* ---- shared model ---- */
   var R=2.7, P=[[0,0,0]]; for(var i=0;i<4;i++){ var a=Math.PI/4+i*Math.PI/2; P.push([Math.cos(a)*R, Math.sin(i*1.7)*.45, Math.sin(a)*R]); }
   var curves=[]; for(var i=1;i<5;i++){ var m=[P[i][0]*.5,P[i][1]*.5+.9,P[i][2]*.5]; curves.push({a:P[0],m:m,b:P[i]}); }
