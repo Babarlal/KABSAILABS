@@ -95,14 +95,15 @@ window.__three = new Promise(function(res){
     return Math.max(0, Math.min(nr.bottom-cr.top+6, cr.height*0.35));
   }
 
-  /* Projected bounds in box coordinates, at the rotation that throws the scene
-     widest. labelsOnly leaves the orbit ring out: the labels are the readable
-     part and the thing that has to clear the headline, while the ring is a thin
-     line that is meant to run on behind the copy under its gradient. Sizing the
-     vertical fit against the ring instead starves the scene on a short laptop. */
-  /* The scene never spins: step() holds rotY to a slow sway of .28 plus up to
-     .25 of pointer parallax. Sampling a whole turn would bound configurations
-     it never reaches and shrink the scene for nothing, so sample that range. */
+  /* Projected bounds in box coordinates, over the rotations the scene actually
+     reaches. Two things this deliberately does not do. It does not sample a
+     whole turn: step() holds rotY to a slow sway of .28 plus up to .25 of
+     pointer parallax, so a full turn would bound configurations it never
+     reaches and shrink the scene for nothing. And labelsOnly leaves the orbit
+     ring out, because the labels are the readable part and the thing that has
+     to clear the headline, while the ring is a thin line meant to run on behind
+     the copy under its gradient; fitting the height to the ring instead starves
+     the scene on a short laptop. */
   var ROT_MAX=0.28+0.25+0.02;
   function sceneBox(labelsOnly){
     var l=1e9,r=-1e9,t=1e9,b=-1e9,keep=rotY,i,k,q,wp,N=9;
