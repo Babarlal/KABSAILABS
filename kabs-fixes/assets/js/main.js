@@ -53,12 +53,7 @@ var NAV = {
     ["AI Agents &amp; Automation", "/services/ai-automation"],
     ["Workflow Automation", "/services/workflow-automation"],
     ["RAG / Knowledge Base", "/services/rag-knowledge-base"],
-    ["Voice AI Agents", "/services/voice-ai"],
-    ["AI for Plumbers &amp; Trades", "/services/ai-for-trades"],
-    ["AI for Legal &amp; Medical Docs", "/services/ai-legal-medical-docs"],
-    ["Analytics", "/services/analytics"],
-    ["GA4 &amp; GTM Setup", "/services/analytics/ga4-gtm"],
-    ["GoHighLevel Automation", "/services/gohighlevel-automation"],
+    ["Voice AI Agents", "/services/ai-for-trades"],
     ["White Label", "/services/white-label"]
   ],
   industries: [
@@ -90,11 +85,11 @@ var NAV = {
 var LOGO = '' +
 '<svg viewBox="0 0 188 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KABS AI LABS">' +
   '<defs><linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">' +
-    '<stop offset="0" stop-color="#2f6ad6"/><stop offset="1" stop-color="#5a3fd6"/>' +
+    '<stop offset="0" stop-color="#1F6B4E"/><stop offset="1" stop-color="#2E8A63"/>' +
   '</linearGradient></defs>' +
   '<rect x="1" y="3" width="30" height="30" rx="8" fill="url(#kg)"/>' +
   '<path d="M11 11v14M11 18l8-7M11 18l8 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
-  '<text x="42" y="18" font-family="Space Grotesk, sans-serif" font-size="16.5" font-weight="700" fill="#141922" letter-spacing="-0.3">KABS</text>' +
+  '<text x="42" y="18" font-family="Fraunces, sans-serif" font-size="16.5" font-weight="700" fill="#141922" letter-spacing="-0.3">KABS</text>' +
   '<text x="42" y="30" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5c6675" letter-spacing="2.4">AI LABS</text>' +
 '</svg>';
 
@@ -192,7 +187,7 @@ function setupCookieNotice(){
   + '.cookie-bar a{color:#8fb2f0;text-decoration:underline}'
   + '.cookie-btns{display:flex;gap:8px;flex:none}'
   + '.cookie-ok,.cookie-no{min-height:44px;border-radius:8px;padding:10px 18px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;border:1px solid transparent}'
-  + '.cookie-ok{background:#2f6ad6;color:#fff}'
+  + '.cookie-ok{background:#1F6B4E;color:#fff}'
   + '.cookie-ok:hover{background:#2a5ec0}'
   + '.cookie-no{background:transparent;color:#c3cee2;border-color:#3a4766}'
   + '.cookie-no:hover{background:#1a2439;color:#e7ecf5}'
@@ -670,8 +665,8 @@ document.addEventListener('DOMContentLoaded', function(){
     + '.kabs-pop-ov.show .kabs-pop{transform:none}'
     + '.kabs-pop-x{position:absolute;top:12px;right:12px;width:44px;height:44px;border:none;background:#f4f6f8;border-radius:8px;color:#5b6675;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}'
     + '.kabs-pop-x:hover{background:#e9edf3}'
-    + '.kabs-pop-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#2f6ad6;background:#eef4ff;border-radius:100px;padding:5px 12px;margin-bottom:14px}'
-    + '.kabs-pop h3{font-family:"Space Grotesk",Inter,sans-serif;font-size:22px;line-height:1.2;color:#141922;margin:0 0 8px}'
+    + '.kabs-pop-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#1F6B4E;background:#DDF0E4;border-radius:100px;padding:5px 12px;margin-bottom:14px}'
+    + '.kabs-pop h3{font-family:"Fraunces",Inter,sans-serif;font-size:22px;line-height:1.2;color:#141922;margin:0 0 8px}'
     + '.kabs-pop p{font-size:14.5px;line-height:1.55;color:#5b6675;margin:0 0 20px}'
     + '.kabs-pop-btns{display:flex;flex-direction:column;gap:10px}'
     + '.kabs-pop-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:48px;padding:13px 18px;border:none;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .15s ease}'
@@ -680,7 +675,7 @@ document.addEventListener('DOMContentLoaded', function(){
     + '.kabs-pop-wa{background:#25D366;color:#fff}'
     + '.kabs-pop-later{display:block;width:100%;min-height:44px;text-align:center;margin-top:10px;font-size:13px;color:#6b7688;background:none;border:none;cursor:pointer}'
     + '.kabs-pop-later:hover{color:#3f4856}'
-    + '.kabs-pop :focus-visible{outline:3px solid #2f6ad6;outline-offset:2px}'
+    + '.kabs-pop :focus-visible{outline:3px solid #1F6B4E;outline-offset:2px}'
     + '@media(prefers-reduced-motion:reduce){.kabs-pop-ov,.kabs-pop{transition:none}}';
     document.head.appendChild(css);
 

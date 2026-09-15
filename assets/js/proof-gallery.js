@@ -99,14 +99,9 @@
       'ai-powered-automating-calls-and-meeting-scheduling',
       'rag-support-agent-human-handoff',
       'whatsapp-ai-support-agent-rag-human-handoff'
-    ],
-    /* /industries/plumbers */
-    plumbers: [
-      'ai-voice-receptionist-for-plumbing-businesses',
-      'voice-agent-rag-post-call-automation',
-      'ai-powered-automating-calls-and-meeting-scheduling',
-      'ai-invoice-extraction-pipeline'
     ]
+    /* /industries/plumbers has no gallery: its preview ends on the job sheet and
+       the call tape, so there is no set for it here. */
   };
 
   /* A stack entry only gets an <img> when we actually ship that logo. Asking for
