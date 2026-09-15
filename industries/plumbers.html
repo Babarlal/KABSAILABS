@@ -183,292 +183,117 @@
 .pl-breadcrumb{font-size:13.5px;color:var(--muted);margin-bottom:18px}
 .pl-breadcrumb a:hover{color:var(--ink)}
 </style>
+<link rel="stylesheet" href="/assets/css/pages-green.css">
 </head>
 <body data-path="/industries/plumbers" data-layout="default">
 <a class="skip" href="#main">Skip to content</a>
 <div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
 <main id="main" class="pl">
-
-<!-- ============ HERO ============ -->
-<section class="pl-hero">
-  <div class="container pl-hero-grid">
+<div class="pg pg-plumbers">
+<section class="pl-hero"><div class="container">
+  <p class="crumb"><a href="/">Home</a> / <a href="/services">Industries</a> / Plumbers</p>
+  <h1>You can't answer the phone with your hands under a sink.</h1>
+  <p class="sub">So it doesn't ring out. An AI receptionist picks up every call, gets the address and the problem, books the job, and texts you the sheet — while you keep working.</p>
+  <div class="btn-row"><a class="btn accent" href="/audit">Book a free 15-min call →</a><a class="btn ghost" href="#how" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)">See how it works</a></div>
+</div></section><section class="section tint"><div class="container">
+  <div class="section-head"><span class="chip-eyebrow"><span class="sparkle">↗</span> The cost of a ringing phone</span>
+  <h2 class="section-title">Work out what the missed ones are costing you.</h2>
+  <p class="lead">Drag the sliders to your numbers. This is an estimate, with the arithmetic shown — your figures, nothing hidden.</p></div>
+  <div class="calc">
     <div>
-      <p class="pl-breadcrumb"><a href="/">Home</a> / Industries</p>
-      <p class="eyebrow">✦ For plumbing businesses</p>
-      <h1>You can't answer the phone with your hands <span class="sw">under a sink</span>.</h1>
-      <p class="pl-lede">So we built something that does. It picks up every call, including nights, weekends and mid-job, works out what's wrong, flags the emergencies, and texts you the job before you've wiped your hands.</p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/audit" data-cta>Book a free 15-min call →</a>
-        <a class="btn btn-ghost" href="/demo">Talk to a live AI agent →</a>
-        <a class="btn btn-ghost" href="#how">See how it works</a>
-      </div>
-      <div class="pl-trust">
-        <span><i class="dot"></i> Answers 24/7</span>
-        <span><i class="dot"></i> Keeps your number</span>
-        <span><i class="dot"></i> Live in about a week</span>
-      </div>
+      <div class="field"><label for="pl-c">Calls missed per week <b id="pl-cV">12</b></label><input type="range" id="pl-c" min="2" max="60" value="12" step="1"></div>
+      <div class="field"><label for="pl-j">Average job value <b id="pl-jV">$320</b></label><input type="range" id="pl-j" min="80" max="2500" value="320" step="20"></div>
+      <div class="field"><label for="pl-b">Percent who would have booked <b id="pl-bV">30%</b></label><input type="range" id="pl-b" min="5" max="70" value="30" step="1"></div>
+      <p class="foot" id="pl-math"></p>
     </div>
-
-    <!-- SIGNATURE: a call playing out -->
-    <div class="pl-phone" id="pl-demo">
-      <div class="pl-phone-bar">
-        <div class="pl-ring"><i class="pip"></i> Incoming call</div>
-        <div class="meta">7:42 PM · after hours</div>
-      </div>
-
-      <div class="pl-tape" id="pl-tape">
-        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Yeah, hi. I've got water coming through the kitchen ceiling.</div></div>
-        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">That sounds urgent. Can I take your name and the address?</div></div>
-        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Dave Whitmore, 42 Alder Road.</div></div>
-        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">Thanks Dave. Is the water still running now?</div></div>
-        <div class="pl-line caller"><div class="pl-who">Caller</div><div class="pl-said">Yeah, it's coming down steady.</div></div>
-        <div class="pl-line agent"><div class="pl-who">Agent</div><div class="pl-said">I'm flagging this as an emergency. Someone will call you straight back.</div></div>
-      </div>
-
-      <div class="pl-job" id="pl-job">
-        <div class="pl-job-head">
-          <span>Job created</span>
-          <span class="pl-flag">Emergency</span>
-        </div>
-        <div class="pl-fields">
-          <div class="pl-f"><div class="k">Name</div><div class="v">Dave Whitmore</div></div>
-          <div class="pl-f"><div class="k">Address</div><div class="v">42 Alder Road</div></div>
-          <div class="pl-f"><div class="k">Problem</div><div class="v">Ceiling leak, active</div></div>
-          <div class="pl-f"><div class="k">Callback</div><div class="v">Within the hour</div></div>
-        </div>
-        <div class="pl-sent">
-          <span>✓</span> Sent to your phone · logged in your CRM
-          <button class="pl-replay" id="pl-replay" type="button">Replay</button>
-        </div>
-      </div>
+    <div class="out">
+      <div class="l">Work lost per month</div>
+      <div class="big" id="pl-amount">$0</div>
+      <div class="yr" id="pl-yr">— a year</div>
     </div>
   </div>
-</section>
-
-<!-- ============ THE MATH ============ -->
-<section class="section tint">
-  <div class="container pl-math">
-    <div>
-      <p class="eyebrow">✦ The maths</p>
-      <h2 class="section-title">Work out what the missed ones are costing you.</h2>
-      <p class="pl-lede" style="margin-top:16px">Most plumbers have never put a number on it. Drag the sliders to your week and see what's walking to the next plumber on the list.</p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/audit" data-cta>Get this number properly →</a>
-      </div>
-    </div>
-
-    <div class="pl-dial">
-      <div class="pl-readout-k">Work lost per month</div>
-      <div class="pl-readout"><span class="cur">$</span><span id="pl-amount">0</span><span class="per">/mo</span></div>
-
-      <div class="pl-sliders">
-        <div class="pl-sl">
-          <label for="pl-c"><span>Calls you miss a week</span><span class="v" id="pl-cV">12</span></label>
-          <input type="range" id="pl-c" min="2" max="60" value="12" step="1" aria-label="Calls missed per week">
-        </div>
-        <div class="pl-sl">
-          <label for="pl-j"><span>Average job value</span><span class="v" id="pl-jV">$320</span></label>
-          <input type="range" id="pl-j" min="80" max="2500" value="320" step="20" aria-label="Average job value">
-        </div>
-        <div class="pl-sl">
-          <label for="pl-b"><span>How many would've booked</span><span class="v" id="pl-bV">30%</span></label>
-          <input type="range" id="pl-b" min="5" max="70" value="30" step="1" aria-label="Percent who would book">
-        </div>
-      </div>
-
-      <div class="pl-recap">
-        <span class="k">Recoverable in a year</span>
-        <span class="v">$<span id="pl-yr">0</span></span>
-      </div>
-      <p class="pl-smallprint">A rough guide based on the numbers you enter, not a quote. Every business is different. That's what the call is for.</p>
-    </div>
+</div></section><section class="section" id="how"><div class="container">
+  <div class="section-head"><span class="chip-eyebrow"><span class="sparkle">↝</span> How it works</span>
+  <h2 class="section-title">From ringing phone to job on your screen.</h2></div>
+  <div class="plflow">
+    <div class="plstep"><div class="n">1</div><h3>It picks up</h3><p>First ring, every time, day or night.</p></div>
+    <div class="plstep"><div class="n">2</div><h3>It asks the right things</h3><p>Name, address, and what's actually broken.</p></div>
+    <div class="plstep"><div class="n">3</div><h3>It sorts urgent from routine</h3><p>A burst pipe gets flagged; a dripping tap gets booked.</p></div>
+    <div class="plstep"><div class="n">4</div><h3>It writes the job down</h3><p>A clean job sheet, not a garbled voicemail.</p></div>
+    <div class="plstep"><div class="n">5</div><h3>It texts you</h3><p>The whole thing on WhatsApp before you're done.</p></div>
   </div>
-</section>
-
-<!-- ============ HOW IT WORKS ============ -->
-<section class="section" id="how">
-  <div class="container">
-    <p class="eyebrow">✦ How it works</p>
-    <h2 class="section-title">From ringing phone to job on your screen.</h2>
-    <p class="pl-lede" style="margin-top:14px">Five things happen on every call, whether you're on a job, asleep, or on a ladder.</p>
-
-    <div class="pl-steps">
-      <div class="pl-step">
-        <span class="n">01</span>
-        <h3>It picks up</h3>
-        <p>First ring, any hour. No menu, no "press 1". The caller just talks like they would to a person.</p>
-      </div>
-      <div class="pl-step">
-        <span class="n">02</span>
-        <h3>It asks the right things</h3>
-        <p>Name, address, what's broken, how bad. The questions you'd ask if you could take the call yourself.</p>
-      </div>
-      <div class="pl-step">
-        <span class="n">03</span>
-        <h3>It sorts urgent from routine</h3>
-        <p>A burst pipe at midnight and a quote for next week don't get treated the same way.</p>
-      </div>
-      <div class="pl-step">
-        <span class="n">04</span>
-        <h3>It writes the job down</h3>
-        <p>Every call becomes a proper record, logged in your sheet and filed in your CRM, no typing.</p>
-      </div>
-      <div class="pl-step">
-        <span class="n">05</span>
-        <h3>It texts you</h3>
-        <p>Name, number, address, problem. You ring back already knowing what you're walking into.</p>
-      </div>
-    </div>
+</div></section><section class="section pl-dark"><div class="container">
+  <div class="section-head"><span class="chip-eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#BFE9CF"><span class="sparkle">▤</span> The handoff</span>
+  <h2 class="section-title">Not a voicemail. A job sheet.</h2>
+  <p class="lead">You don't call back a mumbled 20-second message. You get this, ready to act on.</p></div>
+  <div class="sheet">
+    <div class="sh"><span>NEW JOB · 14:32</span><span>via AI receptionist</span></div>
+    <div class="srow"><span class="k">Name</span><span class="v">Sarah Whitfield <small>Who called</small></span></div>
+    <div class="srow"><span class="k">Phone</span><span class="v">0412 887 210 <small>Ready to ring back</small></span></div>
+    <div class="srow"><span class="k">Address</span><span class="v">18 Larch St, Northgate <small>Where to go</small></span></div>
+    <div class="srow"><span class="k">Problem</span><span class="v">Hot water system leaking under the tank <small>What's broken</small></span></div>
+    <div class="srow"><span class="k">Urgency</span><span class="v">Water pooling — flagged urgent <small>Sorted on the call</small></span></div>
   </div>
-</section>
-
-<!-- ============ WHAT IT CAPTURES ============ -->
-<section class="section pl-dark">
-  <div class="container">
-    <p class="eyebrow">✦ What you get back</p>
-    <h2 class="section-title" style="max-width:20ch">Not a voicemail. A job sheet.</h2>
-    <p class="pl-lede" style="margin-top:14px">Every call comes back as clean, filled-in fields, not a two-minute message you have to listen to twice.</p>
-
-    <div class="pl-captures">
-      <div class="pl-cap"><div class="k">Name</div><div class="v">Who called</div></div>
-      <div class="pl-cap"><div class="k">Phone</div><div class="v">Ready to ring back</div></div>
-      <div class="pl-cap"><div class="k">Address</div><div class="v">Where to go</div></div>
-      <div class="pl-cap"><div class="k">Problem</div><div class="v">What's broken</div></div>
-      <div class="pl-cap"><div class="k">Urgency</div><div class="v">Emergency or routine</div></div>
-      <div class="pl-cap"><div class="k">Timing</div><div class="v">When they're free</div></div>
-    </div>
-
-    <div class="btn-row">
-      <a class="btn btn-primary" href="/audit" data-cta>Book a free 15-min call →</a>
-      <a class="btn btn-ghost" href="/case-studies">See it running</a>
-    </div>
+</div></section><section class="section"><div class="container">
+  <div class="section-head"><span class="chip-eyebrow"><span class="sparkle">▶</span> Hear one</span>
+  <h2 class="section-title">A call, start to finish.</h2></div>
+  <div class="tape" id="pl-tape">
+    <div class="th"><span class="dot on" id="pl-dot"></span><span class="nm">Incoming call</span><span class="st" id="pl-st">00:00</span></div>
+    <div class="tlines" id="pl-lines"></div>
+    <button class="replay" id="pl-replay">↺ Replay the call</button>
   </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="section">
-  <div class="container narrow">
-    <p class="eyebrow">? Straight answers</p>
-    <h2 class="section-title">The questions plumbers actually ask.</h2>
-
-    <div class="faq">
-      <details>
-        <summary>Does it sound like a robot?<span class="pm">+</span></summary>
-        <div class="faq-a">No. It's a natural voice and a real back-and-forth conversation: the caller asks something, it answers, it asks the next question. Most people don't clock it. Book the call and you can ring it yourself before you decide anything.</div>
-      </details>
-      <details>
-        <summary>Do I have to change my phone number?<span class="pm">+</span></summary>
-        <div class="faq-a">No. It sits behind the number you already advertise. You choose when it answers: only after hours, only when you don't pick up within a few rings, or every call. Your choice.</div>
-      </details>
-      <details>
-        <summary>What if it can't answer something?<span class="pm">+</span></summary>
-        <div class="faq-a">It's built to say it'll have someone call you back rather than guess. It won't invent a price or promise a time slot it can't keep. That's deliberate, because a wrong quote costs you more than a missed one.</div>
-      </details>
-      <details>
-        <summary>Can it quote a price?<span class="pm">+</span></summary>
-        <div class="faq-a">It can give the starting prices you tell it to give, exactly as you've written them. It won't guarantee a final number over the phone. That stays with you, on site.</div>
-      </details>
-      <details>
-        <summary>Where do the jobs go?<span class="pm">+</span></summary>
-        <div class="faq-a">Wherever you already work. A spreadsheet, your CRM, a text to your phone, or all three. If you don't run anything yet, we'll set up something simple.</div>
-      </details>
-      <details>
-        <summary>How long until it's live?<span class="pm">+</span></summary>
-        <div class="faq-a">About a week for a standard setup. We write it around your services, your area, and your prices, then you test it before it takes a single real call.</div>
-      </details>
-    </div>
+</div></section><section class="section tint"><div class="container narrow">
+  <div class="section-head"><p class="eyebrow">FAQ</p><h2 class="section-title">The questions plumbers actually ask.</h2></div>
+  <div class="faq">
+    <details><summary>Will my customers know it's AI?<span class="pm">+</span></summary><div class="faq-a">It sounds like a real receptionist. Most callers just book their job and hang up. You can have it say it's an assistant if you'd rather.</div></details>
+    <details><summary>What about after-hours and weekends?<span class="pm">+</span></summary><div class="faq-a">That's when it earns its keep — the calls you'd otherwise miss get answered and booked while you're off the tools.</div></details>
+    <details><summary>Can it handle a real emergency?<span class="pm">+</span></summary><div class="faq-a">It flags urgent jobs and can ring straight through to you, so you never sleep through a flooded kitchen.</div></details>
+    <details><summary>Do I have to change my number?<span class="pm">+</span></summary><div class="faq-a">No. Keep your number and forward it, or use a new one for after-hours. Your call.</div></details>
   </div>
-</section>
-
-<!-- ============ CLOSE ============ -->
-<section class="section">
-  <div class="container">
-    <div class="cta-band">
-      <h2>Stop losing jobs to the next plumber on the list.</h2>
-      <p>Book a free 15-minute call. We'll ring the agent together so you can hear it, then tell you honestly whether it's worth it for your business.</p>
-      <div class="btn-row">
-        <a class="btn btn-accent" href="/audit" data-cta>Book a free 15-min call →</a>
-        <a class="btn btn-ghost" href="/contact">Or just send a message</a>
-      </div>
-    </div>
-  </div>
-</section>
-
+</div></section><section class="section"><div class="container"><div class="cta-band">
+  <h2>Stop losing jobs to the next plumber on the list.</h2>
+  <p>Book a free 15-minute call. We'll set it up on a number so you can ring it yourself.</p>
+  <div class="btn-row" style="justify-content:center"><a class="btn accent" href="/audit">Book a free call →</a><a class="btn ghost" href="/services/ai-for-trades">How the voice agent works →</a></div>
+</div></div></section>
+</div>
 </main>
 <div id="site-footer"></div>
 
+
 <script>
-/* /industries/plumbers — page interactions: call simulation + calculator.
-   Both respect prefers-reduced-motion by showing the finished state instantly.
-   Widgets default to fully visible (no-JS safe); JS only ADDS the .armed
-   class that hides pieces before animating them in. */
 (function(){
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var c=document.getElementById('pl-c'),j=document.getElementById('pl-j'),b=document.getElementById('pl-b');
+  var cV=document.getElementById('pl-cV'),jV=document.getElementById('pl-jV'),bV=document.getElementById('pl-bV');
+  var amt=document.getElementById('pl-amount'),yr=document.getElementById('pl-yr'),math=document.getElementById('pl-math');
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function calc(){var cw=+c.value,jv=+j.value,bp=+b.value/100;var perWeek=cw*bp*jv;var month=perWeek*4.33;
+    cV.textContent=cw;jV.textContent=money(jv);bV.textContent=b.value+'%';
+    amt.textContent=money(month);yr.textContent=money(month*12)+' a year';
+    math.textContent=cw+' missed × '+b.value+'% who\'d book × '+money(jv)+' × 4.33 weeks';}
+  [c,j,b].forEach(function(el){el.addEventListener('input',calc);});calc();
 
-  /* ---- call simulation ---- */
-  var demo = document.getElementById('pl-demo');
-  if (demo){
-    var tape  = document.getElementById('pl-tape');
-    var lines = Array.prototype.slice.call(tape.querySelectorAll('.pl-line'));
-    var job   = document.getElementById('pl-job');
-    var replay = document.getElementById('pl-replay');
-    var timers = [];
-
-    function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
-
-    function play(){
-      clearTimers();
-      if (reduced){                                  // finished state, no motion
-        demo.classList.remove('armed'); tape.classList.remove('armed');
-        return;
-      }
-      demo.classList.add('armed'); tape.classList.add('armed');
-      lines.forEach(function(l){ l.classList.remove('in'); });
-      job.classList.remove('in');
-      lines.forEach(function(l,i){
-        timers.push(setTimeout(function(){ l.classList.add('in'); }, 500 + i*850));
-      });
-      timers.push(setTimeout(function(){ job.classList.add('in'); }, 500 + lines.length*850 + 400));
-    }
-
-    if (!reduced){
-      if ('IntersectionObserver' in window){
-        var seen = false;
-        var io = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){ if (e.isIntersecting && !seen){ seen = true; play(); } });
-        }, {threshold:.35});
-        io.observe(demo);
-      } else { play(); }
-    }
-    replay.addEventListener('click', play);
+  // demo call tape
+  var LINES=[
+    ['ai','Thanks for calling Northgate Plumbing, this is Alex. How can I help?'],
+    ['caller','Yeah hi, my hot water system\'s leaking, there\'s water everywhere.'],
+    ['ai','That sounds urgent — I\'ll flag it. Can I grab the address?'],
+    ['caller','18 Larch Street, Northgate.'],
+    ['ai','Got it. And your name and best number?'],
+    ['caller','Sarah, 0412 887 210.'],
+    ['ai','Thanks Sarah. I\'m booking an urgent visit and texting the details to the team now. You\'ll get a call back within minutes.']
+  ];
+  var lines=document.getElementById('pl-lines'),st=document.getElementById('pl-st'),dot=document.getElementById('pl-dot'),replay=document.getElementById('pl-replay');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
+  function clear(){timers.forEach(clearTimeout);timers=[];lines.innerHTML='';}
+  function play(){clear();dot.classList.add('on');var t=0;
+    LINES.forEach(function(L,i){var d=document.createElement('div');d.className='tline '+L[0];
+      d.innerHTML='<span class="who">'+(L[0]==='ai'?'Agent':'Caller')+'</span><span class="tx">'+L[1]+'</span>';lines.appendChild(d);
+      timers.push(setTimeout(function(){d.classList.add('show');st.textContent='00:'+String(4+i*5).padStart(2,'0');},reduce?0:i*1100));
+    });
+    if(!reduce)timers.push(setTimeout(function(){dot.classList.remove('on');},LINES.length*1100));
   }
-
-  /* ---- the maths ---- */
-  var c = document.getElementById('pl-c'), j = document.getElementById('pl-j'), b = document.getElementById('pl-b');
-  if (c && j && b){
-    var cV = document.getElementById('pl-cV'), jV = document.getElementById('pl-jV'), bV = document.getElementById('pl-bV');
-    var amount = document.getElementById('pl-amount'), yr = document.getElementById('pl-yr');
-    var shown = 0, target = 0, raf = null, RECOVER = 0.7;
-    var fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
-
-    function tick(){
-      var d = target - shown;
-      if (Math.abs(d) < 1){ shown = target; amount.textContent = fmt(shown); raf = null; return; }
-      shown += d * 0.18; amount.textContent = fmt(shown); raf = requestAnimationFrame(tick);
-    }
-    function update(){
-      cV.textContent = c.value;
-      jV.textContent = '$' + (+j.value).toLocaleString('en-US');
-      bV.textContent = b.value + '%';
-      var lost = (+c.value) * 4.33 * (+j.value) * ((+b.value)/100);
-      target = lost;
-      yr.textContent = fmt(lost * RECOVER * 12);
-      if (reduced){ shown = target; amount.textContent = fmt(shown); }
-      else if (!raf){ raf = requestAnimationFrame(tick); }
-    }
-    [c,j,b].forEach(function(el){ el.addEventListener('input', update); });
-    update();
-  }
+  replay.addEventListener('click',play);
+  var started=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!started){started=true;play();}},{threshold:.3}).observe(document.getElementById('pl-tape'));
 })();
 </script>
 </body>
