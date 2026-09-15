@@ -14,7 +14,7 @@
    --sans and --mono mirror styles.css --font-body and --font-mono so the article
    sets in the same faces as the rest of the site. Sizes and rhythm stay the
    blog's own: 17px/1.65, not the site's 16px/1.6. */
-.blogpost{--ink:#14181D; --paper:#FFFFFF; --tint:#F2F6FA; --brand:#2E75B6; --brand-deep:#1B4B78; --signal:#E8792B; --muted:#5B6672; --border:#DDE4EC; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --wrap:720px; --radius:6px;
+.blogpost{--ink:#0F2B24; --paper:#FFFFFF; --tint:#F1F6F1; --brand:#1F6B4E; --brand-deep:#174F3A; --signal:#E8792B; --muted:#587067; --border:#D8E0D9; --sans:'Instrument Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --wrap:720px; --radius:6px;
   font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);background:var(--paper)}
 .blogpost img, .blogpost svg{max-width:100%;height:auto;display:block}
 .blogpost a{color:var(--brand-deep);text-decoration:underline;text-underline-offset:2px}
@@ -61,9 +61,9 @@
 .blogpost .strip dd{margin:0;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
 .blogpost .cta{margin:56px 0 0;padding:28px;background:var(--ink);color:#fff;border-radius:var(--radius)}
 .blogpost .cta h2{margin:0 0 10px;color:#fff;font-size:22px}
-.blogpost .cta p{color:#B6C2CE;margin:0 0 20px;font-size:16px}
+.blogpost .cta p{color:#B3C4B7;margin:0 0 20px;font-size:16px}
 .blogpost .btn{display:inline-block;background:#fff;color:var(--ink);font-weight:600; padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-size:15.5px}
-.blogpost .btn:hover{background:#E8EEF4;color:var(--ink)}
+.blogpost .btn:hover{background:#E4EDE5;color:var(--ink)}
 .blogpost .idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:16px;margin:36px 0 0}
 .blogpost .card{border:1px solid var(--border);border-radius:var(--radius);padding:20px; background:var(--paper);text-decoration:none;color:inherit;display:block;transition:border-color .15s,transform .15s}
 .blogpost .card:hover{border-color:var(--brand);transform:translateY(-2px);color:inherit}

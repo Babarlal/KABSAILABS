@@ -4,7 +4,7 @@
    after styles.css. It only overrides; it deletes nothing.
    ============================================================ */
 
-/* --- 1. Contrast: --faint was #9aa6be on white — 2.6:1 (fails WCAG AA).
+/* --- 1. Contrast: --faint was #8AA094 on white — 2.6:1 (fails WCAG AA).
        #6b7688 on white — 4.9:1 and reads nearly identically. --- */
 :root{
   --faint: #6b7688;

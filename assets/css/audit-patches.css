@@ -4,17 +4,19 @@
    after styles.css. It only overrides; it deletes nothing.
    ============================================================ */
 
-/* --- 1. Contrast: --faint was #9aa6be on white — 2.6:1 (fails WCAG AA).
-       #6b7688 on white — 4.9:1 and reads nearly identically. --- */
+/* --- 1. Contrast: --faint is #8AA094 on white, 2.8:1, which fails WCAG AA.
+       #647a6f on white is 4.6:1 and reads nearly identically. This file loads
+       after styles.css, so the value here has to sit in the green family or it
+       puts a cool slate back over the skin. --- */
 :root{
-  --faint: #6b7688;
+  --faint: #647a6f;
 }
 .fr-time,
 .pago,
 .cs-illus,
 .demo-transcript.is-empty::before,
 .demo-transcript:empty::before{
-  color: #6b7688 !important;
+  color: #647a6f !important;
 }
 /* 10.5px monospace timestamps were unreadable on a phone */
 .pago{ font-size: 11.5px !important; }

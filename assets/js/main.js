@@ -85,7 +85,7 @@ var NAV = {
 
 /* ---------- logo (black mark, for light backgrounds) ----------
    Header and footer both sit on light backgrounds (.site-header is white,
-   .site-footer is --bg-tint #f4f6f8), so one black mark serves all three
+   .site-footer is --bg-tint #EDF0EA), so one black mark serves all three
    render points. The white file is at /assets/img/logo-kabs-white.png for
    whenever a dark section needs it.
    width/height are the file's real pixels (809x266) so the browser reserves
@@ -183,14 +183,14 @@ function setupCookieNotice(){
 
   var css = document.createElement('style');
   css.textContent =
-    '.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:680px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:#0f172a;color:#e7ecf5;border:1px solid #24304d;border-radius:12px;padding:12px 16px;font-family:Inter,system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(15,23,42,.6)}'
-  + '.cookie-bar a{color:#8fb2f0;text-decoration:underline}'
+    '.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:680px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:#0F2B24;color:#E8F0EA;border:1px solid #1E4638;border-radius:12px;padding:12px 16px;font-family:"Instrument Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(15,43,36,.6)}'
+  + '.cookie-bar a{color:#7CCFA0;text-decoration:underline}'
   + '.cookie-btns{display:flex;gap:8px;flex:none}'
   + '.cookie-ok,.cookie-no{min-height:44px;border-radius:8px;padding:10px 18px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;border:1px solid transparent}'
-  + '.cookie-ok{background:#2f6ad6;color:#fff}'
-  + '.cookie-ok:hover{background:#2a5ec0}'
-  + '.cookie-no{background:transparent;color:#c3cee2;border-color:#3a4766}'
-  + '.cookie-no:hover{background:#1a2439;color:#e7ecf5}'
+  + '.cookie-ok{background:#1F6B4E;color:#fff}'
+  + '.cookie-ok:hover{background:#174F3A}'
+  + '.cookie-no{background:transparent;color:#B7CBC0;border-color:#2A5546}'
+  + '.cookie-no:hover{background:#173A30;color:#E8F0EA}'
   + '@media(max-width:520px){.cookie-bar{bottom:88px}.cookie-btns{width:100%}.cookie-ok,.cookie-no{flex:1}}';
   document.head.appendChild(css);
   document.body.appendChild(bar);
@@ -663,23 +663,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var css = document.createElement("style");
     css.textContent =
-      '.kabs-pop-ov{position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}'
+      '.kabs-pop-ov{position:fixed;inset:0;z-index:99999;background:rgba(15,43,36,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}'
     + '.kabs-pop-ov.show{opacity:1}'
-    + '.kabs-pop{background:#fff;border:1px solid #e5e9f0;border-radius:18px;max-width:420px;width:100%;padding:30px 28px 24px;position:relative;box-shadow:0 40px 80px -30px rgba(15,23,42,.5);transform:translateY(12px) scale(.97);transition:transform .3s ease;font-family:Inter,system-ui,sans-serif}'
+    + '.kabs-pop{background:#fff;border:1px solid #D8E0D9;border-radius:18px;max-width:420px;width:100%;padding:30px 28px 24px;position:relative;box-shadow:0 40px 80px -30px rgba(15,43,36,.5);transform:translateY(12px) scale(.97);transition:transform .3s ease;font-family:"Instrument Sans",system-ui,sans-serif}'
     + '.kabs-pop-ov.show .kabs-pop{transform:none}'
-    + '.kabs-pop-x{position:absolute;top:12px;right:12px;width:44px;height:44px;border:none;background:#f4f6f8;border-radius:8px;color:#5b6675;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}'
-    + '.kabs-pop-x:hover{background:#e9edf3}'
-    + '.kabs-pop-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#2f6ad6;background:#eef4ff;border-radius:100px;padding:5px 12px;margin-bottom:14px}'
-    + '.kabs-pop h3{font-family:"Space Grotesk",Inter,sans-serif;font-size:22px;line-height:1.2;color:#141922;margin:0 0 8px}'
-    + '.kabs-pop p{font-size:14.5px;line-height:1.55;color:#5b6675;margin:0 0 20px}'
+    + '.kabs-pop-x{position:absolute;top:12px;right:12px;width:44px;height:44px;border:none;background:#EDF0EA;border-radius:8px;color:#587067;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}'
+    + '.kabs-pop-x:hover{background:#DDE4DC}'
+    + '.kabs-pop-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#1F6B4E;background:#DDF0E4;border-radius:100px;padding:5px 12px;margin-bottom:14px}'
+    + '.kabs-pop h3{font-family:Fraunces,Georgia,serif;font-size:22px;line-height:1.2;color:#0F2B24;margin:0 0 8px}'
+    + '.kabs-pop p{font-size:14.5px;line-height:1.55;color:#587067;margin:0 0 20px}'
     + '.kabs-pop-btns{display:flex;flex-direction:column;gap:10px}'
     + '.kabs-pop-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:48px;padding:13px 18px;border:none;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;transition:transform .15s ease}'
     + '.kabs-pop-btn:hover{transform:translateY(-1px)}'
-    + '.kabs-pop-call{background:#141922;color:#fff}'
+    + '.kabs-pop-call{background:#0F2B24;color:#fff}'
     + '.kabs-pop-wa{background:#25D366;color:#fff}'
-    + '.kabs-pop-later{display:block;width:100%;min-height:44px;text-align:center;margin-top:10px;font-size:13px;color:#6b7688;background:none;border:none;cursor:pointer}'
-    + '.kabs-pop-later:hover{color:#3f4856}'
-    + '.kabs-pop :focus-visible{outline:3px solid #2f6ad6;outline-offset:2px}'
+    + '.kabs-pop-later{display:block;width:100%;min-height:44px;text-align:center;margin-top:10px;font-size:13px;color:#647a6f;background:none;border:none;cursor:pointer}'
+    + '.kabs-pop-later:hover{color:#2F473E}'
+    + '.kabs-pop :focus-visible{outline:3px solid #1F6B4E;outline-offset:2px}'
     + '@media(prefers-reduced-motion:reduce){.kabs-pop-ov,.kabs-pop{transition:none}}';
     document.head.appendChild(css);
 
