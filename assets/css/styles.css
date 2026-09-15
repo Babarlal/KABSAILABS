@@ -18,7 +18,7 @@
   --border-2:#d9dfe7;
 
   --accent:#5b7a9d;
-  --brand:#2f6ad6;
+  --brand:#1F6B4E;
   --brand-soft:#eaf1fb;
   --ok:#1f9d6b;
   --dark:#1b2230;
@@ -490,7 +490,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .impact-bars::before{content:"";position:absolute;left:0;right:0;bottom:16px;height:1px;background:rgba(255,255,255,.16)}
 .impact-bars::after{content:"Illustrative";position:absolute;right:0;bottom:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
 .impact-bars i{flex:1 1 0;min-width:6px;display:block;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07))}
-.impact-bars i:last-child{background:linear-gradient(180deg,#7aa6e4,#2f6ad6)}
+.impact-bars i:last-child{background:linear-gradient(180deg,#7aa6e4,#1F6B4E)}
 /* two cells, not three: the third row was empty on every page using this block */
 .impact-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
 .impact-cell{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;position:relative}
@@ -649,7 +649,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .barchart{display:flex;align-items:flex-end;gap:9px;height:150px;width:80%;margin:0 auto;padding:6px 0}
 .panel-graphic .barchart{height:150px;width:170px}
 .barchart i{flex:1;height:var(--h);background:linear-gradient(180deg,#86abe8,#3f6fb0);border-radius:5px 5px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.barchart i:last-child{background:linear-gradient(180deg,#2f6ad6,#2a5fc0)}
+.barchart i:last-child{background:linear-gradient(180deg,#1F6B4E,#2a5fc0)}
 .barchart.in i{transform:scaleY(1)}
 .barchart.in i:nth-child(2){transition-delay:.08s}
 .barchart.in i:nth-child(3){transition-delay:.16s}
@@ -695,7 +695,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 
 /* Growth chart animation for legal/medical */
 .chart-anim{position:relative;width:130px;height:110px;margin:0 auto;display:flex;align-items:flex-end;justify-content:center;gap:12px;padding:10px 0}
-.chart-bar{width:20px;background:linear-gradient(180deg,#2f6ad6,#5a3fd6);border-radius:6px 6px 0 0;box-shadow:0 4px 12px -6px rgba(47,106,214,.4);animation:chart-grow 2s cubic-bezier(.2,.7,.2,1) infinite}
+.chart-bar{width:20px;background:linear-gradient(180deg,#1F6B4E,#2E8A63);border-radius:6px 6px 0 0;box-shadow:0 4px 12px -6px rgba(47,106,214,.4);animation:chart-grow 2s cubic-bezier(.2,.7,.2,1) infinite}
 .chart-bar:nth-child(1){height:30%;animation-delay:0s}
 .chart-bar:nth-child(2){height:50%;animation-delay:.2s}
 .chart-bar:nth-child(3){height:70%;animation-delay:.4s}
@@ -749,7 +749,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 .dashboard-title{font-size:12px;font-weight:600;color:var(--ink)}
 .dashboard-stat{font-size:14px;font-weight:700;color:var(--brand)}
 .dashboard-bars{display:flex;align-items:flex-end;gap:6px;height:80px}
-.dashboard-bar{flex:1;background:linear-gradient(180deg,#2f6ad6,#5a3fd6);border-radius:4px 4px 0 0;opacity:.6;animation:bar-grow 2s ease-in-out infinite}
+.dashboard-bar{flex:1;background:linear-gradient(180deg,#1F6B4E,#2E8A63);border-radius:4px 4px 0 0;opacity:.6;animation:bar-grow 2s ease-in-out infinite}
 .dashboard-bar:nth-child(1){height:40%;animation-delay:0s}
 .dashboard-bar:nth-child(2){height:60%;animation-delay:.2s;opacity:.8}
 .dashboard-bar:nth-child(3){height:50%;animation-delay:.4s}
@@ -789,7 +789,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 
 /* Analytics dashboard chart */
 .analytics-chart{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:space-around;padding:12px;gap:8px}
-.chart-col{flex:1;background:linear-gradient(180deg,#2f6ad6,#5a3fd6);border-radius:4px 4px 0 0;min-height:20px;animation:chart-pulse 2.5s ease-in-out infinite}
+.chart-col{flex:1;background:linear-gradient(180deg,#1F6B4E,#2E8A63);border-radius:4px 4px 0 0;min-height:20px;animation:chart-pulse 2.5s ease-in-out infinite}
 .chart-col:nth-child(1){height:45%;animation-delay:0s}
 .chart-col:nth-child(2){height:65%;animation-delay:.2s}
 .chart-col:nth-child(3){height:55%;animation-delay:.4s}
@@ -838,7 +838,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 /* ---- analytics panel viz (floating tool logos + growing bars) ---- */
 .analytics-viz{position:relative;width:100%;max-width:190px;aspect-ratio:1/1;margin:0 auto}
 .analytics-viz .av-bars{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);display:flex;align-items:flex-end;gap:6px;height:52px}
-.analytics-viz .av-bars i{width:12px;background:linear-gradient(180deg,#86abe8,#2f6ad6);border-radius:3px 3px 0 0;animation:av-grow 2.6s ease-in-out infinite alternate}
+.analytics-viz .av-bars i{width:12px;background:linear-gradient(180deg,#86abe8,#1F6B4E);border-radius:3px 3px 0 0;animation:av-grow 2.6s ease-in-out infinite alternate}
 .analytics-viz .av-bars i:nth-child(2){animation-delay:.2s}
 .analytics-viz .av-bars i:nth-child(3){animation-delay:.4s}
 .analytics-viz .av-bars i:nth-child(4){animation-delay:.6s}
@@ -878,7 +878,7 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
    ============================================================ */
 
 :root{
-  --brand-2:#5a3fd6;                 /* supporting tint (was gradient-only, now a token) */
+  --brand-2:#2E8A63;                 /* supporting tint (was gradient-only, now a token) */
   --brand-strong:#2a5fc0;
   /* softer, layered depth so cards read as lifted paper, not flat blocks */
   --shadow:0 1px 2px rgba(20,24,31,.05), 0 8px 20px -12px rgba(23,32,58,.22);
@@ -1104,24 +1104,3 @@ h3,h4{font-variation-settings:"opsz" 30,"SOFT" 40;line-height:1.2}
 
 /* ---- keep motion honest ---- */
 @media (prefers-reduced-motion:reduce){.hero::before,.impact-big::after{animation:none!important}}
-
-/* ============================================================
-   BLUE / WHITE PALETTE  —  add ?palette=blue to any URL
-   Restores the original blue/white colour tokens. Colour only: typography,
-   layout, spacing, structure and every rule above are untouched and shared.
-   ============================================================ */
-:root[data-palette="blue"]{
-  --bg:#ffffff; --bg-tint:#f4f6f8; --surface:#ffffff; --surface-2:#fbfcfd;
-  --ink:#14181f; --text:#222a35; --muted:#5b6675; --faint:#94a0b0;
-  --border:#e7ebf0; --border-2:#d9dfe7;
-  --accent:#5b7a9d; --brand:#2f6ad6; --brand-2:#5a3fd6; --brand-strong:#2a5fc0;
-  --brand-soft:#eaf1fb; --mint:#bcd6f7; --mint-2:#7aa6ee; --coral:#e4552e;
-  --ok:#1f9d6b; --dark:#1b2230;
-  --brand-rgb:47,106,214; --brand2-rgb:90,63,214;
-  --mint-rgb:188,214,247; --mint2-rgb:122,166,238;
-  --ink-rgb:20,24,31; --paper-rgb:255,255,255;
-  --on-dark:#aeb9c7; --on-dark-2:#8a93a0;
-  --tint-1:#f7f9fb; --with-tint:#f2f7ff;
-  --shadow:0 1px 2px rgba(20,24,31,.05), 0 8px 20px -12px rgba(23,32,58,.22);
-  --shadow-lg:0 24px 60px -34px rgba(23,32,58,.42);
-}

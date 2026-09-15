@@ -64,7 +64,7 @@ textarea:focus-visible,
 select:focus-visible,
 summary:focus-visible,
 [tabindex]:focus-visible{
-  outline: 3px solid #2f6ad6;
+  outline: 3px solid #1F6B4E;
   outline-offset: 2px;
   border-radius: 4px;
 }
