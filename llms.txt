@@ -18,12 +18,8 @@
 
 - [AI agents](https://www.kabsailabs.com/services/ai-automation): Chat and voice agents that answer, qualify, and act on your behalf.
 - [Workflow automation](https://www.kabsailabs.com/services/workflow-automation): Connect every tool so data flows and tasks run without a human.
-- [Analytics & dashboards](https://www.kabsailabs.com/services/analytics): One trustworthy view of the numbers that drive decisions.
 - [RAG / knowledge base](https://www.kabsailabs.com/services/rag-knowledge-base): Agents that answer from your own documents and data.
-- [Voice AI](https://www.kabsailabs.com/services/voice-ai): Voice agents that book appointments and handle inbound calls.
 - [AI for trades](https://www.kabsailabs.com/services/ai-for-trades): Automation for plumbing, HVAC, and field-service businesses.
-- [AI for legal & medical docs](https://www.kabsailabs.com/services/ai-legal-medical-docs): Summarize and process complex documents.
-- [GoHighLevel automation](https://www.kabsailabs.com/services/gohighlevel-automation): Done-for-you automation inside GoHighLevel.
 - [White-label / agency partners](https://www.kabsailabs.com/services/white-label): Resell automation under your own brand.
 
 ## Industries

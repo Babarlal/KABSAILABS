@@ -15,8 +15,28 @@
       "permanent": true
     },
     {
-      "source": "/services/analytics/ga4-gtm",
-      "destination": "/services/analytics",
+      "source": "/services/voice-ai",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-legal-medical-docs",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/analytics",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/analytics/:path*",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/gohighlevel-automation",
+      "destination": "/services",
       "permanent": true
     }
   ],

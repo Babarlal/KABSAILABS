@@ -52,11 +52,9 @@ var NAV = {
     ["AI Agents &amp; Automation", "/services/ai-automation"],
     ["Workflow Automation", "/services/workflow-automation"],
     ["RAG / Knowledge Base", "/services/rag-knowledge-base"],
-    ["Voice AI Agents", "/services/voice-ai"],
-    ["AI for Plumbers &amp; Trades", "/services/ai-for-trades"],
-    ["AI for Legal &amp; Medical Docs", "/services/ai-legal-medical-docs"],
-    ["Analytics", "/services/analytics"],
-    ["GoHighLevel Automation", "/services/gohighlevel-automation"],
+    /* The voice service page is /services/ai-for-trades. /services/voice-ai is
+       retired and 301s to /services, so this entry points at the live page. */
+    ["Voice AI Agents", "/services/ai-for-trades"],
     ["White Label", "/services/white-label"]
   ],
   industries: [
