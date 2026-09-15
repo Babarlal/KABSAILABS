@@ -61,33 +61,146 @@ window.__three = new Promise(function(res){
   function project(w){ var d=[w[0]-view.cam[0],w[1]-view.cam[1],w[2]-view.cam[2]], z=d[0]*basis.f[0]+d[1]*basis.f[1]+d[2]*basis.f[2], x=d[0]*basis.r[0]+d[1]*basis.r[1]+d[2]*basis.r[2], y=d[0]*basis.u[0]+d[1]*basis.u[1]+d[2]*basis.u[2];
     return [view.w/2+x/z*basis.F, view.h/2-y/z*basis.F, z]; }
   function placeLabels(){ for(var i=0;i<5;i++){ var w=world(P[i]); w[1]+=(i?0.34:0.62)*view.scale; var q=project(w); labelEls[i].style.transform='translate('+q[0]+'px,'+q[1]+'px) translate(-50%,-100%)'; } }
-  function layout(){ var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight; view.w=w; view.h=h; view.gx=0;
-    /* data-frame="card": a small square panel (the homepage hero visual). The narrow
-       branch is tuned for a full-bleed phone hero and packs the nodes so tightly that
-       the labels collide in a 430px box, so the card gets its own framing. */
-    /* A short canvas (the homepage card, or the phone hero band where the scene is
-       pinned to the top 44%) needs the graph spread across the box, not the tall
-       full-bleed framing, or the five labels land on top of each other. */
-    if(canvas.dataset.frame==='card' || h<540){ view.cam=[0,0,8.4]; view.look=[0,0,0]; view.scale=.86; view.gy=0; setupCam(); return; }
-    if(w<700){ view.cam=[0,1.4,9]; view.look=[0,1.0,0]; view.scale=.5; view.gy=1.7; setupCam(); return; }
-    /* Desktop. F is (h/2)/tan(fov/2) against a fixed camera distance, so the scene's
-       on-screen size is a straight linear function of the HERO's height, while the
-       headline is clamped and keeps its size. A short laptop viewport therefore
-       shrinks the animation out of the composition. Give back most of the height the
-       hero lost against a reference tall hero, cap it so the ring always fits the
-       hero's width, and lift/shift it clear of the bottom-left copy as it grows.
-       A tall wide hero resolves to zoom 1, so that composition is untouched. */
-    var REF_H=980, camDist=7.6;
+
+  /* ---- framing ------------------------------------------------------------
+     Scale and position are solved against the scene's own box, not against the
+     viewport, and the solve is continuous: there is no width where the framing
+     jumps. Two things follow. The scene keeps its on-screen size when a laptop
+     viewport is short, because F is proportional to the box height and the
+     scale rises to cancel that. And it can never reach past the box, because
+     the same solve is what sets the scale in the first place. */
+
+  /* Label boxes, remeasured each layout: they are the widest part of the scene
+     and their width depends on the font that actually loaded. */
+  var lbox=[[96,64],[86,58],[86,58],[86,58],[86,58]];
+  function measureLabels(){ for(var i=0;i<5;i++){ var el=labelEls[i], w=el.offsetWidth, h=el.offsetHeight;
+    if(w>0&&h>0) lbox[i]=[w*1.06+8, h*1.04+4]; } }        /* margin for a status word changing length */
+  function widestLabel(){ var m=0; for(var i=0;i<5;i++) m=Math.max(m,lbox[i][0]); return m; }
+
+  /* Largest scale whose ring silhouette still clears a half width of A. The
+     ring is a circle of radius R*s seen from d, so it spans R*s*F/sqrt(d^2 -
+     (R*s)^2) either side of centre; this is that solved for s. */
+  function scaleForHalf(A,F){ var d=view.cam[2]; if(A<=1) return .2; return (A*d)/(R*Math.sqrt(F*F+A*A)); }
+
+  /* The landing pages float their nav over the scene. It is part of the box the
+     scene has to share, so the band starts under it rather than behind it and a
+     channel label never lands on the wordmark. Measured against the canvas,
+     which is the coordinate space the labels are placed in, so a page whose
+     header sits in normal flow reports nothing to avoid. */
+  function topObstruction(){
+    var n=document.querySelector('nav'); if(!n) return 0;
+    var ns=getComputedStyle(n);
+    if(ns.position!=='absolute'&&ns.position!=='fixed') return 0;
+    var cr=canvas.getBoundingClientRect(), nr=n.getBoundingClientRect();
+    return Math.max(0, Math.min(nr.bottom-cr.top+6, cr.height*0.35));
+  }
+
+  /* Projected bounds in box coordinates, at the rotation that throws the scene
+     widest. labelsOnly leaves the orbit ring out: the labels are the readable
+     part and the thing that has to clear the headline, while the ring is a thin
+     line that is meant to run on behind the copy under its gradient. Sizing the
+     vertical fit against the ring instead starves the scene on a short laptop. */
+  /* The scene never spins: step() holds rotY to a slow sway of .28 plus up to
+     .25 of pointer parallax. Sampling a whole turn would bound configurations
+     it never reaches and shrink the scene for nothing, so sample that range. */
+  var ROT_MAX=0.28+0.25+0.02;
+  function sceneBox(labelsOnly){
+    var l=1e9,r=-1e9,t=1e9,b=-1e9,keep=rotY,i,k,q,wp,N=9;
+    for(k=0;k<N;k++){ rotY=-ROT_MAX+k*(2*ROT_MAX/(N-1));
+      for(i=0;i<5;i++){ wp=world(P[i]); wp[1]+=(i?0.34:0.62)*view.scale; q=project(wp);
+        l=Math.min(l,q[0]-lbox[i][0]/2); r=Math.max(r,q[0]+lbox[i][0]/2);
+        t=Math.min(t,q[1]-lbox[i][1]);   b=Math.max(b,q[1]); } }
+    rotY=keep;
+    if(!labelsOnly) for(k=0;k<24;k++){ var a=k*Math.PI/12; q=project(world([Math.cos(a)*R,0,Math.sin(a)*R]));
+      l=Math.min(l,q[0]); r=Math.max(r,q[0]); t=Math.min(t,q[1]); b=Math.max(b,q[1]); }
+    return {l:l,r:r,t:t,b:b,w:r-l,h:b-t};
+  }
+  /* Slide the scene until it sits on (cx,cy): x against the full box, because
+     nothing at all may cross the left or right edge, y against whichever box
+     the caller is composing to. gx and gy are world units and the shift they
+     produce on screen is depth dependent, so this corrects rather than solves. */
+  function frameTo(cx,cy,yLabels){
+    for(var it=0;it<3;it++){ setupCam();
+      var fb=sceneBox(false), yb=yLabels?sceneBox(true):fb, z=view.cam[2];
+      view.gx+=((cx-(fb.l+fb.r)/2)*z)/basis.F;
+      view.gy-=((cy-(yb.t+yb.b)/2)*z)/basis.F; }
+    setupCam();
+  }
+
+  function layout(){
+    var w=canvas.clientWidth||wrap.clientWidth, h=canvas.clientHeight||wrap.clientHeight;
+    if(!w||!h) return;
+    view.w=w; view.h=h; view.gx=0; view.gy=0;
+    measureLabels();
     var F=(h/2)/Math.tan(view.fov*Math.PI/360);
-    var fit=(0.42*w*camDist)/(R*F);                     /* ring + labels stay inside the width */
-    var wGate=Math.max(0,Math.min(1,(w-900)/300));      /* fade the compensation out on narrow desktops */
-    var zoom=Math.max(1, 1+0.75*(REF_H/h-1));           /* only ever grows, never shrinks */
-    zoom=1+(zoom-1)*wGate;
-    zoom=Math.max(0.65, Math.min(zoom, 1.45, fit));
-    var grow=zoom-1;
-    view.cam=[0,1.7,camDist]; view.look=[0,.4,0];
-    view.scale=zoom; view.gy=.9+grow*1.6; view.gx=grow*1.2;
-    setupCam(); }
+    var pad=Math.max(10,Math.min(22,w*0.018));
+    /* A short box is the phone band or a square card: the copy sits outside it,
+       so the scene gets the whole box. A tall box is the full bleed hero, where
+       the copy sits over the lower part and the scene has to stay above it. */
+    var band=(canvas.dataset.frame==='card' || h<540 || w<700);
+    /* The band framing lifts the camera further than the hero's. The ring is a
+       shallow ellipse at the hero's angle, so in a short wide band it would draw
+       as a flat line with empty space under it; the extra tilt opens it into a
+       ring that reads, and spreads the labels apart vertically as well. */
+    view.cam=band?[0,2.55,8.0]:[0,1.7,7.6];
+    view.look=band?[0,.15,0]:[0,.4,0];
+    var sFit=scaleForHalf(w/2-pad-widestLabel()/2, F);
+    var s, bandT=pad+topObstruction(), bandB=h-pad;
+    if(band){
+      /* Fill: on a phone the band is only as tall as the cluster needs, so the
+         width is what binds and the scene should take all of it. */
+      s=Math.min(sFit,2.4);
+    }else{
+      /* Hold: REF_H is the tall window height at which the scale is 1, so a
+         1920 by 1080 hero resolves to exactly the framing it had before, and a
+         shorter hero scales up to keep s*F, the on-screen size, level. */
+      var REF_H=1040;
+      s=Math.min(Math.max(1,REF_H/h), 1.60, sFit);
+      /* The copy sits at the bottom under a gradient scrim and the scene is
+         meant to run behind it, so the floor is the headline's top edge, not
+         the top of the copy block. Anchoring to the eyebrow instead starves the
+         scene of height on a short laptop and shrinks it away to nothing. */
+      var hr=wrap.getBoundingClientRect();
+      var h1=wrap.querySelector('.hero-copy h1')||wrap.querySelector('h1');
+      bandB=h1?(h1.getBoundingClientRect().top-hr.top-10):h*0.74;
+      if(bandB<bandT+140) bandB=bandT+140;
+    }
+    /* Where the scene sits in its band. On the hero 0.536 is where it already
+       sat on a tall window, so 1920 is unchanged, and it drifts up as it grows
+       so the copy keeps its air. */
+    function cyFor(sv){ return band?(bandT+bandB)/2
+      :bandT+(bandB-bandT)*Math.max(.34,Math.min(.60,.536-.10*(sv-1))); }
+    /* On the hero the ring may run off the top and behind the copy, which is how
+       it always read; the labels are the readable part and must stay whole and
+       clear of the headline. In a phone band nothing sits over it, so the whole
+       scene has to fit. */
+    var yLabels=!band;
+    function fits(sv){
+      view.scale=sv; frameTo(w/2,cyFor(sv),yLabels);
+      var fb=sceneBox(false), yb=yLabels?sceneBox(true):fb;
+      return fb.w<=(w-2*pad)+0.5 && yb.h<=(bandB-bandT)+0.5 && yb.t>=bandT-0.5;
+    }
+    /* Bisect rather than step down. Most of the label block's height is a fixed
+       pixel cost that barely moves with the scale, so a coarse multiplicative
+       step gives away a fifth of the scene to clear a few pixels of overflow. */
+    if(!fits(s)){
+      var lo=0.3, hi=s;
+      for(var g=0;g<14;g++){ var mid=(lo+hi)/2; if(fits(mid)) lo=mid; else hi=mid; }
+      s=lo; fits(s);
+    }
+    var cy=cyFor(s);
+    /* Then bias right by whatever slack is genuinely there, so a grown scene
+       clears the copy without ever crossing the box edge. At scale 1 the bias
+       is zero and the composition is untouched. */
+    var bx2=sceneBox(false), bias=Math.min((s-1)*0.10*w, Math.max(0,(w-pad)-bx2.r));
+    if(bias>0.5) frameTo(w/2+bias,cy,yLabels);
+    /* Last guard: nothing crosses the left or right edge, nothing is clipped off
+       the top, and no label reaches below the floor, whatever the solve produced. */
+    var fb2=sceneBox(false), yb2=yLabels?sceneBox(true):fb2, dx=0, dy=0;
+    if(fb2.l<pad) dx=pad-fb2.l; else if(fb2.r>w-pad) dx=(w-pad)-fb2.r;
+    if(yb2.t<pad) dy=pad-yb2.t; else if(yb2.b>bandB) dy=bandB-yb2.b;
+    if(dx||dy) frameTo((fb2.l+fb2.r)/2+dx,(yb2.t+yb2.b)/2+dy,yLabels);
+  }
   function step(now){ px+=(tx-px)*.05; var t=now/1000; rotY=Math.sin(t*.12)*.28+px; haloScale+=(1-haloScale)*.08;
     for(var fi=0;fi<4;fi++){ var f=flows[fi], c=curves[fi];
       for(var k=0;k<f.N;k++){ var tt,col;
@@ -98,8 +211,15 @@ window.__three = new Promise(function(res){
   var visible=true, raf=null, render=null;
   addEventListener('pointermove',function(e){ if(e.pointerType==='mouse') tx=(e.clientX/innerWidth-.5)*.5; },{passive:true});
   function loop(){ raf=requestAnimationFrame(function(now){ raf=null; step(now); render(); placeLabels(); if(visible&&!reduce) loop(); }); }
+  function reflow(){ layout(); if(render&&typeof render.resize==='function') render.resize(); if(render) render(); placeLabels(); }
   function start(){ layout(); step(performance.now()); render(); placeLabels(); labelEls.forEach(function(el){el.classList.add('ready')});
-    addEventListener('resize',function(){ layout(); if(typeof render.resize==='function') render.resize(); render(); placeLabels(); },{passive:true});
+    addEventListener('resize',reflow,{passive:true});
+    /* The framing is solved against the label widths and the headline's position,
+       and both move when the webfonts land, so solve again once they have. */
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reflow,function(){});
+    /* The hero's own box is what the solve reads, so watch that rather than the
+       window: it also catches the phone address bar collapsing the viewport. */
+    if(window.ResizeObserver){ try{ new ResizeObserver(reflow).observe(wrap); }catch(e){} }
     new IntersectionObserver(function(en){ visible=en[0].isIntersecting; if(visible&&!raf&&!reduce) loop(); },{threshold:.05}).observe(wrap);
     if(!reduce){ schedule(MODE==='flow'?trigger:sale,1600); loop(); } }
   /* ---- renderer A: Three.js ---- */
