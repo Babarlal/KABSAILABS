@@ -705,3 +705,9 @@
 .pg .case-band .btn.ghost:hover,
 .pg .pl-dark .btn.ghost:hover,
 .pg .band-dark .btn.ghost:hover{background:rgba(255,255,255,.10);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+
+/* ---- a tier whose figure is not settled yet ----
+   The brief holds every tier above the $200 Starter until real numbers are
+   supplied, so the price slot carries the marker instead of an invented figure.
+   Sized down from .price so a long marker does not blow the card open. */
+.pg .tier .price.tbd{font-family:var(--mono);font-size:.95rem;line-height:1.35;color:var(--coral);letter-spacing:.02em;padding:6px 0 2px}
