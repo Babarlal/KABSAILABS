@@ -180,6 +180,15 @@
 .cta-band .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff;background:transparent}
 .site-footer{background:var(--bg-tint)}
 .foot-social a:hover,.foot-col a:hover,.ai-summary a:hover{color:var(--brand);border-color:var(--brand)}
+#site-header{min-height: 121px; display: block;}
+body[data-layout="lp"] #site-header{min-height: 108px;}
+@media (max-width: 820px){
+body[data-layout="lp"] #site-header{min-height: 96px;}
+}
+#site-footer{min-height: 320px;}
+@media (max-width: 820px){
+#site-footer{min-height: 520px;}
+}
 .foot-social a{min-width: 44px;
   min-height: 44px;
   display: inline-flex;

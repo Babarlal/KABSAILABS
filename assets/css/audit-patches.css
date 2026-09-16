@@ -25,8 +25,12 @@
 /* --- 2. CLS: reserve space for the JS-injected header + announcement bar
        so the hero doesn't jump when they land. Adjust the values if your
        real header measures differently — check in DevTools. --- */
-#site-header{ min-height: 108px; display: block; }
-@media (max-width: 820px){ #site-header{ min-height: 96px; } }
+/* Measured from the rendered header: 121px at every breakpoint, announce bar included.
+   It was reserving 108px, and 96px under 820px, so <main> still dropped 13 to 25px when
+   main.js painted. The lp layout has no announce bar and stays at 108px. */
+#site-header{ min-height: 121px; display: block; }
+body[data-layout="lp"] #site-header{ min-height: 108px; }
+@media (max-width: 820px){ body[data-layout="lp"] #site-header{ min-height: 96px; } }
 #site-footer{ min-height: 320px; }
 @media (max-width: 820px){ #site-footer{ min-height: 520px; } }
 
