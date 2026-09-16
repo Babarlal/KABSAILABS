@@ -57,6 +57,10 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 .lp .btn.ghost:hover{background:var(--paper-2)}
 .lp .dark .btn.ghost,.lp .hero .btn.ghost,.lp .risk-head .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3);background:transparent}
 .lp .dark .btn.ghost:hover,.lp .hero .btn.ghost:hover{background:rgba(255,255,255,.08)}
+/* The audit card is a white panel sitting inside the dark hero, so the flip above
+   would paint its Back button white on white. Put the ink back inside it. */
+.lp .hero .au-card .btn.ghost,.lp .dark .au-card .btn.ghost{color:var(--text);border-color:var(--rule-2);background:transparent}
+.lp .hero .au-card .btn.ghost:hover,.lp .dark .au-card .btn.ghost:hover{background:var(--paper-2)}
 .lp .link{color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:.2em}
 
 /* nav */
