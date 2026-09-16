@@ -352,6 +352,10 @@
     /* no-cors means the reply is opaque. A new sheet row and the email
        are the proof it landed, so we never block the booking on it. */
     function proceed(){
+      /* Primary conversion. /audit posts to the Apps Script webhook from this inline
+         script rather than through main.js setupForms, so the sitewide handler never saw
+         it and the most important form on the site reported nothing. */
+      if (window.kabsTrack) kabsTrack('kabs_audit_form_success', { form_name: 'operational-audit', form_page: location.pathname });
       var notes = 'Industry: ' + industry + ' | Biggest time sink: ' + task + ' | Mobile: ' + (mobile || 'not given');
       var url = calendlyUrl(name, email, notes);
       cal.src = url;
