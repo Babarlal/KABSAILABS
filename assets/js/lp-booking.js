@@ -5,7 +5,10 @@
   'use strict';
   var CALENDLY_URL='https://calendly.com/babarlal17/30min';
   var WEBHOOK_URL='https://script.google.com/macros/s/AKfycbyFP-P9I80X_QE02eQ8i4SioyqVlTeV36wEdbeF1V7Se3G2k4OE6zb4zk5El53b7-V9/exec';
-  var ADS_CONVERSION_ID='[NEEDS INPUT: AW-XXXXXXXXX/label]';
+  /* Paste the real value as AW-XXXXXXXXX/AbCdEfGhIjKlMnOp. The leading bracket is what
+     the guard below tests, so the conversion cannot fire against a placeholder: leave the
+     brackets on until the Ads conversion action exists. */
+  var ADS_CONVERSION_ID='[ADS_CONVERSION_ID_PLACEHOLDER: AW-XXXXXXXXX/label]';
   var $=function(id){return document.getElementById(id);};
   var prog=$('auProg'), panels=[$('auStep1'),$('auStep2')], form=$('auForm'), submitBtn=$('auSubmit'), errBox=$('auError'), cal=$('auCal'), calLink=$('auCalLink'), doneMsg=$('auDone');
   var TAPS={amazon:'Shopify and Amazon',marketplace:'Shopify and eBay or Etsy','3pl':'Shopify and a 3PL',multi:'Several channels'};
@@ -28,9 +31,16 @@
     function proceed(){ var notes='Store: '+(store||'not given')+' | Channels: '+(channels||'not given')+' | Oversell estimate: '+(est?'$'+est+'/mo':'not run')+' | Mobile: '+(mobile||'not given');
       var url=CALENDLY_URL+'?hide_gdpr_banner=1&name='+encodeURIComponent(name)+'&email='+encodeURIComponent(email)+'&a1='+encodeURIComponent(notes);
       cal.src=url; calLink.href=url; submitBtn.disabled=false; submitBtn.textContent='Book the free audit';
+      if(window.kabsTrack) kabsTrack('kabs_audit_form_success',{form_name:'lp-audit',form_page:location.pathname});
+      /* Direct Ads conversion as well as the dataLayer event: this path predates GTM and
+         keeps working if the container is ever paused. Guarded on the bracket so a
+         placeholder never fires. */
       if(typeof gtag==='function'&&ADS_CONVERSION_ID.indexOf('[')!==0) gtag('event','conversion',{send_to:ADS_CONVERSION_ID});
       goto(2); }
     try{ fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(lead)}).then(proceed,proceed); }catch(err){ proceed(); } });
+  /* Presentation only. The kabs_booking_completed event for this same message is pushed
+     once, in tagging.js, which listens on every page. Pushing it here too would count a
+     single booking twice. */
   window.addEventListener('message',function(e){ if(String(e.origin).indexOf('calendly.com')===-1) return; var d=e.data; if(d&&d.event==='calendly.event_scheduled') doneMsg.hidden=false; });
   var bar=$('sticky'), book=$('book'), top=document.querySelector('.hero, .risk-head'), topOut=false, bookIn=false;
   var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.target===top) topOut=!en.isIntersecting; if(en.target===book) bookIn=en.isIntersecting; }); bar.classList.toggle('show',topOut&&!bookIn); },{threshold:.1});

@@ -23,8 +23,8 @@ var CONFIG = {
   email:        "babarlal@kabsailabs.com",
   whatsapp:     "14068677425",                 // digits only, no + or spaces
   domain:       "kabsailabs.com",
-  GTM_ID:       "",                            // "GTM-XXXXXXX" to enable GTM everywhere
-  GA_ID:        "G-EMPMVS2NYX",
+  // GTM_ID and GA_ID moved to assets/js/tagging.js, which every page loads,
+  // including the /lp/ pages that do not load this file.
   CALENDLY_URL: "https://calendly.com/babarlal17/30min",
   ctaFallback:  "/audit",                      // used only if Calendly fails to load
   formEndpoint: "/api/submit-form",
@@ -109,94 +109,16 @@ function menuCol(title, items){
 }
 
 /* ============================================================
-   CONSENT — GA4 behind Consent Mode v2, denied by default.
-   Nothing analytics-related loads until the visitor decides.
+   CONSENT, GA4 AND THE COOKIE BAR NOW LIVE IN assets/js/tagging.js.
+
+   They moved because the /lp/ ad landing pages do not load this file, so they
+   had no consent defaults, no tag and no way for a visitor to opt in. Keeping a
+   second copy here would have set the defaults twice and painted two cookie
+   bars on every page that loads both.
+
+   tagging.js exposes window.kabsConsent, window.kabsTrack and window.gtag, and
+   is loaded before this file on every page.
    ============================================================ */
-window.dataLayer = window.dataLayer || [];
-function gtag(){ dataLayer.push(arguments); }
-window.gtag = gtag;
-
-gtag('consent', 'default', {
-  ad_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  analytics_storage: 'denied',
-  functionality_storage: 'granted',
-  security_storage: 'granted',
-  wait_for_update: 500
-});
-
-function readConsent(){
-  try { return localStorage.getItem('kabsConsent'); } catch(e){ return null; }
-}
-function writeConsent(v){
-  try { localStorage.setItem('kabsConsent', v); } catch(e){}
-}
-
-var gaLoaded = false;
-function loadGA(){
-  if (gaLoaded || !CONFIG.GA_ID) return;
-  gaLoaded = true;
-  var s = document.createElement("script");
-  s.async = true;
-  s.src = "https://www.googletagmanager.com/gtag/js?id=" + CONFIG.GA_ID;
-  document.head.appendChild(s);
-  gtag('js', new Date());
-  gtag('config', CONFIG.GA_ID, { anonymize_ip: true });
-}
-
-function grantConsent(){
-  writeConsent('granted');
-  gtag('consent', 'update', {
-    ad_storage: 'denied',          // we don't run ads; keep this denied
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: 'granted'
-  });
-  loadGA();
-}
-function denyConsent(){
-  writeConsent('denied');
-  gtag('consent', 'update', { analytics_storage: 'denied' });
-}
-
-// Returning visitor who already accepted
-if (readConsent() === 'granted') grantConsent();
-
-/* ---------- cookie / analytics notice ---------- */
-function setupCookieNotice(){
-  if (readConsent()) return;
-
-  var bar = document.createElement('div');
-  bar.className = 'cookie-bar';
-  bar.setAttribute('role','region');
-  bar.setAttribute('aria-label','Cookie notice');
-  bar.innerHTML =
-    '<span>We use analytics cookies to understand how the site is used. '
-  + 'See our <a href="/privacy">Privacy Policy</a>.</span>'
-  + '<span class="cookie-btns">'
-  +   '<button type="button" class="cookie-no">Reject</button>'
-  +   '<button type="button" class="cookie-ok">Accept</button>'
-  + '</span>';
-
-  var css = document.createElement('style');
-  css.textContent =
-    '.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:680px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:#0F2B24;color:#E8F0EA;border:1px solid #1E4638;border-radius:12px;padding:12px 16px;font-family:"Instrument Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(15,43,36,.6)}'
-  + '.cookie-bar a{color:#7CCFA0;text-decoration:underline}'
-  + '.cookie-btns{display:flex;gap:8px;flex:none}'
-  + '.cookie-ok,.cookie-no{min-height:44px;border-radius:8px;padding:10px 18px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;border:1px solid transparent}'
-  + '.cookie-ok{background:#1F6B4E;color:#fff}'
-  + '.cookie-ok:hover{background:#174F3A}'
-  + '.cookie-no{background:transparent;color:#B7CBC0;border-color:#2A5546}'
-  + '.cookie-no:hover{background:#173A30;color:#E8F0EA}'
-  + '@media(max-width:520px){.cookie-bar{bottom:88px}.cookie-btns{width:100%}.cookie-ok,.cookie-no{flex:1}}';
-  document.head.appendChild(css);
-  document.body.appendChild(bar);
-
-  function close(){ if (bar.parentNode) bar.parentNode.removeChild(bar); }
-  bar.querySelector('.cookie-ok').addEventListener('click', function(){ grantConsent(); close(); });
-  bar.querySelector('.cookie-no').addEventListener('click', function(){ denyConsent(); close(); });
-}
 
 /* ---------- announcement bar ---------- */
 function buildAnnounce(){
@@ -290,14 +212,8 @@ function buildFab(){
     'Chat with us</a></div>';
 }
 
-/* ---------- GTM ---------- */
-function loadGTM(){
-  if (!CONFIG.GTM_ID || readConsent() !== 'granted') return;
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer',CONFIG.GTM_ID);
-}
+/* ---------- GTM ----------
+   Loaded by tagging.js, which owns the container and the consent gate. */
 
 /* ---------- Vercel Speed Insights ---------- */
 function loadSpeedInsights(){
@@ -327,7 +243,7 @@ function openCalendly(){
   } else {
     window.open(CONFIG.CALENDLY_URL, "_blank", "noopener");
   }
-  if (window.gtag) gtag('event', 'booking_widget_open', { method: 'calendly' });
+  if (window.kabsTrack) kabsTrack('kabs_booking_widget_open', { method: 'calendly' });
 }
 function setupCalendly(){
   if (!CONFIG.CALENDLY_URL) return;
@@ -542,6 +458,12 @@ function setupForms(){
       .then(function(r){ return r.json().catch(function(){ return {ok:false}; }).then(function(j){ return {status:r.status, body:j}; }); })
       .then(function(res){
         if (res.body && res.body.ok){
+          /* Primary conversion. Fires the moment the API confirms the lead was
+             stored, before the redirect, so a slow /thank-you load cannot lose it. */
+          if (window.kabsTrack) kabsTrack('kabs_audit_form_success', {
+            form_name: data._form,
+            form_page: data._page
+          });
           if (window.gtag) gtag('event', 'generate_lead', { form: data._form });
           window.location.href = CONFIG.thankYouUrl;
           return;
@@ -614,10 +536,8 @@ document.addEventListener('DOMContentLoaded', function(){
   setupShare();
   setupForms();
   setupCalendly();
-  loadGTM();
   loadSpeedInsights();
   respectReducedMotion();
-  setupCookieNotice();
 });
 
 /* ============================================================
