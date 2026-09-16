@@ -1018,3 +1018,17 @@
 
 /* ---- a tier whose figure is not settled yet ---- */
 .pg .tier .price.tbd{font-family:var(--mono);font-size:.95rem;line-height:1.35;color:var(--coral);letter-spacing:.02em;padding:6px 0 2px}
+
+/* ---- the proof hub on /case-studies ----
+   Every build as a card, with a chip row that filters by industry. The chips
+   are real buttons so they keyboard and announce; the count line is the live
+   region that tells a screen reader what the filter did. */
+.pg .cs-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pg .cs-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.88rem;font-weight:500;color:var(--muted);background:#fff;border:1px solid var(--rule);border-radius:999px;padding:8px 15px;cursor:pointer;transition:background .16s,border-color .16s,color .16s}
+.pg .cs-chip:hover{border-color:var(--rule-2);color:var(--ink)}
+.pg .cs-chip .n{font-family:var(--mono);font-size:.74rem;color:var(--faint)}
+.pg .cs-chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.pg .cs-chip.on .n{color:var(--mint)}
+.pg .cs-count{font-family:var(--mono);font-size:12px;color:var(--faint);margin:0 0 18px}
+.pg .cs-item{display:contents}
+.pg .cs-item[hidden]{display:none}

@@ -160,11 +160,73 @@
       '<span class="pc-go">View build →</span></a>';
   }
 
-  function head(label, total) {
+  function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
+  /* The head link points back at /case-studies, filtered to the industries this
+     page's gallery covers, so every gallery is a way into the full proof hub.
+     Without a filter it goes to the portfolio itself. */
+  function head(label, total, filter) {
+    var href, text;
+    if (filter) { href = '/case-studies?i=' + encodeURIComponent(filter); text = 'All ' + total + ' builds →'; }
+    else { href = PORTFOLIO; text = 'All ' + total + ' builds →'; }
+    var ext = filter ? '' : ' target="_blank" rel="noopener"';
     return '<div class="port-head">' +
       '<span class="ph-l"><span class="p"></span>' + esc(label) + '</span>' +
-      '<a class="ph-all" href="' + PORTFOLIO + '" target="_blank" rel="noopener">All ' + total + ' builds →</a>' +
+      '<a class="ph-all" href="' + href + '"' + ext + '>' + text + '</a>' +
       '</div>';
+  }
+
+  /* ---- the proof hub: every build, filterable by industry ---- */
+  function renderHub(el, builds) {
+    var inds = [];
+    builds.forEach(function (b) { if (inds.indexOf(b.industry) === -1) inds.push(b.industry); });
+    inds.sort();
+
+    var chips = '<div class="cs-filter" role="group" aria-label="Filter builds by industry">' +
+      '<button type="button" class="cs-chip on" data-i="">All <span class="n">' + builds.length + '</span></button>' +
+      inds.map(function (i) {
+        var n = builds.filter(function (b) { return b.industry === i; }).length;
+        return '<button type="button" class="cs-chip" data-i="' + esc(slugify(i)) + '">' + esc(i) + ' <span class="n">' + n + '</span></button>';
+      }).join('') + '</div>';
+
+    el.innerHTML = chips +
+      '<p class="cs-count" role="status" aria-live="polite"></p>' +
+      '<div class="gcard-grid">' + builds.map(function (b) {
+        return '<div class="cs-item" data-i="' + esc(slugify(b.industry)) + '">' + card(b, 'gcard', 150) + '</div>';
+      }).join('') + '</div>';
+
+    var items = [].slice.call(el.querySelectorAll('.cs-item'));
+    var btns = [].slice.call(el.querySelectorAll('.cs-chip'));
+    var count = el.querySelector('.cs-count');
+
+    function apply(want, push) {
+      var list = want ? want.split(',').filter(Boolean) : [];
+      var shown = 0;
+      items.forEach(function (it) {
+        var on = !list.length || list.indexOf(it.getAttribute('data-i')) !== -1;
+        it.hidden = !on;
+        if (on) shown++;
+      });
+      btns.forEach(function (b) {
+        var active = (b.getAttribute('data-i') || '') === (list.length === 1 ? list[0] : (list.length ? want : ''));
+        b.classList.toggle('on', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      count.textContent = shown === builds.length
+        ? 'Showing all ' + builds.length + ' builds'
+        : 'Showing ' + shown + ' of ' + builds.length + ' builds';
+      if (push && window.history && history.replaceState) {
+        history.replaceState(null, '', list.length ? '?i=' + encodeURIComponent(want) : location.pathname);
+      }
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-i'), true); });
+    });
+
+    var initial = '';
+    try { initial = new URLSearchParams(location.search).get('i') || ''; } catch (e) { }
+    apply(initial, false);
   }
 
   /* The scroller loops by translating a column up by half its height, so each
@@ -179,9 +241,10 @@
     var variant = el.getAttribute('data-gallery-variant') ||
       (builds.length > 5 ? 'scroll' : 'static');
     var cta = el.getAttribute('data-gallery-cta');
+    var filter = el.getAttribute('data-gallery-more') || '';
 
     if (variant === 'static') {
-      el.innerHTML = head(label, total) +
+      el.innerHTML = head(label, total, filter) +
         '<div class="gcard-grid">' + builds.map(function (b) { return card(b, 'gcard', 150); }).join('') + '</div>';
       return;
     }
@@ -194,8 +257,9 @@
     var glass = '<div class="port-glass" aria-label="Recent automation builds">' +
       cols.map(function (c, i) { return c.length ? column(c, durs[i], i === 1) : ''; }).join('') +
       '</div>';
-    el.innerHTML = head(label, total) + glass +
-      (cta ? '<a class="port-cta" href="' + PORTFOLIO + '" target="_blank" rel="noopener">' + esc(cta) + ' →</a>' : '');
+    el.innerHTML = head(label, total, filter) + glass +
+      (cta ? '<a class="port-cta" href="' + (filter ? '/case-studies?i=' + encodeURIComponent(filter) : PORTFOLIO) + '"' +
+        (filter ? '' : ' target="_blank" rel="noopener"') + '>' + esc(cta) + ' →</a>' : '');
   }
 
   function boot(all) {
@@ -205,6 +269,8 @@
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
       var key = el.getAttribute('data-gallery');
+      /* the proof hub on /case-studies: every build, filterable */
+      if (key === 'all') { el.classList.add('cs-hub'); renderHub(el, all); continue; }
       var slugs = SETS[key];
       if (!slugs) { el.remove(); continue; }
       var builds = slugs.map(function (s) { return index[s]; }).filter(Boolean);

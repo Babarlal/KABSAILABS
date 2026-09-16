@@ -5,7 +5,12 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "kabsailabs.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "kabsailabs.com"
+        }
+      ],
       "destination": "https://www.kabsailabs.com/:path*",
       "permanent": true
     },
@@ -37,6 +42,11 @@
     {
       "source": "/services/gohighlevel-automation",
       "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/:slug*",
+      "destination": "/case-studies",
       "permanent": true
     }
   ],
