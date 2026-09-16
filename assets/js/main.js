@@ -66,11 +66,10 @@ var NAV = {
     ["Healthcare", "/services/industries/healthcare"]
   ],
   resources: [
-    ["Live AI Voice Demo", "/demo"],            // promoted: this is the best asset on the site
+    /* Live demo already sits in the header, and the two dental lead magnets are
+       out of the menu. The pages themselves are still served, just not listed. */
     ["Case Studies", "/case-studies"],
     ["Blog", "/blog"],
-    ["AI Receptionist Blueprint", "/resources/dental-ai-receptionist-blueprint"],
-    ["Front Desk Checklist", "/resources/dental-front-desk-checklist"],
     ["Démonstration (FR)", "/demonstration"],
     ["Demo walkthrough (EN)", "/demonstration-en"]
   ],
