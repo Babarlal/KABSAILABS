@@ -458,8 +458,9 @@ function setupForms(){
       .then(function(r){ return r.json().catch(function(){ return {ok:false}; }).then(function(j){ return {status:r.status, body:j}; }); })
       .then(function(res){
         if (res.body && res.body.ok){
-          /* Primary conversion. Fires the moment the API confirms the lead was
-             stored, before the redirect, so a slow /thank-you load cannot lose it. */
+          /* Soft signal, not the conversion. Fires the moment the API confirms the
+             lead was stored, before the redirect, so a slow /thank-you load cannot
+             lose it. The conversion is the completed booking, in tagging.js. */
           if (window.kabsTrack) kabsTrack('kabs_audit_form_success', {
             form_name: data._form,
             form_page: data._page

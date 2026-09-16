@@ -23,7 +23,14 @@
 
   var TAG = {
     GTM_ID: 'GTM-PLACEHOLDER',   // replace with the real GTM-XXXXXXX container
-    GA_ID:  'G-EMPMVS2NYX'       // existing GA4 property, kept
+    GA_ID:  'G-EMPMVS2NYX',      // existing GA4 property, kept
+
+    /* The Google Ads conversion, counted on a completed booking. Paste the real value as
+       AW-XXXXXXXXX/AbCdEfGhIjKlMnOp. The leading bracket is what the guard tests, so
+       leave the brackets on until the conversion action exists: nothing fires against a
+       placeholder. Moved here from lp-booking.js, which fired it at lead capture on two
+       pages only; a booking can happen from any page, so the tag layer owns it. */
+    ADS_CONVERSION_ID: '[ADS_CONVERSION_ID_PLACEHOLDER: AW-XXXXXXXXX/label]'
   };
   window.KABS_TAG = TAG;
 
@@ -137,16 +144,26 @@
     return payload;
   };
 
-  /* ---------- Calendly: a completed booking, not an opened widget ----------
-     Calendly posts a message when the visitor actually finishes scheduling.
-     Opening the popup is a different, much weaker signal and is tracked
-     separately in main.js. This listener is installed on every page, so a
-     booking counts wherever the widget is embedded or popped. */
+  /* ---------- Calendly: a completed booking ----------
+     This is the conversion. Calendly posts a message when the visitor actually
+     finishes scheduling, which is the moment worth paying for: a lead form
+     submission only means somebody typed an email, and Google should optimise
+     for people who take a time. Opening the popup is a much weaker signal and
+     is tracked separately in main.js.
+
+     The listener is installed on every page, so a booking counts wherever the
+     widget is embedded or popped, and it is installed once, so a booking cannot
+     be counted twice. */
   window.addEventListener('message', function (e) {
     if (String(e.origin).indexOf('calendly.com') === -1) return;
     var d = e.data;
     if (d && d.event === 'calendly.event_scheduled') {
       window.kabsTrack('kabs_booking_completed', { method: 'calendly' });
+      /* Direct Ads conversion alongside the dataLayer event, so it keeps working if
+         the container is ever paused. Guarded, so a placeholder never fires. */
+      if (typeof gtag === 'function' && !isPlaceholder(TAG.ADS_CONVERSION_ID)) {
+        gtag('event', 'conversion', { send_to: TAG.ADS_CONVERSION_ID });
+      }
     }
   });
 

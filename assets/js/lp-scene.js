@@ -4,6 +4,10 @@
 /* --- Three.js loader (must run before the engine below) --- */
 /* Three.js loader: cdnjs first (works in previews), esm.sh on the live site (CSP), 2D canvas if neither or no WebGL. */
 window.__three = new Promise(function(res){
+  /* three.min.js is 603KB. Below 768px we never fetch it: the hero paints a static
+     frame instead, which is what most ad traffic gets. Desktop is unchanged. */
+  if (!window.matchMedia('(min-width:768px)').matches) { res(null); return; }
+
   var s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
   s.onload=function(){res(window.THREE||null)};
   s.onerror=function(){ try{ import('https://esm.sh/three@0.128.0').then(function(m){res(m)},function(){res(null)}); }catch(e){res(null)} };

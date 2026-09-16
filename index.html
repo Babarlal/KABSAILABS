@@ -312,7 +312,23 @@
 </div>
 </main>
 <div id="site-footer"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* Same loader the other hero pages use, so one rule governs all of them. Below 768px this
+   resolves null without fetching three at all and the hero draws a static frame. */
+window.__three = new Promise(function(res){
+  /* three.min.js is 603KB. Below 768px we never fetch it: the hero paints a static
+     frame instead, which is what most ad traffic gets. Desktop is unchanged. */
+  if (!window.matchMedia('(min-width:768px)').matches) { res(null); return; }
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = function(){ res(window.THREE || null); };
+  s.onerror = function(){
+    try { import('https://esm.sh/three@0.128.0').then(function(m){ res(m); }, function(){ res(null); }); }
+    catch(e){ res(null); }
+  };
+  document.head.appendChild(s);
+});
+</script>
 <script>
 (function(){
   'use strict';
@@ -427,7 +443,63 @@
   });
 
   /* ---------- three.js field ---------- */
-  if (!window.THREE) return;
+  window.__three.then(function(T){
+    if (!T){ staticField(); return; }
+    window.THREE = window.THREE || T;
+    startField();
+  });
+  return;
+
+  /* The still frame. Same wave function and the same three colours as the animation, run
+     once at t=0 through a plain 2D context, so the hero still reads as the product rather
+     than going blank. No library, a few hundred arcs, no rAF loop. */
+  function staticField(){
+    var canvas = document.getElementById('field');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var DARK = [14,58,44], SAGE = [46,138,99], MINT = [124,207,160];
+    function mix(a,b,u){ return [Math.round(a[0]+(b[0]-a[0])*u), Math.round(a[1]+(b[1]-a[1])*u), Math.round(a[2]+(b[2]-a[2])*u)]; }
+    /* The animation's own height function, frozen at one moment. T is chosen so the
+       crests fall across the width rather than bunching to one side, which is what t=0
+       happens to do. */
+    function height(x,z){
+      var T = 2.1;
+      return 0.42*Math.sin(0.9*x + z*0.55 + T)
+           + 0.17*Math.sin(1.6*x - T*0.8 + z*0.9)
+           + 0.11*Math.cos(2.2*z + T*0.45 + x*0.3);
+    }
+    function draw(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = canvas.clientWidth || canvas.offsetWidth || window.innerWidth;
+      var h = canvas.clientHeight || canvas.offsetHeight || Math.round(window.innerHeight * 0.6);
+      if (!w || !h) return;
+      canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,w,h);
+      var W = 84, D = 46, gap = 0.155;
+      for (var zi = D-1; zi >= 0; zi--){
+        for (var xi = 0; xi < W; xi++){
+          var x = (xi - W/2)*gap, z = -zi*gap + 1.2;
+          var y = height(x, z);
+          var depth = 2.6 + zi*gap*1.15;
+          var sx = w/2 + (x*w*0.46)/depth;
+          if (sx < -8 || sx > w+8) continue;
+          var sy = h*0.70 - (y*h*0.30)/depth + zi*0.72;
+          var u = Math.max(0, Math.min(1, (y + 0.55)/1.1));
+          var c = u < 0.5 ? mix(DARK, SAGE, u*2) : mix(SAGE, MINT, (u-0.5)*2);
+          ctx.globalAlpha = 0.18 + 0.62*(1 - zi/D);
+          ctx.fillStyle = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+          ctx.beginPath(); ctx.arc(sx, sy, Math.max(0.55, 2.6/depth), 0, 6.2832); ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    draw();
+    var to; window.addEventListener('resize', function(){ clearTimeout(to); to = setTimeout(draw, 200); }, {passive:true});
+  }
+
+  function startField(){
   var canvas = document.getElementById('field');
   var renderer;
   try { renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:false, alpha:true, powerPreference:'low-power'}); }
@@ -558,6 +630,7 @@
   }
   update(0.001); renderer.render(scene, camera);
   if (!reduce) frame();
+  }
 })();
 </script>
 </body>
