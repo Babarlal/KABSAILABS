@@ -196,6 +196,9 @@
 .pg .case-stats{display:flex;flex-wrap:wrap;gap:32px;margin:24px 0}
 .pg .case-stat .cn{font-family:var(--display);font-weight:400;font-size:2.2rem;font-variation-settings:"opsz" 72,"SOFT" 0;color:var(--mint)}
 .pg .case-stat .cl{color:#9FBBAE;font-size:.9rem}
+/* The band figures are modelled, so the strip says so directly underneath rather than
+   burying it in a sentence a reader has to find. Quieter than the body copy above it. */
+.pg .case-band .case-note{font-family:var(--mono);font-size:12px;line-height:1.5;color:#8FA99C;max-width:70ch;margin:-8px 0 20px}
 @media (prefers-reduced-motion:reduce){
   .pg *{animation:none!important;transition:none!important;scroll-behavior:auto}
 }
