@@ -133,7 +133,23 @@
     </div>
     <p class="fine">Fixed price after the audit, or an honest no. Builds from $200.</p>
   </div>
-  <div data-gallery="agents" data-gallery-more="chat-support,voice-agents,lead-sales,commerce" data-gallery-cta="See what we've built"></div>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span class="t"><span class="p"></span>agent · live run</span></div>
+    <div class="scene" id="sceneWrap">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="chips" id="chips" aria-hidden="true">
+        <div class="node-chip" data-i="0"><img src="/assets/img/logos/slack.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'txt',textContent:'Slack'}))"><span class="nm">Slack</span></div>
+        <div class="node-chip" data-i="1"><img src="/assets/img/logos/hubspot.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'txt',textContent:'HubSpot'}))"><span class="nm">HubSpot</span></div>
+        <div class="node-chip" data-i="2"><img src="/assets/img/logos/notion.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'txt',textContent:'Notion'}))"><span class="nm">Notion</span></div>
+        <div class="node-chip" data-i="3"><img src="/assets/img/logos/n8n.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'txt',textContent:'n8n'}))"><span class="nm">n8n</span></div>
+      </div>
+      <div class="cap" id="cap"><b>Trigger:</b> new lead from the website</div>
+    </div>
+  </div>
+  <div class="hero-side" aria-hidden="true">
+    <div class="fh"><span class="p"></span>What just ran</div>
+    <div class="feed" id="feed"></div>
+  </div>
 </div></section>
 
 <!-- EDUCATIONAL BLOCK replacing the weak "Performance" card -->
@@ -175,7 +191,7 @@
     <div class="tier feature">
       <span class="flag">Most chosen</span>
       <div class="nm">Growth</div>
-      <div class="price tbd">[NEEDS INPUT: Growth tier price]</div>
+      <div class="price">$1,000<small> / build</small></div>
       <p class="who">A few connected agents across the tools you run, with a monthly retainer to keep them tuned.</p>
       <ul>
         <li><span class="c">✓</span> Multiple agents wired across CRM, email and chat</li>
@@ -198,15 +214,15 @@
       <a class="btn ghost" href="/audit">Talk to us →</a>
     </div>
   </div>
-  <p class="pricing-fine">Figures are starting points to anchor the conversation, not a checkout. Every build is quoted after the free audit. [NEEDS INPUT: confirm the exact tiers and monthly retainer figures you want shown.]</p>
+  <p class="pricing-fine">Figures are starting points to anchor the conversation, not a checkout. Every build is quoted after the free audit.</p>
 </div></section>
 
 <!-- CASE BAND recoloured; pricing note addressed above -->
 <section class="section"><div class="container">
   <div class="case-band">
     <span class="chip-eyebrow">Client success</span>
-    <h2>AI automation for customer support</h2>
-    <p>A SaaS team cut first-response time by handing the repeat questions to an agent that answers from their own docs and routes the hard tickets to a person. [NEEDS INPUT: name the client and confirm these figures, or mark the card illustrative.]</p>
+    <h2>AI automation for customer support · TI Consultants</h2>
+    <p>TI Consultants cut first-response time by handing the repeat questions to an agent that answers from their own docs and routes the hard tickets to a person. Built for TI Consultants. Figures are the client's reported result. [Confirm before adding a logo.]</p>
     <div class="case-stats">
       <div class="case-stat"><div class="cn">80%</div><div class="cl">Faster first response</div></div>
       <div class="case-stat"><div class="cn">3×</div><div class="cl">Tickets handled per rep</div></div>
@@ -218,5 +234,165 @@
 </div>
 </main>
 <div id="site-footer"></div>
+<script>
+/* Three.js loader: cdnjs (previews) -> esm.sh (live CSP) -> null (2D fallback) */
+window.__three=new Promise(function(res){
+  var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload=function(){res(window.THREE||null)};
+  s.onerror=function(){try{import('https://esm.sh/three@0.128.0').then(function(m){res(m)},function(){res(null)})}catch(e){res(null)}};
+  document.head.appendChild(s);
+});
+</script>
+<script>
+/* Hero animation: an automation RUN. A trigger token enters at the left, passes through the agent
+   core (read -> retrieve -> act), and fans out to the connected tools, which light up as the step
+   completes. Loops with a short caption. Deliberately different from the site's orbit/sphere graph. */
+(function(){
+  var canvas=document.getElementById('scene'); if(!canvas) return;
+  var wrap=canvas.parentElement, cap=document.getElementById('cap');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var C={ink:'#0E2A22',mint:'#BFE9CF',mint2:'#7CCFA0',brand:'#2E8A63',dim:'#3F6656',line:'#2C4C40',text:'#9FBBAE',warm:'#E4552E'};
+
+  // model: a horizontal pipeline. input -> agent core -> 4 tool lanes on the right.
+  var stages=[{x:-3.4,y:0,r:.16,name:'in'},{x:-1.1,y:0,r:.5,name:'agent'}];
+  var tools=[{x:2.6,y:1.5},{x:3.1,y:.5},{x:3.1,y:-.5},{x:2.6,y:-1.5}];
+  var toolNames=['Slack','HubSpot','Notion','n8n'];
+  var TRIG=['new lead from the website','order stuck at the 3PL','“where is my order?” email','after-hours voice call'];
+  var RESU=['booked + CRM updated','supplier chased, ETA sent','tracking replied in seconds','call answered, note logged'];
+
+  var run=0, phase=0, phaseT=0; // phase 0 read,1 retrieve,2 act,3 done
+  function setCap(html){ if(cap) cap.innerHTML=html; }
+  var chipEls=[].slice.call(document.querySelectorAll('.node-chip'));
+  function placeChip(i,px,py){ var el=chipEls[i]; if(el) el.style.transform='translate('+px+'px,'+py+'px) translate(-50%,-50%)'; }
+  function litChip(i,on){ var el=chipEls[i]; if(el) el.classList.toggle('lit',!!on); }
+  // live feed
+  var feedEl=document.getElementById('feed'); var feedMax=4;
+  function pushFeed(trigger,tool,result){ if(!feedEl) return;
+    var row=document.createElement('div'); row.className='row';
+    row.innerHTML='<div class="trg"><span class="d">▸</span>'+trigger+'</div><div class="res"><span class="c">✓</span><span class="tool">'+tool+'</span> '+result+'</div>';
+    feedEl.insertBefore(row,feedEl.firstChild);
+    while(feedEl.children.length>feedMax) feedEl.removeChild(feedEl.lastChild);
+    requestAnimationFrame(function(){ row.classList.add('show'); });
+  }
+  var TOOLLABEL=['Slack','HubSpot','Notion','n8n'];
+
+  window.__three.then(function(THREE){
+    if(THREE){ threeRun(THREE); } else { flatRun(); }
+  }, function(){ flatRun(); });
+
+  function common(){ return {stages:stages,tools:tools}; }
+
+  /* ---------- Three.js renderer ---------- */
+  function threeRun(THREE){
+    var renderer; try{ renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,powerPreference:'low-power'}); }catch(e){ flatRun(); return; }
+    renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.75));
+    var scene=new THREE.Scene(), cam=new THREE.OrthographicCamera(-5,5,3,-3,0.1,100); cam.position.z=10;
+    var mk=function(c){return new THREE.Color(c);};
+
+    // links agent->tools and in->agent
+    var linkMat=new THREE.LineBasicMaterial({color:mk(C.line),transparent:true,opacity:.9});
+    function lineTo(a,b){ var g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a.x,a.y,0),new THREE.Vector3(b.x,b.y,0)]); scene.add(new THREE.Line(g,linkMat)); }
+    lineTo(stages[0],stages[1]); tools.forEach(function(t){ lineTo(stages[1],t); });
+
+    // nodes
+    var agentRing=new THREE.Mesh(new THREE.RingGeometry(.62,.66,48), new THREE.MeshBasicMaterial({color:mk(C.mint2),transparent:true,opacity:.5})); agentRing.position.set(stages[1].x,stages[1].y,0); scene.add(agentRing);
+    var agent=new THREE.Mesh(new THREE.CircleGeometry(.5,40), new THREE.MeshBasicMaterial({color:mk(C.ink)})); agent.position.copy(agentRing.position); scene.add(agent);
+    var agentCore=new THREE.Mesh(new THREE.CircleGeometry(.5,40), new THREE.MeshBasicMaterial({color:mk(C.brand),transparent:true,opacity:.0})); agentCore.position.copy(agentRing.position); scene.add(agentCore);
+    var inNode=new THREE.Mesh(new THREE.CircleGeometry(.16,24), new THREE.MeshBasicMaterial({color:mk(C.mint)})); inNode.position.set(stages[0].x,stages[0].y,0); scene.add(inNode);
+    var toolMesh=tools.map(function(t){ var m=new THREE.Mesh(new THREE.CircleGeometry(.26,32), new THREE.MeshBasicMaterial({color:mk(C.dim)})); m.position.set(t.x,t.y,0); scene.add(m);
+      var r=new THREE.Mesh(new THREE.RingGeometry(.3,.33,32), new THREE.MeshBasicMaterial({color:mk(C.mint2),transparent:true,opacity:0})); r.position.set(t.x,t.y,0); scene.add(r); return {m:m,r:r}; });
+    // agent "thinking" arcs
+    var arc=new THREE.Mesh(new THREE.RingGeometry(.72,.75,32,1,0,Math.PI*0.7), new THREE.MeshBasicMaterial({color:mk(C.mint),transparent:true,opacity:.0})); arc.position.copy(agentRing.position); scene.add(arc);
+    // travelling token
+    var token=new THREE.Mesh(new THREE.CircleGeometry(.12,20), new THREE.MeshBasicMaterial({color:mk(C.mint)})); token.position.set(stages[0].x,stages[0].y,0); scene.add(token);
+    // particles fanning to tools
+    var fan=tools.map(function(){ var m=new THREE.Mesh(new THREE.CircleGeometry(.08,16), new THREE.MeshBasicMaterial({color:mk(C.mint2),transparent:true,opacity:0})); scene.add(m); return m; });
+
+    function resize(){ var w=wrap.clientWidth,h=wrap.clientHeight; renderer.setSize(w,h,false); var a=w/h; var vh=3.0, vw=vh*a; cam.left=-vw;cam.right=vw;cam.top=vh;cam.bottom=-vh; cam.updateProjectionMatrix(); }
+    // chips placed each frame in the loop
+    addEventListener('resize',resize,{passive:true}); resize();
+    function project(wx,wy){ var w=wrap.clientWidth,h2=wrap.clientHeight; var nx=(wx-cam.left)/(cam.right-cam.left); var ny=(cam.top-wy)/(cam.top-cam.bottom); return [nx*w, ny*h2]; }
+    function syncChips(){ tools.forEach(function(t,i){ var p=project(t.x,t.y); placeChip(i,p[0],p[1]); }); }
+    var visible=true, raf=null, t0=performance.now(), feedFired=false;
+    new IntersectionObserver(function(e){ visible=e[0].isIntersecting; if(visible&&!raf&&!reduce) loop(); },{threshold:.05}).observe(canvas);
+
+    function ease(x){ return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
+    function frame(now){
+      var dt=(now-t0)/1000; t0=now;
+      phaseT+=dt;
+      var dur=[1.1,1.2,1.3,1.1][phase];
+      var p=Math.min(1,phaseT/dur);
+      agentRing.rotation.z=now/2600; arc.rotation.z=-now/1400;
+      // pulse agent when active
+      agentCore.material.opacity=0.25+0.35*Math.abs(Math.sin(now/500))*(phase<3?1:.2);
+      if(phase===0){ // read: token travels in -> agent
+        var e=ease(p); token.material.opacity=1; token.position.set(stages[0].x+(stages[1].x-stages[0].x)*e,0,0); token.scale.setScalar(1);
+        arc.material.opacity=0; toolMesh.forEach(function(o){o.r.material.opacity=0;o.m.material.color.set(C.dim);}); fan.forEach(function(f){f.material.opacity=0;});
+        setCap('<b>Trigger:</b> '+TRIG[run%TRIG.length]);
+      } else if(phase===1){ // retrieve: agent thinks
+        token.material.opacity=0; arc.material.opacity=.7*Math.sin(p*Math.PI);
+        setCap('<b>Reads it, looks it up</b> in your tools');
+      } else if(phase===2){ // act: fan out to tools
+        arc.material.opacity=0;
+        tools.forEach(function(t,i){ var e=ease(Math.min(1,p*1.2 - i*0.05)); if(e<0)e=0; var f=fan[i];
+          f.material.opacity=e<1?.95:0; f.position.set(stages[1].x+(t.x-stages[1].x)*e,(t.y)*e,0);
+          if(e>=1){ toolMesh[i].m.material.color.set(C.brand); toolMesh[i].r.material.opacity=.9; litChip(i,true); }
+        });
+        setCap('<b>Acts</b> across the tools that need it');
+      } else { // done
+        fan.forEach(function(f){f.material.opacity=0;});
+        toolMesh.forEach(function(o){ o.r.material.opacity=Math.max(0,.9-(phaseT*0.8)); });
+        setCap('<b>Done:</b> '+RESU[run%RESU.length]);
+        if(!feedFired){ var idx=run%TRIG.length; pushFeed(TRIG[idx], TOOLLABEL[idx%TOOLLABEL.length], RESU[idx]); feedFired=true; }
+      }
+      syncChips();
+      if(p>=1){ phase=(phase+1)%4; phaseT=0; if(phase===0){ run++; feedFired=false; toolMesh.forEach(function(o){o.m.material.color.set(C.dim);o.r.material.opacity=0;}); chipEls.forEach(function(el){el.classList.remove('lit');}); } }
+      renderer.render(scene,cam);
+    }
+    function loop(){ raf=requestAnimationFrame(function(now){ raf=null; frame(now); if(visible&&!reduce) loop(); }); }
+    if(reduce){ // static: show agent + tools lit, one caption
+      tools.forEach(function(t,i){ toolMesh[i].m.material.color.set(i<2?C.brand:C.dim); }); token.material.opacity=0; agentCore.material.opacity=.4; renderer.render(scene,cam); syncChips(); litChip(0,true); litChip(1,true); setCap('<b>Agent</b> reads, retrieves, acts, escalates'); pushFeed(TRIG[0],TOOLLABEL[0],RESU[0]); pushFeed(TRIG[1],TOOLLABEL[1],RESU[1]);
+    } else { loop(); }
+  }
+
+  /* ---------- 2D canvas fallback (same idea) ---------- */
+  function flatRun(){
+    var ctx=canvas.getContext('2d'); if(!ctx){ return; } var dpr=Math.min(devicePixelRatio||1,2), W,H,S;
+    function resize(){ W=wrap.clientWidth;H=wrap.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;S=Math.min(W,H); }
+    addEventListener('resize',resize,{passive:true}); resize();
+    function X(u){return W*0.5+u*(S*0.15);} function Y(v){return H*0.5 - v*(S*0.15);}
+    function syncChips(){ tools.forEach(function(t,i){ placeChip(i,X(t.x),Y(t.y)); }); }
+    var feedFired=false;
+    var visible=true,raf=null,t0=performance.now();
+    new IntersectionObserver(function(e){ visible=e[0].isIntersecting; if(visible&&!raf&&!reduce) loop(); },{threshold:.05}).observe(canvas);
+    function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+    function frame(now){ var dt=(now-t0)/1000;t0=now;phaseT+=dt;var dur=[1.1,1.2,1.3,1.1][phase];var p=Math.min(1,phaseT/dur);
+      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+      // links
+      ctx.strokeStyle=C.line;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(X(-3.4),Y(0));ctx.lineTo(X(-1.1),Y(0));
+      tools.forEach(function(t){ctx.moveTo(X(-1.1),Y(0));ctx.lineTo(X(t.x),Y(t.y));});ctx.stroke();
+      // tools
+      tools.forEach(function(t,i){ var lit=(phase>=2 && ease(Math.min(1,p*1.2-i*.05))>=1)||(phase===3);
+        ctx.fillStyle=lit?C.brand:C.dim;ctx.beginPath();ctx.arc(X(t.x),Y(t.y),S*0.04,0,6.28);ctx.fill();
+        if(lit){ctx.strokeStyle=C.mint2;ctx.lineWidth=2;ctx.beginPath();ctx.arc(X(t.x),Y(t.y),S*0.05,0,6.28);ctx.stroke();}
+        litChip(i,lit); });
+      syncChips();
+      // agent
+      ctx.fillStyle=C.ink;ctx.beginPath();ctx.arc(X(-1.1),Y(0),S*0.075,0,6.28);ctx.fill();
+      ctx.strokeStyle=C.mint2;ctx.lineWidth=2;ctx.globalAlpha=(phase===1)?(.4+.5*Math.sin(p*Math.PI)):.5;ctx.beginPath();ctx.arc(X(-1.1),Y(0),S*0.095,0,6.28);ctx.stroke();ctx.globalAlpha=1;
+      ctx.fillStyle=C.brand;ctx.globalAlpha=.3+.35*Math.abs(Math.sin(now/500));ctx.beginPath();ctx.arc(X(-1.1),Y(0),S*0.05,0,6.28);ctx.fill();ctx.globalAlpha=1;
+      // token
+      if(phase===0){var e=ease(p);ctx.fillStyle=C.mint;ctx.beginPath();ctx.arc(X(-3.4+(2.3)*e),Y(0),S*0.022,0,6.28);ctx.fill();}
+      if(phase===2){tools.forEach(function(t,i){var e=ease(Math.min(1,p*1.2-i*.05));if(e<=0||e>=1)return;ctx.fillStyle=C.mint2;ctx.beginPath();ctx.arc(X(-1.1+(t.x+1.1)*e),Y(t.y*e),S*0.016,0,6.28);ctx.fill();});}
+      var caps=['<b>Trigger:</b> '+TRIG[run%TRIG.length],'<b>Reads it, looks it up</b> in your tools','<b>Acts</b> across the tools that need it','<b>Done:</b> '+RESU[run%RESU.length]];
+      setCap(caps[phase]);
+      if(phase===3 && !feedFired){ var idx=run%TRIG.length; pushFeed(TRIG[idx],TOOLLABEL[idx%TOOLLABEL.length],RESU[idx]); feedFired=true; }
+      if(p>=1){phase=(phase+1)%4;phaseT=0;if(phase===0){run++;feedFired=false;chipEls.forEach(function(el){el.classList.remove('lit');});}}
+    }
+    function loop(){raf=requestAnimationFrame(function(now){raf=null;frame(now);if(visible&&!reduce)loop();});}
+    if(reduce){frame(performance.now());}else loop();
+  }
+})();
+</script>
 </body>
 </html>

@@ -92,6 +92,15 @@
       'lead-capture-and-follow-up-automation-in-gohighlevel',
       'ai-ticket-triage-n8n-fastapi'
     ],
+    /* /services/white-label — what a partner agency resells under its own brand */
+    whitelabel: [
+      'rag-support-agent-human-handoff',
+      'whatsapp-ai-support-agent-rag-human-handoff',
+      'ai-ticket-triage-n8n-fastapi',
+      'ai-voice-receptionist-for-plumbing-businesses',
+      'ai-lead-capture-qualification',
+      'ai-inquiry-triage-smart-routing-real-estate'
+    ],
     /* /services/industries/healthcare — receptionist, scheduling, RAG handoff */
     healthcare: [
       'ai-voice-receptionist-for-plumbing-businesses',
