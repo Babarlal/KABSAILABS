@@ -38,6 +38,7 @@ OpenAI, Claude, Gemini, Perplexity, Python, LangChain, Hugging Face, n8n, Make, 
 
 - [Home](https://www.kabsailabs.com/)
 - [Services](https://www.kabsailabs.com/services)
+- [Pricing](https://www.kabsailabs.com/pricing): Starter $200 a build, Growth $1,000 a build with a monthly retainer, or a custom scope. Quoted after a free audit.
 - [Case studies](https://www.kabsailabs.com/case-studies)
 - [Book a free audit](https://www.kabsailabs.com/audit)
 - [Contact](https://www.kabsailabs.com/contact)

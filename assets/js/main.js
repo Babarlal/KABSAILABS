@@ -74,6 +74,7 @@ var NAV = {
     ["Demo walkthrough (EN)", "/demonstration-en"]
   ],
   company: [
+    ["Pricing", "/pricing"],
     ["Careers", "/careers"],
     ["Contact", "/contact"],
     ["Agency Partners", "/contact/agency-partner"]
@@ -225,6 +226,7 @@ function buildHeader(){
         '<button type="button" class="menu-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="services-menu" aria-label="Open Services menu"><span aria-hidden="true">&#9662;</span></button>'+
       mega+'</div>'+
       '<a class="nav-link" href="/demo">Live demo</a>'+
+      '<a class="nav-link" href="/pricing">Pricing</a>'+
       '<a class="nav-link" href="/case-studies">Work</a>'+
     '</nav>'+
     '<div class="nav-right">'+
@@ -234,7 +236,7 @@ function buildHeader(){
     '</div>'+
   '</div></div>'+
   '<div class="mobile-menu"><div class="container">'+
-    '<a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a>'+
+    '<a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a>'+
     '<div class="m-group">Services</div>'+ NAV.services.map(function(i){return '<a href="'+i[1]+'">'+i[0]+'</a>';}).join('') +
     '<div class="m-group">Industries</div>'+ NAV.industries.map(function(i){return '<a href="'+i[1]+'">'+i[0]+'</a>';}).join('') +
     '<div class="m-group">Company</div>'+ NAV.company.map(function(i){return '<a href="'+i[1]+'">'+i[0]+'</a>';}).join('') +
