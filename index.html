@@ -25,93 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/audit-patches.css">
-<style>
-/* ===== NEW components added for this homepage (base styles come from your live styles.css) ===== */
-.hero-grid{gap:60px;align-items:center}
-.hero{padding:84px 0 92px}
-/* hero: two SEPARATE stacked cards, unique class so the stylesheet can't override */
-.hero-stack{display:flex;flex-direction:column;gap:22px;width:100%;max-width:430px;margin-left:auto}
-.hero-stack > .win{position:static !important;width:100% !important;inset:auto !important}
-.hero-stack .chatcard{padding-bottom:8px}
-.hero-kpi{align-self:flex-end;background:#fff;border:1px solid var(--border);border-radius:11px;padding:9px 13px;font-size:12px;color:var(--muted);box-shadow:0 14px 30px -16px rgba(20,30,50,.4);font-weight:500;margin-top:-4px}
-.hero-kpi .up{color:var(--ok);font-weight:700;margin-right:4px}
-@media(max-width:980px){.hero-stack{max-width:100%;margin:0 auto}}
-
-/* live automation-flow demo card */
-.flowcard{background:#fff}
-.flow-run{padding:6px 6px 10px}
-.frun-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
-.fr-live{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13.5px;color:var(--ink)}
-.fr-live .pulse{width:9px;height:9px;border-radius:50%;background:var(--ok);animation:fr-pulse 1.8s infinite}
-@keyframes fr-pulse{0%{box-shadow:0 0 0 0 rgba(31,157,107,.45)}70%{box-shadow:0 0 0 8px rgba(31,157,107,0)}100%{box-shadow:0 0 0 0 rgba(31,157,107,0)}}
-.fr-time{font-family:var(--font-mono);font-size:11.5px;color:#8AA094}
-.frun-steps{list-style:none;margin:0;padding:0;position:relative}
-.frun-steps::before{content:"";position:absolute;left:31px;top:26px;bottom:26px;width:2px;background:var(--border)}
-.frun-steps li{display:flex;align-items:center;gap:12px;padding:10px 14px;position:relative;opacity:.4;animation:fr-on 5.2s infinite;animation-delay:calc(var(--i)*0.8s)}
-@keyframes fr-on{0%,8%{opacity:.4}16%{opacity:1}92%{opacity:1}100%{opacity:.4}}
-.fr-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:1;border:1px solid var(--border)}
-.fr-tx{flex:1;line-height:1.3}
-.fr-tx b{display:block;font-size:13.5px;color:var(--ink)}
-.fr-tx span{font-size:12px;color:var(--muted)}
-.fr-tick{width:20px;height:20px;border-radius:50%;background:var(--ok);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);animation:fr-tick 5.2s infinite;animation-delay:calc(var(--i)*0.8s)}
-@keyframes fr-tick{0%,12%{opacity:0;transform:scale(.4)}22%{opacity:1;transform:scale(1)}92%{opacity:1}100%{opacity:0}}
-
-/* analytics panel with logos */
-.analytics-viz{position:relative;width:100%;max-width:188px;aspect-ratio:1/1;margin:0 auto}
-.analytics-viz .av-bars{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);display:flex;align-items:flex-end;gap:6px;height:52px}
-.analytics-viz .av-bars i{width:12px;background:linear-gradient(180deg,#7CCFA0,#1F6B4E);border-radius:3px 3px 0 0;animation:av-grow 2.6s ease-in-out infinite alternate}
-.analytics-viz .av-bars i:nth-child(2){animation-delay:.2s}.analytics-viz .av-bars i:nth-child(3){animation-delay:.4s}.analytics-viz .av-bars i:nth-child(4){animation-delay:.6s}
-.analytics-viz .av-chip{position:absolute;width:34px;height:34px;border-radius:9px;background:#fff;border:1px solid var(--border);box-shadow:0 6px 14px -8px rgba(20,30,50,.3);display:flex;align-items:center;justify-content:center;animation:av-float 4s ease-in-out infinite}
-.analytics-viz .av-chip img{width:18px;height:18px;object-fit:contain}
-.analytics-viz .c1{top:0;left:6%}.analytics-viz .c2{top:4%;right:4%;animation-delay:.6s}.analytics-viz .c3{bottom:4%;left:2%;animation-delay:1.2s}.analytics-viz .c4{bottom:0;right:8%;animation-delay:1.8s}
-@keyframes av-grow{from{height:28%}to{height:100%}}
-@keyframes av-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
-/* counter band — counts up once on scroll via countUp() in main.js */
-.live-band{background:var(--bg-tint);border:1px solid var(--border);border-radius:24px;padding:60px 28px;text-align:center}
-.lb-eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:16px}
-.live-counter{font-family:var(--font-display);font-weight:700;letter-spacing:-.04em;line-height:.95;font-size:clamp(54px,11vw,128px);color:var(--ink);font-variant-numeric:tabular-nums;display:inline-flex;gap:.02em}
-.lb-label{font-family:var(--font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:16px}
-
-/* impact revolving ring inside big card */
-.impact-big{position:relative;overflow:hidden}
-.impact-big::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 0%,rgba(31,107,78,.26),transparent 60%);animation:imp-glow 6s ease-in-out infinite;pointer-events:none}
-@keyframes imp-glow{0%,100%{opacity:.55}50%{opacity:1}}
-.impact-big>*{position:relative;z-index:1}
-.impact-orbit{position:relative;width:170px;height:170px;margin:18px auto 0}
-.impact-orbit .io-ring{position:absolute;inset:0;animation:orbit-spin 24s linear infinite}
-.impact-orbit .io-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;z-index:2}
-.impact-orbit .io-core img{width:26px;height:26px}
-.impact-orbit .io-chip{position:absolute;left:50%;top:50%;width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid rgba(255,255,255,.25);box-shadow:0 6px 14px -8px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y)))}
-.impact-orbit .io-chip img{width:17px;height:17px;object-fit:contain;animation:orbit-spin-rev 24s linear infinite}
-
-/* why-it-matters cards */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-.why-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px}
-.why-ic{width:46px;height:46px;border-radius:12px;background:var(--bg-tint);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
-.why-card h3{font-size:19px;margin-bottom:6px}
-.why-card p{color:var(--muted);font-size:14.5px}
-@media(max-width:820px){.why-grid{grid-template-columns:1fr}}
-
-/* premium CTA background */
-.cta-band{position:relative;overflow:hidden;background:#0f172a}
-.cta-band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;opacity:.7;pointer-events:none}
-.cta-band::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(31,107,78,.35),transparent 60%);pointer-events:none}
-.cta-band>*{position:relative;z-index:1}
-
-@media(prefers-reduced-motion:reduce){.frun-steps li,.fr-tick,.av-bars i,.io-ring,.io-chip img{animation:none!important}.frun-steps li{opacity:1}.fr-tick{opacity:1;transform:none}}
-
-/* clickable build-panel cards */
-.build-panel>div{position:relative;cursor:pointer;transition:background .18s ease}
-.build-panel>div:hover{background:var(--bg-tint)}
-.bp-more{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-weight:600;font-size:14px;color:var(--accent);text-decoration:none}
-.bp-more .arr{transition:transform .18s ease}
-.build-panel>div:hover .bp-more .arr{transform:translateX(4px)}
-.bp-more::after{content:"";position:absolute;inset:0}
-/* heading-order fix: "What we build" panel titles & impact banner promoted from h4 to h3 (they sit under a section h2). These rules preserve the prior h4 sizes exactly — no visual change. */
-.build-panel h3{font-size:18px;margin-bottom:6px}
-.impact-banner h3{font-size:16px;margin-bottom:2px}
-</style>
 <script src="/assets/js/main.js" defer></script>
 <script type="application/ld+json">
 {
@@ -171,13 +84,480 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="/assets/css/pages-green.css">
 </head>
 <body data-path="/" data-layout="default">
 <a class="skip" href="#main">Skip to content</a>
 <div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
 <main id="main">
-<section class="hero"><div class="container hero-grid"><div><p class="eyebrow">For agencies, SaaS, eCommerce &amp; service businesses</p><h1>KABS automates your operations <span class="hl">so you can scale without hiring.</span></h1><p class="hero-sub">From CRM workflows to AI agents and dashboards, we build the systems that replace manual work and run 24/7.</p><div class="btn-row"><a class="btn btn-primary" href="/audit" data-cta>Book a free consultation →</a><a class="btn btn-ghost" href="/demo">Talk to a live AI agent →</a><a class="btn btn-ghost" href="/case-studies">See our work</a></div></div><div class="hero-stack"><div class="win chatcard"><div class="chat-head"><span class="chat-av">AI</span><div><div class="nm">KABS Agent</div><div class="st">Online</div></div></div><div class="bubble them">Done. 12 follow-ups scheduled for 9 AM tomorrow.</div><div class="bubble you">Send me the summary report.</div><div class="bubble them">On its way. Also booked 3 demo calls.</div></div><div class="win flowcard"><div class="win-bar"><i></i><i></i><i></i><span class="t">automation · running</span></div><div class="flow-run"><div class="frun-head"><span class="fr-live"><span class="pulse"></span> Workflow running</span><span class="fr-time">1.2s</span></div><ul class="frun-steps"><li style="--i:0"><span class="fr-ic" style="background:#e8f0ff">📥</span><div class="fr-tx"><b>Trigger</b><span>New lead from website</span></div><span class="fr-tick">✓</span></li><li style="--i:1"><span class="fr-ic" style="background:#f0ecff">🧠</span><div class="fr-tx"><b>AI agent</b><span>Qualifies &amp; scores the lead</span></div><span class="fr-tick">✓</span></li><li style="--i:2"><span class="fr-ic" style="background:#e6f7ef">🗂️</span><div class="fr-tx"><b>CRM</b><span>Creates contact + deal</span></div><span class="fr-tick">✓</span></li><li style="--i:3"><span class="fr-ic" style="background:#e8f7ef">📲</span><div class="fr-tx"><b>Notify</b><span>Sends WhatsApp to the team</span></div><span class="fr-tick">✓</span></li></ul></div></div><div class="hero-kpi"><span class="up">↑ 24%</span> conversion</div></div></div></section><div class="container"><div class="strip"><p class="strip-label">Built for teams like these</p><div class="marquee"><div class="marquee-track"><span>Northwind</span><span>Larkfield</span><span>Cedarbrook</span><span>Brightleaf</span><span>Maple & Co.</span><span>Atlas</span><span>Invest2Innovate</span><span>Jiye</span><span>Chime</span><span>alt</span></div></div></div></div><section class="section"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">✦</span> Services</span><h2 class="section-title">What we build</h2><p class="lead">Three layers that work together: agents up front, automation behind them, analytics on top.</p></div><div class="build-panel"><div><div class="panel-graphic"><div class="ngraph"><svg class="ng-lines" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><circle cx="150" cy="150" r="118" fill="none" stroke="#e9edf3"/><circle cx="150" cy="150" r="78" fill="none" stroke="#eef1f6"/><g stroke="#d7dde6" stroke-width="1.4"><line x1="150" y1="150" x2="150" y2="24"/><line x1="150" y1="150" x2="258" y2="84"/><line x1="150" y1="150" x2="258" y2="216"/><line x1="150" y1="150" x2="150" y2="276"/><line x1="150" y1="150" x2="42" y2="216"/><line x1="150" y1="150" x2="42" y2="84"/></g><circle r="3.4" fill="#1F6B4E" opacity="0"><animateMotion path="M150,24 L150,150" dur="2.6s" begin="0.00s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.00s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#2E8A63" opacity="0"><animateMotion path="M258,84 L150,150" dur="2.6s" begin="0.42s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.42s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" opacity="0"><animateMotion path="M258,216 L150,150" dur="2.6s" begin="0.84s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="0.84s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1F6B4E" opacity="0"><animateMotion path="M150,276 L150,150" dur="2.6s" begin="1.26s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.26s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#2E8A63" opacity="0"><animateMotion path="M42,216 L150,150" dur="2.6s" begin="1.68s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="1.68s" repeatCount="indefinite"/></circle><circle r="3.4" fill="#1f9d6b" opacity="0"><animateMotion path="M42,84 L150,150" dur="2.6s" begin="2.10s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.6s" begin="2.10s" repeatCount="indefinite"/></circle><circle cx="150" cy="150" r="34" fill="#DDF0E4" stroke="#1F6B4E" stroke-width="2"/><path d="M141 150a9 9 0 0 1 18 0M146 144v12M154 144v12M150 140v20" stroke="#1F6B4E" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><div class="ng-sat" style="left:50%;top:7%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/slack.svg" alt=""></div><div class="ng-sat" style="left:86%;top:27%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/hubspot.svg" alt=""></div><div class="ng-sat" style="left:86%;top:73%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/notion.svg" alt=""></div><div class="ng-sat" style="left:50%;top:93%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/n8n.svg" alt=""></div><div class="ng-sat" style="left:14%;top:73%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/openai.svg" alt=""></div><div class="ng-sat" style="left:14%;top:27%"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/gmail.svg" alt=""></div></div></div><h3>AI agents</h3><p>Chat &amp; voice agents that answer, qualify, and act on your behalf.</p><a class="bp-more" href="/services/ai-automation">Learn more <span class="arr">→</span></a></div><div><div class="panel-graphic"><div class="orbit"><div class="orbit-ring"><span class="ochip" style="--x:0.0px;--y:-88.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/openai.svg" alt=""></span><span class="ochip" style="--x:76.2px;--y:-44.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/claude.svg" alt=""></span><span class="ochip" style="--x:76.2px;--y:44.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/slack.svg" alt=""></span><span class="ochip" style="--x:0.0px;--y:88.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/notion.svg" alt=""></span><span class="ochip" style="--x:-76.2px;--y:44.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/hubspot.svg" alt=""></span><span class="ochip" style="--x:-76.2px;--y:-44.0px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/stripe.svg" alt=""></span></div><div class="orbit-core"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logo-mark.svg" alt=""></div></div></div><h3>Workflow automation</h3><p>Connect every tool so data flows and tasks run without a human.</p><a class="bp-more" href="/services/workflow-automation">Learn more <span class="arr">→</span></a></div><div><div class="panel-graphic"><div class="analytics-viz"><span class="av-chip c1"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/ga4.svg" alt=""></span><span class="av-chip c2"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/looker.svg" alt=""></span><span class="av-chip c3"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/powerbi.svg" alt=""></span><span class="av-chip c4"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/gtm.svg" alt=""></span><div class="av-bars"><i></i><i></i><i></i><i></i></div></div></div><h3>Analytics &amp; dashboards</h3><p>One trustworthy view of the numbers that drive decisions.</p><a class="bp-more" href="/services">Learn more <span class="arr">→</span></a></div></div></div></section><section class="section" style="padding-top:0"><div class="container"><div class="live-band"><span class="lb-eyebrow">We free people from busywork</span><div class="live-counter"><span data-target="1284560" data-suffix="" data-comma="1">1,284,560</span></div><div class="lb-label">repetitive tasks automated to date</div><p style="margin-top:18px;font-size:13px;color:var(--faint)">Measured across all client workflows since 2023. Updated September 2026.</p></div></div></section><section class="section tint"><div class="container"><div class="section-head"><p class="eyebrow">Tools we work with</p><h2 class="section-title">We plug into the stack you already run.</h2></div><div class="tool-rows"><div class="marquee"><div class="marquee-track tool-track"><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/openai.svg" alt="">OpenAI</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/claude.svg" alt="">Claude</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/gemini.svg" alt="">Gemini</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/perplexity.svg" alt="">Perplexity</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/python.svg" alt="">Python</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/langchain.svg" alt="">LangChain</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/huggingface.svg" alt="">Hugging Face</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/n8n.svg" alt="">n8n</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/make.svg" alt="">Make</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/zapier.svg" alt="">Zapier</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/powerbi.svg" alt="">Power BI</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/looker.svg" alt="">Looker Studio</span></div></div><div class="marquee"><div class="marquee-track tool-track rev"><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/hubspot.svg" alt="">HubSpot</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/salesforce.svg" alt="">Salesforce</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/gohighlevel.svg" alt="">GoHighLevel</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/slack.svg" alt="">Slack</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/airtable.svg" alt="">Airtable</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/notion.svg" alt="">Notion</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/stripe.svg" alt="">Stripe</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/twilio.svg" alt="">Twilio</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/supabase.svg" alt="">Supabase</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/postgresql.svg" alt="">PostgreSQL</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/mongodb.svg" alt="">MongoDB</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/ga4.svg" alt="">GA4</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/microsoft365.svg" alt="">Microsoft 365</span><span class="tool-pill"><img loading="lazy" decoding="async" class="tlogo" src="https://www.kabsailabs.com/assets/img/logos/googlecloud.svg" alt="">Google Cloud</span></div></div></div></div></section><section class="section"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">↗</span> Our Impact</span><h2 class="section-title">By the <span class="hl">numbers</span></h2><p class="lead">What the work has added up to so far.</p></div><div class="impact-wrap"><div class="impact-grid"><div class="impact-big"><div class="ibic">✱</div><div class="impact-num"><span data-target="500" data-suffix="+">500+</span></div><div class="lab">Workflows Built</div><div class="impact-orbit"><div class="io-ring"><span class="io-chip" style="--x:0px;--y:-70px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/slack.svg" alt=""></span><span class="io-chip" style="--x:60.6px;--y:-35px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/hubspot.svg" alt=""></span><span class="io-chip" style="--x:60.6px;--y:35px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/notion.svg" alt=""></span><span class="io-chip" style="--x:0px;--y:70px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/n8n.svg" alt=""></span><span class="io-chip" style="--x:-60.6px;--y:35px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/zapier.svg" alt=""></span><span class="io-chip" style="--x:-60.6px;--y:-35px"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logos/openai.svg" alt=""></span></div><div class="io-core"><img loading="lazy" decoding="async" src="https://www.kabsailabs.com/assets/img/logo-mark.svg" alt=""></div></div></div><div class="impact-side"><div class="impact-cell"><div class="ibic">◷</div><span class="badge">Efficiency</span><div class="impact-num"><span data-target="30" data-suffix="k+">30k+</span></div><div class="lab">Hours Saved</div></div><div class="impact-cell"><div class="ibic">☰</div><div class="impact-num"><span data-target="120" data-suffix="+">120+</span></div><div class="lab">Projects Delivered</div></div></div></div><div class="impact-banner"><div class="bl"><span class="bic">☰</span><div><h3>See how we saved 40+ hrs/week for a real estate agency</h3><p>Read our case studies to see the full breakdown.</p></div></div><a class="btn btn-ghost" href="/case-studies">View case studies →</a></div></div></div></section><section class="section tint"><div class="container"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">✦</span> Why it matters</span><h2 class="section-title">Why AI automation matters</h2></div><div class="why-grid"><div class="why-card"><div class="why-ic">⏱️</div><h3>Save 40+ hours/week</h3><p>Stop doing manually what software should handle. Give your team their week back.</p></div><div class="why-card"><div class="why-ic">🌙</div><h3>Run 24/7 without staff</h3><p>Your systems work nights, weekends, and holidays, answering and acting the moment something happens.</p></div><div class="why-card"><div class="why-ic">📈</div><h3>Scale without hiring</h3><p>Add capacity without adding headcount, so growth doesn't mean a bigger payroll.</p></div></div></div></section><section class="section"><div class="container narrow"><div class="section-head"><span class="chip-eyebrow"><span class="sparkle">?</span> FAQ</span><h2 class="section-title">Common questions</h2></div><div class="faq"><details><summary>What does KABS AI LABS actually do?<span class="pm">+</span></summary><div class="faq-a">We design and ship custom AI agents, workflow automation, and analytics dashboards, wired into the tools you already use.</div></details><details><summary>How long does a project take?<span class="pm">+</span></summary><div class="faq-a">Focused builds ship in 4–6 weeks. Larger multi-system builds run 2–4 months, delivered in 1–2 week increments so you see progress early.</div></details><details><summary>Do we have to switch our tools?<span class="pm">+</span></summary><div class="faq-a">No. We integrate with what you run: HubSpot, Stripe, Slack, GoHighLevel, GA4, and most platforms with an API.</div></details><details><summary>How do we start?<span class="pm">+</span></summary><div class="faq-a">Book a free 30-minute audit. We'll show you the three highest-ROI fixes. Nothing is committed until you approve a fixed-price quote.</div></details><details><summary>Which industries does KABS AI LABS work with?<span class="pm">+</span></summary><div class="faq-a">We work with marketing agencies, real estate, eCommerce, SaaS, healthcare and service businesses. That includes white-label automation for agencies reselling under their own brand.</div></details><details><summary>What results can we expect from AI automation?<span class="pm">+</span></summary><div class="faq-a">Clients typically save 40+ hours per week, run operations 24/7 without extra staff, and scale without adding headcount. To date we've built 500+ workflows, saved 30k+ hours, and delivered 120+ projects.</div></details></div></div></section><section class="section"><div class="container"><div class="cta-band"><h2>Ready to put AI to work?</h2><p>Book a free automation audit. We'll show you the 3 highest-ROI fixes in your workflow. No commitment.</p><div class="btn-row"><a class="btn btn-accent" href="/audit" data-cta>Book a free audit →</a><a class="btn btn-ghost" href="/case-studies">See our work</a></div></div></div></section>
+<div class="pg pg-home">
+<section class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1>The AI automation agency that builds what pays back, <em>and says so when it won't.</em></h1>
+    <p class="lede">AI agents, workflow automation, document pipelines and websites for agencies, real estate, SaaS, healthcare, trades and ecommerce. Every build starts with arithmetic, not a demo.</p>
+    <div class="hero-cta">
+      <a class="btn btn-mint" href="/audit">Book the free audit</a>
+      <a class="btn btn-ghost" href="#receipt">Run the numbers first</a>
+    </div>
+    <div class="hero-foot">
+      <span>Two builders, no account managers</span>
+      <span>Live since 2023, US clients on US hours</span>
+      <span>Fixed quote after the audit, never before</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"></div>
+</section>
+
+<div class="stack">
+  <div class="wrap">
+    <span class="k">Built on</span>
+    <span class="tool"><img src="/assets/img/logos/n8n.svg" alt="">n8n</span>
+    <span class="tool"><img src="/assets/img/logos/claude.svg" alt="">Claude</span>
+    <span class="tool"><img src="/assets/img/logos/openai.svg" alt="">OpenAI</span>
+    <span class="tool"><img src="/assets/img/logos/hubspot.svg" alt="">HubSpot</span>
+    <span class="tool"><img src="/assets/img/logos/gohighlevel.svg" alt="">GoHighLevel</span>
+    <span class="tool"><img src="/assets/img/logos/airtable.svg" alt="">Airtable</span>
+    <span class="tool"><img src="/assets/img/logos/twilio.svg" alt="">Twilio</span>
+    <span class="tool"><img src="/assets/img/logos/stripe.svg" alt="">Stripe</span>
+    <span class="tool"><img src="/assets/img/logos/slack.svg" alt="">Slack</span>
+    <span class="tool"><img src="/assets/img/logos/notion.svg" alt="">Notion</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What we build</h2>
+      <p class="lede">Four kinds of work. Most clients start with one and add the next once the first one has paid back.</p>
+    </div>
+    <div class="ind">
+      <a href="/services/ai-automation"><h3>AI agents, chat and voice</h3><p>Agents that answer the phone, reply to the inbox, qualify leads and book calls from your real data, and hand the odd cases to a human.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/workflow-automation"><h3>Workflow automation</h3><p>Your CRM, inbox, forms, sheets and billing joined up so data is typed once and tasks run without a person remembering.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/ai-automation"><h3>Documents read by AI</h3><p>Invoices, insurance claims, purchase orders and PDFs read into your system, checked, and posted where they belong.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services"><h3>Websites and Shopify stores</h3><p>Fast, clean sites and storefronts built to bring in work, then wired into the same automation so a lead never sits unanswered.</p><span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="gaps" class="receipt-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Six places a business leaks money without noticing</h2>
+      <p class="lede">Most businesses we audit have at least two of these. Tap one to see what usually leaks and what we plug it with.</p>
+    </div>
+    <div class="gaps">
+      <div class="gap-list" role="tablist" aria-label="The six gaps" id="gapTabs"></div>
+      <div class="gap-panel" role="tabpanel" id="gapPanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="receipt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The receipt</h2>
+      <p class="lede">Pick one task your team does by hand. Move the dials. The slip below is the same arithmetic we do on the audit call, and it decides whether we build anything at all.</p>
+    </div>
+    <div class="receipt">
+      <div class="dials">
+        <div class="dial">
+          <label for="d1"><span>Times per week someone does this task</span><output id="o1">120</output></label>
+          <input type="range" id="d1" min="5" max="1000" step="5" value="120">
+        </div>
+        <div class="dial">
+          <label for="d2"><span>Minutes it takes each time</span><output id="o2">6</output></label>
+          <input type="range" id="d2" min="1" max="60" step="1" value="6">
+        </div>
+        <div class="dial">
+          <label for="d3"><span>What an hour of that person costs, USD</span><output id="o3">$28</output></label>
+          <input type="range" id="d3" min="8" max="120" step="1" value="28">
+        </div>
+        <div class="dial">
+          <label for="d4"><span>How often a mistake needs cleaning up, % of tasks</span><output id="o4">3%</output></label>
+          <input type="range" id="d4" min="0" max="25" step="1" value="3">
+        </div>
+      </div>
+      <div>
+        <div class="slip" aria-live="polite">
+          <div class="row"><span>Hours per year on the task</span><span id="rHours">–</span></div>
+          <div class="row"><span>Labour cost per year</span><span id="rLabour">–</span></div>
+          <div class="row"><span>Clean-up cost per year</span><span id="rFix">–</span></div>
+          <div class="row total"><span>What the task costs you per year</span><span id="rTotal">–</span></div>
+        </div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Who we build for</h2>
+      <p class="lede">Each of these has one paperwork bottleneck that a third party controls. That is where the money is stuck, and that is what we go after first.</p>
+    </div>
+    <div class="ind">
+      <a href="/services/industries/ecommerce"><h3>Ecommerce brands</h3><p>Stock that drifts between channels, support tickets that ask the same question, orders that never match the books.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/industries/marketing-agencies"><h3>Marketing agencies</h3><p>Client reporting stitched together from screenshots every Monday morning.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/industries/real-estate"><h3>Real estate</h3><p>Leads answered hours late and listings typed into four portals by hand.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/industries/saas"><h3>SaaS startups</h3><p>Onboarding and support that scale only by hiring, before the revenue does.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/services/industries/healthcare"><h3>Healthcare practices</h3><p>Claims paperwork that decides when the insurer pays, and a front desk that can't keep up.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="/industries/plumbers"><h3>Plumbers and trades</h3><p>Calls missed on the job, quotes sent late, invoices chased by hand.</p><span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials"><div class="wrap">
+  <div class="sec-head" style="text-align:center">
+    <span class="eyebrow">Who we've built for</span>
+    <h2>Real businesses, named.</h2>
+    <p class="lede" style="margin-left:auto;margin-right:auto">Clients across trades, healthcare, real estate, media and agencies. Real names, real builds — no invented quotes. [NEEDS INPUT: swap any card for a client quote once approved.]</p>
+  </div>
+  <div class="tm-marquee"><div class="tm-track"><div class="tm-card"><div class="tm-top"><span class="tm-av">T</span><div><div class="tm-nm">TI Consultants</div><div class="tm-tag">Consulting</div></div></div><div class="tm-what">Automation & internal workflow build</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">A</span><div><div class="tm-nm">AHM Services — Haroon Ali</div><div class="tm-tag">France · Trades</div></div></div><div class="tm-what">Website & lead-capture build</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">C</span><div><div class="tm-nm">CanadaMedicalNotes</div><div class="tm-tag">Canada · Healthcare</div></div></div><div class="tm-what">Documentation & intake automation</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">M</span><div><div class="tm-nm">Medilis.ai</div><div class="tm-tag">Healthcare</div></div></div><div class="tm-what">AI for clinical operations</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">S</span><div><div class="tm-nm">San Diego Apartment Experts — Arby</div><div class="tm-tag">US · Real estate</div></div></div><div class="tm-what">Lead response & routing system</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">C</span><div><div class="tm-nm">CareerMigration — Atif Javed</div><div class="tm-tag">Immigration</div></div></div><div class="tm-what">Inquiry triage & follow-up</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">N</span><div><div class="tm-nm">Nick's Plumbing — Richard, CEO</div><div class="tm-tag">Houston · Trades</div></div></div><div class="tm-what">AI receptionist & booking</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">S</span><div><div class="tm-nm">SmartBrief — Jonathan Hall</div><div class="tm-tag">Media</div></div></div><div class="tm-what">Content & workflow automation</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">M</span><div><div class="tm-nm">Marketing Illumination — James Kaatz</div><div class="tm-tag">Agency</div></div></div><div class="tm-what">Reporting & client automation</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">T</span><div><div class="tm-nm">TI Consultants</div><div class="tm-tag">Consulting</div></div></div><div class="tm-what">Automation & internal workflow build</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">A</span><div><div class="tm-nm">AHM Services — Haroon Ali</div><div class="tm-tag">France · Trades</div></div></div><div class="tm-what">Website & lead-capture build</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">C</span><div><div class="tm-nm">CanadaMedicalNotes</div><div class="tm-tag">Canada · Healthcare</div></div></div><div class="tm-what">Documentation & intake automation</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">M</span><div><div class="tm-nm">Medilis.ai</div><div class="tm-tag">Healthcare</div></div></div><div class="tm-what">AI for clinical operations</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">S</span><div><div class="tm-nm">San Diego Apartment Experts — Arby</div><div class="tm-tag">US · Real estate</div></div></div><div class="tm-what">Lead response & routing system</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">C</span><div><div class="tm-nm">CareerMigration — Atif Javed</div><div class="tm-tag">Immigration</div></div></div><div class="tm-what">Inquiry triage & follow-up</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">N</span><div><div class="tm-nm">Nick's Plumbing — Richard, CEO</div><div class="tm-tag">Houston · Trades</div></div></div><div class="tm-what">AI receptionist & booking</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">S</span><div><div class="tm-nm">SmartBrief — Jonathan Hall</div><div class="tm-tag">Media</div></div></div><div class="tm-what">Content & workflow automation</div></div><div class="tm-card"><div class="tm-top"><span class="tm-av">M</span><div><div class="tm-nm">Marketing Illumination — James Kaatz</div><div class="tm-tag">Agency</div></div></div><div class="tm-what">Reporting & client automation</div></div></div></div>
+</div></section>
+
+<section class="proof-sec" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Built by us</h2>
+      <p class="lede">The clients above are named. Below are the systems themselves — thirty real builds, each one you can open and read.</p>
+    </div>
+    <div class="builds">
+      <article class="build">
+        <h3>Support agent over WhatsApp and voice</h3>
+        <p>Answers customers from the business's real records, books and reschedules, and hands anything odd to a human with the full thread attached.</p>
+        <div class="meta"><span>WhatsApp</span><span>Retell</span><span>Claude</span></div>
+      </article>
+      <article class="build">
+        <h3>Invoice and claims paperwork read by AI</h3>
+        <p>Supplier invoices and insurance claim documents read out of PDFs and photos, checked against the job, and posted to the books for approval.</p>
+        <div class="meta"><span>n8n</span><span>Claude</span><span>QuickBooks</span></div>
+      </article>
+      <article class="build">
+        <h3>Lead follow-up and win-back in GoHighLevel</h3>
+        <p>New leads answered in minutes, old ones re-opened on a schedule, and every reply logged against the contact without anyone typing.</p>
+        <div class="meta"><span>GoHighLevel</span><span>n8n</span><span>Twilio</span></div>
+      </article>
+    </div>
+    <div class="proof-foot">
+      <a class="btn btn-mint" href="/case-studies">See the case studies</a>
+      <p class="note">Case studies show the actual workflow, what it replaced and what it cost to run.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stance">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Things we would rather not build</h2>
+      <p class="lede">Half of the audits we run end with us telling the owner to keep the human, or to fix a spreadsheet first. Here are the rules we use.</p>
+    </div>
+    <ul>
+      <li><b>If your phone rings fewer than 20 times a day, keep the receptionist.</b><span>A voice agent costs more to run than the calls it saves at that volume. We'll tell you the number where it flips.</span></li>
+      <li><b>If the data lives in screenshots, we fix the data before anything else.</b><span>Automating a broken input just makes the mess arrive faster.</span></li>
+      <li><b>If a task takes under two hours a week, it gets a checklist, not a system.</b><span>A build has a setup cost and a monthly cost. Both have to be smaller than the problem.</span></li>
+      <li><b>If nobody will check the first month of outputs, we don't ship.</b><span>Every system we build is watched by a person before it is trusted. That includes ours.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How a build actually goes</h2>
+      <p class="lede">Four steps, in this order, every time. Most focused builds are live inside six weeks.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div><h3>Audit call</h3><p>Thirty minutes. You walk us through one week of the task as it happens today. We ask more questions than we answer.</p><p class="t">Free</p></div></div>
+      <div class="step"><div><h3>The receipt</h3><p>One page. What the task costs you now, what the build would cost, and the month it pays back. If it doesn't, we say so and stop here.</p><p class="t">Within two working days</p></div></div>
+      <div class="step"><div><h3>Build</h3><p>n8n as the backbone, Claude or OpenAI for the reading and writing, your existing tools left in place. You see it working on your real data before anything is switched on.</p><p class="t">Two to six weeks</p></div></div>
+      <div class="step"><div><h3>Watch</h3><p>We read every output for the first month and fix what's wrong the same day. After that the retainer covers changes, breakages and the next gap.</p><p class="t">Ongoing</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div>
+      <h2>Book the free audit</h2>
+      <p class="lede" style="margin-top:14px">Tell us the one task that eats the most of your week. We'll come to the call with questions, not slides. Prefer a calendar? <a href="/audit">Pick a time here</a>.</p>
+      <form class="form" id="bookForm" novalidate>
+        <div class="f"><label for="fn">Your name</label><input id="fn" name="name" autocomplete="name" required></div>
+        <div class="f"><label for="fe">Work email</label><input id="fe" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="f"><label for="fs">Company</label><input id="fs" name="company" autocomplete="organization"></div>
+        <div class="f"><label for="ft">The task that eats your week</label><textarea id="ft" name="task" placeholder="For example: I answer the same 30 emails every day, or every invoice gets typed in twice."></textarea></div>
+        <button class="btn btn-mint" type="submit">Book the free audit</button>
+      </form>
+      <div class="sent" id="sent">Thanks. We reply within one working day with two call times.</div>
+    </div>
+    <aside>
+      <p><b>Who you'll talk to</b>The two people who build the system. There's nobody else here.</p>
+      <p><b>Where we are</b>Lahore, Pakistan. We keep US Eastern hours for calls and support.</p>
+      <p><b>What it costs</b>A setup fee and a monthly retainer, quoted on the receipt. Nothing is quoted before the arithmetic.</p>
+      <p><b>What we won't do</b>Build something the receipt says won't pay back. We'll send you the checklist version instead.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- FOOTER: placeholder. Swap for the existing site footer partial. -->
+
+<div class="sticky-cta" id="stickyCta"><a class="btn btn-mint" href="/audit">Book the free audit</a></div>
+
+
+
+<!-- GO-LIVE: this preview carries its own header/footer. On the repo, use the standard header/footer (main.js) so the homepage matches every other page. -->
+</div>
 </main>
 <div id="site-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- nav + sticky CTA ---------- */
+  var nav = document.getElementById('nav');            /* the preview header; absent on the real page */
+  var sticky = document.getElementById('stickyCta');
+  var hero = document.getElementById('top');
+  var book = document.getElementById('book');
+  var heroVisible = true, bookVisible = false;
+  function syncChrome(){
+    if (nav) nav.classList.toggle('solid', !heroVisible);
+    if (sticky) sticky.classList.toggle('on', !heroVisible && !bookVisible);
+  }
+  if ('IntersectionObserver' in window){
+    if (hero) new IntersectionObserver(function(e){ heroVisible = e[0].intersectionRatio > 0.15; syncChrome(); }, {threshold:[0,0.15,0.5]}).observe(hero);
+    if (book) new IntersectionObserver(function(e){ bookVisible = e[0].isIntersecting; syncChrome(); }, {threshold:0.05}).observe(book);
+  }
+
+  /* ---------- six gaps ---------- */
+  var gaps = [
+    {name:'Missed calls and slow replies to leads', leak:'Lost jobs', sub:'because the call went to voicemail or the form sat until Monday',
+     what:'The phone rings while everyone is busy. A website lead lands at 9pm and gets a reply the next afternoon. Half of them have already booked someone else.',
+     build:'A voice agent that answers, takes the details and books the slot, plus a two-minute reply to every web lead, day or night. Anything unusual goes to a person with the transcript attached.',
+     plugs:'Your phone number, website forms, HubSpot or GoHighLevel, Google Calendar'},
+    {name:'An inbox answering the same questions', leak:'40 to 60%', sub:'of most support inboxes is a handful of questions with known answers',
+     what:'Someone opens the ticket, looks up the answer in another tab, copies it into a reply. Two hundred times a week.',
+     build:'An agent that answers from your real records over email, WhatsApp or chat, and escalates the odd ones to a human with the full thread.',
+     plugs:'Gmail or Outlook, WhatsApp Business, Zendesk or Gorgias, your CRM'},
+    {name:'Data typed into two systems', leak:'Double entry', sub:'and the mismatches nobody finds until a client does',
+     what:'The same client, order or job gets typed into the CRM, then the sheet, then the invoicing tool. Each copy drifts from the others.',
+     build:'One place of entry. Everything else fills itself in within a minute, and a daily check flags anything that no longer matches.',
+     plugs:'HubSpot, Salesforce or GoHighLevel, Airtable or Sheets, Stripe or QuickBooks'},
+    {name:'Invoices, claims and PDFs read by hand', leak:'Days of retyping', sub:'every month, with the errors that come with it',
+     what:'Supplier invoices, insurance claim forms and purchase orders arrive as PDFs, photos and emails. Someone reads each one and keys it in.',
+     build:'Every document read out of whatever format it arrived in, checked against your records, and posted for a one-tap approval.',
+     plugs:'Email, Google Drive, QuickBooks or Xero, your claims or job software'},
+    {name:'Reports stitched together every Monday', leak:'A morning a week', sub:'spent copying numbers from five tools into one deck',
+     what:'Ad spend from one dashboard, leads from the CRM, revenue from billing, all pasted into a report by hand before the Monday call.',
+     build:'The numbers pulled from each tool overnight and dropped into the report before anyone logs in. One version, no copy-paste.',
+     plugs:'GA4, Meta and Google Ads, HubSpot, Stripe, Google Sheets or Looker Studio'},
+    {name:'A website that does not bring in work', leak:'Traffic paid for', sub:'and then wasted on a slow page and a form that goes nowhere',
+     what:'The site loads slowly on phones, the message is unclear, and the enquiry form emails one inbox that nobody watches.',
+     build:'A fast site or Shopify store with one clear ask on every page, and every enquiry pushed straight into the CRM and answered within minutes.',
+     plugs:'Your domain, Shopify or Next.js, your CRM, Google Business Profile'}
+  ];
+  var tabs = document.getElementById('gapTabs'), panel = document.getElementById('gapPanel');
+  var current = 0;
+  gaps.forEach(function(g,i){
+    var b = document.createElement('button');
+    b.type='button'; b.setAttribute('role','tab'); b.id='gap-tab-'+i; b.textContent=g.name;
+    b.addEventListener('click', function(){ select(i, true); });
+    tabs.appendChild(b);
+  });
+  function select(i, userPick){
+    current = i;
+    Array.prototype.forEach.call(tabs.children, function(b,j){ b.setAttribute('aria-selected', j===i ? 'true':'false'); });
+    var g = gaps[i];
+    panel.setAttribute('aria-labelledby','gap-tab-'+i);
+    panel.innerHTML =
+      '<div><div class="leak">'+g.leak+'<small>'+g.sub+'</small></div></div>'+
+      '<div class="cols"><dl><dt>What happens today</dt><dd>'+g.what+'</dd><dt>Plugs into</dt><dd>'+g.plugs+'</dd></dl>'+
+      '<dl><dt>What we build</dt><dd>'+g.build+'</dd></dl></div>';
+    if (userPick && window.innerWidth < 1000) tabs.children[i].scrollIntoView({block:'nearest', inline:'center', behavior: reduce ? 'auto':'smooth'});
+  }
+  tabs.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); select((current+1)%gaps.length, true); tabs.children[current].focus(); }
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); select((current-1+gaps.length)%gaps.length, true); tabs.children[current].focus(); }
+  });
+  select(0);
+
+  /* ---------- receipt ---------- */
+  var d = [1,2,3,4].map(function(n){ return document.getElementById('d'+n); });
+  var o = [1,2,3,4].map(function(n){ return document.getElementById('o'+n); });
+  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  function calc(){
+    var times = +d[0].value, mins = +d[1].value, rate = +d[2].value, err = +d[3].value;
+    o[0].textContent = times; o[1].textContent = mins; o[2].textContent = '$'+rate; o[3].textContent = err+'%';
+    var hours = times * mins / 60 * 50;
+    var labour = hours * rate;
+    var fix = times * 50 * (err/100) * (mins*4/60) * rate;
+    var total = labour + fix;
+    document.getElementById('rHours').textContent = Math.round(hours).toLocaleString('en-US') + ' h';
+    document.getElementById('rLabour').textContent = money(labour);
+    document.getElementById('rFix').textContent = money(fix);
+    document.getElementById('rTotal').textContent = money(total);
+    var v = document.getElementById('verdict');
+    if (total < 6000){
+      v.className = 'verdict no';
+      v.innerHTML = '<b>Don\'t automate this yet.</b>At this size a build would cost more than the task does. Write the task down as a checklist and come back when the volume doubles.';
+    } else if (total < 15000){
+      v.className = 'verdict yes';
+      v.innerHTML = '<b>Worth a look.</b>A small build usually pays back inside a year here. The audit call decides whether it\'s a system or a spreadsheet fix.';
+    } else {
+      v.className = 'verdict yes';
+      v.innerHTML = '<b>Build it.</b>This is the kind of task that pays for its own system in a few months. Book the audit and bring one week of real examples.';
+    }
+  }
+  d.forEach(function(el){ el.addEventListener('input', calc); });
+  calc();
+
+  /* ---------- form (front-end only in this mockup) ---------- */
+  var form = document.getElementById('bookForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fn'), email = document.getElementById('fe');
+    if (!name.value.trim()){ name.focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(email.value)){ email.focus(); return; }
+    form.style.display='none';
+    document.getElementById('sent').style.display='block';
+  });
+
+  /* ---------- three.js field ---------- */
+  if (!window.THREE) return;
+  var canvas = document.getElementById('field');
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:false, alpha:true, powerPreference:'low-power'}); }
+  catch(e){ canvas.style.display='none'; return; }
+  var isSmall = Math.min(window.innerWidth, window.innerHeight) < 700;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isSmall ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x082419, isSmall ? 0.075 : 0.07);
+  var camera = new THREE.PerspectiveCamera(isSmall ? 70 : 52, 1, 0.1, 60);
+  camera.position.set(0, isSmall ? 1.2 : 2.0, isSmall ? 4.4 : 6.0);
+  camera.lookAt(0, isSmall ? 1.2 : 0.5, isSmall ? -5 : -4);
+  var tilt = isSmall ? 0.55 : 0;
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  var W = isSmall ? 96 : 150, D = isSmall ? 64 : 70, gap = isSmall ? 0.16 : 0.12;
+  var N = W * D;
+  var pos = new Float32Array(N*3), col = new Float32Array(N*3);
+  var base = new Float32Array(N*2);
+  var i, x, z, k = 0;
+  for (var zi = 0; zi < D; zi++){
+    for (var xi = 0; xi < W; xi++){
+      x = (xi - W/2) * gap; z = -zi * gap + 1.2;
+      base[k*2] = x; base[k*2+1] = z;
+      pos[k*3] = x; pos[k*3+1] = 0; pos[k*3+2] = z;
+      k++;
+    }
+  }
+  var dot = (function(){
+    var c = document.createElement('canvas'); c.width = c.height = 32;
+    var g = c.getContext('2d'), r = g.createRadialGradient(16,16,0,16,16,16);
+    r.addColorStop(0,'rgba(255,255,255,1)'); r.addColorStop(0.45,'rgba(255,255,255,.9)'); r.addColorStop(1,'rgba(255,255,255,0)');
+    g.fillStyle = r; g.fillRect(0,0,32,32);
+    var tx = new THREE.CanvasTexture(c); return tx;
+  })();
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  var mat = new THREE.PointsMaterial({size: isSmall ? 0.06 : 0.05, map:dot, vertexColors:true, transparent:true, opacity:.95, sizeAttenuation:true, depthWrite:false, blending:THREE.AdditiveBlending});
+  var points = new THREE.Points(geo, mat);
+  group.add(points);
+
+  // lanes: orders moving across the surface
+  var LANES = isSmall ? 4 : 6, PER = isSmall ? 24 : 40, M = LANES*PER;
+  var lpos = new Float32Array(M*3), lane = new Float32Array(M), phase = new Float32Array(M), speed = new Float32Array(M);
+  for (i = 0; i < M; i++){
+    lane[i] = -1.5 - Math.floor(i/PER) * (isSmall ? 1.5 : 1.15);
+    phase[i] = Math.random();
+    speed[i] = 0.05 + Math.random()*0.05;
+  }
+  var lgeo = new THREE.BufferGeometry();
+  lgeo.setAttribute('position', new THREE.BufferAttribute(lpos, 3));
+  var lmat = new THREE.PointsMaterial({size: isSmall ? 0.16 : 0.12, map:dot, color:0x9BE7BF, transparent:true, opacity:.95, sizeAttenuation:true, depthWrite:false, blending:THREE.AdditiveBlending});
+  group.add(new THREE.Points(lgeo, lmat));
+
+  var mint = new THREE.Color(0x9BE7BF), sage = new THREE.Color(0x2F7C5C), dark = new THREE.Color(0x0E3A2C);
+  var tmp = new THREE.Color();
+  var halfW = W*gap/2;
+
+  function height(x, z, t){
+    return 0.34*Math.sin(0.55*x + t*0.55)*Math.cos(0.5*z - t*0.35)
+         + 0.17*Math.sin(1.6*x - t*0.8 + z*0.9)
+         + 0.11*Math.cos(2.2*z + t*0.45 + x*0.3);
+  }
+  function update(t){
+    var p = geo.attributes.position.array, c = geo.attributes.color.array, h, u;
+    for (i = 0; i < N; i++){
+      h = height(base[i*2], base[i*2+1], t);
+      p[i*3+1] = h;
+      u = Math.max(0, Math.min(1, (h + 0.55)/1.1));
+      if (u < 0.5) tmp.copy(dark).lerp(sage, u*2); else tmp.copy(sage).lerp(mint, (u-0.5)*2);
+      c[i*3] = tmp.r; c[i*3+1] = tmp.g; c[i*3+2] = tmp.b;
+    }
+    geo.attributes.position.needsUpdate = true;
+    geo.attributes.color.needsUpdate = true;
+    for (i = 0; i < M; i++){
+      var f = (phase[i] + t*speed[i]) % 1;
+      var lx = -halfW + f*halfW*2, lz = lane[i];
+      lpos[i*3] = lx; lpos[i*3+1] = height(lx, lz, t) + 0.05; lpos[i*3+2] = lz;
+    }
+    lgeo.attributes.position.needsUpdate = true;
+  }
+
+  var tx = 0, ty = 0, cx = 0, cy = 0;
+  function onMove(px, py){
+    tx = (px / window.innerWidth - 0.5); ty = (py / window.innerHeight - 0.5);
+  }
+  window.addEventListener('pointermove', function(e){ if (e.pointerType !== 'touch') onMove(e.clientX, e.clientY); }, {passive:true});
+  if (window.DeviceOrientationEvent && isSmall){
+    window.addEventListener('deviceorientation', function(e){
+      if (e.gamma == null) return;
+      tx = Math.max(-0.5, Math.min(0.5, e.gamma/60)); ty = Math.max(-0.5, Math.min(0.5, (e.beta-45)/90));
+    }, {passive:true});
+  }
+
+  function resize(){
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize, {passive:true});
+  resize();
+
+  var running = true, start = performance.now();
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ running = e[0].isIntersecting; if (running) frame(); }, {threshold:0}).observe(canvas);
+  }
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden && running) frame(); });
+
+  var pending = false;
+  function frame(){
+    if (pending) return; pending = true;
+    requestAnimationFrame(function(){
+      pending = false;
+      if (!running || document.hidden) return;
+      var t = (performance.now() - start) / 1000;
+      cx += (tx - cx) * 0.05; cy += (ty - cy) * 0.05;
+      group.rotation.y = cx * 0.18;
+      group.rotation.x = tilt + cy * 0.06;
+      update(t);
+      renderer.render(scene, camera);
+      if (!reduce) frame();
+    });
+  }
+  update(0.001); renderer.render(scene, camera);
+  if (!reduce) frame();
+})();
+</script>
 </body>
 </html>
