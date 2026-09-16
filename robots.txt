@@ -1,79 +1,67 @@
 # robots.txt for KABS AI LABS — https://www.kabsailabs.com
+#
+# /lp/ is deliberately crawlable. Those pages carry <meta name="robots" content="noindex">,
+# and a crawler has to be allowed to fetch a page before it can read that tag. Blocking
+# them here instead left the URLs eligible to appear from inbound links with no way for
+# us to say otherwise. AdsBot-Google ignores the wildcard group regardless, so ad landing
+# page checks were never affected either way.
 # We welcome search engines AND AI crawlers. Crawl, index, and cite us freely.
 
 # --- Standard search engines ---
 User-agent: *
-Allow: /
-Disallow: /lp/
+Allow: /
 
 # --- AI: live-answer / retrieval bots (cite us in real-time answers) ---
 User-agent: OAI-SearchBot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: ChatGPT-User
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: PerplexityBot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Perplexity-User
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Google-Extended
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Applebot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Applebot-Extended
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Amazonbot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Bytespider
-Allow: /
-Disallow: /lp/
+Allow: /
 
 # --- AI: training / dataset crawlers (build brand familiarity in models) ---
 User-agent: GPTBot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: ClaudeBot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Claude-Web
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: anthropic-ai
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: CCBot
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: cohere-ai
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Meta-ExternalAgent
-Allow: /
-Disallow: /lp/
+Allow: /
 
 User-agent: Meta-ExternalFetcher
-Allow: /
-Disallow: /lp/
+Allow: /
 
 Sitemap: https://www.kabsailabs.com/sitemap.xml

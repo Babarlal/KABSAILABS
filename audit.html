@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book Your Operational Audit | KABS AI LABS</title>
-<meta name="description" content="Book a 30 minute operational audit. Answer two quick questions, leave your details, then pick a time. We come back with the three biggest time wasters in your week.">
+<meta name="description" content="Book a free 30 minute audit. Answer two questions, leave your details, pick a time. We come back with the three biggest time wasters in your week.">
 <link rel="canonical" href="https://www.kabsailabs.com/audit">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Book Your Operational Audit | KABS AI LABS">
@@ -42,7 +42,7 @@
 @media(min-width:720px){.au-card{padding:36px 34px 38px}.au{padding:36px 0 90px}}
 .au-panel[hidden]{display:none}
 
-.au h1{font-size:clamp(27px,6.4vw,38px);letter-spacing:-.025em}
+.au h1,.au-panel h2{font-size:clamp(27px,6.4vw,38px);letter-spacing:-.025em}
 .au-sub{color:var(--muted);font-size:15.5px;margin-top:10px;max-width:52ch}
 
 .au-q{border:0;margin:26px 0 0;padding:0;min-width:0}
@@ -160,7 +160,7 @@
 
     <!-- ============ step 2: details ============ -->
     <div class="au-panel" id="auStep2" hidden>
-      <h1>Your details.</h1>
+      <h2>Your details.</h2>
       <p class="au-sub">So we can send the calendar invite and the notes.</p>
 
       <div class="au-recap">
@@ -197,7 +197,7 @@
 
     <!-- ============ step 3: pick a time ============ -->
     <div class="au-panel" id="auStep3" hidden>
-      <h1>Pick a time.</h1>
+      <h2>Pick a time.</h2>
       <p class="au-sub">Your answers travel with the booking, so the call starts where you left off.</p>
 
       <p class="au-done" id="auDone" hidden>Booked, check your email</p>
@@ -287,7 +287,7 @@
     });
     var behaviour = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth';
     try { window.scrollTo({ top: 0, behavior: behaviour }); } catch (e) { window.scrollTo(0, 0); }
-    var h1 = panels[n - 1].querySelector('h1');
+    var h1 = panels[n - 1].querySelector('h1, h2');
     if (h1){ h1.setAttribute('tabindex', '-1'); h1.focus(); }
   }
 
