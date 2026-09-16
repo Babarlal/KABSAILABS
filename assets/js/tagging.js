@@ -22,7 +22,7 @@
   'use strict';
 
   var TAG = {
-    GTM_ID: 'GTM-PLACEHOLDER',   // replace with the real GTM-XXXXXXX container
+    GTM_ID: 'GTM-NPG4QTSR',      // live container; GA4 is configured inside it
     GA_ID:  'G-EMPMVS2NYX',      // existing GA4 property, kept
 
     /* The Google Ads conversion, counted on a completed booking. Paste the real value as
