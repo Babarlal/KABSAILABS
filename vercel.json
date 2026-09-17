@@ -45,7 +45,7 @@
       "permanent": true
     },
     {
-      "source": "/case-studies/:slug*",
+      "source": "/case-studies/:slug+",
       "destination": "/case-studies",
       "permanent": true
     }
