@@ -1,2 +1,8 @@
 .vercel
 .env*
+
+# dev-only: minifier deps, installed with --no-save
+node_modules/
+
+# local QA artifacts, never deployed
+_qa/
