@@ -458,7 +458,7 @@ window.__three = new Promise(function(res){
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
-    var DARK = [14,58,44], SAGE = [46,138,99], MINT = [124,207,160];
+    var DARK = [24,78,60], SAGE = [58,156,112], MINT = [150,224,182];
     function mix(a,b,u){ return [Math.round(a[0]+(b[0]-a[0])*u), Math.round(a[1]+(b[1]-a[1])*u), Math.round(a[2]+(b[2]-a[2])*u)]; }
     /* The animation's own height function, frozen at one moment. T is chosen so the
        crests fall across the width rather than bunching to one side, which is what t=0
@@ -488,9 +488,9 @@ window.__three = new Promise(function(res){
           var sy = h*0.70 - (y*h*0.30)/depth + zi*0.72;
           var u = Math.max(0, Math.min(1, (y + 0.55)/1.1));
           var c = u < 0.5 ? mix(DARK, SAGE, u*2) : mix(SAGE, MINT, (u-0.5)*2);
-          ctx.globalAlpha = 0.18 + 0.62*(1 - zi/D);
+          ctx.globalAlpha = 0.34 + 0.66*(1 - zi/D);
           ctx.fillStyle = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
-          ctx.beginPath(); ctx.arc(sx, sy, Math.max(0.55, 2.6/depth), 0, 6.2832); ctx.fill();
+          ctx.beginPath(); ctx.arc(sx, sy, Math.max(0.75, 3.3/depth), 0, 6.2832); ctx.fill();
         }
       }
       ctx.globalAlpha = 1;
