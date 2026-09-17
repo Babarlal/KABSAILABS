@@ -1,96 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  KABS AI LABS sitemap.
+  KABS AI LABS sitemap. GENERATED - do not hand-edit.
+    node scripts/build-sitemap.js
 
-  Changes from the previous version:
-  - Added /demo (the live voice agent). It was missing, which meant your single
-    best asset was invisible to search.
-  - Added /demonstration and /demonstration-en, which were linked from the nav
-    but absent here. If those are private client proposals, do the opposite:
-    remove them from the nav, add <meta name="robots" content="noindex"> to each,
-    and delete these two entries.
-  - Added /thank-you as noindex (not listed here — correct, it shouldn't be).
-  - Added <lastmod>. This is the only one of the three optional fields Google
-    actually uses. Set real dates and keep them current; a lastmod that never
-    changes is worse than none.
-  - Dropped <priority> and <changefreq>. Google ignores both.
-
-  lastmod is generated from git history: the commit date of each page's
-  last change. Regenerate after content edits rather than hand-editing.
+  Every deployed page except those carrying a noindex robots meta, which at the time
+  of writing are /404, /thank-you, /blog/template and the three /lp/ ad landing pages.
+  lastmod is each file's last commit date from git, so it cannot drift from the truth
+  or be invented. No priority or changefreq: Google ignores both.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url><loc>https://www.kabsailabs.com/</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Interactive demo — your strongest conversion asset -->
-  <url><loc>https://www.kabsailabs.com/demo</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Services -->
-  <url><loc>https://www.kabsailabs.com/services</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/ai-automation</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/workflow-automation</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/rag-knowledge-base</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/ai-for-trades</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/white-label</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Industries -->
-  <url><loc>https://www.kabsailabs.com/services/industries/marketing-agencies</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/real-estate</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/ecommerce</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/saas</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/services/industries/healthcare</loc><lastmod>2026-08-10</lastmod></url>
-  <!-- TODO: this sits outside the /services/industries/ cluster. Consider a 301
-       to /services/industries/plumbers so the URL taxonomy is consistent. -->
-  <url><loc>https://www.kabsailabs.com/industries/plumbers</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Case studies -->
-  <url><loc>https://www.kabsailabs.com/case-studies</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/audit</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/ai-content-writing-small-business-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/ai-phone-answering-small-business</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/appointment-reminders-no-shows</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automated-outbound-sales-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automatic-appointment-booking-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automatic-business-reporting-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automatic-invoice-chasing-payment-recovery</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automatic-lead-follow-up-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/automatic-review-requests-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/business-monitoring-alerts-ai</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/company-market-research-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/connect-business-systems-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/document-data-extraction-ai-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/ecommerce-order-shipping-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/getting-started-with-ai-in-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/instant-lead-response-ai-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/internal-knowledge-assistant-team</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/lead-qualification-routing-ai</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/meeting-notes-action-items-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/missed-call-text-back-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/repurpose-content-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/returns-refunds-automation-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/website-chat-agent-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/whatsapp-ai-support-2026</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/win-back-lost-customers-ai</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/careers</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/case-studies</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/contact</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/contact/agency-partner</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/demo</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/demonstration-en</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/demonstration</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/industries/plumbers</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://www.kabsailabs.com/pricing</loc><lastmod>2026-09-17</lastmod></url>
-
-  <!-- Demo walkthroughs. See the note at the top of this file: if these are
-       private client proposals, remove them and noindex the pages instead. -->
-  <url><loc>https://www.kabsailabs.com/demonstration-en</loc><lastmod>2026-07-01</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/demonstration</loc><lastmod>2026-07-01</lastmod></url>
-
-  <!-- Resources & landing pages -->
-  <url><loc>https://www.kabsailabs.com/resources/dental-ai-receptionist-blueprint</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/resources/dental-front-desk-checklist</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Conversion & company -->
-  <url><loc>https://www.kabsailabs.com/audit</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/contact</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/contact/agency-partner</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog</loc><lastmod>2026-08-10</lastmod></url>
-
-  <!-- Blog posts. lastmod is the canonical rewrite, the last real edit to these files. -->
-  <url><loc>https://www.kabsailabs.com/blog/getting-started-with-ai-in-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/ai-phone-answering-small-business</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/missed-call-text-back-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/instant-lead-response-ai-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/website-chat-agent-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/whatsapp-ai-support-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/lead-qualification-routing-ai</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automatic-appointment-booking-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/appointment-reminders-no-shows</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automatic-lead-follow-up-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/win-back-lost-customers-ai</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automatic-review-requests-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/document-data-extraction-ai-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automatic-invoice-chasing-payment-recovery</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/internal-knowledge-assistant-team</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/ecommerce-order-shipping-automation</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/returns-refunds-automation-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/ai-content-writing-small-business-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/repurpose-content-automation</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automated-outbound-sales-2026</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/company-market-research-automation</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/meeting-notes-action-items-automation</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/connect-business-systems-automation</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/business-monitoring-alerts-ai</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/blog/automatic-business-reporting-2026</loc><lastmod>2026-08-28</lastmod></url>
-
-  <url><loc>https://www.kabsailabs.com/careers</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/terms</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://www.kabsailabs.com/privacy</loc><lastmod>2026-08-10</lastmod></url>
-
+  <url><loc>https://www.kabsailabs.com/privacy</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/resources/dental-ai-receptionist-blueprint</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/resources/dental-front-desk-checklist</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/ai-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/ai-for-trades</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/ecommerce</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/healthcare</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/marketing-agencies</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/real-estate</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/industries/saas</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/rag-knowledge-base</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/white-label</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/services/workflow-automation</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/terms</loc><lastmod>2026-09-17</lastmod></url>
 </urlset>
