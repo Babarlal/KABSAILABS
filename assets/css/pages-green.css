@@ -1135,6 +1135,20 @@
 
      transform only, on its own compositor layer, so it never triggers layout or paint:
      the canvas itself is painted once and never redrawn. */
+  /* Pull the hero content to the top on phones.
+
+     The hero is min-height:100svh with align-items:flex-end, and .hero-inner adds 120px of
+     top padding on top of that. On a phone the result was a headline sitting 236px down at
+     390 and 403px down at 430: the first thing a visitor met was a blank screen, and the
+     taller the phone the worse it got, because bottom alignment spends every extra pixel
+     above the text.
+
+     Content now starts at the top with a small gap under the header. The hero keeps its
+     height and the wave keeps its full band, so the drift is untouched and the space below
+     the buttons reads as the background it is. */
+  .pg-home .hero{ align-items: flex-start; }
+  .pg-home .hero-inner{ padding-top: clamp(20px, 6vw, 40px); }
+
   .pg-home .hero > #field{
     width: 200%;
     /* .pg canvas sets max-width:100%, which clamped the two tiles back into one */
