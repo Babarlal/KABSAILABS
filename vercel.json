@@ -21,12 +21,12 @@
     },
     {
       "source": "/services/voice-ai",
-      "destination": "/services",
+      "destination": "/services/ai-for-trades",
       "permanent": true
     },
     {
       "source": "/services/ai-legal-medical-docs",
-      "destination": "/services",
+      "destination": "/services/ai-automation",
       "permanent": true
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "source": "/services/gohighlevel-automation",
-      "destination": "/services",
+      "destination": "/services/workflow-automation",
       "permanent": true
     },
     {
