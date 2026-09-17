@@ -132,10 +132,43 @@ summary:focus-visible,
   overflow-wrap: anywhere;
 }
 
-/* --- 10. Keep the WhatsApp FAB clear of the cookie bar on mobile. --- */
-@media (max-width: 520px){
+/* --- 10. Keep the WhatsApp FAB clear of everything else at the bottom of a phone. ---
+   The fab was a 151px wide pill pinned bottom-right. Both bottom bars are full width, so
+   it sat on top of them: measured at 390 and 430, it overlapped the homepage sticky CTA
+   and the sticky bar on the eCommerce page, covering part of a button we pay for clicks
+   on.
+
+   Two changes, both under 768px only. The pill becomes a 56px circle, still well over the
+   44px touch target, which stops it spanning half the screen. And it lifts above whichever
+   bar is showing, measured against each bar's real height: the homepage CTA occupies 64px
+   from the bottom, the lp sticky bar 73px.
+
+   :has() drives the lift so the fab only moves while a bar is actually on screen. The
+   cookie bar rule below already relied on it, so this is not a new dependency. */
+@media (max-width: 767px){
   .fab{ bottom: 16px; }
-  body:has(.cookie-bar) .fab{ bottom: 96px; }
+
+  .fab-btn{
+    width: 56px; height: 56px; padding: 0; gap: 0;
+    border-radius: 50%; justify-content: center;
+  }
+  /* visually hidden, not display:none: the anchor's aria-label still names it, and
+     screen readers keep the text */
+  .fab-btn .fab-label{
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+  }
+  .fab-btn svg{ width: 26px; height: 26px; }
+
+  body:has(.sticky-cta.on) .fab{ bottom: calc(76px + env(safe-area-inset-bottom)); }
+  body:has(.sticky.show) .fab{ bottom: 85px; }
+
+  /* The cookie bar is 145px tall on a phone now that it names advertising cookies, and it
+     sits 88px up, so it owns the bottom 233px. The old rule lifted the fab to 96px, which
+     put it inside the bar rather than above it. Stacking above 233px would park the fab
+     in the middle of the screen, so it simply waits: the bar is dismissed on first
+     interaction and the fab returns. */
+  body:has(.cookie-bar) .fab{ display: none; }
 }
 
 /* --- 11. Belt-and-braces: no horizontal scroll anywhere. --- */
