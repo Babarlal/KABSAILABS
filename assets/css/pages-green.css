@@ -1123,7 +1123,39 @@
     animation: kabs-hero-drift 26s ease-in-out infinite alternate;
     will-change: transform;
   }
+  /* The wave drifts. The canvas is painted as two identical tiles side by side and is
+     twice the hero's width, so translating it by exactly one tile (-50% of its own box)
+     lands on a pixel-identical frame: the loop point cannot be seen and no duplicate
+     needs to scroll in from outside.
+
+     Linear, not ease-in-out, on purpose. An eased curve slows to a stop at each end of
+     the cycle, which on a continuous drift reads as a stutter every time it loops; the
+     easing in this hero comes from the sheen below, which alternates and so eases at its
+     turning points naturally.
+
+     transform only, on its own compositor layer, so it never triggers layout or paint:
+     the canvas itself is painted once and never redrawn. */
+  .pg-home .hero > #field{
+    width: 200%;
+    /* .pg canvas sets max-width:100%, which clamped the two tiles back into one */
+    max-width: none;
+    right: auto;
+    animation: kabs-wave-drift 22s linear infinite;
+    will-change: transform;
+  }
 }
+
+@keyframes kabs-wave-drift{
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Frozen for anyone who asks for less motion: the canvas sits at translate zero, which is
+   exactly the static frame that shipped before. */
+@media (prefers-reduced-motion: reduce){
+  .pg-home .hero > #field{ animation: none; transform: none; }
+}
+
 
 @keyframes kabs-hero-drift{
   from { transform: translate3d(-12%, 0, 0); }

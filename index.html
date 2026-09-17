@@ -471,26 +471,43 @@ window.__three = new Promise(function(res){
     }
     function draw(){
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var w = canvas.clientWidth || canvas.offsetWidth || window.innerWidth;
+      /* Measure the hero, not the canvas: below 768px the canvas is deliberately twice
+         the hero's width so it can drift one full width and loop. */
+      var host = canvas.parentElement || canvas;
+      var tile = Math.round(host.getBoundingClientRect().width) || window.innerWidth;
       var h = canvas.clientHeight || canvas.offsetHeight || Math.round(window.innerHeight * 0.6);
-      if (!w || !h) return;
-      canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+      /* Two identical tiles on phones. The CSS drifts the canvas by exactly one tile, so
+         the frame at the end of the loop is pixel-identical to the frame at the start and
+         the reset cannot be seen. Above the breakpoint three.js owns the hero and this
+         only ever runs as a single tile. */
+      var tiles = window.matchMedia('(max-width: 767px)').matches ? 2 : 1;
+      if (!tile || !h) return;
+      canvas.width = Math.round(tile*tiles*dpr); canvas.height = Math.round(h*dpr);
       ctx.setTransform(dpr,0,0,dpr,0,0);
-      ctx.clearRect(0,0,w,h);
+      ctx.clearRect(0,0,tile*tiles,h);
       var W = 84, D = 46, gap = 0.155;
       for (var zi = D-1; zi >= 0; zi--){
         for (var xi = 0; xi < W; xi++){
           var x = (xi - W/2)*gap, z = -zi*gap + 1.2;
           var y = height(x, z);
           var depth = 2.6 + zi*gap*1.15;
-          var sx = w/2 + (x*w*0.46)/depth;
-          if (sx < -8 || sx > w+8) continue;
+          var sx = tile/2 + (x*tile*0.46)/depth;
+          /* Cull against every copy the wrap will draw, not just the first tile. The
+             narrow test discarded dots that belonged in a neighbouring tile, which left
+             the two halves slightly different and so the loop not quite seamless. */
+          if (sx + tiles*tile < -8 || sx - tile > tiles*tile + 8) continue;
           var sy = h*0.70 - (y*h*0.30)/depth + zi*0.72;
           var u = Math.max(0, Math.min(1, (y + 0.55)/1.1));
           var c = u < 0.5 ? mix(DARK, SAGE, u*2) : mix(SAGE, MINT, (u-0.5)*2);
+          var r = Math.max(0.75, 3.3/depth);
           ctx.globalAlpha = 0.34 + 0.66*(1 - zi/D);
           ctx.fillStyle = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
-          ctx.beginPath(); ctx.arc(sx, sy, Math.max(0.75, 3.3/depth), 0, 6.2832); ctx.fill();
+          /* One extra copy each side when tiled. A dot near a tile edge spills past
+             it, and without the wrap only one of the two seams receives that spill, which
+             left the halves differing and the loop visibly stepping. */
+          for (var t = (tiles>1?-1:0); t <= (tiles>1?tiles:0); t++){
+            ctx.beginPath(); ctx.arc(sx + t*tile, sy, r, 0, 6.2832); ctx.fill();
+          }
         }
       }
       ctx.globalAlpha = 1;
