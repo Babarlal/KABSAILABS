@@ -86,10 +86,12 @@ var NAV = {
    .site-footer is --bg-tint #EDF0EA), so one black mark serves all three
    render points. The white file is at /assets/img/logo-kabs-white.png for
    whenever a dark section needs it.
-   width/height are the file's real pixels (809x266) so the browser reserves
+   width/height are the file's real pixels (274x90) so the browser reserves
    the right box before the image loads; .logo img in styles.css scales it by
-   height. Same file in header and footer, so the footer copy is a cache hit. */
-var LOGO = '<img src="/assets/img/logo-kabs-black.png" alt="KABS AI LABS" width="809" height="266" loading="eager" decoding="async">';
+   height. Same file in header and footer, so the footer copy is a cache hit.
+   The file ships at 274x90, which is 3x the 91x30 it renders at, so it is still
+   sharp on a DPR-3 phone. It used to ship 809x266 and 42KB for the same 91x30. */
+var LOGO = '<img src="/assets/img/logo-kabs-black.png" alt="KABS AI LABS" width="274" height="90" loading="eager" decoding="async">';
 
 /* ---------- helpers ---------- */
 function reducedMotion(){
