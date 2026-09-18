@@ -530,7 +530,19 @@ window.__three = new Promise(function(res){
       }
       ctx.globalAlpha = 1;
     }
-    draw();
+    /* Wait two frames before the first draw. draw() has to measure the hero, and the
+       reads inside it already come before the writes, but this used to run from a
+       microtask while the parser was still partway down the body: the measurement was
+       then the first layout of a half-built document, 61.7ms of synchronous layout at
+       4x CPU throttle, reported by PageSpeed as a forced reflow at this line. Two
+       frames out the browser has already painted once, so the layout is clean and the
+       same read costs 2.1ms. DOMContentLoaded is not late enough; it fires before the
+       first paint and still forced the layout.
+       The number measured is identical either way: the hero is a block-level section,
+       so its width never depended on what was parsed after it. Nothing moves, because
+       the canvas is position:absolute inset:0, out of flow and sized by CSS, so the
+       width/height attributes set below change the bitmap and not the box. */
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ draw(); }); });
     var to; window.addEventListener('resize', function(){ clearTimeout(to); to = setTimeout(draw, 200); }, {passive:true});
   }
 
