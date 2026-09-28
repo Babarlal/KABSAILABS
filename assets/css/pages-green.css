@@ -951,6 +951,14 @@
 @media (min-width:860px){
   .pg .builds{grid-template-columns:repeat(3,1fr)}
 }
+/* From the blog: the same .card grid as /blog (styles.css). The homepage scope resets
+   every padding and margin (.pg *) and sets headings at 1.05 line height, so the card's
+   own padding, title spacing and title line height are put back here and nothing else. */
+.pg .blog-sec .grid{margin-top:0}
+.pg .blog-sec .card{padding:28px}
+.pg .blog-sec .card h3{margin:0 0 8px;line-height:1.25}
+.pg .blog-sec .all{margin-top:28px;font-weight:600}
+.pg .blog-sec .all a{color:var(--mint-ink);text-decoration:underline;text-underline-offset:4px}
 .pg .stance ul{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
 .pg .stance li{padding:22px 0;border-bottom:1px solid var(--line);display:grid;gap:8px}
 .pg .stance li b{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.2}

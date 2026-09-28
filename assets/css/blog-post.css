@@ -76,8 +76,31 @@
 .blogpost .pn a:hover{border-color:var(--brand)}
 .blogpost .pn .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em; text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
 .blogpost .pn .t{font-weight:600;font-size:15px;line-height:1.35}
+/* Long-form posts written in Markdown: byline, screenshots, comparison tables and
+   prompt blocks. The guide series never needed these, so they are new, but they
+   reuse the tokens above so they read as part of the same article. */
+.blogpost .byline{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);margin:-6px 0 34px}
+.blogpost .post-img{margin:8px 0 30px}
+.blogpost .post-img img{width:100%;border:1px solid var(--border);border-radius:var(--radius);background:var(--tint)}
+.blogpost .table-wrap{margin:8px 0 28px;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:var(--radius)}
+.blogpost table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+.blogpost .table-wrap.wide table{min-width:640px}
+.blogpost th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600; color:var(--muted);text-align:left;background:var(--tint);padding:11px 14px;border-bottom:1px solid var(--border)}
+.blogpost td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.blogpost tbody tr:last-child td{border-bottom:none}
+.blogpost td:first-child{font-weight:600}
+.blogpost pre.code{position:relative;margin:8px 0 26px;padding:18px 20px;background:var(--ink);color:#E4EDE5; border-radius:var(--radius);overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.6; white-space:pre-wrap;word-wrap:break-word}
+.blogpost pre.code code{font:inherit}
+.blogpost pre.code .copy{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em; background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:4px 9px;cursor:pointer}
+.blogpost pre.code .copy:hover{background:rgba(255,255,255,.2)}
+.blogpost pre.code:has(.copy){padding-top:40px}
+.blogpost .sources{margin:0 0 18px;padding-left:20px;font-size:15px}
+.blogpost .sources li{margin-bottom:6px}
 @media (max-width:560px){
   .blogpost{font-size:16.5px}
+  .blogpost table{font-size:14px}
+  .blogpost th,.blogpost td{padding:9px 11px}
+  .blogpost pre.code{font-size:12.5px;padding:16px}
   .blogpost article{padding:34px 0 52px}
   .blogpost .costplate .ln{flex-direction:column;gap:2px}
   .blogpost .costplate .ln span:last-child{font-size:15px}

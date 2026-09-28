@@ -18,7 +18,8 @@
      9. REPLACE_QUOTE      → the pull quote, and REPLACE_ATTRIBUTION under it
                              (or delete the div.said block if there is no quote)
     10. REPLACE_PREV_*     → previous and next post slug and title in nav.pn
-     Then: write the article body, and add a card on /blog.html
+     Then: write the article body, and run node scripts/build-blog-index.js
+     (it adds the card on /blog and the homepage from this page's head)
 
      STRUCTURE: posts use the .blogpost wrapper and assets/css/blog-post.css,
      not the .prose pattern. Keep the wrapper: article styling is scoped to it
