@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why Shopify Stores Oversell Across Amazon and TikTok Shop, and How to Stop It</title>
+<meta name="description" content="Four reasons stock drifts between Shopify, Amazon and TikTok Shop, the 2.5% cancellation thresholds that punish it, a cost calculator, and the fix in the order that works.">
+<meta name="author" content="Babar Lal">
+<link rel="canonical" href="https://www.kabsailabs.com/blog/shopify-overselling-multi-channel-fix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Shopify Stores Oversell Across Amazon and TikTok Shop, and How to Stop It">
+<meta property="og:description" content="Four reasons stock drifts between Shopify, Amazon and TikTok Shop, the 2.5% cancellation thresholds that punish it, a cost calculator, and the fix in the order that works.">
+<meta property="og:url" content="https://www.kabsailabs.com/blog/shopify-overselling-multi-channel-fix">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="article:published_time" content="2026-09-29">
+<meta property="article:modified_time" content="2026-09-29">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/blog/shopify-overselling-multi-channel-fix/hero.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Three orders, zero units: how a Shopify store oversells across TikTok Shop and Amazon in 31 minutes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Shopify Stores Oversell Across Amazon and TikTok Shop, and How to Stop It">
+<meta name="twitter:description" content="Four reasons stock drifts between Shopify, Amazon and TikTok Shop, the 2.5% cancellation thresholds that punish it, a cost calculator, and the fix in the order that works.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/blog/shopify-overselling-multi-channel-fix/hero.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Why your Shopify store keeps overselling, and the fix that is not another app",
+      "description": "Four reasons stock drifts between Shopify, Amazon and TikTok Shop, the 2.5% cancellation thresholds that punish it, a cost calculator, and the fix in the order that works.",
+      "url": "https://www.kabsailabs.com/blog/shopify-overselling-multi-channel-fix",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/blog/shopify-overselling-multi-channel-fix"
+      },
+      "datePublished": "2026-09-29",
+      "dateModified": "2026-09-29",
+      "image": "https://www.kabsailabs.com/assets/img/blog/shopify-overselling-multi-channel-fix/hero.png",
+      "author": {
+        "@type": "Person",
+        "name": "Babar Lal"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.kabsailabs.com/#organization",
+        "name": "KABS AI LABS",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kabsailabs.com/assets/img/favicon.svg"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.kabsailabs.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Why your Shopify store keeps overselling, and the fix that is not another app",
+          "item": "https://www.kabsailabs.com/blog/shopify-overselling-multi-channel-fix"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does my Shopify store oversell even with an inventory sync app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the app fixes one of four causes. It closes the sync delay, partly, but it cannot see bundles that double-count, returns that were never restocked, or two staff members editing the same SKU in two places. Those three keep feeding it a wrong number to spread."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does Shopify take to sync inventory to TikTok Shop or Amazon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the connector, not on Shopify. Polled connectors update every 15 to 60 minutes, which leaves a 3 to 7 minute overselling window on each cycle in a busy store. Event-driven sync built on webhooks updates in 30 to 90 seconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What cancellation rate gets a TikTok Shop or Amazon account in trouble?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TikTok Shop's hard requirement is a seller-fault cancellation rate of 2.5% or lower, and out-of-stock cancellations count as seller fault. Amazon's pre-fulfilment cancel rate target is also 2.5% over seven days, and sellers report suspensions starting around 5%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I turn off \"continue selling when out of stock\" on Shopify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for every tracked product and variant, unless you deliberately run backorders and have told customers so. It is the single setting that turns a sync lag into an oversell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much buffer stock should I keep per channel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start by listing two to three units fewer than you hold on each channel, or set your low-stock line at twice your average daily sell-through, then widen the buffer on the channel that spikes and narrow it on the slow one. The buffer should be per SKU velocity, not one number for the whole catalogue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to build something or is an app enough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two channels, no bundles, one person editing stock, no live selling: an app plus a buffer is enough. Three or more channels, bundles, a 3PL, wholesale by email, or a marketplace warning already received: the app becomes one part of a built system, and the oversell cost sum above tells you whether the build pays back."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/blog/shopify-overselling-multi-channel-fix" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article><div class="wrap">
+<p class="kicker">Ecommerce</p>
+<h1>Why your Shopify store keeps overselling, and the fix that is not another app</h1>
+<p class="byline">By Babar Lal &nbsp;&middot;&nbsp; <time datetime="2026-09-29">29 September 2026</time> &nbsp;&middot;&nbsp; 12 min read</p>
+<p>It is a normal Tuesday. A TikTok creator you sent a sample to posts a video at 2pm and it does better than either of you expected. By 2:20 your last twelve units of that colour have sold on TikTok Shop. At 2:26 someone buys one on your Shopify store, because your store still says nine in stock. At 2:31 an Amazon order lands for two more. You now have three orders for a product you do not have, on three platforms with three different rules about what happens next.</p>
+<p>Most store owners blame the sync app when this happens. Sometimes that is fair. Most of the time it is not. The app did what it was configured to do, and the stock count was already wrong before the video went up. I have looked inside enough of these setups now to say that the oversell is almost never one problem. It is four small ones stacked on top of each other, and the app only sees one of them.</p>
+<p>This post walks through the four, with the numbers behind each, what store owners on the Shopify forums and Amazon forums have been saying about it, and the fix in the order that actually works. Near the end there is a simple way to work out what overselling costs you each month, because that number decides whether any of this is worth fixing.</p>
+<figure class="post-img"><img src="/assets/img/blog/shopify-overselling-multi-channel-fix/hero.png" alt="Timeline of a creator video at 2:00 leading to TikTok Shop selling out at 2:20 and Shopify and Amazon orders at 2:26 and 2:31 for stock that is gone" fetchpriority="high" decoding="async"></figure>
+<h2>The short answer</h2>
+<p>Stock drifts between channels for four reasons, and they compound. Sync delay is the one everybody talks about. Bundles and variants that count the same unit twice is the one nobody notices until an audit. Returns, 3PL receipts and purchase orders that never make it back into the count is the slow leak. And people editing stock by hand in two places is the one that undoes every fix you make to the other three.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Reason</th><th scope="col">What it looks like</th><th scope="col">How fast it bites</th><th scope="col">Who usually spots it</th></tr></thead>
+<tbody>
+<tr><td>Sync delay</td><td>Store says 9, TikTok already sold them</td><td>Minutes, during any spike</td><td>The customer, by cancellation email</td></tr>
+<tr><td>Double counting</td><td>A kit of three sells, only the kit's count drops</td><td>Days to weeks</td><td>Whoever does the next stock take</td></tr>
+<tr><td>Missing inbound and returns</td><td>3PL received 200, Shopify still says 40</td><td>Weeks</td><td>The accountant, at month end</td></tr>
+<tr><td>Manual edits</td><td>Two people "fix" the same SKU differently</td><td>Same day</td><td>Nobody, until the oversell</td></tr>
+</tbody>
+</table></div>
+<figure class="post-img"><img src="/assets/img/blog/shopify-overselling-multi-channel-fix/four-reasons.png" alt="The four reasons stock drifts between channels stacked as layers: sync delay, double counting, missing inbound and returns, manual edits" loading="lazy" decoding="async"></figure>
+<p>The fix is not a better app, or not only. It is deciding which system is allowed to be right, putting a small buffer between that number and each channel, moving from polled sync to event-driven sync where the money is, and running a weekly reconciliation that catches the slow leaks before they become a Tuesday. An app can do parts of that. It cannot decide the first part for you, and that is where most stores are actually stuck.</p>
+<h2>Reason one: the sync is slower than your customers</h2>
+<p>Most connector apps do not watch your store. They ask it a question on a timer. Every fifteen minutes, or every hour on cheaper plans, the app polls each channel, compares the numbers, and pushes updates. Between two polls, nothing moves. If a video, an email, or a marketplace deal sells through a SKU inside that window, every other channel keeps selling a number that stopped being true a while ago.</p>
+<p>The gap is bigger than it sounds. A <a href="https://www.tkturners.com/blog/ecommerce-and-marketplace-inventory-sync-failures" target="_blank" rel="noopener">breakdown by TK Turners</a> puts event-driven webhook sync at 30 to 90 seconds of lag, fifteen-minute polling at 5 to 15 minutes, and hourly ERP polling at 30 to 60 minutes. Their figure for a fifteen-minute poll in a busy store is a median overselling window of 3 to 7 minutes on every cycle. That is not a rare edge case. That is every quarter hour, all day, on your best-selling products.</p>
+<figure class="post-img"><img src="/assets/img/blog/shopify-overselling-multi-channel-fix/lag-ladder.png" alt="Bar chart of inventory sync lag: webhook 30 to 90 seconds, 15-minute polling 5 to 15 minutes, hourly polling 30 to 60 minutes" loading="lazy" decoding="async"></figure>
+<p>The platforms do not care why. TikTok Shop treats an out-of-stock cancellation as seller fault and requires a <a href="https://seller-us.tiktok.com/university/essay?knowledge_id=7953001314830094&amp;lang=en" target="_blank" rel="noopener">seller-fault cancellation rate of 2.5% or lower</a>. Go over it and you get points against the account, less visibility, a longer settlement period, or an order cap. Amazon's pre-fulfilment cancel rate target is also 2.5% on a seven-day window, and sellers on the <a href="https://sellercentral.amazon.com/seller-forums/discussions/t/3411a32b951513f970cfa724216468c7" target="_blank" rel="noopener">Amazon forums</a> trade tips about staying under 5% because that is where suspensions start. On a store doing 200 orders a week, five oversells is enough to trip both.</p>
+<p>There is a second kind of delay hiding inside the first. Some connectors fire their update when an order is fulfilled, not when it is placed. On a fast day that means the stock number lags by however long it takes your warehouse to pack, which can be hours. If your app has a setting for this, it is the first thing to check.</p>
+<h2>Reason two: bundles and variants that count the same unit twice</h2>
+<p>A gift set of three candles is one product on your store and three products in your stockroom. When the set sells, Shopify drops the set's count by one. The three individual candles, which you also sell on their own and on Amazon, do not move. You now have three listings that believe in stock that has already left the building. Every bundle, kit, multipack and "buy two, save 10%" variant does this unless something is tracking the components underneath.</p>
+<p>Variants cause the same problem sideways. A T-shirt in five sizes and four colours is twenty SKUs. If one channel lists it by size only, or the SKU codes were typed differently when the Amazon listing was set up two years ago, the connector has nothing to match on. It either skips those units or, worse, maps them to the wrong variant. Apparel, footwear and beauty stores get this the most because they have the most variants, which is exactly what a <a href="https://sqquid.com/blog/shopify-to-tiktok-connector-problems/" target="_blank" rel="noopener">Sqquid post on connector failures</a> lists first: variant matching, duplicate SKUs, and broken product associations.</p>
+<p>This one is quiet. Nothing breaks on the day. You find out weeks later when a stock take comes back short and nobody can explain where forty units went. They went out inside bundles that never subtracted them. The fix is dull and specific: track every component, make the bundle a virtual product whose availability is the minimum of its parts, and make sure every channel uses the same SKU string down to the last character.</p>
+<h2>Reason three: stock that comes in and never gets counted</h2>
+<p>Sync apps are good at subtracting. They are bad at adding. A sale is an event every platform announces loudly. A return arriving at the warehouse, a 3PL confirming a 200-unit receipt, or a purchase order half-delivered because the supplier short-shipped, are events that live in an email, a PDF, or a portal nobody has connected to anything.</p>
+<p>So the count drifts downward. Returns get refunded but not restocked, and the item sits on a shelf while every channel shows it sold out. Or the opposite: the 3PL books in a delivery, someone updates Shopify by hand from the packing slip, the supplier actually sent 180 not 200, and now you are twenty units over on every channel at once. Either way, the number in the system stopped matching the number on the shelf, and the sync app faithfully spread the wrong number everywhere.</p>
+<p>The <a href="https://sellerchamp.com/blog/shopify-inventory-management-prevent-overselling/" target="_blank" rel="noopener">SellerChamp guide</a> from March this year lists returns and cancellations not being updated as one of its seven causes of overselling, alongside multiple warehouses and manual spreadsheets. In our own audits it is the most common thing the owner does not know about. They know sync delay exists. They do not know their returns process has quietly disconnected from their stock count since the last staff change.</p>
+<h2>Reason four: two people fixing the same number</h2>
+<p>Every multi-channel store I have looked at has at least two people who can edit stock, and at least two places they can do it. One adjusts Shopify after a stock take. Another adjusts Amazon Seller Central after a customer complaint. The sync app then has to decide which of them is right, and it decides based on whichever update it saw last, which is not the same as whichever was correct.</p>
+<p>This is the reason the other three fixes keep coming undone. You can put a buffer on every channel and switch to real-time sync, and a well-meaning staff member can still type 50 into a box that should say 30 because a box on a shelf looked full. The connector will then push 50 everywhere within ninety seconds, which is the real-time sync working exactly as designed.</p>
+<p>Shopify's own multi-location logic adds a version of this without any human involved. A merchant on the <a href="https://community.shopify.com/t/major-problem-new-inventory-updates-to-shopify-are-overselling-our-stock-and-creating-negatives/194851/1" target="_blank" rel="noopener">Shopify Community</a> with two shops sixty miles apart described orders being fulfilled from one location while the stock lived at the other, pushing the count negative, because Shopify's default picks the location that minimises shipping cost rather than the one that has the item. Support's answer was to set fulfilment priority by hand. That is correct and it is also the point: the platform's defaults are not your rules, and until somebody writes your rules down, every person and every app is guessing.</p>
+<p>The fix here is a rule, not a tool. One system is the source of truth. Everything else is read-only for stock. If a person needs to change a count, they change it there and nowhere else, with a reason logged. The moment that rule exists, the other three fixes stop unwinding.</p>
+<h2>What store owners are saying</h2>
+<p>I read the forums and the connector blogs before writing this, because our sample of audited stores is small and the complaints out there add up to a pattern.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Where</th><th scope="col">Who</th><th scope="col">What they hit</th><th scope="col">What it tells you</th></tr></thead>
+<tbody>
+<tr><td><a href="https://community.shopify.com/t/major-problem-new-inventory-updates-to-shopify-are-overselling-our-stock-and-creating-negatives/194851/1" target="_blank" rel="noopener">Shopify Community</a></td><td>Two-store retailer with online sales</td><td>Orders fulfilled from the wrong location, stock pushed negative, told to set fulfilment priority manually</td><td>Platform defaults are not your rules</td></tr>
+<tr><td><a href="https://community.shopify.com/t/inventory-selling-into-negative-quantity-at-multiple-locations/50397" target="_blank" rel="noopener">Shopify Community</a></td><td>Multi-location merchant</td><td>Selling into negative quantity across locations</td><td>Multi-location without written rules oversells on its own</td></tr>
+<tr><td><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/3411a32b951513f970cfa724216468c7" target="_blank" rel="noopener">Amazon Seller Forums</a></td><td>Seller doing 300 plus orders a month</td><td>Two cancellations pushed the 7-day cancel rate to 4.3%</td><td>Two oversells in a week is enough to breach 2.5%</td></tr>
+<tr><td><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/c5005f5004e49990b311247594c1f753" target="_blank" rel="noopener">Amazon Seller Forums</a></td><td>Suspended seller</td><td>Account suspended for high pre-fulfilment cancellation rate</td><td>The penalty is the account, not a fee</td></tr>
+<tr><td><a href="https://seller-us.tiktok.com/university/essay?knowledge_id=7953001314830094&amp;lang=en" target="_blank" rel="noopener">TikTok Shop Seller University</a></td><td>TikTok's own policy</td><td>Out-of-stock cancellation is seller fault, hard cap 2.5%</td><td>Every oversell on TikTok counts against you</td></tr>
+<tr><td><a href="https://www.tkturners.com/blog/ecommerce-and-marketplace-inventory-sync-failures" target="_blank" rel="noopener">TK Turners</a></td><td>Integration consultancy</td><td>15-minute polling gives a 3 to 7 minute oversell window per cycle; overselling costs 2 to 4% of GMV</td><td>The cost is bigger than the refund</td></tr>
+<tr><td><a href="https://sellerchamp.com/blog/shopify-inventory-management-prevent-overselling/" target="_blank" rel="noopener">SellerChamp</a></td><td>Listing tool, March 2026</td><td>Seven causes including bundles, returns and spreadsheets; buffer example of holding 20 and listing 17</td><td>Buffers are normal practice, not a hack</td></tr>
+<tr><td><a href="https://sqquid.com/blog/shopify-to-tiktok-connector-problems/" target="_blank" rel="noopener">Sqquid</a></td><td>Connector vendor</td><td>Variant matching, duplicate SKUs and broken associations break TikTok sync, worst in apparel and beauty</td><td>SKU hygiene is a prerequisite, not a nice to have</td></tr>
+<tr><td><a href="https://www.sumtracker.com/blog/shopify-and-tiktok-shop-inventory-sync" target="_blank" rel="noopener">Sumtracker</a></td><td>Inventory app</td><td>Admits syncing "isn't always as seamless as many sellers expect"</td><td>Even the vendors say the app alone is not enough</td></tr>
+</tbody>
+</table></div>
+<p>A note on Reddit. There is a steady stream of overselling posts on r/shopify and r/ecommerce, but the search results I could open cleanly were the Shopify Community and Amazon forum threads above, so those are what I have cited. If you have a Reddit thread that changed how you run stock, send it and I will add it.</p>
+<p>The thread through all of it is the same one I keep seeing in audits. Vendors describe overselling as a sync speed problem, because speed is what they sell. Sellers describe it as a cancellation rate problem, because that is what hurts. Both are right and both are downstream of the real cause, which is that nobody in the business has decided which number is the true one.</p>
+<h2>The fix, in the order it works</h2>
+<p>Do these in order. Each one only holds if the one before it is in place.</p>
+<ol>
+<li>Pick one source of truth. It can be Shopify, your 3PL's system, or a standalone inventory tool. It cannot be "whichever one was updated last". Write down which system owns the stock number and make every other channel read-only for stock. If two people can edit stock, one of them loses that permission today.</li>
+<li>Fix the SKUs before you fix the sync. Every variant on every channel gets the same SKU string, character for character. Every bundle becomes a virtual product whose availability is the minimum of its components. This is a spreadsheet job, it is boring, and skipping it is why the expensive sync app you bought last year did not work.</li>
+<li>Put a buffer between the true count and each channel. If you hold 20, list 17 on the slow channels and maybe 19 on the one that sells fastest. The buffer is not lost sales. It is the units that would otherwise become cancellations, and cancellations cost more. A starting rule from the TK Turners piece is to set your low-stock line at twice your average daily sell-through, then tune per channel.</li>
+<li>Move from polling to events where the money is. Your top twenty SKUs by revenue should update on order creation, not on a fifteen-minute timer, and not on fulfilment. Shopify webhooks, TikTok Shop order events and Amazon order notifications all fire within seconds. The long tail can stay on a timer.</li>
+<li>Connect the inbound side. Returns received, 3PL receipts, and purchase orders delivered need to write into the source of truth, and they need to write the received quantity, not the ordered one. This is usually the piece nobody has built. It is also where the slow leak lives.</li>
+<li>Run a weekly reconciliation report. Source of truth versus each channel versus the last physical count, per SKU, with any gap over a threshold flagged. Ten minutes on a Monday. This is what catches steps 2 and 5 drifting before they become a Tuesday oversell.</li>
+</ol>
+<figure class="post-img"><img src="/assets/img/blog/shopify-overselling-multi-channel-fix/six-steps.png" alt="Six steps to stop overselling in order, with a branch after step three for stores where an app is enough" loading="lazy" decoding="async"></figure>
+<p>When an app is enough. If you sell on two channels, your products have no bundles, one person edits stock, and you do not run flash sales or live selling, a good connector app on its fastest plan plus a buffer will get you most of the way. Do steps 1 to 3 yourself and let the app do step 4. Do not build anything.</p>
+<p>When it is not. If you have bundles, three or more channels, a 3PL, wholesale orders coming in by email, or you have already been warned on TikTok or Amazon about cancellation rate, an app is one part of the system and the rest has to be built around it. That is the point where the arithmetic in the next section decides whether it is worth building.</p>
+<h2>What overselling actually costs you</h2>
+<p>The refund is the smallest part. Here is the sum we run on the audit call, with example numbers for a store doing 800 orders a month at an average order value of $60.</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Line</th><th scope="col">How to get it</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><td>Oversells per month</td><td>Count cancellations with reason "out of stock" across all channels</td><td>12</td></tr>
+<tr><td>Refund and payment fees</td><td>Oversells x AOV x roughly 3%</td><td>12 x $60 x 0.03 = $22</td></tr>
+<tr><td>Support time</td><td>Oversells x 15 minutes x staff cost per hour</td><td>12 x 0.25 x $25 = $75</td></tr>
+<tr><td>Goodwill spend</td><td>Discount codes or free shipping given to keep the customer</td><td>12 x $8 = $96</td></tr>
+<tr><td>Lost repeat purchases</td><td>Oversells x share who never return x their expected next-year value</td><td>12 x 0.4 x $120 = $576</td></tr>
+<tr><td>Marketplace penalty exposure</td><td>If cancel rate is near 2.5%: risk to Buy Box, visibility, or the account</td><td>Hard to price. Often the whole channel</td></tr>
+<tr><td>Total, before penalties</td><td>Sum of the lines above</td><td>About $770 a month</td></tr>
+</tbody>
+</table></div>
+<figure class="post-img"><img src="/assets/img/blog/shopify-overselling-multi-channel-fix/cost-stack.png" alt="Stacked bar of what 12 oversells a month cost: fees, support time, goodwill discounts and lost repeat purchases totalling about $770" loading="lazy" decoding="async"></figure>
+<p>That is around $9,000 a year for a store that considers overselling a minor nuisance, and it does not include the channel risk, which is the line that actually keeps people up at night. TK Turners puts the all-in cost across refunds, penalties and compensation at 2 to 4% of gross merchandise value. On $48,000 a month that is $960 to $1,920, which lands in the same range as our sum.</p>
+<p>Now compare it to the fix. A connector app on a fast plan runs $50 to $300 a month. A built system with buffers, event-driven sync on top SKUs, inbound connections and a reconciliation report is a setup fee plus a retainer. If your oversell cost is under $300 a month, buy the app and do the first three steps yourself. If it is over $1,000, or you are within a point of a marketplace threshold, the build pays back inside a quarter. If it is in between, the honest answer depends on how many channels you plan to add next year.</p>
+<p>If you want the sum done on your own numbers, the <a href="/services/industries/ecommerce">oversell risk page</a> has a version you can fill in.</p>
+<h2>What we build for this, and when we say no</h2>
+<p>We build the version of steps 1 to 6 that fits the store, using n8n as the backbone and the channels' own webhooks and APIs rather than a fourth app in the middle. The source of truth stays wherever the client already trusts. Buffers are set per channel and per SKU velocity, not one number for everything. The top SKUs update on order creation. Returns, 3PL receipts and POs are read by AI out of the emails and PDFs they arrive in and posted into the count as received quantities. The reconciliation report lands in Slack or email on Monday morning with only the gaps that matter.</p>
+<p>Most focused builds are live inside four to six weeks. We read every output for the first month before anyone trusts it, including us.</p>
+<p>We also turn down about half the stores that ask. If you are on two channels with no bundles and one person editing stock, we will tell you to buy an app and send you the checklist for the first three steps instead. If your stock counts live in screenshots or a notebook, we fix the data before we build anything on it, because automating a wrong number just delivers the wrong number faster. And if your oversell cost comes out under the cost of the build, we say so on the call and stop there.</p>
+<p>The <a href="/services/industries/ecommerce">ecommerce page</a> has the full list of what we plug and the <a href="/audit">audit</a> is thirty minutes, free, and is mostly us asking how one week of your stock process actually happens.</p>
+<h2>Questions people ask</h2>
+<p><strong>Why does my Shopify store oversell even with an inventory sync app?</strong> Because the app fixes one of four causes. It closes the sync delay, partly, but it cannot see bundles that double-count, returns that were never restocked, or two staff members editing the same SKU in two places. Those three keep feeding it a wrong number to spread.</p>
+<p><strong>How long does Shopify take to sync inventory to TikTok Shop or Amazon?</strong> It depends on the connector, not on Shopify. Polled connectors update every 15 to 60 minutes, which leaves a 3 to 7 minute overselling window on each cycle in a busy store. Event-driven sync built on webhooks updates in 30 to 90 seconds.</p>
+<p><strong>What cancellation rate gets a TikTok Shop or Amazon account in trouble?</strong> TikTok Shop's hard requirement is a seller-fault cancellation rate of 2.5% or lower, and out-of-stock cancellations count as seller fault. Amazon's pre-fulfilment cancel rate target is also 2.5% over seven days, and sellers report suspensions starting around 5%.</p>
+<p><strong>Should I turn off "continue selling when out of stock" on Shopify?</strong> Yes, for every tracked product and variant, unless you deliberately run backorders and have told customers so. It is the single setting that turns a sync lag into an oversell.</p>
+<p><strong>How much buffer stock should I keep per channel?</strong> Start by listing two to three units fewer than you hold on each channel, or set your low-stock line at twice your average daily sell-through, then widen the buffer on the channel that spikes and narrow it on the slow one. The buffer should be per SKU velocity, not one number for the whole catalogue.</p>
+<p><strong>Do I need to build something or is an app enough?</strong> Two channels, no bundles, one person editing stock, no live selling: an app plus a buffer is enough. Three or more channels, bundles, a 3PL, wholesale by email, or a marketplace warning already received: the app becomes one part of a built system, and the oversell cost sum above tells you whether the build pays back.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<h2>Sources</h2>
+<ul class="sources">
+<li><a href="https://seller-us.tiktok.com/university/essay?knowledge_id=7953001314830094&amp;lang=en" target="_blank" rel="noopener">TikTok Shop Seller University, seller-fault cancellation rate requirements</a></li>
+<li><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/3411a32b951513f970cfa724216468c7" target="_blank" rel="noopener">Amazon Seller Forums, pre-fulfilment cancellation rate above 2.5%</a></li>
+<li><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/c5005f5004e49990b311247594c1f753" target="_blank" rel="noopener">Amazon Seller Forums, suspended for high pre-fulfilment cancellation rate</a></li>
+<li><a href="https://community.shopify.com/t/major-problem-new-inventory-updates-to-shopify-are-overselling-our-stock-and-creating-negatives/194851/1" target="_blank" rel="noopener">Shopify Community, inventory updates overselling stock and creating negatives</a></li>
+<li><a href="https://community.shopify.com/t/inventory-selling-into-negative-quantity-at-multiple-locations/50397" target="_blank" rel="noopener">Shopify Community, inventory selling into negative quantity at multiple locations</a></li>
+<li><a href="https://www.tkturners.com/blog/ecommerce-and-marketplace-inventory-sync-failures" target="_blank" rel="noopener">TK Turners, why your Amazon and Shopify inventory never match</a></li>
+<li><a href="https://sellerchamp.com/blog/shopify-inventory-management-prevent-overselling/" target="_blank" rel="noopener">SellerChamp, Shopify inventory management and preventing overselling</a></li>
+<li><a href="https://sqquid.com/blog/shopify-to-tiktok-connector-problems/" target="_blank" rel="noopener">Sqquid, Shopify to TikTok connector problems</a></li>
+<li><a href="https://www.sumtracker.com/blog/shopify-and-tiktok-shop-inventory-sync" target="_blank" rel="noopener">Sumtracker, Shopify and TikTok Shop inventory sync</a></li>
+</ul>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

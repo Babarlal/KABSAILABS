@@ -94,6 +94,10 @@
 .blogpost pre.code .copy{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em; background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:4px 9px;cursor:pointer}
 .blogpost pre.code .copy:hover{background:rgba(255,255,255,.2)}
 .blogpost pre.code:has(.copy){padding-top:40px}
+/* Plain numbered lists from Markdown. The site reset leaves ol with no indent, which
+   hangs the numbers in the page gutter on a phone. ol.steps has its own layout above. */
+.blogpost ol:not(.steps){margin:0 0 22px;padding-left:26px}
+.blogpost ol:not(.steps) li{margin-bottom:12px;padding-left:4px}
 .blogpost .sources{margin:0 0 18px;padding-left:20px;font-size:15px}
 .blogpost .sources li{margin-bottom:6px}
 @media (max-width:560px){
