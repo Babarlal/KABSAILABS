@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/website-chat-agent-2026",
+      "destination": "/blog/ai-website-chat",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/whatsapp-ai-support-2026",
       "destination": "/blog/whatsapp-sms-customer-support",
       "statusCode": 301
