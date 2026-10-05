@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/automatic-appointment-booking-2026",
+      "destination": "/blog/automatic-appointment-booking",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/instant-lead-response-ai-2026",
       "destination": "/blog/speed-to-lead",
       "statusCode": 301
