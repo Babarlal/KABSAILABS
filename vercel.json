@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/missed-call-text-back-2026",
+      "destination": "/blog/missed-call-text-back",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/getting-started-with-ai-in-2026",
       "destination": "/blog/ai-automation-for-small-business-questions",
       "statusCode": 301
