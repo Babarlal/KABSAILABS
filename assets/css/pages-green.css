@@ -369,6 +369,9 @@
 .pg .pl-hero .container{position:relative;padding-block:clamp(44px,7vw,80px)}
 .pg .pl-hero .crumb{font-family:var(--mono);font-size:12px;color:#8FB0A2;margin-bottom:14px}
 .pg .pl-hero h1{color:#fff;font-size:clamp(2.3rem,5.2vw,3.7rem);max-width:16ch}
+/* The hook line under the keyword H1. The hero is dark, so the accent uses the same mint
+   as the ecommerce hero instead of the brand gradient, which has too little contrast here. */
+.pg .pl-hero h1 .hl{color:var(--mint);-webkit-text-fill-color:var(--mint);background:none}
 .pg .pl-hero .sub{color:#C9D6CD;margin-top:16px;max-width:52ch;font-size:clamp(1rem,2vw,1.15rem)}
 .pg .calc{background:#fff;border:1px solid var(--rule);border-radius:18px;box-shadow:var(--shadow-lg);padding:clamp(22px,3vw,34px);display:grid;gap:26px;grid-template-columns:1fr;margin-top:34px}
 @media(min-width:820px){
