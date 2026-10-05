@@ -100,6 +100,10 @@
 .blogpost ol:not(.steps) li{margin-bottom:12px;padding-left:4px}
 .blogpost .sources{margin:0 0 18px;padding-left:20px;font-size:15px}
 .blogpost .sources li{margin-bottom:6px}
+.blogpost .related{margin:44px 0 0;padding-top:22px;border-top:1px solid var(--border)}
+.blogpost .related h2{margin-top:0}
+.blogpost .related ul{margin:0 0 18px;padding-left:20px;font-size:15px}
+.blogpost .related li{margin-bottom:8px}
 @media (max-width:560px){
   .blogpost{font-size:16.5px}
   .blogpost table{font-size:14px}
