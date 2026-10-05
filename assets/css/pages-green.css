@@ -1187,3 +1187,33 @@
 @media (prefers-reduced-motion: reduce){
   .pg-home .hero-veil::after{ animation: none; transform: none; }
 }
+
+/* ---------- /tools/ pages ----------
+   The two free tools reuse the homepage shell (.pg .pg-home) so the receipt dials
+   look identical on both. These rules only add the page heading, the links under
+   the tool and the scorecard's own controls. */
+.pg .tool{padding-top:clamp(40px,6vw,80px)}
+.pg .tool h1{font-size:clamp(2.2rem,5.2vw,3.6rem);font-variation-settings:"opsz" 96,"SOFT" 50}
+.pg .tool-kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-ink)}
+.pg .tool-links{margin-top:clamp(40px,6vw,64px);padding-top:22px;border-top:1px solid var(--line);display:grid;gap:8px;font-size:1rem}
+.pg .tool-links a{color:var(--mint-ink);text-decoration:underline;text-underline-offset:3px}
+.pg .score{display:grid;gap:36px}
+.pg .score fieldset{border:0;padding:0;margin:0;min-width:0}
+.pg .score legend{font-family:var(--display);font-size:1.5rem;margin-bottom:6px;padding:0}
+.pg .score .hint{color:var(--ink-soft);font-size:.95rem;margin-bottom:18px}
+.pg .score .q{display:grid;gap:8px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.pg .score .q label,.pg .score .q .qt{font-size:.98rem}
+.pg .score select{width:100%;min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-size:1rem}
+.pg .score .yn{display:flex;gap:10px}
+.pg .score .yn label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer}
+.pg .score .yn input{accent-color:var(--mint-ink);width:18px;height:18px}
+.pg .score-out .slip h2{font-size:1.5rem;margin-bottom:6px}
+.pg .score-out .rank{list-style:none;margin:14px 0 4px;padding:0;display:grid;gap:10px}
+.pg .score-out .rank li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:.92rem}
+.pg .score-out .rank .rank-bar{grid-column:1 / -1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.pg .score-out .rank .rank-bar i{display:block;height:100%;background:var(--mint-ink)}
+.pg .score-out .empty{color:var(--ink-soft);font-size:.95rem}
+@media (min-width:860px){
+  .pg .score{grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+  .pg .score-out{position:sticky;top:110px}
+}

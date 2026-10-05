@@ -132,6 +132,7 @@
 .foot-col h4{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:15px;font-weight:500}
 .foot-col ul{list-style:none}
 .foot-col li{margin-bottom:10px}
+.foot-col ul + h4{margin-top:24px}
 .foot-col a{color:var(--muted);font-size:14px;transition:color .15s}
 .foot-col a:hover{color:var(--ink)}
 .ai-summary{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;margin-top:40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}

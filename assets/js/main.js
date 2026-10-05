@@ -101,9 +101,19 @@ function waLink(){
   var msg = encodeURIComponent("Hi KABS AI LABS. I came from " + CONFIG.domain + " and would like to chat.");
   return "https://wa.me/" + CONFIG.whatsapp + "?text=" + msg;
 }
-function col(title, items){
-  return '<div class="foot-col"><h4>'+title+'</h4><ul>'+
-    items.map(function(i){return '<li><a href="'+i[1]+'">'+i[0]+'</a></li>';}).join('')+'</ul></div>';
+/* Footer-only list. Kept out of NAV.resources because the header menu reads that too,
+   and the free tools belong in the footer only. */
+var FOOT_TOOLS = [
+  ["Readiness scorecard", "/tools/automation-readiness-scorecard"],
+  ["Cost of doing it by hand", "/tools/cost-of-doing-it-by-hand"]
+];
+function footList(items){
+  return '<ul>'+ items.map(function(i){return '<li><a href="'+i[1]+'">'+i[0]+'</a></li>';}).join('') +'</ul>';
+}
+/* sub is an optional [title, items] pair rendered under the first list, same style. */
+function col(title, items, sub){
+  return '<div class="foot-col"><h4>'+title+'</h4>'+ footList(items) +
+    (sub ? '<h4>'+sub[0]+'</h4>'+ footList(sub[1]) : '') +'</div>';
 }
 function menuCol(title, items){
   return '<div class="menu-col"><h5>'+title+'</h5>'+
@@ -200,7 +210,7 @@ function buildFooter(){
         '<p class="foot-legal"><!-- KABS AI LABS LLC · [street], [city], [state] [zip] --></p>'+
       '</div>'+
       col('Services', NAV.services.slice(0,6))+ col('Industries', NAV.industries)+
-      col('Resources', NAV.resources)+ col('Company', NAV.company)+
+      col('Resources', NAV.resources, ['Free tools', FOOT_TOOLS])+ col('Company', NAV.company)+
     '</div>'+ ai +
     '<div class="foot-bottom"><span>&copy; '+year+' '+CONFIG.brand+'. All rights reserved.</span>'+
       '<span><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <span class="mono">'+CONFIG.email+'</span></span>'+

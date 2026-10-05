@@ -32,6 +32,8 @@
 <noscript><link rel="stylesheet" href="/assets/css/audit-patches.min.css"></noscript>
 <script src="/assets/js/tagging.min.js" defer></script>
 <script src="/assets/js/main.min.js" defer></script>
+<script src="/assets/js/receipt.min.js" defer></script>
+<!-- sameAs below: add the YouTube channel URL here when it exists. JSON allows no comments, so the reminder lives outside the block. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,7 +49,7 @@
         "width": 274,
         "height": 90
       },
-        "sameAs": ["https://www.linkedin.com/company/kabsailabs/"],
+        "sameAs": ["https://www.linkedin.com/company/kabsailabs/", "https://github.com/Babarlal/KABSAILABS"],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "448 Third Line",
@@ -285,6 +287,11 @@
     </div>
     <div class="grid cols-3">
 <!-- BLOG-LATEST:START -->
+  <a class="card link" href="/blog/ai-automation-for-small-business-questions">
+    <div class="meta"><time datetime="2026-09-29">29 Sep 2026</time></div>
+    <h3 style="font-size:18px">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</h3><p>What AI automation is, what it costs, what to automate first, n8n vs Zapier vs Make, how to choose an agency, and what goes wrong. 24 questions answered by an agency that turns down half its builds.</p>
+    <span class="more">Read &rarr;</span>
+  </a>
   <a class="card link" href="/blog/shopify-overselling-multi-channel-fix">
     <div class="meta"><time datetime="2026-09-29">29 Sep 2026</time></div>
     <h3 style="font-size:18px">Why Shopify Stores Oversell Across Amazon and TikTok Shop, and How to Stop It</h3><p>Four reasons stock drifts between Shopify, Amazon and TikTok Shop, the 2.5% cancellation thresholds that punish it, a cost calculator, and the fix in the order that works.</p>
@@ -293,11 +300,6 @@
   <a class="card link" href="/blog/gpt-6-astra-vs-claude-fable-5-1">
     <div class="meta"><time datetime="2026-09-28">28 Sep 2026</time></div>
     <h3 style="font-size:18px">GPT-6 Astra vs Claude Fable 5.1: Which Is Better, and How to Prompt Each</h3><p>An agency owner compares GPT-6 Astra and Claude Fable 5.1 on real client work: writing, computer use, coding agents, pricing, and the prompts that stop wasted tokens.</p>
-    <span class="more">Read &rarr;</span>
-  </a>
-  <a class="card link" href="/blog/getting-started-with-ai-in-2026">
-    <div class="meta"><time datetime="2026-08-06">6 Aug 2026</time></div>
-    <h3 style="font-size:18px">Getting Started With AI in 2026: A Plain-English Guide for Service Businesses</h3><p>No jargon, no hype. The 24 things AI can actually do for a service business in 2026, what each one costs, and how to tell which one you need first.</p>
     <span class="more">Read &rarr;</span>
   </a>
 <!-- BLOG-LATEST:END -->
@@ -459,35 +461,7 @@ window.__three = new Promise(function(res){
   });
   select(0);
 
-  /* ---------- receipt ---------- */
-  var d = [1,2,3,4].map(function(n){ return document.getElementById('d'+n); });
-  var o = [1,2,3,4].map(function(n){ return document.getElementById('o'+n); });
-  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
-  function calc(){
-    var times = +d[0].value, mins = +d[1].value, rate = +d[2].value, err = +d[3].value;
-    o[0].textContent = times; o[1].textContent = mins; o[2].textContent = '$'+rate; o[3].textContent = err+'%';
-    var hours = times * mins / 60 * 50;
-    var labour = hours * rate;
-    var fix = times * 50 * (err/100) * (mins*4/60) * rate;
-    var total = labour + fix;
-    document.getElementById('rHours').textContent = Math.round(hours).toLocaleString('en-US') + ' h';
-    document.getElementById('rLabour').textContent = money(labour);
-    document.getElementById('rFix').textContent = money(fix);
-    document.getElementById('rTotal').textContent = money(total);
-    var v = document.getElementById('verdict');
-    if (total < 6000){
-      v.className = 'verdict no';
-      v.innerHTML = '<b>Don\'t automate this yet.</b>At this size a build would cost more than the task does. Write the task down as a checklist and come back when the volume doubles.';
-    } else if (total < 15000){
-      v.className = 'verdict yes';
-      v.innerHTML = '<b>Worth a look.</b>A small build usually pays back inside a year here. The audit call decides whether it\'s a system or a spreadsheet fix.';
-    } else {
-      v.className = 'verdict yes';
-      v.innerHTML = '<b>Build it.</b>This is the kind of task that pays for its own system in a few months. Book the audit and bring one week of real examples.';
-    }
-  }
-  d.forEach(function(el){ el.addEventListener('input', calc); });
-  calc();
+  /* ---------- receipt: arithmetic lives in /assets/js/receipt.js, shared with /tools/cost-of-doing-it-by-hand ---------- */
 
   /* ---------- form (front-end only in this mockup) ---------- */
   var form = document.getElementById('bookForm');

@@ -104,6 +104,16 @@
 .blogpost .related h2{margin-top:0}
 .blogpost .related ul{margin:0 0 18px;padding-left:20px;font-size:15px}
 .blogpost .related li{margin-bottom:8px}
+/* Question-led posts: a contents box of anchor links, numbered h3s with room above
+   them, and a scroll offset so a jump does not land under the sticky header. */
+.blogpost .post-toc{margin:8px 0 36px;padding:22px 24px;background:var(--tint);border:1px solid var(--border);border-radius:var(--radius)}
+.blogpost .post-toc h2{margin:0 0 6px;font-size:19px}
+.blogpost .post-toc .toc-group{margin:16px 0 6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+.blogpost .post-toc .toc-group a{color:var(--muted);text-decoration:none}
+.blogpost .post-toc ol{margin:0;padding-left:28px;font-size:15.5px}
+.blogpost .post-toc li{margin-bottom:4px;padding-left:2px}
+.blogpost h3[id^="q"]{margin-top:34px}
+.blogpost h2[id],.blogpost h3[id]{scroll-margin-top:96px}
 @media (max-width:560px){
   .blogpost{font-size:16.5px}
   .blogpost table{font-size:14px}

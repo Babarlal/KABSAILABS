@@ -11,6 +11,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.kabsailabs.com/audit</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://www.kabsailabs.com/blog</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/blog/ai-automation-for-small-business-questions</loc></url>
   <url><loc>https://www.kabsailabs.com/blog/ai-content-writing-small-business-2026</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://www.kabsailabs.com/blog/ai-phone-answering-small-business</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://www.kabsailabs.com/blog/appointment-reminders-no-shows</loc><lastmod>2026-09-18</lastmod></url>
@@ -61,4 +62,6 @@
   <url><loc>https://www.kabsailabs.com/services/white-label</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://www.kabsailabs.com/services/workflow-automation</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://www.kabsailabs.com/terms</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>https://www.kabsailabs.com/tools/automation-readiness-scorecard</loc></url>
+  <url><loc>https://www.kabsailabs.com/tools/cost-of-doing-it-by-hand</loc></url>
 </urlset>
