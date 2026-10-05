@@ -25,6 +25,51 @@
       "statusCode": 301
     },
     {
+      "source": "/blog/ai-content-writing-small-business-2026",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/repurpose-content-automation",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/automated-outbound-sales-2026",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/company-market-research-automation",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/meeting-notes-action-items-automation",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/business-monitoring-alerts-ai",
+      "destination": "/services/workflow-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/connect-business-systems-automation",
+      "destination": "/services/workflow-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/win-back-lost-customers-ai",
+      "destination": "/services/ai-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/automatic-review-requests-2026",
+      "destination": "/services/ai-automation",
+      "statusCode": 301
+    },
+    {
       "source": "/services/voice-ai",
       "destination": "/services/ai-for-trades",
       "permanent": true
