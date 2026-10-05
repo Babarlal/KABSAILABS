@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/automatic-lead-follow-up-2026",
+      "destination": "/blog/lead-follow-up",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/website-chat-agent-2026",
       "destination": "/blog/ai-website-chat",
       "statusCode": 301
