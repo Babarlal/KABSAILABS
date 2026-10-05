@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/getting-started-with-ai-in-2026",
+      "destination": "/blog/ai-automation-for-small-business-questions",
+      "statusCode": 301
+    },
+    {
       "source": "/services/voice-ai",
       "destination": "/services/ai-for-trades",
       "permanent": true
