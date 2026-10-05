@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/whatsapp-ai-support-2026",
+      "destination": "/blog/whatsapp-sms-customer-support",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/automatic-appointment-booking-2026",
       "destination": "/blog/automatic-appointment-booking",
       "statusCode": 301
