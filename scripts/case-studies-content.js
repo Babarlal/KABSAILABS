@@ -960,7 +960,7 @@ module.exports = [
         'Optionally, Claude turns the list into a short readout for a manager.'
       ] },
       { h3: 'Verified run' },
-      { p: 'The run compared 26 keys and found 18 clean matches and 9 discrepancies, with a net tips difference of $55.00: 3 hours mismatches, 2 tips mismatches, 2 shifts missing from the bookkeeper\'s sheet, 1 missing from the POS and 1 identity mismatch. A difference of 0.05 of an hour correctly passed the tolerance.' },
+      { p: 'The run found hours mismatches beyond the tolerance, tips mismatches, shifts missing from the bookkeeper\'s sheet and from the POS, and an identity mismatch, with a net tips difference of $55.00. A difference of 0.05 of an hour correctly passed the tolerance.' },
       { p: 'The identity mismatch is the one most checks miss. The ID matched, so the numbers reconciled, but the same ID carried two versions of a name across the two systems.' }
     ],
     human: ['Investigating and correcting each discrepancy.', 'Deciding which source is right when they disagree.'],

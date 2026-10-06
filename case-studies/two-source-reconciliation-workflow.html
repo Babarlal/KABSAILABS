@@ -105,7 +105,7 @@
 <h2>How it works</h2>
 <ol><li>Build a key of employee ID and date for every row in both sources.</li><li>Walk every key. Where both sides have it, compare field by field: hours within 0.1 of an hour pass, tips and sales must match to the cent. Where one side lacks it, mark it missing in the POS or missing in the books. Where the ID matches but the name differs, flag an identity mismatch.</li><li>Write one row per discrepancy and a summary with counts and the total dollar difference.</li><li>Optionally, Claude turns the list into a short readout for a manager.</li></ol>
 <h3>Verified run</h3>
-<p>The run compared 26 keys and found 18 clean matches and 9 discrepancies, with a net tips difference of $55.00: 3 hours mismatches, 2 tips mismatches, 2 shifts missing from the bookkeeper's sheet, 1 missing from the POS and 1 identity mismatch. A difference of 0.05 of an hour correctly passed the tolerance.</p>
+<p>The run found hours mismatches beyond the tolerance, tips mismatches, shifts missing from the bookkeeper's sheet and from the POS, and an identity mismatch, with a net tips difference of $55.00. A difference of 0.05 of an hour correctly passed the tolerance.</p>
 <p>The identity mismatch is the one most checks miss. The ID matched, so the numbers reconciled, but the same ID carried two versions of a name across the two systems.</p>
 <h2>What a person still handles</h2>
 <ul class="plain"><li>Investigating and correcting each discrepancy.</li><li>Deciding which source is right when they disagree.</li></ul>
