@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meeting action items and follow-ups · Case study · KABS AI LABS</title>
+<meta name="description" content="How we automated meeting follow-ups: Fathom notes become assigned ClickUp tasks, and contact records in ActiveCampaign are updated or created.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/meeting-action-items-follow-ups">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meeting action items and follow-ups">
+<meta property="og:description" content="How we automated meeting follow-ups: Fathom notes become assigned ClickUp tasks, and contact records in ActiveCampaign are updated or created.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/meeting-action-items-follow-ups">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/meeting-action-items-follow-ups/01.jpg">
+<meta property="og:image:width" content="937">
+<meta property="og:image:height" content="258">
+<meta property="og:image:alt" content="Make scenario: an HTTP trigger and ClickUp step, then a router with an internal meeting path that creates ClickUp tasks and an external path that updates or creates ActiveCampaign contacts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meeting action items and follow-ups">
+<meta name="twitter:description" content="How we automated meeting follow-ups: Fathom notes become assigned ClickUp tasks, and contact records in ActiveCampaign are updated or created.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/meeting-action-items-follow-ups/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Meeting follow-ups that turn notes into tasks and contact updates",
+      "description": "How we automated meeting follow-ups: Fathom notes become assigned ClickUp tasks, and contact records in ActiveCampaign are updated or created.",
+      "url": "https://www.kabsailabs.com/case-studies/meeting-action-items-follow-ups",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/meeting-action-items-follow-ups"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/meeting-action-items-follow-ups/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Meeting action items and follow-ups",
+          "item": "https://www.kabsailabs.com/case-studies/meeting-action-items-follow-ups"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/meeting-action-items-follow-ups" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Scheduling &amp; Ops</p>
+<h1>Meeting follow-ups that turn notes into tasks and contact updates</h1>
+<p class="cs-summary">When a meeting ends, the action items go into ClickUp as assigned tasks and the notes go to the contact's record in ActiveCampaign.</p>
+<h2>The problem</h2>
+<p>The team held many meetings a week: internal check-ins, project discussions and client calls. After each one someone rewatched the recording or read the Fathom notes, copied action items into ClickUp, assigned them, wrote a summary email for external contacts and checked nothing was missed. That took 20 to 30 minutes per meeting, and action items still slipped and client updates arrived days late.</p>
+<h2>How it works</h2>
+<ol><li>Fathom identifies the key notes and action items.</li><li>The items go to ClickUp, where tasks are created and assigned to the right people.</li><li>The notes are added to the contact's record in ActiveCampaign. If the person is not in the system yet, a new contact is created.</li></ol>
+<p>It runs in the background after every meeting. What took 20 to 30 minutes now happens in seconds.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/meeting-action-items-follow-ups/01.webp"><img src="/assets/img/work/meeting-action-items-follow-ups/01.jpg" width="937" height="258" alt="Make scenario: an HTTP trigger and ClickUp step, then a router with an internal meeting path that creates ClickUp tasks and an external path that updates or creates ActiveCampaign contacts" fetchpriority="high" decoding="async"></picture><figcaption>The follow-up scenario in Make.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Doing the tasks.</li><li>Checking the notes Fathom picked up.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>Make</li><li>Fathom</li><li>ClickUp</li><li>ActiveCampaign</li></ul>
+<p>Make for the scenario, Fathom for the meeting notes, ClickUp for tasks and ActiveCampaign for contacts.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/ai-automation">AI agents and automation</a></li>
+<li><a href="/blog/ai-automation-for-small-business-questions">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

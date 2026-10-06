@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Post-purchase subscriber lifecycle in GoHighLevel · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a post-purchase lifecycle in GoHighLevel: onboarding, an honest expectation email, check-ins at 30, 60 and 90 days, and a review request.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/post-purchase-lifecycle-gohighlevel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Post-purchase subscriber lifecycle in GoHighLevel">
+<meta property="og:description" content="How we built a post-purchase lifecycle in GoHighLevel: onboarding, an honest expectation email, check-ins at 30, 60 and 90 days, and a review request.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/post-purchase-lifecycle-gohighlevel">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/post-purchase-lifecycle-gohighlevel/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="GoHighLevel workflow builder zoomed out, showing the subscriber lifecycle sequence of emails and waits">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Post-purchase subscriber lifecycle in GoHighLevel">
+<meta name="twitter:description" content="How we built a post-purchase lifecycle in GoHighLevel: onboarding, an honest expectation email, check-ins at 30, 60 and 90 days, and a review request.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/post-purchase-lifecycle-gohighlevel/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A post-purchase sequence in GoHighLevel that runs a subscriber's first ninety days",
+      "description": "How we built a post-purchase lifecycle in GoHighLevel: onboarding, an honest expectation email, check-ins at 30, 60 and 90 days, and a review request.",
+      "url": "https://www.kabsailabs.com/case-studies/post-purchase-lifecycle-gohighlevel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/post-purchase-lifecycle-gohighlevel"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/post-purchase-lifecycle-gohighlevel/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Post-purchase subscriber lifecycle in GoHighLevel",
+          "item": "https://www.kabsailabs.com/case-studies/post-purchase-lifecycle-gohighlevel"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/post-purchase-lifecycle-gohighlevel" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lifecycle &amp; Revenue</p>
+<h1>A post-purchase sequence in GoHighLevel that runs a subscriber's first ninety days</h1>
+<p class="cs-summary">When someone subscribes, it tags them, adds them to the pipeline, welcomes them, shows them how to use the product, sets honest expectations, checks in at 30, 60 and 90 days, then asks for a review.</p>
+<h2>The problem</h2>
+<p>Subscription businesses rarely lose customers because the product is bad. They lose them in the first ninety days. A new subscriber is not sure how to use it, sees no instant result, loses faith and cancels.</p>
+<p>The fix is known: onboard properly, be honest about how long results take, and keep showing up. Doing that by hand for every customer stops working after the first dozen.</p>
+<h2>How it works</h2>
+<p>The workflow starts when a customer is marked as paid. In this build that is a tag. In a live account it hangs off the Stripe payment trigger, with nothing else changing.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/post-purchase-lifecycle-gohighlevel/01.webp"><img src="/assets/img/work/post-purchase-lifecycle-gohighlevel/01.jpg" width="1600" height="732" alt="GoHighLevel workflow builder zoomed out, showing the subscriber lifecycle sequence of emails and waits" fetchpriority="high" decoding="async"></picture><figcaption>The ninety day sequence in GoHighLevel.</figcaption></figure>
+<ol><li>Tag the contact active_subscriber.</li><li>Create an opportunity in the Subscribers pipeline at Active.</li><li>Send a welcome email.</li><li>Wait one day, then send an onboarding email on how to use the product.</li><li>Wait three days, then send the expectation setting email.</li><li>At day 30, send a check-in with a prompt to take a progress photo.</li><li>At day 60, the same again.</li><li>At day 90, ask for a review and a referral.</li></ol>
+<p>The expectation setting email does the most work. It says plainly that results take months, that early ups and downs are normal, and that the people who get the best results are the ones who stay consistent. It goes out before doubt sets in.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/post-purchase-lifecycle-gohighlevel/02.webp"><img src="/assets/img/work/post-purchase-lifecycle-gohighlevel/02.jpg" width="1600" height="732" alt="GoHighLevel contact record tagged active_subscriber, with an email in the conversation and the activity timeline, with the contact's name and form IDs blurred" loading="lazy" decoding="async"></picture><figcaption>A test contact with the active_subscriber tag. Personal details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/post-purchase-lifecycle-gohighlevel/03.webp"><img src="/assets/img/work/post-purchase-lifecycle-gohighlevel/03.jpg" width="1600" height="732" alt="GoHighLevel execution log for the subscriber lifecycle workflow showing the tag, opportunity, welcome email and wait steps, with the contact name and execution ID blurred" loading="lazy" decoding="async"></picture><figcaption>The steps firing for one contact.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/post-purchase-lifecycle-gohighlevel/04.webp"><img src="/assets/img/work/post-purchase-lifecycle-gohighlevel/04.jpg" width="1600" height="854" alt="GoHighLevel opportunity edit window showing contact details, pipeline and stage, with the contact's name, phone, opportunity name and audit ID blurred" loading="lazy" decoding="async"></picture><figcaption>An opportunity created by a workflow. Personal details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/post-purchase-lifecycle-gohighlevel/05.webp"><img src="/assets/img/work/post-purchase-lifecycle-gohighlevel/05.jpg" width="1600" height="358" alt="GoHighLevel contacts list showing a contact with the active_subscriber tag and active workflows, with name, phone and business name blurred" loading="lazy" decoding="async"></picture><figcaption>The contact list, with the tag and the workflows each contact is in.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>The copy. For regulated businesses such as health or supplements, the brand supplies its own approved text and it drops into the same steps.</li><li>Replies to the check-ins.</li><li>Reviews and referrals once they come in.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>GoHighLevel</li><li>Stripe</li></ul>
+<p>GoHighLevel workflows, tags, pipelines and opportunities, and the email builder. It is one part of a connected lifecycle, alongside failed payment recovery, refill reminders and cancellation win-back, linked through shared tags and pipeline stages.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/ai-automation-for-small-business-questions">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

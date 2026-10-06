@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Two-source reconciliation · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a two-source reconciliation in n8n: POS and bookkeeper records matched line by line, every gap classified, and a plain English readout.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/two-source-reconciliation-workflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two-source reconciliation">
+<meta property="og:description" content="How we built a two-source reconciliation in n8n: POS and bookkeeper records matched line by line, every gap classified, and a plain English readout.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/two-source-reconciliation-workflow">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Two-source reconciliation">
+<meta name="twitter:description" content="How we built a two-source reconciliation in n8n: POS and bookkeeper records matched line by line, every gap classified, and a plain English readout.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Two-source reconciliation that matches financial records line by line",
+      "description": "How we built a two-source reconciliation in n8n: POS and bookkeeper records matched line by line, every gap classified, and a plain English readout.",
+      "url": "https://www.kabsailabs.com/case-studies/two-source-reconciliation-workflow",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/two-source-reconciliation-workflow"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Two-source reconciliation",
+          "item": "https://www.kabsailabs.com/case-studies/two-source-reconciliation-workflow"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/two-source-reconciliation-workflow" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Documents &amp; Finance</p>
+<h1>Two-source reconciliation that matches financial records line by line</h1>
+<p class="cs-summary">It matches a POS export against a bookkeeper's sheet row by row, classifies every gap, and writes a discrepancy report with a plain English summary.</p>
+<h2>The problem</h2>
+<p>Two systems that should agree drift apart. Hours are rounded differently, tips are keyed wrong, a shift is missing on one side, and one employee ID appears with two different names. Totals can still match while the lines do not, and finding the gaps by eye across hundreds of rows is work that gets skipped.</p>
+<h2>How it works</h2>
+<ol><li>Build a key of employee ID and date for every row in both sources.</li><li>Walk every key. Where both sides have it, compare field by field: hours within 0.1 of an hour pass, tips and sales must match to the cent. Where one side lacks it, mark it missing in the POS or missing in the books. Where the ID matches but the name differs, flag an identity mismatch.</li><li>Write one row per discrepancy and a summary with counts and the total dollar difference.</li><li>Optionally, Claude turns the list into a short readout for a manager.</li></ol>
+<h3>Verified run</h3>
+<p>The run compared 26 keys and found 18 clean matches and 9 discrepancies, with a net tips difference of $55.00: 3 hours mismatches, 2 tips mismatches, 2 shifts missing from the bookkeeper's sheet, 1 missing from the POS and 1 identity mismatch. A difference of 0.05 of an hour correctly passed the tolerance.</p>
+<p>The identity mismatch is the one most checks miss. The ID matched, so the numbers reconciled, but the same ID carried two versions of a name across the two systems.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Investigating and correcting each discrepancy.</li><li>Deciding which source is right when they disagree.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Google Sheets</li><li>Slack</li><li>Gmail</li><li>Claude</li></ul>
+<p>n8n with code steps, Google Sheets for the two sources and the report, Slack and Gmail for the summary, and Claude for the readout.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/ai-document-data-extraction">AI Document Data Extraction for Small Business: Invoices, Receipts and Forms Into QuickBooks or Xero</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

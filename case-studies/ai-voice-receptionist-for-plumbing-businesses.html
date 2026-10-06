@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI voice receptionist for a plumbing business · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built an AI receptionist for a plumbing business: it answers every call, flags emergencies, logs the lead in a sheet and HubSpot, and sends a WhatsApp alert.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ai-voice-receptionist-for-plumbing-businesses">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI voice receptionist for a plumbing business">
+<meta property="og:description" content="How we built an AI receptionist for a plumbing business: it answers every call, flags emergencies, logs the lead in a sheet and HubSpot, and sends a WhatsApp alert.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ai-voice-receptionist-for-plumbing-businesses">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="740">
+<meta property="og:image:alt" content="n8n workflow for the plumbing receptionist: Retell call webhook, extract call data, save lead to sheet, add to CRM, then an emergency check that sends an emergency or routine WhatsApp alert">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI voice receptionist for a plumbing business">
+<meta name="twitter:description" content="How we built an AI receptionist for a plumbing business: it answers every call, flags emergencies, logs the lead in a sheet and HubSpot, and sends a WhatsApp alert.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "An AI receptionist that answers every call for a plumbing business",
+      "description": "How we built an AI receptionist for a plumbing business: it answers every call, flags emergencies, logs the lead in a sheet and HubSpot, and sends a WhatsApp alert.",
+      "url": "https://www.kabsailabs.com/case-studies/ai-voice-receptionist-for-plumbing-businesses",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ai-voice-receptionist-for-plumbing-businesses"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI voice receptionist for a plumbing business",
+          "item": "https://www.kabsailabs.com/case-studies/ai-voice-receptionist-for-plumbing-businesses"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ai-voice-receptionist-for-plumbing-businesses" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Voice Agents</p>
+<h1>An AI receptionist that answers every call for a plumbing business</h1>
+<p class="cs-summary">It picks up on the first ring, day or night, works out the job and how urgent it is, logs the lead, adds it to the CRM and texts the plumber the details.</p>
+<h2>The problem</h2>
+<p>Plumbers earn money under a sink, not next to a phone. So the phone goes unanswered. A missed call is usually a missed job, and a single job can be worth a few hundred dollars, more for an emergency at 11pm.</p>
+<p>After hours, calls go to voicemail and most people do not leave one. They call the next plumber on the list. The work is there. Nobody is free to answer it.</p>
+<h2>How it works</h2>
+<p>We built a voice agent that answers like a receptionist. It picks up on the first ring, asks the caller for their name, address and what is wrong, works out how urgent it is, and hands the plumber a clean lead before the caller hangs up.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/01.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/01.jpg" width="1600" height="740" alt="n8n workflow for the plumbing receptionist: Retell call webhook, extract call data, save lead to sheet, add to CRM, then an emergency check that sends an emergency or routine WhatsApp alert" fetchpriority="high" decoding="async"></picture><figcaption>The backend in n8n. Every finished call runs this chain, and the last step splits emergencies from routine jobs.</figcaption></figure>
+<h3>1. It answers and talks</h3>
+<p>The agent holds a real conversation in a natural voice. There is no phone menu. The caller explains the problem the way they would to a person.</p>
+<h3>2. It qualifies the job</h3>
+<p>It asks who is calling, where, what is broken and how bad it is. In one real call, a caller reported no hot water since the night before and a suspected water heater failure. The agent took down the name, number, address, problem and preferred time window on its own.</p>
+<h3>3. It structures the data</h3>
+<p>Everything the caller says becomes clean fields: caller name, phone number, address, problem, urgency and preferred time. There is no free text to sort through later.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/02.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/02.jpg" width="595" height="730" alt="Retell call record showing the call analysis and the extracted fields for caller name, preferred time, phone number, address, problem and urgency, with personal details blurred" loading="lazy" decoding="async"></picture><figcaption>One call after analysis. The agent filled every field itself. We blurred the caller's details.</figcaption></figure>
+<h3>4. It logs every lead</h3>
+<p>Each call becomes a row in a spreadsheet with the full summary attached, so nothing gets lost between the call and the callback.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/03.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/03.jpg" width="1600" height="675" alt="Google Sheet named Plumbing Leads with caller name and summary columns, one row per call, with the contents blurred" loading="lazy" decoding="async"></picture><figcaption>The running lead log, one row per call. Names and summaries are blurred.</figcaption></figure>
+<h3>5. It creates a CRM contact</h3>
+<p>The lead goes straight into HubSpot as a new contact with the phone number, address and a note about the job. The contact list builds itself.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/04.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/04.jpg" width="1600" height="856" alt="HubSpot contacts list showing contacts created by the receptionist, with names, emails and phone numbers blurred" loading="lazy" decoding="async"></picture><figcaption>Contacts the agent created in HubSpot. Personal details are blurred.</figcaption></figure>
+<h3>6. It separates emergencies from routine work</h3>
+<p>A burst pipe at midnight and a quote for next week are not the same job. Urgent calls go to an instant alert so they never sit in a queue. Routine ones are handled without the same urgency.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/05.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/05.jpg" width="465" height="469" alt="Close-up of the n8n branch: an Is Emergency check with a true path to Emergency WhatsApp and a false path to Routine WhatsApp" loading="lazy" decoding="async"></picture><figcaption>The emergency check. True goes to the urgent alert, false to the routine one.</figcaption></figure>
+<h3>7. It alerts the plumber</h3>
+<p>A WhatsApp message arrives with the name, number, address and problem, so the plumber calls back already knowing what they are walking into.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/06.webp"><img src="/assets/img/work/ai-voice-receptionist-for-plumbing-businesses/06.jpg" width="1033" height="862" alt="WhatsApp chat with the Twilio sender showing a message delivered on the alert channel" loading="lazy" decoding="async"></picture><figcaption>The WhatsApp channel the alerts go out on, here with a Twilio test message.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>The callback. The plumber phones the customer back, already knowing the name, address and problem.</li><li>Emergencies. The system flags them the moment they come in. The plumber decides how to respond.</li><li>The job itself, and anything the caller needs that the questions did not cover.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>Retell</li><li>ElevenLabs</li><li>n8n</li><li>Google Sheets</li><li>HubSpot</li><li>Twilio</li><li>WhatsApp</li></ul>
+<p>Retell for the voice agent, ElevenLabs for the voice, n8n for the automation backend, Google Sheets for the lead log, HubSpot for the CRM and Twilio for the WhatsApp alerts. Each part can be swapped. The same system works for an HVAC company, an electrician or any business that depends on the phone.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/industries/plumbers">AI receptionist for plumbers</a></li>
+<li><a href="/blog/ai-phone-answering-small-business">AI Receptionist for Small Business: Is It Worth It for Plumbers, HVAC and Dental Offices?</a></li>
+<li><a href="/blog/missed-call-text-back">Missed Call Text Back for Small Business: How It Works, What It Costs, and the Rules</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

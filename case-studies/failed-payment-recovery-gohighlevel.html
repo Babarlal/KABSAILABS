@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Failed payment recovery in GoHighLevel · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built failed payment recovery in GoHighLevel: email, then SMS, with a paid check after each step so nobody is chased after they pay.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/failed-payment-recovery-gohighlevel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Failed payment recovery in GoHighLevel">
+<meta property="og:description" content="How we built failed payment recovery in GoHighLevel: email, then SMS, with a paid check after each step so nobody is chased after they pay.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/failed-payment-recovery-gohighlevel">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/failed-payment-recovery-gohighlevel/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="GoHighLevel workflow builder showing the failed payment recovery sequence from the payment failed trigger through emails, waits and paid checks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Failed payment recovery in GoHighLevel">
+<meta name="twitter:description" content="How we built failed payment recovery in GoHighLevel: email, then SMS, with a paid check after each step so nobody is chased after they pay.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/failed-payment-recovery-gohighlevel/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A failed payment recovery sequence in GoHighLevel that stops the moment the customer pays",
+      "description": "How we built failed payment recovery in GoHighLevel: email, then SMS, with a paid check after each step so nobody is chased after they pay.",
+      "url": "https://www.kabsailabs.com/case-studies/failed-payment-recovery-gohighlevel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/failed-payment-recovery-gohighlevel"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/failed-payment-recovery-gohighlevel/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Failed payment recovery in GoHighLevel",
+          "item": "https://www.kabsailabs.com/case-studies/failed-payment-recovery-gohighlevel"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/failed-payment-recovery-gohighlevel" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lifecycle &amp; Revenue</p>
+<h1>A failed payment recovery sequence in GoHighLevel that stops the moment the customer pays</h1>
+<p class="cs-summary">When a subscription payment fails, it emails the customer, checks whether they paid, follows up by SMS, checks again, and only then flags the account for a person.</p>
+<h2>The problem</h2>
+<p>A failed payment is rarely a customer leaving. It is an expired card or a changed bank. The customer still wants the product and does not know the charge failed.</p>
+<p>Nobody tells them. The subscription lapses and by the time anyone notices, the customer has moved on. Revenue already won is lost to admin nobody was watching.</p>
+<h2>How it works</h2>
+<p>The workflow starts when a customer is flagged with a failed payment. In this build that is a tag. In a live account it starts from the payment failed event, with nothing else changing.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/01.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/01.jpg" width="1600" height="732" alt="GoHighLevel workflow builder showing the failed payment recovery sequence from the payment failed trigger through emails, waits and paid checks" fetchpriority="high" decoding="async"></picture><figcaption>The recovery sequence in GoHighLevel.</figcaption></figure>
+<ol><li>Send a payment failed email with a link to update the card.</li><li>Wait one day.</li><li>Check whether they paid. If yes, clear the flag, send a short confirmation and stop.</li><li>If not, send an SMS reminder.</li><li>Wait two days.</li><li>Check again. If they paid, clear the flag and stop.</li><li>If not, send a final notice email.</li><li>Move the opportunity to the Payment Issue stage.</li><li>Alert the team so a person can step in.</li></ol>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/02.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/02.jpg" width="1600" height="732" alt="Close-up of the paid checks after one day and after the second reminder, each branching to end or continue" loading="lazy" decoding="async"></picture><figcaption>The checks between messages. A customer who pays is never chased again.</figcaption></figure>
+<p>The checks are the point. A customer who fixes their card on day one gets one email and nothing more. Chasing someone for money they already paid is how a billing problem becomes a cancellation.</p>
+<p>Every message is held to business hours. A payment that fails at 3am does not produce a text at 3am.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/03.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/03.jpg" width="1600" height="642" alt="GoHighLevel execution log for the recovery workflow showing the steps for one contact, with the contact's name blurred" loading="lazy" decoding="async"></picture><figcaption>One contact moving through the steps. The name is blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/04.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/04.jpg" width="1600" height="732" alt="GoHighLevel enrollment history for the failed payment workflow with three contacts waiting or finished, with contact names blurred" loading="lazy" decoding="async"></picture><figcaption>Enrollment history. Contacts wait between steps as designed.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/05.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/05.jpg" width="1600" height="1062" alt="GoHighLevel execution log listing every step taken for several contacts, with contact names blurred" loading="lazy" decoding="async"></picture><figcaption>The full execution log.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/06.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/06.jpg" width="1600" height="732" alt="GoHighLevel workflow settings with a time window from 8am to 5pm, Monday to Friday" loading="lazy" decoding="async"></picture><figcaption>The business hours window.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/failed-payment-recovery-gohighlevel/07.webp"><img src="/assets/img/work/failed-payment-recovery-gohighlevel/07.jpg" width="1600" height="732" alt="GoHighLevel opportunities list with stages, values and statuses, with opportunity names and contacts blurred" loading="lazy" decoding="async"></picture><figcaption>Opportunities in the pipeline. Names are blurred.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Accounts the sequence could not recover. They land in Payment Issue with an alert.</li><li>Talking to the customer when a card keeps failing.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>GoHighLevel</li></ul>
+<p>GoHighLevel workflows, conditional branching, tags, pipeline stages, email and SMS, business hours controls and internal notifications. It is one part of a connected lifecycle. An account that cannot be recovered can feed straight into the win-back sequence.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/automatic-invoice-chasing-payment-recovery">Automatic Invoice Reminders and Failed Payment Recovery for Small Business</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

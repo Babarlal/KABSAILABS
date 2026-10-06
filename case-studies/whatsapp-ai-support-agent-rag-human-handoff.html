@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WhatsApp support agent with a human handoff · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a WhatsApp support agent that answers from the store's own policies, rates its confidence, and hands refunds and complaints to a person on Slack.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/whatsapp-ai-support-agent-rag-human-handoff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WhatsApp support agent with a human handoff">
+<meta property="og:description" content="How we built a WhatsApp support agent that answers from the store's own policies, rates its confidence, and hands refunds and complaints to a person on Slack.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/whatsapp-ai-support-agent-rag-human-handoff">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="788">
+<meta property="og:image:alt" content="n8n workflow with two lanes: a knowledge base loader that embeds store documents, and the live path from WhatsApp message to support agent, response parser, needs-human check, Slack escalation, log and WhatsApp reply">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WhatsApp support agent with a human handoff">
+<meta name="twitter:description" content="How we built a WhatsApp support agent that answers from the store's own policies, rates its confidence, and hands refunds and complaints to a person on Slack.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A WhatsApp support agent that answers from your own policies and hands hard cases to a person",
+      "description": "How we built a WhatsApp support agent that answers from the store's own policies, rates its confidence, and hands refunds and complaints to a person on Slack.",
+      "url": "https://www.kabsailabs.com/case-studies/whatsapp-ai-support-agent-rag-human-handoff",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/whatsapp-ai-support-agent-rag-human-handoff"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "WhatsApp support agent with a human handoff",
+          "item": "https://www.kabsailabs.com/case-studies/whatsapp-ai-support-agent-rag-human-handoff"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/whatsapp-ai-support-agent-rag-human-handoff" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Chat &amp; Support</p>
+<h1>A WhatsApp support agent that answers from your own policies and hands hard cases to a person</h1>
+<p class="cs-summary">It answers customers from the business's knowledge base, scores its own confidence, and passes refunds, complaints and anything it does not know to a person on Slack with the full context.</p>
+<h2>The problem</h2>
+<p>Small businesses get the same WhatsApp questions all day: shipping times, return policy, delivery costs. Answering them by hand takes hours, and messages that arrive after closing wait until morning.</p>
+<p>The usual fix is a basic chatbot. It either shows canned menu buttons or makes things up. Both lose customers. A wrong answer about a refund is worse than no answer.</p>
+<h2>How it works</h2>
+<p>The agent has two parts. The first loads the store's policies into a knowledge base. The second handles each incoming message.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/01.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/01.jpg" width="1600" height="788" alt="n8n workflow with two lanes: a knowledge base loader that embeds store documents, and the live path from WhatsApp message to support agent, response parser, needs-human check, Slack escalation, log and WhatsApp reply" fetchpriority="high" decoding="async"></picture><figcaption>The whole workflow. The top lane loads the knowledge base. The bottom lane runs on every message.</figcaption></figure>
+<h3>Loading the knowledge base</h3>
+<p>One manual step loads the shipping and returns rules, turns them into embeddings so they can be searched by meaning, and stores them. When a policy changes, we run it again. No code changes.</p>
+<h3>Handling a message</h3>
+<p>A customer texts the WhatsApp number. The agent searches the knowledge base for the right policy and writes a reply. With the reply it returns a confidence level and a yes or no on whether a person is needed.</p>
+<p>If it is confident and the question is routine, it replies at once and logs the conversation. If not, it posts an alert to Slack with the customer's number, the confidence level and a draft reply, and tells the customer a person will follow up.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/02.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/02.jpg" width="1600" height="713" alt="The same n8n workflow after a run, with the knowledge base loader steps marked complete" loading="lazy" decoding="async"></picture><figcaption>After a run. The loader has filled the knowledge base the agent searches.</figcaption></figure>
+<h3>A routine question</h3>
+<p>A customer asked how much express shipping costs. The agent searched the knowledge base and replied that express shipping costs $15 and arrives in 1 to 2 business days, and that orders over $50 ship free. Confidence was high and no person was needed. The numbers came from the store's policy, not from the model.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/03.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/03.jpg" width="1020" height="463" alt="WhatsApp conversation where the customer asks about express shipping and the agent replies with the price, delivery time and free shipping threshold, with the sandbox code, phone number and a name blurred" loading="lazy" decoding="async"></picture><figcaption>A routine question answered from policy. The sandbox code, number and name are blurred.</figcaption></figure>
+<h3>A refund request</h3>
+<p>A customer wrote that their order arrived broken and they wanted a refund. The agent treated it as a dispute it should not handle on its own. Confidence was low and it flagged the message for a person. It posted the alert to Slack and told the customer someone would get back to them shortly.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/04.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/04.jpg" width="1036" height="876" alt="WhatsApp conversation showing the shipping answer, then a refund request and the agent's reply that a team member will follow up" loading="lazy" decoding="async"></picture><figcaption>The refund request. The agent does not try to settle it.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/05.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/05.jpg" width="1375" height="759" alt="Slack channel support-escalations with a Human needed alert showing the customer, a low confidence level and a draft reply, with the customer number and staff name blurred" loading="lazy" decoding="async"></picture><figcaption>The handoff in Slack, with a draft reply for the team to review.</figcaption></figure>
+<p>Every exchange is written to a Google Sheet.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/06.webp"><img src="/assets/img/work/whatsapp-ai-support-agent-rag-human-handoff/06.jpg" width="1600" height="298" alt="Google Sheet named WhatsApp Logs with columns for reply, confidence, needs human and customer, with customer numbers blurred" loading="lazy" decoding="async"></picture><figcaption>The conversation log. Customer numbers are blurred.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Refunds, complaints and disputes. The agent drafts a reply, a person decides.</li><li>Anything the knowledge base does not cover. The agent says so instead of guessing.</li><li>Keeping the policies current. When a rule changes, someone updates the documents and reloads them.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>OpenAI</li><li>RAG</li><li>Twilio</li><li>WhatsApp</li><li>Slack</li><li>Google Sheets</li></ul>
+<p>n8n for the automation, OpenAI GPT-4o-mini for the agent, a vector store for the knowledge base, Twilio for WhatsApp, Slack for the handoff and Google Sheets for the log. This build keeps the knowledge base in memory. For a live deployment we would move it to a persistent vector database such as Pinecone or Supabase, so it survives restarts and can hold a full catalog. The rest stays the same.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/rag-knowledge-base">Knowledge base and RAG agents</a></li>
+<li><a href="/blog/whatsapp-sms-customer-support">WhatsApp and SMS Customer Support for Small Business: Business App vs API, AI Replies and Costs</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Support ticket triage with n8n and FastAPI · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built support ticket triage with n8n and FastAPI: each ticket comes back with a category, priority, sentiment and team, and is routed by priority.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ai-ticket-triage-n8n-fastapi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support ticket triage with n8n and FastAPI">
+<meta property="og:description" content="How we built support ticket triage with n8n and FastAPI: each ticket comes back with a category, priority, sentiment and team, and is routed by priority.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ai-ticket-triage-n8n-fastapi">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Support ticket triage with n8n and FastAPI">
+<meta name="twitter:description" content="How we built support ticket triage with n8n and FastAPI: each ticket comes back with a category, priority, sentiment and team, and is routed by priority.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Support ticket triage with n8n and a FastAPI classifier",
+      "description": "How we built support ticket triage with n8n and FastAPI: each ticket comes back with a category, priority, sentiment and team, and is routed by priority.",
+      "url": "https://www.kabsailabs.com/case-studies/ai-ticket-triage-n8n-fastapi",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ai-ticket-triage-n8n-fastapi"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Support ticket triage with n8n and FastAPI",
+          "item": "https://www.kabsailabs.com/case-studies/ai-ticket-triage-n8n-fastapi"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ai-ticket-triage-n8n-fastapi" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Chat &amp; Support</p>
+<h1>Support ticket triage with n8n and a FastAPI classifier</h1>
+<p class="cs-summary">n8n sends a batch of tickets to a FastAPI endpoint, gets back a category, priority, sentiment and suggested team for each, and routes them by priority.</p>
+<h2>The problem</h2>
+<p>Support tickets arrive mixed together. Someone has to read each one to decide how urgent it is and who should take it.</p>
+<h2>How it works</h2>
+<p>n8n handles the orchestration: the trigger, the HTTP call, parsing and routing. FastAPI does the classification.</p>
+<ol><li>Load the tickets.</li><li>Send them to the FastAPI /classify endpoint.</li><li>Parse the result for each ticket: category, priority, sentiment and suggested team.</li><li>Route P1 tickets to the escalation queue, P2 to the team queue and P3 to the backlog.</li><li>Write a triage summary.</li></ol>
+<p>The endpoint takes a list of tickets with an ID, subject, body and customer tier, and returns one result per ticket. It uses Pydantic models for the request and response, and the classifier is a slot for a Claude or OpenAI call.</p>
+<h3>Verified run</h3>
+<p>A live run returned HTTP 200 and classified 10 tickets: 3 P1, 3 P2 and 4 P3. By category there were 3 billing, 3 technical, 3 account and 1 general. Calling the endpoint directly gave the same results. The run used a public echo service in place of the deployed FastAPI app.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>P1 tickets in the escalation queue.</li><li>Checking the classifier when a ticket looks mislabelled.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>FastAPI</li><li>OpenAI</li><li>Claude</li></ul>
+<p>n8n for the trigger, HTTP request, parsing and routing, FastAPI with Pydantic models for the endpoint, and httpx. Pointing the request at the deployed app makes it fully live.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/ai-automation">AI agents and automation</a></li>
+<li><a href="/blog/ai-automation-for-small-business-questions">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

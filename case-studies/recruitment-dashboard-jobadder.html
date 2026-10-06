@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recruitment dashboard and reporting API for JobAdder · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a recruitment reporting API for JobAdder: one webhook returns metrics, a consultant leaderboard, the pipeline by age or an HTML dashboard.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/recruitment-dashboard-jobadder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recruitment dashboard and reporting API for JobAdder">
+<meta property="og:description" content="How we built a recruitment reporting API for JobAdder: one webhook returns metrics, a consultant leaderboard, the pipeline by age or an HTML dashboard.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/recruitment-dashboard-jobadder">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Recruitment dashboard and reporting API for JobAdder">
+<meta name="twitter:description" content="How we built a recruitment reporting API for JobAdder: one webhook returns metrics, a consultant leaderboard, the pipeline by age or an HTML dashboard.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A recruitment reporting API and dashboard for JobAdder",
+      "description": "How we built a recruitment reporting API for JobAdder: one webhook returns metrics, a consultant leaderboard, the pipeline by age or an HTML dashboard.",
+      "url": "https://www.kabsailabs.com/case-studies/recruitment-dashboard-jobadder",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/recruitment-dashboard-jobadder"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recruitment dashboard and reporting API for JobAdder",
+          "item": "https://www.kabsailabs.com/case-studies/recruitment-dashboard-jobadder"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/recruitment-dashboard-jobadder" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Recruitment</p>
+<h1>A recruitment reporting API and dashboard for JobAdder</h1>
+<p class="cs-summary">One webhook with four actions returns headline metrics, a consultant leaderboard, the pipeline by age, or a live HTML dashboard.</p>
+<h2>The problem</h2>
+<p>Managers need the numbers behind the desk: new and active jobs, ageing, submissions, interviews, placements, revenue, consultant performance, time to fill and timed out jobs. Pulling them together by hand takes time every week.</p>
+<h2>How it works</h2>
+<p>One webhook takes an action and returns the answer.</p>
+<ul class="plain"><li>metrics: every headline number as JSON.</li><li>consultants: a leaderboard ranked by revenue and placements.</li><li>pipeline: open jobs grouped by age.</li><li>dashboard: a self-contained HTML screen built from the live numbers.</li></ul>
+<h3>Verified run</h3>
+<p>Four live calls over a sample month of 30 jobs returned 10 placements, revenue of 177,000, an average time to fill of 37 days, 14 open jobs and 3 timed out. There were 123 submissions and 56 interviews.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Reading the numbers and acting on them.</li><li>Connecting the loader to the live JobAdder account.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>JobAdder</li><li>Webhooks</li></ul>
+<p>n8n with a webhook, code and switch steps, the JobAdder API, and a self-contained HTML and CSS dashboard with no separate hosting.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/automated-client-reporting">Automated Client Reporting for Marketing Agencies: White-Label Reports From Google Ads, Meta and GA4</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lead capture and follow-up in GoHighLevel · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built lead follow-up in GoHighLevel: pipeline entry, text and email routing, a multi-day sequence held to business hours, and instant opt-out handling.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/lead-follow-up-gohighlevel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lead capture and follow-up in GoHighLevel">
+<meta property="og:description" content="How we built lead follow-up in GoHighLevel: pipeline entry, text and email routing, a multi-day sequence held to business hours, and instant opt-out handling.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/lead-follow-up-gohighlevel">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/lead-follow-up-gohighlevel/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="GoHighLevel workflow builder zoomed out, showing the SMS and email follow-up sequence">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lead capture and follow-up in GoHighLevel">
+<meta name="twitter:description" content="How we built lead follow-up in GoHighLevel: pipeline entry, text and email routing, a multi-day sequence held to business hours, and instant opt-out handling.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/lead-follow-up-gohighlevel/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Lead follow-up in GoHighLevel that runs every step and only messages during business hours",
+      "description": "How we built lead follow-up in GoHighLevel: pipeline entry, text and email routing, a multi-day sequence held to business hours, and instant opt-out handling.",
+      "url": "https://www.kabsailabs.com/case-studies/lead-follow-up-gohighlevel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/lead-follow-up-gohighlevel"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/lead-follow-up-gohighlevel/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Lead capture and follow-up in GoHighLevel",
+          "item": "https://www.kabsailabs.com/case-studies/lead-follow-up-gohighlevel"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/lead-follow-up-gohighlevel" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lifecycle &amp; Revenue</p>
+<h1>Lead follow-up in GoHighLevel that runs every step and only messages during business hours</h1>
+<p class="cs-summary">When a lead fills in a form, it adds them to the pipeline, picks text and email or email only, runs a follow-up sequence over several days, and stops if they reply STOP.</p>
+<h2>The problem</h2>
+<p>A lead fills in a form, and for most small businesses the honest answer to what happens next is that someone gets to it eventually. Leads go cold in an inbox. Follow-up depends on a busy person remembering.</p>
+<p>Texts go out at 11pm because nobody set rules around timing. A lead who says stop sometimes keeps getting messages, which is the fastest way to a complaint.</p>
+<h2>How it works</h2>
+<p>The workflow starts on the form submission. It creates an opportunity at New Lead, then checks whether the lead gave a phone number. Leads with a number get text and email. Leads without get email only.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-follow-up-gohighlevel/01.webp"><img src="/assets/img/work/lead-follow-up-gohighlevel/01.jpg" width="1600" height="732" alt="GoHighLevel workflow builder zoomed out, showing the SMS and email follow-up sequence" fetchpriority="high" decoding="async"></picture><figcaption>The whole follow-up sequence.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-follow-up-gohighlevel/02.webp"><img src="/assets/img/work/lead-follow-up-gohighlevel/02.jpg" width="1600" height="732" alt="Close-up of the routing condition: the callable path if phone is not empty, otherwise none, followed by create opportunity and the first SMS" loading="lazy" decoding="async"></picture><figcaption>The routing condition. A phone number means text and email.</figcaption></figure>
+<p>The sequence then runs: an immediate text, a follow-up email, a second text with a booking link, and final email check-ins, spaced out with waits. As it runs, the opportunity moves from New Lead to Nurturing. GoHighLevel honours STOP replies, so a lead who opts out gets nothing more.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-follow-up-gohighlevel/03.webp"><img src="/assets/img/work/lead-follow-up-gohighlevel/03.jpg" width="1600" height="732" alt="GoHighLevel workflow settings with a time window from 9am to 6pm, Monday to Friday" loading="lazy" decoding="async"></picture><figcaption>The business hours window. Messages wait for it.</figcaption></figure>
+<h3>A real run</h3>
+<p>A test lead submitted the form outside working hours. The workflow saw a phone number and chose the text and email path. The first text was held with the status Waiting until the next business window, instead of going out in the middle of the night.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-follow-up-gohighlevel/04.webp"><img src="/assets/img/work/lead-follow-up-gohighlevel/04.jpg" width="1600" height="732" alt="GoHighLevel opportunities list showing two new leads in the Lead Generation pipeline, with contact names blurred" loading="lazy" decoding="async"></picture><figcaption>The new leads in the pipeline. Names are blurred.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Replies from leads. The sequence starts the conversation, a person continues it.</li><li>Booking calls with leads who respond.</li><li>Adjusting the cadence, routing rules and stages.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>GoHighLevel</li></ul>
+<p>GoHighLevel for everything: form capture, the workflow, the pipeline, SMS and email, business hours and opt outs. The calling step can be handed to an AI voice agent that phones the lead, asks qualifying questions and passes qualified leads to a person.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/lead-follow-up">Lead Follow-Up: How to Chase Leads Who Went Quiet Without Nagging or Forgetting</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

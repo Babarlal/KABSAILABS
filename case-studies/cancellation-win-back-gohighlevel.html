@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cancellation win-back in GoHighLevel · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a cancellation win-back sequence in GoHighLevel: it asks why, follows up over weeks, then sorts customers into reactivated or lost in the pipeline.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/cancellation-win-back-gohighlevel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cancellation win-back in GoHighLevel">
+<meta property="og:description" content="How we built a cancellation win-back sequence in GoHighLevel: it asks why, follows up over weeks, then sorts customers into reactivated or lost in the pipeline.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/cancellation-win-back-gohighlevel">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/cancellation-win-back-gohighlevel/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="GoHighLevel workflow builder zoomed out, showing the subscription cancellation win-back sequence from the cancelled tag trigger to the final paid tag check">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cancellation win-back in GoHighLevel">
+<meta name="twitter:description" content="How we built a cancellation win-back sequence in GoHighLevel: it asks why, follows up over weeks, then sorts customers into reactivated or lost in the pipeline.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/cancellation-win-back-gohighlevel/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A win-back sequence in GoHighLevel that follows up every cancellation and tracks who comes back",
+      "description": "How we built a cancellation win-back sequence in GoHighLevel: it asks why, follows up over weeks, then sorts customers into reactivated or lost in the pipeline.",
+      "url": "https://www.kabsailabs.com/case-studies/cancellation-win-back-gohighlevel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/cancellation-win-back-gohighlevel"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/cancellation-win-back-gohighlevel/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cancellation win-back in GoHighLevel",
+          "item": "https://www.kabsailabs.com/case-studies/cancellation-win-back-gohighlevel"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/cancellation-win-back-gohighlevel" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lifecycle &amp; Revenue</p>
+<h1>A win-back sequence in GoHighLevel that follows up every cancellation and tracks who comes back</h1>
+<p class="cs-summary">When a subscriber cancels, it asks why, waits, makes the case for returning over the following weeks, then checks whether they resubscribed and files them as reactivated or lost.</p>
+<h2>The problem</h2>
+<p>A cancelled subscriber is the cheapest customer to win back. They know the product and they trusted the business once. Winning them back costs a fraction of finding someone new.</p>
+<p>Most businesses do nothing. The cancellation goes through and the customer disappears. Nobody asks why they left, so the reason never gets fixed. Nobody follows up, so people who cancelled for a temporary reason never come back, even though many would have.</p>
+<h2>How it works</h2>
+<p>The workflow starts when a customer is flagged as cancelled. In this build that is a tag. In a live account it would start from the subscription cancelled event.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/01.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/01.jpg" width="1600" height="732" alt="GoHighLevel workflow builder zoomed out, showing the subscription cancellation win-back sequence from the cancelled tag trigger to the final paid tag check" fetchpriority="high" decoding="async"></picture><figcaption>The whole sequence in GoHighLevel.</figcaption></figure>
+<ol><li>Move the opportunity to the Cancelled stage, so churn shows in the pipeline.</li><li>Send a sorry to see you go email that asks plainly what could have been better. Replies go to a person.</li><li>Wait seven days. Nobody wants a pitch the day after they leave.</li><li>Send a win-back email with an incentive.</li><li>Wait fourteen days.</li><li>Send a final win-back email. After this, the system stops contacting them.</li><li>Check whether they resubscribed. If yes, tag them as reactivated, move them to Reactivated and send a welcome back message. If not, tag them as lost and move them to Lost.</li></ol>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/02.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/02.jpg" width="1600" height="732" alt="GoHighLevel win-back incentive email step open in the editor, with the message to a cancelled subscriber" loading="lazy" decoding="async"></picture><figcaption>The win-back email with the incentive.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/03.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/03.jpg" width="1600" height="732" alt="GoHighLevel final win-back email step open in the editor, offering a free trial to return" loading="lazy" decoding="async"></picture><figcaption>The final win-back email.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/04.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/04.jpg" width="532" height="421" alt="The reactivation check: a Check for Paid Tag step branching into Has Paid Tag and None" loading="lazy" decoding="async"></picture><figcaption>The check at the end. Each person ends up reactivated or lost.</figcaption></figure>
+<p>The final check is what makes this a system rather than a goodbye email. Everyone who cancels ends in one of two labelled buckets, and the recovered customers are visible in the pipeline instead of mixed in with everyone else.</p>
+<p>The feedback question in the first email matters too. Cancellation is the one moment a customer has both the reason and the motivation to tell you the truth.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/05.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/05.jpg" width="1600" height="732" alt="GoHighLevel Subscribers pipeline stages: Active, Payment Issue, Refill Due, Cancelled and Reactivated" loading="lazy" decoding="async"></picture><figcaption>The pipeline stages the lifecycle workflows share.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/cancellation-win-back-gohighlevel/06.webp"><img src="/assets/img/work/cancellation-win-back-gohighlevel/06.jpg" width="1600" height="732" alt="GoHighLevel execution log for the win-back workflow showing each step for one contact, with the contact's name blurred" loading="lazy" decoding="async"></picture><figcaption>The execution log for one test contact. The name is blurred.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Reading and answering replies to the first email. That is where the reasons for cancelling come from.</li><li>Fixing whatever those reasons point to.</li><li>Choosing the incentive offered.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>GoHighLevel</li></ul>
+<p>GoHighLevel workflows, conditional branching, tags, pipeline stages and the email builder. It is one part of a connected lifecycle. It also catches customers whose failed payments could not be recovered and those whose refills lapsed.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/ai-automation-for-small-business-questions">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

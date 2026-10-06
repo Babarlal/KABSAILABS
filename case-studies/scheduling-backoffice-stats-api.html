@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scheduling back office and stats API · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a scheduling back office: workload stats, safe booking reassignment with checks, and locks that stop the auto scheduler undoing manual changes.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/scheduling-backoffice-stats-api">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scheduling back office and stats API">
+<meta property="og:description" content="How we built a scheduling back office: workload stats, safe booking reassignment with checks, and locks that stop the auto scheduler undoing manual changes.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/scheduling-backoffice-stats-api">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scheduling back office and stats API">
+<meta name="twitter:description" content="How we built a scheduling back office: workload stats, safe booking reassignment with checks, and locks that stop the auto scheduler undoing manual changes.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A scheduling back office with stats, safe reassignment and locked manual changes",
+      "description": "How we built a scheduling back office: workload stats, safe booking reassignment with checks, and locks that stop the auto scheduler undoing manual changes.",
+      "url": "https://www.kabsailabs.com/case-studies/scheduling-backoffice-stats-api",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/scheduling-backoffice-stats-api"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Scheduling back office and stats API",
+          "item": "https://www.kabsailabs.com/case-studies/scheduling-backoffice-stats-api"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/scheduling-backoffice-stats-api" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Scheduling &amp; Ops</p>
+<h1>A scheduling back office with stats, safe reassignment and locked manual changes</h1>
+<p class="cs-summary">One webhook gives an operator workload stats, a safe way to reassign a booking, the full roster and an HTML dashboard. Every manual change is locked so the scheduler never reverts it.</p>
+<h2>The problem</h2>
+<p>An operator running automatic scheduling still needs to see workload at a glance, move a booking by hand, and know the automation will not undo that change.</p>
+<h2>How it works</h2>
+<p>One webhook takes an action and returns the answer.</p>
+<ul class="plain"><li>stats: tours, hours, passengers and days worked per helicopter and per pilot, plus the gap between the busiest and quietest.</li><li>reassign: checks the new pilot is not off and that neither the pilot nor the helicopter is double booked. If it passes, the booking is locked and marked as a manual override.</li><li>roster: the full schedule in time order with lock flags.</li><li>dashboard: a self-contained HTML screen.</li></ul>
+<p>A locked booking is skipped by the auto scheduler from then on. Weather postponements and cancellations are left alone the same way.</p>
+<h3>Verified run</h3>
+<p>Four live calls: stats over a 40 tour month, a valid reassignment that locked the booking, a reassignment to a pilot on their day off that was correctly rejected, and the dashboard served as HTML.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Every reassignment decision.</li><li>Weather calls and cancellations.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Google Sheets</li><li>Webhooks</li></ul>
+<p>n8n with a webhook, code and switch steps, and a self-contained HTML and CSS dashboard. It shares the fleet rules with the auto scheduler, so the two always agree. The same build can be recreated in Make.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/automatic-appointment-booking">Automatic Appointment Booking for Service Businesses: AI Scheduling, Costs and Setup</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

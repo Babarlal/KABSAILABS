@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI invoice extraction pipeline · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built an invoice pipeline that reads emailed PDFs with AI, files vendor, amount, tax and dates in a sheet, and flags incomplete invoices for review.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ai-invoice-extraction-pipeline">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI invoice extraction pipeline">
+<meta property="og:description" content="How we built an invoice pipeline that reads emailed PDFs with AI, files vendor, amount, tax and dates in a sheet, and flags incomplete invoices for review.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ai-invoice-extraction-pipeline">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/ai-invoice-extraction-pipeline/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="734">
+<meta property="og:image:alt" content="n8n workflow: new invoice email Gmail trigger, has PDF attachment check, extract PDF text, AI extract fields, parse and validate, save to sheet, needs review check, then Slack review alert or Slack success">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI invoice extraction pipeline">
+<meta name="twitter:description" content="How we built an invoice pipeline that reads emailed PDFs with AI, files vendor, amount, tax and dates in a sheet, and flags incomplete invoices for review.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/ai-invoice-extraction-pipeline/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "An invoice pipeline that reads emailed PDFs and files the numbers without anyone typing",
+      "description": "How we built an invoice pipeline that reads emailed PDFs with AI, files vendor, amount, tax and dates in a sheet, and flags incomplete invoices for review.",
+      "url": "https://www.kabsailabs.com/case-studies/ai-invoice-extraction-pipeline",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ai-invoice-extraction-pipeline"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/ai-invoice-extraction-pipeline/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI invoice extraction pipeline",
+          "item": "https://www.kabsailabs.com/case-studies/ai-invoice-extraction-pipeline"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ai-invoice-extraction-pipeline" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Documents &amp; Finance</p>
+<h1>An invoice pipeline that reads emailed PDFs and files the numbers without anyone typing</h1>
+<p class="cs-summary">Email an invoice in and it pulls out the vendor, invoice number, date, amount, tax and currency, files them in a sheet, posts a confirmation to Slack, and flags incomplete invoices for review.</p>
+<h2>The problem</h2>
+<p>Every business gets invoices by email, and someone has to open each PDF, read off the vendor, amount, tax and invoice number, type it into a sheet or accounting system, and spot anything odd. It is slow, dull work, and it is where people make mistakes: a swapped digit, a missed invoice, a wrong total.</p>
+<p>Across dozens of invoices a month, that is hours spent copying numbers from one place to another.</p>
+<h2>How it works</h2>
+<p>The pipeline watches an inbox. When an email with a PDF arrives, it checks the attachment really is a PDF, extracts the text, and asks the AI for six fields: vendor, invoice number, date, amount, tax and currency.</p>
+<p>It then checks the essentials are present. A complete invoice is filed as a new row and a success message goes to Slack. An incomplete one is flagged for review instead of being filed as bad data.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-invoice-extraction-pipeline/01.webp"><img src="/assets/img/work/ai-invoice-extraction-pipeline/01.jpg" width="1600" height="734" alt="n8n workflow: new invoice email Gmail trigger, has PDF attachment check, extract PDF text, AI extract fields, parse and validate, save to sheet, needs review check, then Slack review alert or Slack success" fetchpriority="high" decoding="async"></picture><figcaption>The pipeline in n8n. The review check keeps bad data out of the sheet.</figcaption></figure>
+<h3>A real run</h3>
+<p>An invoice arrived from a managed IT services vendor. The pipeline read the PDF and pulled out the vendor, invoice number INV-2048, the date, an amount of $3,041.83, tax of $231.83 and the currency, USD. Nothing was missing, so the invoice was filed and the confirmation posted to Slack. From email to filed took seconds.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-invoice-extraction-pipeline/02.webp"><img src="/assets/img/work/ai-invoice-extraction-pipeline/02.jpg" width="1600" height="732" alt="The invoice PDF from BrightServe Solutions open in Gmail, showing invoice number INV-2048, the bill to company, dates and line items, with addresses and contact details blurred" loading="lazy" decoding="async"></picture><figcaption>The incoming invoice. Addresses and contact details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-invoice-extraction-pipeline/03.webp"><img src="/assets/img/work/ai-invoice-extraction-pipeline/03.jpg" width="1357" height="337" alt="Slack message Invoice processed with vendor BrightServe Solutions, invoice INV-2048 and amount $3,041.83 USD" loading="lazy" decoding="async"></picture><figcaption>The confirmation in Slack.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-invoice-extraction-pipeline/04.webp"><img src="/assets/img/work/ai-invoice-extraction-pipeline/04.jpg" width="1600" height="256" alt="Google Sheet named Invoices with vendor, invoice number, date, amount, tax, currency, needs review, review reason and received columns filled for INV-2048" loading="lazy" decoding="async"></picture><figcaption>The invoice filed as a row, with needs review set to false.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Invoices flagged as incomplete or unreadable. The Slack alert says which one and why.</li><li>Approving and paying invoices.</li><li>Anything that looks wrong even when every field is present.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Gmail</li><li>OpenAI</li><li>Google Sheets</li><li>Slack</li></ul>
+<p>n8n, Gmail as the inbox, GPT-4o-mini to read the fields, Google Sheets for the record and Slack for notifications. The destination can be an accounting system such as QuickBooks or Xero instead of a sheet. The same approach works for purchase orders, receipts and other documents that arrive by email.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/ai-document-data-extraction">AI Document Data Extraction for Small Business: Invoices, Receipts and Forms Into QuickBooks or Xero</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

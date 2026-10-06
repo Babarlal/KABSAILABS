@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI lead capture and qualification · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built AI lead capture for a service business: every form gets a personal reply in seconds, a hot or cold label, and hot leads alert the owner in Slack.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/lead-capture-qualification">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI lead capture and qualification">
+<meta property="og:description" content="How we built AI lead capture for a service business: every form gets a personal reply in seconds, a hot or cold label, and hot leads alert the owner in Slack.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/lead-capture-qualification">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/lead-capture-qualification/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="n8n workflow: webhook, append row in sheet, AI model, code step, an If check, Slack message, respond to webhook, after a hot lead run">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI lead capture and qualification">
+<meta name="twitter:description" content="How we built AI lead capture for a service business: every form gets a personal reply in seconds, a hot or cold label, and hot leads alert the owner in Slack.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/lead-capture-qualification/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A lead capture system that replies in seconds and flags the hot leads",
+      "description": "How we built AI lead capture for a service business: every form gets a personal reply in seconds, a hot or cold label, and hot leads alert the owner in Slack.",
+      "url": "https://www.kabsailabs.com/case-studies/lead-capture-qualification",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/lead-capture-qualification"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/lead-capture-qualification/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI lead capture and qualification",
+          "item": "https://www.kabsailabs.com/case-studies/lead-capture-qualification"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/lead-capture-qualification" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lead &amp; Sales</p>
+<h1>A lead capture system that replies in seconds and flags the hot leads</h1>
+<p class="cs-summary">Every form submission is logged, answered with a personal reply written by AI, sorted as hot or cold, and hot leads ping the owner in Slack.</p>
+<h2>The problem</h2>
+<p>Small service businesses lose money in a quiet way. A lead fills in the contact form, the message sits in a crowded inbox, and someone replies hours later, if at all. By then the prospect has messaged three competitors.</p>
+<p>Every lead also looks the same in an inbox. A buyer with budget ready and someone just browsing arrive as the same unread email, so the owner spends the same energy on both and the hot leads get buried.</p>
+<h2>How it works</h2>
+<p>A form submission starts the workflow. The lead is saved to a Google Sheet. An AI step writes a personal reply that uses the lead's name and refers to their request, and classifies the lead as hot or cold from intent, budget signals and urgency.</p>
+<p>Hot leads trigger a Slack alert to the owner before the reply goes out. Cold leads are logged and answered without interrupting anyone.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-capture-qualification/01.webp"><img src="/assets/img/work/lead-capture-qualification/01.jpg" width="1600" height="732" alt="n8n workflow: webhook, append row in sheet, AI model, code step, an If check, Slack message, respond to webhook, after a hot lead run" fetchpriority="high" decoding="async"></picture><figcaption>A hot lead running through. The If check sends it to Slack.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-capture-qualification/02.webp"><img src="/assets/img/work/lead-capture-qualification/02.jpg" width="1600" height="732" alt="The same workflow after a cold lead, which skips the Slack alert" loading="lazy" decoding="async"></picture><figcaption>A cold lead. No alert, just the reply.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-capture-qualification/03.webp"><img src="/assets/img/work/lead-capture-qualification/03.jpg" width="1600" height="732" alt="n8n If node checking whether status equals hot, with the personal reply shown on both sides and the lead's first name blurred" loading="lazy" decoding="async"></picture><figcaption>The hot or cold check, with the drafted reply. The name is blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-capture-qualification/04.webp"><img src="/assets/img/work/lead-capture-qualification/04.jpg" width="1600" height="732" alt="Slack hot_leads channel with three hot lead alerts quoting each lead's message, with names and emails blurred" loading="lazy" decoding="async"></picture><figcaption>Hot lead alerts in Slack. Names and emails are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/lead-capture-qualification/05.webp"><img src="/assets/img/work/lead-capture-qualification/05.jpg" width="1600" height="202" alt="Google Sheet of leads with name, email, message and submitted time, with names and emails blurred" loading="lazy" decoding="async"></picture><figcaption>Every lead in the sheet, hot or cold.</figcaption></figure>
+<p>The original write-up estimates the time saved: at about 10 minutes of manual handling per lead, a business with 20 leads a day gets back more than 3 hours a day.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>The sales conversation with hot leads.</li><li>Cold leads, which are logged for follow up when there is time.</li><li>Tuning the reply style and the hot or cold rules.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>OpenAI</li><li>Google Sheets</li><li>Slack</li></ul>
+<p>n8n, an OpenAI model for the reply and the classification, Google Sheets for the log and Slack for alerts.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/ai-automation">AI agents and automation</a></li>
+<li><a href="/blog/speed-to-lead">Speed to Lead: How Fast to Respond to Leads, and How to Reply in Seconds</a></li>
+<li><a href="/blog/lead-qualification-routing-ai">Lead Qualification and Routing: Sort Serious Enquiries and Get Each Lead to the Right Person Fast</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ecommerce support agent: orders, returns and escalation · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built an AI support agent for an online store: it reads each message, looks up the real order, handles returns, and escalates complaints to a person in Slack.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ecommerce-support-agent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ecommerce support agent: orders, returns and escalation">
+<meta property="og:description" content="How we built an AI support agent for an online store: it reads each message, looks up the real order, handles returns, and escalates complaints to a person in Slack.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ecommerce-support-agent">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/ecommerce-support-agent/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="n8n workflow: webhook trigger, analyze customer message, parse AI response, route by intent to order search, return, product question or escalation paths, each posting to Slack, then send response">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ecommerce support agent: orders, returns and escalation">
+<meta name="twitter:description" content="How we built an AI support agent for an online store: it reads each message, looks up the real order, handles returns, and escalates complaints to a person in Slack.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/ecommerce-support-agent/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "An AI support agent for an online store that looks up real orders and escalates the hard cases",
+      "description": "How we built an AI support agent for an online store: it reads each message, looks up the real order, handles returns, and escalates complaints to a person in Slack.",
+      "url": "https://www.kabsailabs.com/case-studies/ecommerce-support-agent",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ecommerce-support-agent"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/ecommerce-support-agent/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ecommerce support agent: orders, returns and escalation",
+          "item": "https://www.kabsailabs.com/case-studies/ecommerce-support-agent"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ecommerce-support-agent" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Chat &amp; Support</p>
+<h1>An AI support agent for an online store that looks up real orders and escalates the hard cases</h1>
+<p class="cs-summary">It reads each customer message, works out what they need, answers from live order data, starts returns, and sends complaints and billing disputes to a person.</p>
+<h2>The problem</h2>
+<p>Store support is a mix of very different messages in one inbox. Where is my order. I want a refund. Is this backpack waterproof. An angry customer threatening a chargeback. Each needs a different answer, and most need someone to look something up first.</p>
+<p>A person has to read each one, work out the intent, find the order, write a reply and decide whether to escalate. Customers wait hours for answers that could have been instant, and the urgent cases wait in the same queue as a tracking question.</p>
+<h2>How it works</h2>
+<p>An AI step reads each message and sorts it into one of four intents. The agent then takes a different action for each.</p>
+<ul class="plain"><li>Order status. It looks up the customer's real order and replies with the order number, status, total and tracking.</li><li>Product question. A separate AI step answers the customer's specific question.</li><li>Return. It confirms the request, tells the customer the instructions are on the way and alerts the returns team.</li><li>Anything else. Complaints, billing disputes and anything emotional go straight to a person with a full alert.</li></ul>
+<p>Every interaction is also posted to the right team channel in Slack.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/01.webp"><img src="/assets/img/work/ecommerce-support-agent/01.jpg" width="1600" height="732" alt="n8n workflow: webhook trigger, analyze customer message, parse AI response, route by intent to order search, return, product question or escalation paths, each posting to Slack, then send response" fetchpriority="high" decoding="async"></picture><figcaption>The workflow. One message comes in and the intent router picks the path.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/02.webp"><img src="/assets/img/work/ecommerce-support-agent/02.jpg" width="1600" height="732" alt="The same workflow after a return request, with the return path highlighted" loading="lazy" decoding="async"></picture><figcaption>A return request taking its path through the router.</figcaption></figure>
+<h3>Where is my order</h3>
+<p>A customer asked about their order. The agent looked up the record and replied with the order number, status and total, pulled live from the order database.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/03.webp"><img src="/assets/img/work/ecommerce-support-agent/03.jpg" width="1311" height="162" alt="Slack message titled Order lookup showing order ORD-1006 with status Processing and total $35.20, with the customer's name and email blurred" loading="lazy" decoding="async"></picture><figcaption>The order lookup posted to the team. Customer details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/04.webp"><img src="/assets/img/work/ecommerce-support-agent/04.jpg" width="518" height="237" alt="n8n message editor showing the Slack message template built from the order search fields" loading="lazy" decoding="async"></picture><figcaption>The message template. Each field comes from the order search.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/05.webp"><img src="/assets/img/work/ecommerce-support-agent/05.jpg" width="1600" height="732" alt="Airtable order management dashboard listing orders with status, order number, tracking number and total, with customer names and emails blurred" loading="lazy" decoding="async"></picture><figcaption>The order table the agent reads from. Names and emails are blurred.</figcaption></figure>
+<h3>A return request</h3>
+<p>A customer wanted to return a jacket that did not fit. The agent recognized a return, confirmed it to the customer and alerted the returns team.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/06.webp"><img src="/assets/img/work/ecommerce-support-agent/06.jpg" width="606" height="283" alt="n8n output of the intent router showing the reply, intent return, and the customer's message about returning a jacket, with name and email blurred" loading="lazy" decoding="async"></picture><figcaption>The router's output for the return. The intent is return.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/07.webp"><img src="/assets/img/work/ecommerce-support-agent/07.jpg" width="987" height="92" alt="Slack message titled Return request with the customer's message about returning a jacket, with the customer's name and email blurred" loading="lazy" decoding="async"></picture><figcaption>The alert to the returns team.</figcaption></figure>
+<h3>An angry customer</h3>
+<p>A customer had been charged twice and wanted a manager. The agent did not try to handle it with a script. It escalated to a person straight away and acknowledged the customer.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ecommerce-support-agent/08.webp"><img src="/assets/img/work/ecommerce-support-agent/08.jpg" width="1281" height="169" alt="Slack message titled Escalation needed with the customer's message about a double charge and intent other, with the email blurred" loading="lazy" decoding="async"></picture><figcaption>The escalation. A person takes it from here.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Complaints, billing disputes and anything emotional.</li><li>The return itself. The agent confirms the request, the returns team handles it.</li><li>Anything that falls outside the four intents.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>OpenAI</li><li>Airtable</li><li>Slack</li></ul>
+<p>n8n, OpenAI for intent classification and product answers, Airtable as the order database, and Slack for routing and escalations. The order database can be swapped for Shopify, WooCommerce or a custom backend without changing the agent's logic.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/industries/ecommerce">Ecommerce automation for multi-channel stores</a></li>
+<li><a href="/blog/where-is-my-order-automation">Where Is My Order? How Shopify Stores Cut WISMO Tickets With Tracking Updates and Automated Answers</a></li>
+<li><a href="/blog/returns-automation">Returns Automation for Shopify Stores: Self-Serve Returns, Auto-Approval Rules and Restocking</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

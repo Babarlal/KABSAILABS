@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Real estate inquiry triage and routing · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built inquiry triage for a real estate agency: each inquiry gets a personal reply, a category, and a post in the right team's Slack channel.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/real-estate-inquiry-triage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Real estate inquiry triage and routing">
+<meta property="og:description" content="How we built inquiry triage for a real estate agency: each inquiry gets a personal reply, a category, and a post in the right team's Slack channel.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/real-estate-inquiry-triage">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/real-estate-inquiry-triage/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="n8n workflow: webhook, AI model, code step, append row to sheet, then a switch that routes selling, renting, buying and general inquiries to separate Slack messages before responding">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Real estate inquiry triage and routing">
+<meta name="twitter:description" content="How we built inquiry triage for a real estate agency: each inquiry gets a personal reply, a category, and a post in the right team's Slack channel.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/real-estate-inquiry-triage/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Inquiry triage for a real estate agency that replies at once and routes each lead",
+      "description": "How we built inquiry triage for a real estate agency: each inquiry gets a personal reply, a category, and a post in the right team's Slack channel.",
+      "url": "https://www.kabsailabs.com/case-studies/real-estate-inquiry-triage",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/real-estate-inquiry-triage"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/real-estate-inquiry-triage/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Real estate inquiry triage and routing",
+          "item": "https://www.kabsailabs.com/case-studies/real-estate-inquiry-triage"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/real-estate-inquiry-triage" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lead &amp; Sales</p>
+<h1>Inquiry triage for a real estate agency that replies at once and routes each lead</h1>
+<p class="cs-summary">It reads every inquiry, sorts it into buying, selling, renting or general, sends a personal reply, and posts serious leads to the right team's channel.</p>
+<h2>The problem</h2>
+<p>Inquiries arrive through forms and email all day, and they all look the same until someone reads them. A cash buyer with a $1.2M budget lands next to someone who is just browsing. A seller who needs a fast valuation looks like a general question.</p>
+<p>Sorting them by hand is slow and inconsistent. The best leads wait while the agent works through everything else, and in real estate the first agent to respond often wins the deal.</p>
+<h2>How it works</h2>
+<p>When an inquiry arrives, the system writes a personal reply that refers to what the person asked for. An AI step classifies the inquiry as buying, selling, renting or general.</p>
+<p>A router then sends each lead down its own path. Buyers go to the buying channel, sellers to selling and renters to renting, each with an instant alert. General inquiries are logged without interrupting anyone. Every inquiry gets its reply and lands in the master sheet.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/01.webp"><img src="/assets/img/work/real-estate-inquiry-triage/01.jpg" width="1600" height="732" alt="n8n workflow: webhook, AI model, code step, append row to sheet, then a switch that routes selling, renting, buying and general inquiries to separate Slack messages before responding" fetchpriority="high" decoding="async"></picture><figcaption>The triage workflow. The switch sends each category to its own channel.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/02.webp"><img src="/assets/img/work/real-estate-inquiry-triage/02.jpg" width="1600" height="150" alt="Slack buying_leads channel with a new buying lead from an investor looking for rental properties, with the lead's name and the posting account blurred" loading="lazy" decoding="async"></picture><figcaption>A buying lead in the buying channel. Names are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/03.webp"><img src="/assets/img/work/real-estate-inquiry-triage/03.jpg" width="1600" height="732" alt="Slack renting_leads channel with a new renting lead looking for a furnished apartment, with the lead's name and account details blurred" loading="lazy" decoding="async"></picture><figcaption>A renting lead in the renting channel.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/04.webp"><img src="/assets/img/work/real-estate-inquiry-triage/04.jpg" width="1600" height="732" alt="Slack selling_leads channel with a new selling lead asking for a valuation, with the lead's name and street address blurred" loading="lazy" decoding="async"></picture><figcaption>A selling lead. The address is blurred.</figcaption></figure>
+<h3>One buying lead, end to end</h3>
+<p>A family looking for their first home sent an inquiry. The system classified it as buying, posted it to the buying channel and sent a personal reply.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/05.webp"><img src="/assets/img/work/real-estate-inquiry-triage/05.jpg" width="1600" height="732" alt="The triage workflow after the run, with the buying path highlighted" loading="lazy" decoding="async"></picture><figcaption>The buying path after the run.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/06.webp"><img src="/assets/img/work/real-estate-inquiry-triage/06.jpg" width="1600" height="732" alt="Slack buying_leads channel with the new lead from a family looking for their first home, with names blurred" loading="lazy" decoding="async"></picture><figcaption>The lead in the buying channel.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/07.webp"><img src="/assets/img/work/real-estate-inquiry-triage/07.jpg" width="1268" height="129" alt="JSON response with the personal reply thanking the family for reaching out, with the first name blurred" loading="lazy" decoding="async"></picture><figcaption>The reply the family received, signed by the agency team.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/real-estate-inquiry-triage/08.webp"><img src="/assets/img/work/real-estate-inquiry-triage/08.jpg" width="1600" height="732" alt="Google Sheet named Real Estate Leads with name, email, message, category and submitted columns, with names, emails and an address blurred" loading="lazy" decoding="async"></picture><figcaption>The master sheet with every inquiry and its category. Personal details are blurred.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>The conversation with the buyer, seller or renter. The system replies first, an agent follows up.</li><li>General inquiries, which are logged for someone to read when they have time.</li><li>Viewings, valuations and offers.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>OpenAI</li><li>Google Sheets</li><li>Slack</li></ul>
+<p>n8n, an OpenAI model for the reply and the classification, Google Sheets for the master log, and a Slack channel for each team.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/industries/real-estate">AI automation for real estate</a></li>
+<li><a href="/blog/lead-qualification-routing-ai">Lead Qualification and Routing: Sort Serious Enquiries and Get Each Lead to the Right Person Fast</a></li>
+<li><a href="/blog/speed-to-lead">Speed to Lead: How Fast to Respond to Leads, and How to Reply in Seconds</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

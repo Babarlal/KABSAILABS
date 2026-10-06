@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helicopter and pilot scheduling · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built deterministic helicopter and pilot scheduling from Bokun to Google Calendar, with balanced pilot loads and manual changes that are never overwritten.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/heli-pilot-scheduling">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Helicopter and pilot scheduling">
+<meta property="og:description" content="How we built deterministic helicopter and pilot scheduling from Bokun to Google Calendar, with balanced pilot loads and manual changes that are never overwritten.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/heli-pilot-scheduling">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Helicopter and pilot scheduling">
+<meta name="twitter:description" content="How we built deterministic helicopter and pilot scheduling from Bokun to Google Calendar, with balanced pilot loads and manual changes that are never overwritten.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Helicopter and pilot scheduling from Bokun bookings to Google Calendar",
+      "description": "How we built deterministic helicopter and pilot scheduling from Bokun to Google Calendar, with balanced pilot loads and manual changes that are never overwritten.",
+      "url": "https://www.kabsailabs.com/case-studies/heli-pilot-scheduling",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/heli-pilot-scheduling"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Helicopter and pilot scheduling",
+          "item": "https://www.kabsailabs.com/case-studies/heli-pilot-scheduling"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/heli-pilot-scheduling" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Scheduling &amp; Ops</p>
+<h1>Helicopter and pilot scheduling from Bokun bookings to Google Calendar</h1>
+<p class="cs-summary">It assigns each confirmed booking to a helicopter and a pilot, keeps pilot workloads even across the month, respects time off, and never changes a booking a person has edited.</p>
+<h2>The problem</h2>
+<p>A helicopter tour operator with 5 helicopters and 6 pilots needed bookings scheduled automatically. Pilot loads had to stay even, days off and rest gaps had to hold, and manual changes, such as weather postponements, could never be overwritten by the automation.</p>
+<h2>How it works</h2>
+<p>Every decision uses fixed, explainable rules rather than an AI model, so the same bookings always produce the same schedule.</p>
+<ul class="plain"><li>Helicopter: a hash of the booking ID picks a starting helicopter, then the first one free for that slot. It looks random, is fully reproducible and never double books an aircraft.</li><li>Pilot: from pilots on duty, free at that time and clear of the rest gap, it picks the one with the fewest tours that month, then the one whose day stays most compact.</li><li>Memory: bookings already placed or locked by a person are skipped on every run, so re-running never moves or reverts an event.</li><li>Exceptions: a booking no pilot can take is flagged instead of being assigned badly.</li></ul>
+<h3>Verified run</h3>
+<p>A live run took 10 new bookings. 8 were scheduled and 2 were skipped as already placed, with no conflicts. Re-running produced an identical plan. Days off held: a pilot who is off on Mondays only received Tuesday and Wednesday tours. New work went to the pilots with the lightest load. The run used sample data.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Weather postponements and cancellations, which the system leaves alone.</li><li>Bookings flagged as exceptions.</li><li>Any manual change to the calendars.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Bokun</li><li>Google Calendar</li></ul>
+<p>n8n, the Bokun booking API and Google Calendar across 5 helicopter and 6 pilot calendars. Enabling the Bokun and Calendar steps with credentials makes it live. The same logic can be rebuilt in Make.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/automatic-appointment-booking">Automatic Appointment Booking for Service Businesses: AI Scheduling, Costs and Setup</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

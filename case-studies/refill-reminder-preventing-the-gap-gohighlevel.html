@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Refill reminder in GoHighLevel · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a refill reminder in GoHighLevel that fires from the pipeline stage, stops when the customer reorders, and hands lapsed subscribers to win-back.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/refill-reminder-preventing-the-gap-gohighlevel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Refill reminder in GoHighLevel">
+<meta property="og:description" content="How we built a refill reminder in GoHighLevel that fires from the pipeline stage, stops when the customer reorders, and hands lapsed subscribers to win-back.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/refill-reminder-preventing-the-gap-gohighlevel">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="GoHighLevel workflow builder showing the subscription refill reminder from the pipeline stage trigger through the reminder email, wait and paid checks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Refill reminder in GoHighLevel">
+<meta name="twitter:description" content="How we built a refill reminder in GoHighLevel that fires from the pipeline stage, stops when the customer reorders, and hands lapsed subscribers to win-back.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A refill reminder in GoHighLevel that lands before the customer runs out",
+      "description": "How we built a refill reminder in GoHighLevel that fires from the pipeline stage, stops when the customer reorders, and hands lapsed subscribers to win-back.",
+      "url": "https://www.kabsailabs.com/case-studies/refill-reminder-preventing-the-gap-gohighlevel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/refill-reminder-preventing-the-gap-gohighlevel"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Refill reminder in GoHighLevel",
+          "item": "https://www.kabsailabs.com/case-studies/refill-reminder-preventing-the-gap-gohighlevel"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/refill-reminder-preventing-the-gap-gohighlevel" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lifecycle &amp; Revenue</p>
+<h1>A refill reminder in GoHighLevel that lands before the customer runs out</h1>
+<p class="cs-summary">When a subscriber is due to reorder, it reminds them, checks whether they did, follows up once by SMS, and hands anyone who lapses to the win-back sequence.</p>
+<h2>The problem</h2>
+<p>For a product that only works when used consistently, running out is where the customer is lost. Nothing arrives, progress stalls, and by the time anyone follows up the customer has decided it was not working.</p>
+<p>A reminder sent after they run out is too late. It has to land before.</p>
+<h2>How it works</h2>
+<p>The trigger is the customer's position in the pipeline, not a calendar date. The workflow starts when a subscriber's opportunity moves to Refill Due.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/01.webp"><img src="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/01.jpg" width="1600" height="732" alt="GoHighLevel workflow builder showing the subscription refill reminder from the pipeline stage trigger through the reminder email, wait and paid checks" fetchpriority="high" decoding="async"></picture><figcaption>The refill sequence in GoHighLevel.</figcaption></figure>
+<ol><li>Send a refill reminder email with a link to reorder.</li><li>Wait three days.</li><li>Check whether they reordered. If yes, move them back to Active and stop.</li><li>If not, send an SMS reminder.</li><li>Wait two days.</li><li>Check again. If they reordered, back to Active and stop.</li><li>If not, tag them refill_lapsed and send a final message. The tag pulls them into the win-back sequence.</li></ol>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/02.webp"><img src="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/02.jpg" width="1015" height="675" alt="Close-up of the refill checks: Paid Branch and None, then a second check after SMS and two days with Paid Tag Present and None" loading="lazy" decoding="async"></picture><figcaption>The two checks. Customers who reorder get nothing more.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/03.webp"><img src="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/03.jpg" width="1600" height="732" alt="GoHighLevel refill reminder email step open in the editor with the reorder message" loading="lazy" decoding="async"></picture><figcaption>The reminder email.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/04.webp"><img src="/assets/img/work/refill-reminder-preventing-the-gap-gohighlevel/04.jpg" width="1600" height="732" alt="GoHighLevel trigger settings: pipeline stage changed to Refill Due in the Subscribers pipeline with status open" loading="lazy" decoding="async"></picture><figcaption>The trigger. The stage change starts the sequence.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Customers who reply with questions about their order.</li><li>Lapsed subscribers, once the win-back sequence has run.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>GoHighLevel</li></ul>
+<p>GoHighLevel workflows, pipeline stage triggers, conditional branching, tags, email and SMS. It links to subscriber onboarding, failed payment recovery and cancellation win-back through shared tags and stages.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/ai-automation-for-small-business-questions">AI Automation for Small Business: 24 Questions Answered (Cost, Examples, Tools)</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

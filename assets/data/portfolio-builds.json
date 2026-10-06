@@ -1,1 +1,180 @@
-[{"slug":"ai-lead-capture-qualification","title":"AI Lead Capture & Qualification System for Service Businesses","industry":"Lead & Sales","stack":[],"featured":true,"tagline":"A workflow that captures every inbound lead, replies in under 10 seconds, sorts the serious buyers from the tire-kickers, and pings the business owner the moment a hot one lands."},{"slug":"rag-support-agent-human-handoff","title":"RAG Support Agent with Confidence-Based Handoff","industry":"Chat & Support","stack":["RAG"],"featured":true,"tagline":"A support agent that answers strictly from the client’s own knowledge base, knows when it does not know, and hands off to a human before it guesses."},{"slug":"ai-voice-receptionist-for-plumbing-businesses","title":"AI Voice Receptionist for Plumbing Businesses","industry":"Voice Agents","stack":[],"featured":true,"tagline":"A 24/7 voice agent that answers the calls a two-man plumbing crew physically cannot. It qualifies the job, books it, and texts the owner."},{"slug":"whatsapp-ai-support-agent-rag-human-handoff","title":"WhatsApp AI Support Agent + RAG + Human Handoff","industry":"Chat & Support","stack":["RAG","WhatsApp"],"featured":false,"tagline":"Customer support inside the channel customers actually use, grounded in the business’s own documentation, with a clean escape hatch to a person."},{"slug":"ai-inquiry-triage-smart-routing-real-estate","title":"AI Inquiry Triage & Smart Routing for Real Estate Agencies","industry":"Lead & Sales","stack":[],"featured":false,"tagline":"One shared inbox, read and classified on arrival, with each message landing on the desk that can actually resolve it."},{"slug":"ai-ticket-triage-n8n-fastapi","title":"AI Ticket Triage — n8n → FastAPI","industry":"Chat & Support","stack":["n8n","FastAPI"],"featured":false,"tagline":"Support tickets classified, prioritised, and enriched on arrival, so the queue reflects urgency rather than arrival order."},{"slug":"event-driven-order-automation-fastapi-n8n","title":"Event-Driven Order Automation — FastAPI → n8n","industry":"Commerce","stack":["n8n","FastAPI"],"featured":false,"tagline":"A FastAPI service in front of n8n, so order processing survives traffic spikes and provider outages instead of silently dropping orders."},{"slug":"automated-returns-review-engine","title":"Automated Returns Review Engine (Shopify)","industry":"Commerce","stack":["Shopify"],"featured":false,"tagline":"Every return request read, checked against the full rulebook, and either auto-approved or escalated, with a defensible audit trail behind each decision."},{"slug":"ai-customer-support-agent-for-e-commerce-order-lookups-returns-product-q-and-a-a","title":"AI Customer Support Agent for E-commerce: Order Lookups, Returns, Product Q&A & Smart Handoff","industry":"Chat & Support","stack":[],"featured":false,"tagline":""},{"slug":"ai-powered-rag-chatbot-for-the-fast-bite-seamless-ordering-and-query-handling","title":"AI-Powered RAG Chatbot for The Fast Bite – Seamless Ordering and Query Handling","industry":"Chat & Support","stack":["RAG"],"featured":false,"tagline":""},{"slug":"voice-agent-rag-post-call-automation","title":"Voice Agent + RAG + Post-Call Automation","industry":"Voice Agents","stack":["RAG"],"featured":false,"tagline":""},{"slug":"ai-powered-automating-calls-and-meeting-scheduling","title":"AI-Powered Automating Calls and Meeting Scheduling","industry":"Scheduling & Ops","stack":[],"featured":false,"tagline":""},{"slug":"ai-powered-action-items-from-meetings-to-automated-meeting-follow-ups","title":"AI-Powered Action Items from Meetings to Automated Meeting Follow-Ups","industry":"Scheduling & Ops","stack":[],"featured":false,"tagline":""},{"slug":"ai-powered-lead-tracking-and-follow-ups","title":"AI-Powered Lead Tracking and Follow-ups","industry":"Lead & Sales","stack":[],"featured":false,"tagline":""},{"slug":"lead-capture-and-follow-up-automation-in-gohighlevel","title":"Lead Capture & Follow-Up Automation in GoHighLevel","industry":"Lifecycle & Revenue","stack":["GoHighLevel"],"featured":false,"tagline":""},{"slug":"post-purchase-subscriber-lifecycle-automation-gohighlevel","title":"Post-Purchase Subscriber Lifecycle Automation (GoHighLevel)","industry":"Lifecycle & Revenue","stack":["GoHighLevel"],"featured":false,"tagline":""},{"slug":"failed-payment-recovery-automated-dunning-gohighlevel","title":"Failed Payment Recovery, Automated Dunning (GoHighLevel)","industry":"Lifecycle & Revenue","stack":["GoHighLevel"],"featured":false,"tagline":""},{"slug":"cancellation-win-back-automated-reactivation-gohighlevel","title":"Cancellation Win-Back — Automated Reactivation (GoHighLevel)","industry":"Lifecycle & Revenue","stack":["GoHighLevel"],"featured":false,"tagline":""},{"slug":"refill-reminder-preventing-the-gap-gohighlevel","title":"Refill Reminder — Preventing the Gap (GoHighLevel)","industry":"Lifecycle & Revenue","stack":["GoHighLevel"],"featured":false,"tagline":""},{"slug":"ai-powered-automated-email-campaign-testing-and-reporting","title":"AI-Powered Automated Email Campaign Testing and Reporting","industry":"Content & Campaigns","stack":[],"featured":false,"tagline":""},{"slug":"ai-powered-social-post-generator-from-spreadsheet-to-socials-in-seconds","title":"AI-Powered Social Post Generator – From Spreadsheet to Socials in Seconds","industry":"Content & Campaigns","stack":["Google Sheets"],"featured":false,"tagline":""},{"slug":"smart-ai-podcast-audio-script-generator-from-bbc-news","title":"Smart AI Podcast Audio Script Generator from BBC News","industry":"Content & Campaigns","stack":[],"featured":false,"tagline":""},{"slug":"ai-invoice-extraction-pipeline","title":"AI Invoice Extraction Pipeline","industry":"Documents & Finance","stack":[],"featured":false,"tagline":""},{"slug":"payroll-and-invoice-validation-engine","title":"Payroll & Invoice Validation Engine","industry":"Documents & Finance","stack":[],"featured":false,"tagline":""},{"slug":"two-source-reconciliation-workflow","title":"Two-Source Reconciliation Workflow","industry":"Documents & Finance","stack":[],"featured":false,"tagline":""},{"slug":"automated-heli-and-pilot-scheduling-bokun-google-calendar-deterministic","title":"Automated Heli & Pilot Scheduling — Bokun → Google Calendar (Deterministic)","industry":"Scheduling & Ops","stack":["Google Calendar","Bokun"],"featured":false,"tagline":""},{"slug":"scheduling-backoffice-and-stats-api-reassign-lock-and-dashboard","title":"Scheduling Backoffice & Stats API — Reassign, Lock & Dashboard","industry":"Scheduling & Ops","stack":[],"featured":false,"tagline":""},{"slug":"candidate-re-engagement-and-follow-up-engine-jobadder","title":"Candidate Re-engagement & Follow-up Engine (JobAdder)","industry":"Recruitment","stack":["JobAdder"],"featured":false,"tagline":""},{"slug":"ats-data-quality-and-job-ageing-audit-jobadder","title":"ATS Data-Quality & Job-Ageing Audit (JobAdder)","industry":"Recruitment","stack":["JobAdder"],"featured":false,"tagline":""},{"slug":"recruitment-management-dashboard-and-reporting-api-jobadder","title":"Recruitment Management Dashboard & Reporting API (JobAdder)","industry":"Recruitment","stack":["JobAdder"],"featured":false,"tagline":""}]
+[
+ {
+  "slug": "ai-voice-receptionist-for-plumbing-businesses",
+  "title": "AI voice receptionist for a plumbing business",
+  "industry": "Voice Agents",
+  "stack": [
+   "Retell",
+   "ElevenLabs",
+   "n8n",
+   "Google Sheets",
+   "HubSpot",
+   "Twilio",
+   "WhatsApp"
+  ],
+  "tagline": "It picks up on the first ring, day or night, works out the job and how urgent it is, logs the lead, adds it to the CRM and texts the plumber the details."
+ },
+ {
+  "slug": "whatsapp-ai-support-agent-rag-human-handoff",
+  "title": "WhatsApp support agent with a human handoff",
+  "industry": "Chat & Support",
+  "stack": [
+   "n8n",
+   "OpenAI",
+   "RAG",
+   "Twilio",
+   "WhatsApp",
+   "Slack",
+   "Google Sheets"
+  ],
+  "tagline": "It answers customers from the business's knowledge base, scores its own confidence, and passes refunds, complaints and anything it does not know to a person on Slack with the full context."
+ },
+ {
+  "slug": "ecommerce-support-agent",
+  "title": "Ecommerce support agent: orders, returns and escalation",
+  "industry": "Chat & Support",
+  "stack": [
+   "n8n",
+   "OpenAI",
+   "Airtable",
+   "Slack"
+  ],
+  "tagline": "It reads each customer message, works out what they need, answers from live order data, starts returns, and sends complaints and billing disputes to a person."
+ },
+ {
+  "slug": "real-estate-inquiry-triage",
+  "title": "Real estate inquiry triage and routing",
+  "industry": "Lead & Sales",
+  "stack": [
+   "n8n",
+   "OpenAI",
+   "Google Sheets",
+   "Slack"
+  ],
+  "tagline": "It reads every inquiry, sorts it into buying, selling, renting or general, sends a personal reply, and posts serious leads to the right team's channel."
+ },
+ {
+  "slug": "ai-invoice-extraction-pipeline",
+  "title": "AI invoice extraction pipeline",
+  "industry": "Documents & Finance",
+  "stack": [
+   "n8n",
+   "Gmail",
+   "OpenAI",
+   "Google Sheets",
+   "Slack"
+  ],
+  "tagline": "Email an invoice in and it pulls out the vendor, invoice number, date, amount, tax and currency, files them in a sheet, posts a confirmation to Slack, and flags incomplete invoices for review."
+ },
+ {
+  "slug": "voice-agent-rag-post-call-automation",
+  "title": "Voice agent with a knowledge base and post-call automation",
+  "industry": "Voice Agents",
+  "stack": [
+   "Retell",
+   "RAG",
+   "n8n",
+   "HubSpot",
+   "Google Sheets",
+   "Slack"
+  ],
+  "tagline": "It answers in a natural voice, looks up prices, service areas and hours in a knowledge base during the call, and after the call files the lead in a sheet and CRM and alerts the team."
+ },
+ {
+  "slug": "cancellation-win-back-gohighlevel",
+  "title": "Cancellation win-back in GoHighLevel",
+  "industry": "Lifecycle & Revenue",
+  "stack": [
+   "GoHighLevel"
+  ],
+  "tagline": "When a subscriber cancels, it asks why, waits, makes the case for returning over the following weeks, then checks whether they resubscribed and files them as reactivated or lost."
+ },
+ {
+  "slug": "failed-payment-recovery-gohighlevel",
+  "title": "Failed payment recovery in GoHighLevel",
+  "industry": "Lifecycle & Revenue",
+  "stack": [
+   "GoHighLevel"
+  ],
+  "tagline": "When a subscription payment fails, it emails the customer, checks whether they paid, follows up by SMS, checks again, and only then flags the account for a person."
+ },
+ {
+  "slug": "lead-capture-qualification",
+  "title": "AI lead capture and qualification",
+  "industry": "Lead & Sales",
+  "stack": [
+   "n8n",
+   "OpenAI",
+   "Google Sheets",
+   "Slack"
+  ],
+  "tagline": "Every form submission is logged, answered with a personal reply written by AI, sorted as hot or cold, and hot leads ping the owner in Slack."
+ },
+ {
+  "slug": "lead-follow-up-gohighlevel",
+  "title": "Lead capture and follow-up in GoHighLevel",
+  "industry": "Lifecycle & Revenue",
+  "stack": [
+   "GoHighLevel"
+  ],
+  "tagline": "When a lead fills in a form, it adds them to the pipeline, picks text and email or email only, runs a follow-up sequence over several days, and stops if they reply STOP."
+ },
+ {
+  "slug": "post-purchase-lifecycle-gohighlevel",
+  "title": "Post-purchase subscriber lifecycle in GoHighLevel",
+  "industry": "Lifecycle & Revenue",
+  "stack": [
+   "GoHighLevel",
+   "Stripe"
+  ],
+  "tagline": "When someone subscribes, it tags them, adds them to the pipeline, welcomes them, shows them how to use the product, sets honest expectations, checks in at 30, 60 and 90 days, then asks for a review."
+ },
+ {
+  "slug": "refill-reminder-preventing-the-gap-gohighlevel",
+  "title": "Refill reminder in GoHighLevel",
+  "industry": "Lifecycle & Revenue",
+  "stack": [
+   "GoHighLevel"
+  ],
+  "tagline": "When a subscriber is due to reorder, it reminds them, checks whether they did, follows up once by SMS, and hands anyone who lapses to the win-back sequence."
+ },
+ {
+  "slug": "ai-powered-lead-tracking-and-follow-ups",
+  "title": "Lead tracking and follow-ups",
+  "industry": "Lead & Sales",
+  "stack": [
+   "n8n",
+   "Google Sheets",
+   "Notion",
+   "Twilio",
+   "Gmail"
+  ],
+  "tagline": "New leads in a Google Sheet are recorded in Notion, thanked by message through Twilio, marked as processed, and emailed through Gmail if they are still pending after three days."
+ },
+ {
+  "slug": "restaurant-ordering-chatbot",
+  "title": "Restaurant ordering chatbot",
+  "industry": "Chat & Support",
+  "stack": [
+   "n8n",
+   "Google Drive",
+   "Google Gemini",
+   "Pinecone",
+   "RAG"
+  ],
+  "tagline": "It keeps itself up to date from files in Google Drive and uses them to answer menu questions, help with orders and give restaurant details."
+ },
+ {
+  "slug": "ai-call-meeting-scheduling",
+  "title": "AI prospect calls and meeting scheduling",
+  "industry": "Scheduling & Ops",
+  "stack": [
+   "Make",
+   "Vapi",
+   "OpenAI",
+   "Google Sheets",
+   "Gmail"
+  ],
+  "tagline": "An AI assistant calls every prospect marked Not Called, logs the outcome in the sheet, and books a meeting for interested prospects at the time they prefer."
+ }
+]

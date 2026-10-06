@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Restaurant ordering chatbot · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a RAG chatbot for a fast food restaurant that updates itself from Google Drive and answers menu, ordering and opening hours questions.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/restaurant-ordering-chatbot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Restaurant ordering chatbot">
+<meta property="og:description" content="How we built a RAG chatbot for a fast food restaurant that updates itself from Google Drive and answers menu, ordering and opening hours questions.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/restaurant-ordering-chatbot">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/restaurant-ordering-chatbot/01.jpg">
+<meta property="og:image:width" content="892">
+<meta property="og:image:height" content="271">
+<meta property="og:image:alt" content="Menu sheet with item name, category, description, price and calories for burgers and wraps">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Restaurant ordering chatbot">
+<meta name="twitter:description" content="How we built a RAG chatbot for a fast food restaurant that updates itself from Google Drive and answers menu, ordering and opening hours questions.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/restaurant-ordering-chatbot/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A chatbot for a fast food restaurant that answers from the latest menu",
+      "description": "How we built a RAG chatbot for a fast food restaurant that updates itself from Google Drive and answers menu, ordering and opening hours questions.",
+      "url": "https://www.kabsailabs.com/case-studies/restaurant-ordering-chatbot",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/restaurant-ordering-chatbot"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/restaurant-ordering-chatbot/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Restaurant ordering chatbot",
+          "item": "https://www.kabsailabs.com/case-studies/restaurant-ordering-chatbot"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/restaurant-ordering-chatbot" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Chat &amp; Support</p>
+<h1>A chatbot for a fast food restaurant that answers from the latest menu</h1>
+<p class="cs-summary">It keeps itself up to date from files in Google Drive and uses them to answer menu questions, help with orders and give restaurant details.</p>
+<h2>The problem</h2>
+<p>Customers ask the same things about the menu, prices, opening hours and orders. Keeping a chatbot's answers right every time the menu changes is the hard part.</p>
+<h2>How it works</h2>
+<ol><li>When a new file is added to the restaurant's Google Drive folder, such as an updated menu, the workflow starts.</li><li>It downloads the file.</li><li>Google Gemini turns the content into embeddings the chatbot can search.</li><li>The data is stored in Pinecone, so answers can be found quickly.</li><li>When a customer asks a question, the chatbot searches that data and replies.</li></ol>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/restaurant-ordering-chatbot/01.webp"><img src="/assets/img/work/restaurant-ordering-chatbot/01.jpg" width="892" height="271" alt="Menu sheet with item name, category, description, price and calories for burgers and wraps" fetchpriority="high" decoding="async"></picture><figcaption>Part of the menu the chatbot learns from.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/restaurant-ordering-chatbot/02.webp"><img src="/assets/img/work/restaurant-ordering-chatbot/02.jpg" width="804" height="104" alt="Pinecone index settings showing cosine metric, 768 dimensions, AWS us-east-1, serverless and a record count of 123, with the host URL blurred" loading="lazy" decoding="async"></picture><figcaption>The Pinecone index holding the menu data. The host URL is blurred.</figcaption></figure>
+<p>The chatbot helps customers order, customise their meals and answer common questions such as store hours and promotions.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/restaurant-ordering-chatbot/03.webp"><img src="/assets/img/work/restaurant-ordering-chatbot/03.jpg" width="705" height="366" alt="Chat window where a customer asks about opening hours and the chatbot replies with the hours, with the session ID and restaurant name blurred" loading="lazy" decoding="async"></picture><figcaption>A customer asking about opening hours.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/restaurant-ordering-chatbot/04.webp"><img src="/assets/img/work/restaurant-ordering-chatbot/04.jpg" width="937" height="776" alt="n8n chat agent workflow: chat trigger, AI agent with a Google Gemini chat model, simple memory and a vector store tool backed by Pinecone and Gemini embeddings" loading="lazy" decoding="async"></picture><figcaption>The chatbot in n8n.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Updating the menu file. The chatbot picks up the change from Drive.</li><li>Preparing and delivering the orders.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Google Drive</li><li>Google Gemini</li><li>Pinecone</li><li>RAG</li></ul>
+<p>n8n, Google Drive as the source of menu files, Google Gemini for embeddings and replies, and Pinecone as the vector store.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/rag-knowledge-base">Knowledge base and RAG agents</a></li>
+<li><a href="/blog/ai-website-chat">AI Chatbot for Your Website: A Small Business Guide to AI Chat That Knows Your Business</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

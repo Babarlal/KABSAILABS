@@ -145,7 +145,7 @@
       "permanent": true
     },
     {
-      "source": "/case-studies/:slug+",
+      "source": "/case-studies/:slug(atlas-ai-receptionist|brightleaf-voice-ai|cedarbrook-intake-agent|larkfield-lifecycle-automation|maple-data-infrastructure|northwind-onboarding-agent|template)",
       "destination": "/case-studies",
       "permanent": true
     }

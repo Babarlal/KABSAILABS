@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JobAdder data quality and job ageing audit · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a daily JobAdder audit that flags timed-out jobs, missing data and stale activity, scores data quality, and routes high severity issues to Slack.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ats-data-quality-and-job-ageing-audit-jobadder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JobAdder data quality and job ageing audit">
+<meta property="og:description" content="How we built a daily JobAdder audit that flags timed-out jobs, missing data and stale activity, scores data quality, and routes high severity issues to Slack.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ats-data-quality-and-job-ageing-audit-jobadder">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JobAdder data quality and job ageing audit">
+<meta name="twitter:description" content="How we built a daily JobAdder audit that flags timed-out jobs, missing data and stale activity, scores data quality, and routes high severity issues to Slack.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A daily data quality and job ageing audit for JobAdder",
+      "description": "How we built a daily JobAdder audit that flags timed-out jobs, missing data and stale activity, scores data quality, and routes high severity issues to Slack.",
+      "url": "https://www.kabsailabs.com/case-studies/ats-data-quality-and-job-ageing-audit-jobadder",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ats-data-quality-and-job-ageing-audit-jobadder"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "JobAdder data quality and job ageing audit",
+          "item": "https://www.kabsailabs.com/case-studies/ats-data-quality-and-job-ageing-audit-jobadder"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ats-data-quality-and-job-ageing-audit-jobadder" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Recruitment</p>
+<h1>A daily data quality and job ageing audit for JobAdder</h1>
+<p class="cs-summary">Each morning it checks every active job in JobAdder, flags what recruiters miss, and routes high severity issues to Slack and a review task.</p>
+<h2>The problem</h2>
+<p>Recruitment systems fill with jobs that have aged out, missing salaries, missing client contacts, unsigned terms and jobs with no submissions. Nobody checks every job every day, so the problems stay hidden.</p>
+<h2>How it works</h2>
+<ol><li>Load the thresholds.</li><li>Read the active jobs from JobAdder.</li><li>Check each job against each rule.</li><li>Keep only the exceptions.</li><li>Send high severity issues to Slack and create a JobAdder review task.</li><li>Write a run report.</li></ol>
+<h3>The rules</h3>
+<ul class="plain"><li>Ageing: fresh, ageing, stale or critical. An open job past 60 days is timed out.</li><li>Data quality: missing salary, missing client contact, unsigned terms, no submissions after a week, and no activity for 21 days or more.</li><li>Severity: high if timed out, terms unsigned or three or more issues, otherwise medium. High goes to Slack and a review task, medium to the owner's task queue.</li><li>Score: clean active jobs divided by active jobs, so it can be tracked week to week.</li></ul>
+<h3>Verified run</h3>
+<p>A live run checked 12 active jobs. 3 were clean and 9 were flagged, a data quality score of 25%. 3 jobs had timed out. 5 issues were high severity and 4 medium. The run used sample data in place of the live JobAdder read.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Fixing each flagged job.</li><li>Setting the thresholds.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>JobAdder</li><li>Slack</li></ul>
+<p>n8n with schedule and manual triggers, the JobAdder API for jobs and tasks, and Slack for high severity alerts.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/automated-client-reporting">Automated Client Reporting for Marketing Agencies: White-Label Reports From Google Ads, Meta and GA4</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

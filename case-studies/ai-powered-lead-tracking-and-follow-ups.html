@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lead tracking and follow-ups · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built lead tracking that records each new lead in Notion, sends a thank you through Twilio, and follows up by Gmail when a lead is still pending.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/ai-powered-lead-tracking-and-follow-ups">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lead tracking and follow-ups">
+<meta property="og:description" content="How we built lead tracking that records each new lead in Notion, sends a thank you through Twilio, and follows up by Gmail when a lead is still pending.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/ai-powered-lead-tracking-and-follow-ups">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/ai-powered-lead-tracking-and-follow-ups/01.jpg">
+<meta property="og:image:width" content="937">
+<meta property="og:image:height" content="521">
+<meta property="og:image:alt" content="n8n workflows: a Google Sheets trigger that filters, parses, creates a Notion page, sends a message through Twilio and updates the sheet, and a scheduled workflow that queries Notion and sends a Gmail follow-up">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lead tracking and follow-ups">
+<meta name="twitter:description" content="How we built lead tracking that records each new lead in Notion, sends a thank you through Twilio, and follows up by Gmail when a lead is still pending.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/ai-powered-lead-tracking-and-follow-ups/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Lead tracking that logs each lead in Notion, sends a thank you and follows up after three days",
+      "description": "How we built lead tracking that records each new lead in Notion, sends a thank you through Twilio, and follows up by Gmail when a lead is still pending.",
+      "url": "https://www.kabsailabs.com/case-studies/ai-powered-lead-tracking-and-follow-ups",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/ai-powered-lead-tracking-and-follow-ups"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/ai-powered-lead-tracking-and-follow-ups/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Lead tracking and follow-ups",
+          "item": "https://www.kabsailabs.com/case-studies/ai-powered-lead-tracking-and-follow-ups"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/ai-powered-lead-tracking-and-follow-ups" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Lead &amp; Sales</p>
+<h1>Lead tracking that logs each lead in Notion, sends a thank you and follows up after three days</h1>
+<p class="cs-summary">New leads in a Google Sheet are recorded in Notion, thanked by message through Twilio, marked as processed, and emailed through Gmail if they are still pending after three days.</p>
+<h2>The problem</h2>
+<p>New leads were landing in a Google Sheet with nothing tracking them, no acknowledgement and no follow up unless someone remembered to send one.</p>
+<h2>How it works</h2>
+<p>The workflow starts when a new row is added to the Google Sheet with the lead's name, email, phone and a status of Pending. Only rows not yet processed go through.</p>
+<ol><li>Clean the data. Phone numbers are put into international format and a timestamp is added.</li><li>Create a page in the Notion Leads database with the name, email, phone, status, created time and sheet row ID.</li><li>Send a thank you message through Twilio.</li><li>Mark the sheet row as processed and store the Notion page ID and the time the message was sent.</li></ol>
+<p>A separate workflow runs once a day. It finds leads still marked Pending after three days and sends a follow-up email through Gmail.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/01.webp"><img src="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/01.jpg" width="937" height="521" alt="n8n workflows: a Google Sheets trigger that filters, parses, creates a Notion page, sends a message through Twilio and updates the sheet, and a scheduled workflow that queries Notion and sends a Gmail follow-up" fetchpriority="high" decoding="async"></picture><figcaption>Both workflows. The top one handles new leads, the bottom one runs daily.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/02.webp"><img src="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/02.jpg" width="937" height="294" alt="Notion Leads database with one lead marked Pending, with the name, email, phone and workspace details blurred" loading="lazy" decoding="async"></picture><figcaption>The lead record in Notion. Personal details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/03.webp"><img src="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/03.jpg" width="937" height="189" alt="Google Sheet of leads with status, processed flag, Notion page ID and message sent time, with personal details blurred" loading="lazy" decoding="async"></picture><figcaption>The sheet row after processing.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/04.webp"><img src="/assets/img/work/ai-powered-lead-tracking-and-follow-ups/04.jpg" width="589" height="395" alt="WhatsApp chat with the Twilio sender showing the thank you message sent to a new lead, with the sandbox code, number and name blurred" loading="lazy" decoding="async"></picture><figcaption>The thank you message as the lead receives it.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Talking to the lead once they reply.</li><li>Updating a lead's status in Notion as the conversation moves on.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>Google Sheets</li><li>Notion</li><li>Twilio</li><li>Gmail</li></ul>
+<p>n8n, Google Sheets as the intake, Notion as the lead database, Twilio for the thank you message and Gmail for the follow-up.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/workflow-automation">Workflow automation</a></li>
+<li><a href="/blog/lead-follow-up">Lead Follow-Up: How to Chase Leads Who Went Quiet Without Nagging or Forgetting</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

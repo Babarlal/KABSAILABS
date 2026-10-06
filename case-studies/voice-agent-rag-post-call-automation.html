@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voice agent with a knowledge base and post-call automation · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built a phone agent for a home services company: it answers from a real knowledge base during the call, then logs the lead in Sheets and HubSpot and alerts Slack.">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/voice-agent-rag-post-call-automation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Voice agent with a knowledge base and post-call automation">
+<meta property="og:description" content="How we built a phone agent for a home services company: it answers from a real knowledge base during the call, then logs the lead in Sheets and HubSpot and alerts Slack.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/voice-agent-rag-post-call-automation">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/work/voice-agent-rag-post-call-automation/01.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="732">
+<meta property="og:image:alt" content="Retell agent settings for a home services phone assistant, showing the prompt with rules about prices, service areas and booking, and the knowledge base attached">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Voice agent with a knowledge base and post-call automation">
+<meta name="twitter:description" content="How we built a phone agent for a home services company: it answers from a real knowledge base during the call, then logs the lead in Sheets and HubSpot and alerts Slack.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/work/voice-agent-rag-post-call-automation/01.jpg">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A phone agent for a home services company that answers from real prices and logs every call",
+      "description": "How we built a phone agent for a home services company: it answers from a real knowledge base during the call, then logs the lead in Sheets and HubSpot and alerts Slack.",
+      "url": "https://www.kabsailabs.com/case-studies/voice-agent-rag-post-call-automation",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/voice-agent-rag-post-call-automation"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/work/voice-agent-rag-post-call-automation/01.jpg",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Voice agent with a knowledge base and post-call automation",
+          "item": "https://www.kabsailabs.com/case-studies/voice-agent-rag-post-call-automation"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/voice-agent-rag-post-call-automation" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Voice Agents</p>
+<h1>A phone agent for a home services company that answers from real prices and logs every call</h1>
+<p class="cs-summary">It answers in a natural voice, looks up prices, service areas and hours in a knowledge base during the call, and after the call files the lead in a sheet and CRM and alerts the team.</p>
+<h2>The problem</h2>
+<p>Home services companies depend on the phone. A missed call is a missed job, and the answered calls bring a second problem: whoever answers must know every price, area and policy, and write the details down by hand. After hours it does not happen at all.</p>
+<p>Many AI receptionists make this worse. A scripted bot cannot answer a pricing question, and a chatbot on a phone line will invent a number to sound helpful. A wrong price is worse than no answer.</p>
+<h2>How it works</h2>
+<p>There are two halves: the live call and what happens after it.</p>
+<p>On the call, the agent answers in a natural voice. When the caller asks something factual, such as the price of an AC repair, whether the company covers a town, or whether it opens on Sunday, the agent searches the knowledge base and answers from it. If the answer is not there, it says a team member will follow up. It quotes starting prices only, does not promise exact arrival times, and passes refund disputes to a person.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/voice-agent-rag-post-call-automation/01.webp"><img src="/assets/img/work/voice-agent-rag-post-call-automation/01.jpg" width="1600" height="732" alt="Retell agent settings for a home services phone assistant, showing the prompt with rules about prices, service areas and booking, and the knowledge base attached" fetchpriority="high" decoding="async"></picture><figcaption>The agent's instructions in Retell, with the company knowledge base attached.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/voice-agent-rag-post-call-automation/02.webp"><img src="/assets/img/work/voice-agent-rag-post-call-automation/02.jpg" width="1600" height="294" alt="Retell knowledge base page for the company, with the knowledge base ID blurred" loading="lazy" decoding="async"></picture><figcaption>The knowledge base the agent searches during the call.</figcaption></figure>
+<p>After the call, the details go to n8n. It pulls out the caller's name, phone, address, the service needed and the urgency. It saves a row to a sheet, creates a HubSpot contact with a full summary, and posts to Slack. Emergencies get a dispatch alert. Routine calls get a booking notice.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/voice-agent-rag-post-call-automation/03.webp"><img src="/assets/img/work/voice-agent-rag-post-call-automation/03.jpg" width="1600" height="757" alt="n8n workflow: Retell call webhook, extract call data, save lead to sheet, add to CRM, is emergency check, then emergency alert or routine alert in Slack" loading="lazy" decoding="async"></picture><figcaption>The post-call backend in n8n.</figcaption></figure>
+<h3>A real run</h3>
+<p>A caller phoned to book an AC repair because the unit was blowing warm air. It was not an emergency. The agent took the name, address, phone number and problem, and confirmed it was a routine job. When the call ended, the details were saved to the sheet, a CRM contact was created with a note about the repair, and a booking notice went to Slack. No one typed anything.</p>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/voice-agent-rag-post-call-automation/04.webp"><img src="/assets/img/work/voice-agent-rag-post-call-automation/04.jpg" width="1372" height="596" alt="Slack channel with a New booking message showing service AC repair, blowing warm air, preferred this week and not urgent, with the caller's name, phone and address blurred" loading="lazy" decoding="async"></picture><figcaption>The booking notice in Slack. Caller details are blurred.</figcaption></figure>
+<figure class="cs-fig"><picture><source type="image/webp" srcset="/assets/img/work/voice-agent-rag-post-call-automation/05.webp"><img src="/assets/img/work/voice-agent-rag-post-call-automation/05.jpg" width="1600" height="286" alt="Google Sheet of call leads with caller name, phone, address, service, urgency, preferred time and summary columns, with personal details blurred" loading="lazy" decoding="async"></picture><figcaption>The call log in Google Sheets.</figcaption></figure>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Dispatching the technician and confirming the visit.</li><li>Questions the knowledge base does not cover. The agent promises a follow up instead of guessing.</li><li>Refund disputes, which the agent passes straight on.</li><li>Final prices. The agent gives starting prices only.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>Retell</li><li>RAG</li><li>n8n</li><li>HubSpot</li><li>Google Sheets</li><li>Slack</li></ul>
+<p>Retell for the voice agent and its knowledge base, n8n for the backend, HubSpot for the CRM, Google Sheets for the call log and Slack for dispatch alerts. Change the company information and it works for plumbing, electrical or roofing. The CRM, calendar and alert channel can be swapped for whatever the business already uses.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/ai-for-trades">Voice AI agents for trades</a></li>
+<li><a href="/blog/ai-phone-answering-small-business">AI Receptionist for Small Business: Is It Worth It for Plumbers, HVAC and Dental Offices?</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

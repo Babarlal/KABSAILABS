@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Candidate re-engagement for JobAdder · Case study · KABS AI LABS</title>
+<meta name="description" content="How we built candidate re-engagement for JobAdder: fixed rules pick who to contact and why, Claude polishes the message, and each consultant gets a task.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.kabsailabs.com/case-studies/candidate-re-engagement-jobadder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Candidate re-engagement for JobAdder">
+<meta property="og:description" content="How we built candidate re-engagement for JobAdder: fixed rules pick who to contact and why, Claude polishes the message, and each consultant gets a task.">
+<meta property="og:url" content="https://www.kabsailabs.com/case-studies/candidate-re-engagement-jobadder">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KABS AI LABS: AI agents, automation and analytics, built end to end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Candidate re-engagement for JobAdder">
+<meta name="twitter:description" content="How we built candidate re-engagement for JobAdder: fixed rules pick who to contact and why, Claude polishes the message, and each consultant gets a task.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Candidate follow-up and re-engagement for recruiters using JobAdder",
+      "description": "How we built candidate re-engagement for JobAdder: fixed rules pick who to contact and why, Claude polishes the message, and each consultant gets a task.",
+      "url": "https://www.kabsailabs.com/case-studies/candidate-re-engagement-jobadder",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/case-studies/candidate-re-engagement-jobadder"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/og-image.png",
+      "author": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://www.kabsailabs.com/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Candidate re-engagement for JobAdder",
+          "item": "https://www.kabsailabs.com/case-studies/candidate-re-engagement-jobadder"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/case-studies/candidate-re-engagement-jobadder" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article class="case-study"><div class="wrap">
+<p class="kicker"><a href="/case-studies">Case study</a> &nbsp;&middot;&nbsp; Recruitment</p>
+<h1>Candidate follow-up and re-engagement for recruiters using JobAdder</h1>
+<p class="cs-summary">It reads candidates and open jobs from JobAdder, decides who each recruiter should contact today and why, drafts the message and creates a task.</p>
+<h2>The problem</h2>
+<p>Recruiters have more past candidates than they can keep in touch with. Strong matches for new roles get missed, and good candidates go quiet because nobody followed up.</p>
+<h2>How it works</h2>
+<p>Fixed rules decide who to contact and why, so the targeting is the same on every run and can be audited. Claude only polishes the wording.</p>
+<ul class="plain"><li>Eligibility: skip anyone interviewing or placed in the last 90 days.</li><li>Skill match: two or more shared skills with an open job makes a high priority pitch for that role.</li><li>Recency: otherwise, no contact for 30 days or more triggers a medium priority re-engagement.</li><li>Output: a personal message naming the role and the shared skills, plus a JobAdder task for the candidate's consultant.</li></ul>
+<h3>Verified run</h3>
+<p>A live run took 12 candidates. 8 were actioned, 5 skill matched pitches and 3 re-engagements, and 4 were correctly skipped because they were interviewing, recently placed or recently contacted. Re-running gave identical output. The run used sample data.</p>
+<h2>What a person still handles</h2>
+<ul class="plain"><li>Sending each message, or editing it first.</li><li>The conversation with the candidate.</li></ul>
+<h2>Built with</h2>
+<ul class="cs-tools"><li>n8n</li><li>JobAdder</li><li>Claude</li></ul>
+<p>n8n, the JobAdder API for candidates, jobs and tasks, and Claude for the wording.</p>
+<div class="cta">
+<h2>Your build starts with the arithmetic.</h2>
+<p>Bring a week of real examples to the free audit. We come back with the three worth doing first, what each is worth, and a fixed price. If a cheaper tool already covers it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related</h2>
+<ul>
+<li><a href="/services/ai-automation">AI agents and automation</a></li>
+<li><a href="/blog/lead-follow-up">Lead Follow-Up: How to Chase Leads Who Went Quiet Without Nagging or Forgetting</a></li>
+</ul>
+<p><a href="/case-studies">All case studies</a></p>
+</section>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>
