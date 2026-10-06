@@ -12,12 +12,12 @@
         }
       ],
       "destination": "https://www.kabsailabs.com/:path*",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/about",
       "destination": "/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/blog/automatic-business-reporting-2026",
@@ -122,32 +122,32 @@
     {
       "source": "/services/voice-ai",
       "destination": "/services/ai-for-trades",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/services/ai-legal-medical-docs",
       "destination": "/services/ai-automation",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/services/analytics",
       "destination": "/services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/services/analytics/:path*",
       "destination": "/services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/services/gohighlevel-automation",
       "destination": "/services/workflow-automation",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/case-studies/:slug(atlas-ai-receptionist|brightleaf-voice-ai|cedarbrook-intake-agent|larkfield-lifecycle-automation|maple-data-infrastructure|northwind-onboarding-agent|template)",
       "destination": "/case-studies",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
