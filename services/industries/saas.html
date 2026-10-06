@@ -130,7 +130,7 @@
       <a class="btn accent" href="/audit">Book a 30-minute call →</a>
       <a class="btn ghost" href="#leak">See the MRR you're leaking</a>
     </div>
-    <p class="fine">A fifth to two-fifths of SaaS churn is failed payments, not people leaving. Builds from $200.</p>
+    <p class="fine">Some churn is a failed card, not a customer leaving. Builds from $200.</p>
   </div></div>
   <div class="win">
     <div class="win-bar"><i></i><i></i><i></i><span class="t"><span class="p"></span>dunning · live</span></div>
@@ -162,14 +162,14 @@
     </div>
     <div class="fnote">
       <div><i style="background:var(--brand)"></i><span><b>Illustrative funnel.</b> Your numbers will differ; the shape rarely does.</span></div>
-      <div><i style="background:var(--coral)"></i><span><b>The last leak is the cheapest to fix.</b> 20–40% of SaaS churn is involuntary. The median company recovers under half of failed payments; a proper dunning flow recovers 70–85%.</span></div>
+      <div><i style="background:var(--coral)"></i><span><b>The last leak is the cheapest to fix.</b> Some churn is failed cards, not cancellations. Stripe recommends retrying a failed payment 8 times over 2 weeks, and updates many US cards automatically when a bank issues a new one. Our post on <a href="/blog/automatic-invoice-chasing-payment-recovery" style="text-decoration:underline;text-underline-offset:3px">failed payment recovery</a> covers the rest.</span></div>
       <div><i style="background:var(--rule-2)"></i><span><b>What we build:</b> the workflow at each hand-off, so the nudge, the routing and the retry happen without a person remembering to.</span></div>
     </div>
   </div>
 </div></section><section class="section" id="leak"><div class="container">
   <div class="section-head"><span class="chip-eyebrow"><span class="sparkle">↗</span> The MRR leak</span>
   <h2 class="section-title">Work out what failed payments cost you.</h2>
-  <p class="lead">Drag to your numbers. An estimate with the arithmetic shown — your figures, nothing hidden.</p></div>
+  <p class="lead">Drag to your numbers. An estimate with the arithmetic shown. Your figures, nothing hidden.</p></div>
   <div class="mc">
     <div>
       <div class="field"><label for="mc-m">Monthly recurring revenue <b id="mc-mV">$50,000</b></label><input type="range" id="mc-m" min="5000" max="500000" value="50000" step="5000"></div>
@@ -178,7 +178,7 @@
       <div class="field"><label for="mc-t">What a proper dunning flow recovers <b id="mc-tV">70%</b></label><input type="range" id="mc-t" min="40" max="85" value="70" step="1"></div>
       <p class="foot" id="mc-math"></p>
     </div>
-    <div class="out"><div class="l">MRR you could win back each month</div><div class="big" id="mc-amt">$0</div><div class="yr" id="mc-yr">— a year</div></div>
+    <div class="out"><div class="l">MRR you could win back each month</div><div class="big" id="mc-amt">$0</div><div class="yr" id="mc-yr">$0 a year</div></div>
   </div>
 </div></section><section class="section tint" id="work"><div class="container">
   <div class="section-head"><span class="chip-eyebrow"><span class="sparkle">✦</span> Proof, not promises</span>
@@ -188,7 +188,7 @@
 </div></section><section class="section"><div class="container narrow">
   <div class="section-head"><p class="eyebrow">FAQ</p><h2 class="section-title">What founders ask first.</h2></div>
   <div class="faq">
-    <details><summary>We use Stripe's built-in retries. Isn't that enough?<span class="pm">+</span></summary><div class="faq-a">It's a start. Default retries recover roughly a quarter to a third of failed charges. Smart timing, a pre-expiry card nudge and a short email sequence take that to 70% or more. The gap is revenue you already earned.</div></details>
+    <details><summary>We use Stripe's built-in retries. Isn't that enough?<span class="pm">+</span></summary><div class="faq-a">It's a start. Stripe's Smart Retries default to 8 tries over 2 weeks, but some declines, like a lost or stolen card, cannot be retried at all. Those need a pre-expiry card nudge and a short email asking for a new card. Our post on <a href="/blog/automatic-invoice-chasing-payment-recovery" style="text-decoration:underline;text-underline-offset:3px">failed payment recovery</a> covers the setup. The gap is revenue you already earned.</div></details>
     <details><summary>Does it work with our billing and CRM?<span class="pm">+</span></summary><div class="faq-a">Stripe, Chargebee, Paddle, and HubSpot, GoHighLevel or Salesforce on the CRM side. We wire into what you run; nothing gets replaced.</div></details>
     <details><summary>Will it spam our customers?<span class="pm">+</span></summary><div class="faq-a">No. Retries are silent first; a message only goes out when a retry can't fix it, and it says exactly what to do. Fewer, better touches convert better and annoy less.</div></details>
     <details><summary>How is it priced for a startup?<span class="pm">+</span></summary><div class="faq-a">A fixed build fee, then a monthly fee to keep it running. Never a cut of recovered revenue, so what we win back is yours.</div></details>

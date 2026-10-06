@@ -205,9 +205,6 @@ function buildFooter(){
       '<div class="foot-brand"><a class="logo" href="/" aria-label="KABS AI LABS home">'+LOGO+'</a>'+
         '<p>AI agents, automation &amp; analytics that replace manual work and run 24/7.</p>'+
         '<div class="foot-social">'+social+'</div>'+
-        // TODO: replace with your registered entity name and address.
-        // Several EU jurisdictions require this, and it is the cheapest trust signal available.
-        '<p class="foot-legal"><!-- KABS AI LABS LLC · [street], [city], [state] [zip] --></p>'+
       '</div>'+
       col('Services', NAV.services.slice(0,6))+ col('Industries', NAV.industries)+
       col('Resources', NAV.resources, ['Free tools', FOOT_TOOLS])+ col('Company', NAV.company)+
