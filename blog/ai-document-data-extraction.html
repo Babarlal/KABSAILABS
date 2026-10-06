@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Document Data Extraction for Small Business: Invoices, Receipts and Forms Into QuickBooks or Xero</title>
+<meta name="description" content="How small businesses can stop retyping invoices, receipts, purchase orders and forms: how AI extraction differs from old OCR, the checks that stop wrong payments, real prices from QuickBooks, Dext, Hubdoc, BILL and AWS, and when it backfires.">
+<meta name="author" content="Babar Lal">
+<link rel="canonical" href="https://www.kabsailabs.com/blog/ai-document-data-extraction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Document Data Extraction for Small Business: Invoices, Receipts and Forms Into QuickBooks or Xero">
+<meta property="og:description" content="How small businesses can stop retyping invoices, receipts, purchase orders and forms: how AI extraction differs from old OCR, the checks that stop wrong payments, real prices from QuickBooks, Dext, Hubdoc, BILL and AWS, and when it backfires.">
+<meta property="og:url" content="https://www.kabsailabs.com/blog/ai-document-data-extraction">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="article:published_time" content="2026-10-06">
+<meta property="article:modified_time" content="2026-10-06">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/blog/ai-document-data-extraction/hero.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The same stack of supplier invoices on two Mondays. On the left, totals typed into QuickBooks by hand, and a typo that turns 1,480 dollars into 1,840 dollars and is found four weeks later. On the right, invoices arrive by email, AI reads the supplier, invoice number, date and total and matches the purchase order, a draft is posted and two unsure ones are flagged for a person.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Document Data Extraction for Small Business: Invoices, Receipts and Forms Into QuickBooks or Xero">
+<meta name="twitter:description" content="How small businesses can stop retyping invoices, receipts, purchase orders and forms: how AI extraction differs from old OCR, the checks that stop wrong payments, real prices from QuickBooks, Dext, Hubdoc, BILL and AWS, and when it backfires.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/blog/ai-document-data-extraction/hero.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AI document data extraction: stop typing numbers off invoices, receipts and forms",
+      "description": "How small businesses can stop retyping invoices, receipts, purchase orders and forms: how AI extraction differs from old OCR, the checks that stop wrong payments, real prices from QuickBooks, Dext, Hubdoc, BILL and AWS, and when it backfires.",
+      "url": "https://www.kabsailabs.com/blog/ai-document-data-extraction",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/blog/ai-document-data-extraction"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/blog/ai-document-data-extraction/hero.png",
+      "author": {
+        "@type": "Person",
+        "name": "Babar Lal"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.kabsailabs.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI document data extraction: stop typing numbers off invoices, receipts and forms",
+          "item": "https://www.kabsailabs.com/blog/ai-document-data-extraction"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AI document data extraction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is software that reads a document, such as an invoice, receipt, purchase order or form, and pulls out the fields you need. That means the supplier, date, invoice number, totals and line items. It then checks them against your rules and puts them into your accounting or practice system, usually as a draft for a person to approve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can QuickBooks read invoices automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Partly. QuickBooks Online lets you email or upload receipts and bills. Its help page says it pulls the date, amount, vendor and last four digits of the card from the image. You then review each one in the Receipts tab and add it or match it to a bank transaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is AI invoice extraction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I have not found an independent accuracy figure I trust. Most published numbers come from vendors testing their own tools. Clean PDFs from known suppliers usually read well. Handwriting and poor phone photos do not. Test any tool on your own last 100 documents before you rely on it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is OCR the same as AI extraction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Plain OCR turns an image into text. Older invoice tools then needed a template for each supplier to know where the total sat. AI extraction reads the layout like a person would, so a new supplier usually works without a template. It still makes mistakes, so it still needs checks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop duplicate invoice payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check every new invoice against past ones on supplier and invoice number, not just amount and date. Hold anything that looks like a repeat for a person. Pay only from approved bills, never straight from an email. Confirm any change to a supplier's bank details by phone, using a number you already had."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to use for patient or customer documents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It can be, if the tools are set up for it. Keep the data with providers that will sign the agreements your rules need, limit who can see it, and keep a log of who opened what. Clinics should check the HIPAA rules for every tool that touches patient forms. This is not legal advice."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/blog/ai-document-data-extraction" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article><div class="wrap">
+<p class="kicker">Documents &amp; finance</p>
+<h1>AI document data extraction: stop typing numbers off invoices, receipts and forms</h1>
+<p class="byline">By Babar Lal &nbsp;&middot;&nbsp; <time datetime="2026-10-06">6 October 2026</time> &nbsp;&middot;&nbsp; 9 min read</p>
+<p>It is Monday morning. There is a stack of supplier invoices on the desk and more in the inbox. Someone opens each one, finds the total and types it into QuickBooks. Then the date, the supplier and the invoice number.</p>
+<p>One invoice says $1,480. It goes in as $1,840. Nobody notices. At month end the supplier statement does not match, and someone spends an afternoon finding one swapped digit.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/ai-document-data-extraction/hero-mobile.png" width="750" height="1132"><img src="/assets/img/blog/ai-document-data-extraction/hero.png" width="1200" height="630" alt="The same stack of supplier invoices on two Mondays. On the left, totals typed into QuickBooks by hand, and a typo that turns 1,480 dollars into 1,840 dollars and is found four weeks later. On the right, invoices arrive by email, AI reads the supplier, invoice number, date and total and matches the purchase order, a draft is posted and two unsure ones are flagged for a person." fetchpriority="high" decoding="async"></picture></figure>
+<h2>The short answer</h2>
+<p>Let software read the paperwork, check it against your rules and post it as a draft. A person approves the routine ones in one click and looks closely only at the unsure ones.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Question</th><th scope="col">Short answer</th></tr></thead>
+<tbody>
+<tr><td>What AI document extraction is</td><td>Software that reads invoices, receipts, purchase orders and forms, pulls out the fields and puts them in your system</td></tr>
+<tr><td>What it is not</td><td>A way to pay bills with nobody looking, or a fix for a messy chart of accounts</td></tr>
+<tr><td>Who it suits</td><td>Trades, clinics, online stores, agencies and property managers who retype paperwork into QuickBooks, Xero, a spreadsheet or a practice system</td></tr>
+<tr><td>Cost range</td><td>Built into QuickBooks and Xero plans; Dext from about $25 a month; AWS from 1 cent a page; a custom build has a setup fee and a monthly fee</td></tr>
+<tr><td>What to do first</td><td>Count how many documents you handle a month, and time a few</td></tr>
+</tbody>
+</table></div>
+<h2>What manual data entry costs</h2>
+<p>Most of the research here comes from companies that sell accounts payable software.</p>
+<p>The <a href="https://www.bottomline.com/resources/state-epayables-2025-aps-unfinished-journey" target="_blank" rel="noopener">State of ePayables 2025</a> report by Ardent Partners is sponsored by Bottomline, a payments company. It found only 51% of invoices arrive electronically. It also says the leading teams process invoices 79% faster and at 79% lower cost than the rest.</p>
+<p>APQC, a benchmarking group, publishes a cost per invoice too. Its figures are for members only, so I could not read them and I am not quoting them.</p>
+<p>The bigger risk is paying the wrong person. The Association for Financial Professionals' <a href="https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-79-percent-of-organizations-were-victims-of-attempted-or-actual-payments-fraud-activity-in-2024" target="_blank" rel="noopener">2025 Payments Fraud and Control Survey</a>, published in April 2025 and sponsored by Truist, asked 521 finance staff about 2024. 79% of their organizations faced attempted or actual payments fraud. 45% saw vendor imposter fraud, where someone poses as a real supplier. Most were larger companies. A small office simply has fewer people checking.</p>
+<p>I could not find an open, independent study of typing error rates in small offices. So the error rate in the cost sum below is my assumption.</p>
+<h2>Old OCR vs AI extraction</h2>
+<p>Old OCR turned a scan into text. It did not know which number was the total. Invoice tools fixed that with templates, one per supplier, telling the software where each field sat. A new supplier meant a new template. A supplier who moved their logo broke it.</p>
+<p>AI extraction reads the page more like a person does. It finds the total because it looks like a total, wherever it sits. Amazon's <a href="https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html" target="_blank" rel="noopener">Textract documentation</a> says its invoice reader works on "almost any invoice or receipt without the need for any templates or configuration". That is a vendor claim. It also returns a confidence score for each field, and that matters more.</p>
+<p>A human check still matters because AI is confidently wrong sometimes. It can mix up a unit price and a line total, or read a 7 as a 1 on a creased receipt. The trick is to let the confidence scores and your rules decide which documents a person needs to see.</p>
+<h2>How it works, step by step</h2>
+<ol>
+<li>Documents arrive. Suppliers email invoices to one address, staff upload PDFs, or someone photographs a receipt.</li>
+<li>AI reads them. It pulls the supplier, date, invoice number, totals, tax and line items, with a confidence score for each.</li>
+<li>Rules check them. Does it match the purchase order? Do the lines add up to the total? Have we seen this invoice number from this supplier before?</li>
+<li>It posts as a draft. The bill lands in QuickBooks, Xero or your practice system for approval, with the original image attached.</li>
+<li>A person approves. Routine ones take one click. Anything unsure, unmatched or over a limit goes to a person with a note saying why.</li>
+</ol>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/ai-document-data-extraction/extraction-flow-mobile.png" width="750" height="1124"><img src="/assets/img/blog/ai-document-data-extraction/extraction-flow.png" width="1200" height="640" alt="Six steps from document to posted entry: the document arrives by email, upload or phone photo, AI pulls the supplier, date, totals and lines, rules check the purchase order match, the totals and duplicates, it is posted as a draft for approval, one click sends it into QuickBooks or Xero, and the original image stays linked for the audit trail. Unsure, unmatched or over-limit documents go to a person." loading="lazy" decoding="async"></picture></figure>
+<p>The same flow works for more than invoices. Online stores get supplier invoices and purchase orders by the dozen, which our <a href="/services/industries/ecommerce">ecommerce automation work</a> covers alongside things like <a href="/blog/returns-automation">automating routine returns</a>. This is the money going out. For the money coming in, see our post on <a href="/blog/automatic-invoice-chasing-payment-recovery">getting paid without chasing people</a>.</p>
+<h2>Accuracy and controls</h2>
+<p>This is general guidance, not legal or tax advice.</p>
+<p>Set a confidence threshold. If any key field reads below it, the document goes to a person. Start strict and loosen it once you trust the results.</p>
+<p>Approve before posting. Nothing becomes a payable bill until a person says yes.</p>
+<p>Protect against duplicates. Check supplier and invoice number, not just amount and date. A Xero user asked for exactly this in a <a href="https://productideas.xero.com/forums/967130-contacts-files/suggestions/45227854-hubdoc-ability-to-also-flag-duplicates-when-the" target="_blank" rel="noopener">2022 Hubdoc feature request</a>.</p>
+<p>Keep an audit trail. Every entry should link to the original image, who approved it and when. The IRS says to <a href="https://www.irs.gov/businesses/small-businesses-self-employed/how-long-should-i-keep-records" target="_blank" rel="noopener">keep records until the period of limitations runs out</a>, which is three years in most cases.</p>
+<p>Clinics and anyone handling personal data need more care. Patient intake forms and insurance claims carry health information. Every tool that reads them must be set up for it. Our post on <a href="/blog/appointment-reminders-no-shows">reducing no-shows</a> covers the HIPAA basics, and our <a href="/services/industries/healthcare">healthcare automation page</a> shows what we build for clinics.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/ai-document-data-extraction/auto-vs-review-mobile.png" width="750" height="1241"><img src="/assets/img/blog/ai-document-data-extraction/auto-vs-review.png" width="1200" height="660" alt="Two columns. Straight to a draft: a known supplier with its usual layout, high confidence on every key field, a match to the purchase order, lines that add up to the total, an invoice number not seen before, and an amount under your approval limit. Send to a person: a new supplier or changed bank details, low confidence on any key field, no purchase order or one that does not match, handwriting or a poor scan, a possible duplicate, and anything over your approval limit. The rule: nothing is paid until a person approves it, and bank detail changes are checked by phone." loading="lazy" decoding="async"></picture></figure>
+<h2>Your options compared</h2>
+<p>Prices come from each provider's own page, checked in October 2026. Microsoft's Azure document pricing loads dynamically, so I could not read it and left it out.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Option</th><th scope="col">Typical cost</th><th scope="col">Good at</th><th scope="col">Trade-offs</th></tr></thead>
+<tbody>
+<tr><td>QuickBooks receipt and bill capture</td><td>Included in QuickBooks Online plans, from Simple Start up, per its <a href="https://quickbooks.intuit.com/learn-support/en-us/help-articles/email-your-receipts-to-quickbooks-online/00/243869" target="_blank" rel="noopener">help page</a></td><td>Email or upload; pulls date, amount, vendor and the card's last four digits</td><td>You review each one in the Receipts tab; the help page lists header fields, not line items</td></tr>
+<tr><td>Hubdoc</td><td><a href="https://apps.xero.com/app/hubdoc" target="_blank" rel="noopener">Included in Xero Early, Growing and Established</a> in the US</td><td>Bills and receipts extracted and ready to publish to Xero</td><td>Duplicate checks do not look at invoice number, per the open feature request</td></tr>
+<tr><td>Dext</td><td><a href="https://www.dext.com/us/pricing/prepare-direct/" target="_blank" rel="noopener">$25.21 a month</a> for 250 documents and 5 users at the page's starting level</td><td>Receipts and bills into QuickBooks or Xero</td><td>Line items cost extra, from $20.50 a month or $0.50 a document</td></tr>
+<tr><td>BILL</td><td><a href="https://bill.com/pricing" target="_blank" rel="noopener">Essentials $49 per user a month</a>; Team $65; Corporate $89</td><td>Bill entry, approval workflows and payments</td><td>Priced per user; annual prices not shown on the page</td></tr>
+<tr><td>Amazon Textract</td><td><a href="https://aws.amazon.com/textract/pricing/" target="_blank" rel="noopener">$0.01 a page</a> for invoices and receipts, first million pages, at the US West price shown</td><td>Reads almost any layout, with confidence scores</td><td>Raw data only; someone has to build the checks, approvals and posting</td></tr>
+<tr><td>Custom build</td><td>Setup fee plus monthly fee; our builds start at <a href="/pricing">$200</a></td><td>Purchase order matching, your rules, your systems, one exception queue</td><td>Only worth it above roughly 50 documents a month, or when your system is not QuickBooks or Xero</td></tr>
+</tbody>
+</table></div>
+<h2>What owners and the industry are saying</h2>
+<p>I only list pages I could open. Vendors are labelled.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Where</th><th scope="col">Who</th><th scope="col">What they said</th><th scope="col">What it tells you</th></tr></thead>
+<tbody>
+<tr><td><a href="https://quickbooks.intuit.com/community/taxes-8/why-does-receipt-scanning-ignore-sales-tax-shipping-and-confuse-unit-price-with-total-price-16587" target="_blank" rel="noopener">QuickBooks Community, Feb 2026</a></td><td>A QuickBooks user</td><td>"Receipt scanning in the last several months has become unreliable." They said it missed sales tax and shipping, and mixed up unit prices and totals, even on clean PDFs</td><td>Built-in capture still needs checking</td></tr>
+<tr><td><a href="https://productideas.xero.com/forums/967130-contacts-files/suggestions/45227854-hubdoc-ability-to-also-flag-duplicates-when-the" target="_blank" rel="noopener">Xero Product Ideas, May 2022</a></td><td>A Xero user, 53 votes</td><td>"It's much better for this to be flagged as a duplicate and reviewed, than actual duplicate invoices to slip through."</td><td>Check duplicates on invoice number</td></tr>
+<tr><td><a href="https://www.bottomline.com/resources/state-epayables-2025-aps-unfinished-journey" target="_blank" rel="noopener">Ardent Partners, 2025</a></td><td>Analyst firm, sponsored by Bottomline</td><td>Only 51% of invoices are submitted electronically</td><td>Paper and PDFs are still half the job</td></tr>
+<tr><td><a href="https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-79-percent-of-organizations-were-victims-of-attempted-or-actual-payments-fraud-activity-in-2024" target="_blank" rel="noopener">AFP, Apr 2025</a></td><td>Finance trade body, sponsored by Truist</td><td>45% of organizations saw vendor imposter fraud in 2024</td><td>Bank detail changes need a person</td></tr>
+<tr><td><a href="https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html" target="_blank" rel="noopener">AWS documentation</a></td><td>Cloud vendor</td><td>Reads invoices "without the need for any templates or configuration"</td><td>A vendor claim; test it on your own documents</td></tr>
+</tbody>
+</table></div>
+<h2>A cost sum you can redo with your own numbers</h2>
+<p>Here is the sum for an office handling 400 documents a month. The error rate and the invoice amount are my assumptions. Measure your own.</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Line</th><th scope="col">How to get it</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><td>Documents per month</td><td>Count last month's bills, receipts and forms</td><td>400</td></tr>
+<tr><td>Minutes per document</td><td>Time ten of them, start to finish</td><td>3</td></tr>
+<tr><td>Hourly cost</td><td>Wage plus overheads</td><td>$25</td></tr>
+<tr><td>Typing time per month</td><td>400 x 3 minutes = 20 hours, x $25</td><td>$500</td></tr>
+<tr><td>Error rate</td><td>Corrections at month end, divided by documents</td><td>1% (assumed), so 4</td></tr>
+<tr><td>Fixing errors</td><td>4 x 30 minutes x $25</td><td>$50</td></tr>
+<tr><td>Total per month</td><td>Typing plus fixing</td><td>$550</td></tr>
+<tr><td>One wrong payment</td><td>A duplicate or a payment to a fake supplier</td><td>$1,800 invoice paid twice (assumed)</td></tr>
+</tbody>
+</table></div>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/ai-document-data-extraction/cost-sum-mobile.png" width="750" height="1223"><img src="/assets/img/blog/ai-document-data-extraction/cost-sum.png" width="1200" height="640" alt="What typing paperwork costs on example numbers. Typing time: 400 documents a month times 3 minutes times 25 dollars an hour is 500 dollars. Fixing errors: 4 wrong entries a month times 30 minutes times 25 dollars is 50 dollars. 550 dollars a month in total. One duplicate payment of an 1,800 dollar invoice costs more than three months of that. The 1 percent error rate is marked as assumed." loading="lazy" decoding="async"></picture></figure>
+<p>The wrong payment is the line that hurts. You may not get that money back.</p>
+<h2>When it backfires</h2>
+<p>Posting without review. If extracted bills go straight to paid, one misread total becomes one wrong payment. Keep approval in the loop.</p>
+<p>Handwritten notes or poor scans. A creased receipt photographed in a van at dusk will read badly. Send low-confidence fields to a person, and ask staff to photograph receipts flat and in good light.</p>
+<p>Suppliers who change their layout. AI copes far better than templates did. Still, watch the first few invoices after a supplier rebrands.</p>
+<p>Duplicate payments. The same invoice arrives by email and by post. Both get read. Without a check on invoice number, both get paid.</p>
+<p>Nobody watching the exception queue. The flagged documents pile up, bills go unpaid, and suppliers call. Give the queue an owner and a daily slot.</p>
+<h2>What we build, and when we say no</h2>
+<p>If you handle under about 50 documents a month, start with what your accounting software already has. QuickBooks receipt and bill capture or Hubdoc in Xero is probably enough. You do not need us for that.</p>
+<p>Above that, or when the paperwork goes somewhere other than QuickBooks or Xero, we build a pipeline. We use n8n to collect documents from email and uploads, and Claude, Anthropic's AI model, to read them. Rules check the purchase order, the totals and duplicates. Clean ones post as drafts. Unsure ones land in one queue with the reason attached. Our <a href="/services/workflow-automation">workflow automation service</a> covers the connections. Our <a href="/services/ai-automation">AI automation service</a> covers the reading and checking.</p>
+<p>If what you want is to ask questions across contracts, policies or old files, rather than pull numbers out of them, that is a different job. Our <a href="/services/rag-knowledge-base">knowledge base service</a> handles that.</p>
+<p>We say no when volume is low, when the chart of accounts is a mess, or when nobody will own the exception queue. New to all this? Our <a href="/blog/ai-automation-for-small-business-questions">plain-English answers to 24 questions about AI automation</a> is the place to start.</p>
+<h2>Questions people ask</h2>
+<p><strong>What is AI document data extraction?</strong> It is software that reads a document, such as an invoice, receipt, purchase order or form, and pulls out the fields you need. That means the supplier, date, invoice number, totals and line items. It then checks them against your rules and puts them into your accounting or practice system, usually as a draft for a person to approve.</p>
+<p><strong>Can QuickBooks read invoices automatically?</strong> Partly. QuickBooks Online lets you email or upload receipts and bills. Its help page says it pulls the date, amount, vendor and last four digits of the card from the image. You then review each one in the Receipts tab and add it or match it to a bank transaction.</p>
+<p><strong>How accurate is AI invoice extraction?</strong> I have not found an independent accuracy figure I trust. Most published numbers come from vendors testing their own tools. Clean PDFs from known suppliers usually read well. Handwriting and poor phone photos do not. Test any tool on your own last 100 documents before you rely on it.</p>
+<p><strong>Is OCR the same as AI extraction?</strong> No. Plain OCR turns an image into text. Older invoice tools then needed a template for each supplier to know where the total sat. AI extraction reads the layout like a person would, so a new supplier usually works without a template. It still makes mistakes, so it still needs checks.</p>
+<p><strong>How do I stop duplicate invoice payments?</strong> Check every new invoice against past ones on supplier and invoice number, not just amount and date. Hold anything that looks like a repeat for a person. Pay only from approved bills, never straight from an email. Confirm any change to a supplier's bank details by phone, using a number you already had.</p>
+<p><strong>Is it safe to use for patient or customer documents?</strong> It can be, if the tools are set up for it. Keep the data with providers that will sign the agreements your rules need, limit who can see it, and keep a log of who opened what. Clinics should check the HIPAA rules for every tool that touches patient forms. This is not legal advice.</p>
+<div class="cta">
+<h2>Find out what your paperwork really costs.</h2>
+<p>Bring a week of invoices, receipts or forms to the free audit. We time the typing with you, check how duplicates and bank changes are caught today, and tell you whether your accounting software's own capture, an app or a build is the right step. If the built-in tools cover it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related reading</h2>
+<ul>
+<li><a href="/blog/automatic-invoice-chasing-payment-recovery">Getting Paid Without Chasing People</a>. The other side of the ledger: money customers owe you.</li>
+<li><a href="/blog/returns-automation">Returns automation</a>. The same rules-and-exceptions idea, applied to online store returns.</li>
+<li><a href="/blog/appointment-reminders-no-shows">How to reduce no-shows</a>. Where we cover the HIPAA basics for clinics.</li>
+</ul>
+</section>
+<h2>Sources</h2>
+<ul class="sources">
+<li><a href="https://www.bottomline.com/resources/state-epayables-2025-aps-unfinished-journey" target="_blank" rel="noopener">Ardent Partners, State of ePayables 2025 (sponsored by Bottomline)</a>, 2025</li>
+<li><a href="https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-79-percent-of-organizations-were-victims-of-attempted-or-actual-payments-fraud-activity-in-2024" target="_blank" rel="noopener">AFP, 2025 Payments Fraud and Control Survey press release</a>, April 2025</li>
+<li><a href="https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html" target="_blank" rel="noopener">AWS documentation, analyzing invoices and receipts with Amazon Textract</a>, checked October 2026</li>
+<li><a href="https://aws.amazon.com/textract/pricing/" target="_blank" rel="noopener">Amazon Textract, pricing</a>, checked October 2026</li>
+<li><a href="https://quickbooks.intuit.com/learn-support/en-us/help-articles/email-your-receipts-to-quickbooks-online/00/243869" target="_blank" rel="noopener">QuickBooks Help, email receipts and bills to QuickBooks Online</a>, checked October 2026</li>
+<li><a href="https://apps.xero.com/app/hubdoc" target="_blank" rel="noopener">Xero App Store, Hubdoc</a>, checked October 2026</li>
+<li><a href="https://www.dext.com/us/pricing/prepare-direct/" target="_blank" rel="noopener">Dext, US pricing</a>, checked October 2026</li>
+<li><a href="https://bill.com/pricing" target="_blank" rel="noopener">BILL, pricing and plans</a>, checked October 2026</li>
+<li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/how-long-should-i-keep-records" target="_blank" rel="noopener">IRS, how long should I keep records</a>, checked October 2026</li>
+<li><a href="https://quickbooks.intuit.com/community/taxes-8/why-does-receipt-scanning-ignore-sales-tax-shipping-and-confuse-unit-price-with-total-price-16587" target="_blank" rel="noopener">QuickBooks Community, receipt scanning ignores sales tax and shipping</a>, February 2026</li>
+<li><a href="https://productideas.xero.com/forums/967130-contacts-files/suggestions/45227854-hubdoc-ability-to-also-flag-duplicates-when-the" target="_blank" rel="noopener">Xero Product Ideas, Hubdoc duplicate flag on invoice number</a>, May 2022</li>
+</ul>
+<nav class="pn"><a href="/blog/appointment-reminders-no-shows"><span class="lbl">Previous</span><span class="t">How to reduce no-shows</span></a><a href="/blog/automatic-invoice-chasing-payment-recovery"><span class="lbl">Next</span><span class="t">Getting Paid Without Chasing People</span></a></nav>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

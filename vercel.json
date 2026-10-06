@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/document-data-extraction-ai-2026",
+      "destination": "/blog/ai-document-data-extraction",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/returns-refunds-automation-2026",
       "destination": "/blog/returns-automation",
       "statusCode": 301
