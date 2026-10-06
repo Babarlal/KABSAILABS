@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/ecommerce-order-shipping-automation",
+      "destination": "/blog/where-is-my-order-automation",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/automatic-lead-follow-up-2026",
       "destination": "/blog/lead-follow-up",
       "statusCode": 301

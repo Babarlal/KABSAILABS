@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where Is My Order? How Shopify Stores Cut WISMO Tickets With Tracking Updates and Automated Answers</title>
+<meta name="description" content="Why online stores drown in where-is-my-order messages, and how to cut them: delivery estimates, a tracking page, proactive updates, AI answers from real order data, the FTC shipping rule and real costs.">
+<meta name="author" content="Babar Lal">
+<link rel="canonical" href="https://www.kabsailabs.com/blog/where-is-my-order-automation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Where Is My Order? How Shopify Stores Cut WISMO Tickets With Tracking Updates and Automated Answers">
+<meta property="og:description" content="Why online stores drown in where-is-my-order messages, and how to cut them: delivery estimates, a tracking page, proactive updates, AI answers from real order data, the FTC shipping rule and real costs.">
+<meta property="og:url" content="https://www.kabsailabs.com/blog/where-is-my-order-automation">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="article:published_time" content="2026-10-06">
+<meta property="article:modified_time" content="2026-10-06">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/blog/where-is-my-order-automation/hero.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The same online order two ways. On the left, no shipping email from Friday to Monday, two emails and a chat on Tuesday, and a chargeback for not received on Wednesday. On the right, a delivery estimate at checkout, a shipped text with a tracking link on Saturday and a delay alert on Monday with a new date, so no ticket and no chargeback.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where Is My Order? How Shopify Stores Cut WISMO Tickets With Tracking Updates and Automated Answers">
+<meta name="twitter:description" content="Why online stores drown in where-is-my-order messages, and how to cut them: delivery estimates, a tracking page, proactive updates, AI answers from real order data, the FTC shipping rule and real costs.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/blog/where-is-my-order-automation/hero.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Where is my order: how to stop answering it by hand, with tracking updates and automated answers",
+      "description": "Why online stores drown in where-is-my-order messages, and how to cut them: delivery estimates, a tracking page, proactive updates, AI answers from real order data, the FTC shipping rule and real costs.",
+      "url": "https://www.kabsailabs.com/blog/where-is-my-order-automation",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/blog/where-is-my-order-automation"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/blog/where-is-my-order-automation/hero.png",
+      "author": {
+        "@type": "Person",
+        "name": "Babar Lal"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.kabsailabs.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Where is my order: how to stop answering it by hand, with tracking updates and automated answers",
+          "item": "https://www.kabsailabs.com/blog/where-is-my-order-automation"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does WISMO mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WISMO stands for \"where is my order\". It is the name online stores use for messages asking about order status, shipping or delivery. For many stores it is the most common type of support message."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I reduce WISMO tickets on Shopify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Show a clear delivery estimate before checkout. Make sure shipping emails are switched on and reaching inboxes. Send a delay alert when a parcel slips. Then let a chat or AI look up the real order for anyone who still asks, and hand lost or damaged parcels to a person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Shopify send tracking updates automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shopify sends shipping confirmation, shipping update, out for delivery and delivered notifications by default. The last two depend on tracking events from the carrier or fulfillment app, so they vary by carrier. Shopify does not send a delay alert on its own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the FTC require if an order ships late?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the FTC's Mail, Internet, or Telephone Order Merchandise Rule, you need a reasonable basis for any shipping time you state. If you cannot ship on time, you must tell the customer, give a revised date if you can, and offer the option to cancel for a refund. This is not legal advice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an AI chatbot answer \"where is my order\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if it can look up the real order and the carrier's tracking. It should ask for the order number and email, quote only the carrier's dates, and hand anything lost, damaged or disputed to a person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do when tracking says delivered but the customer says it never arrived?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hand it to a person straight away. Check the address on the order, the carrier's delivery scan and any photo, and ask the customer to check with neighbors. Then follow your written policy on carrier claims, refunds or reships, and reply before they go to their bank."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/blog/where-is-my-order-automation" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article><div class="wrap">
+<p class="kicker">Ecommerce</p>
+<h1>Where is my order: how to stop answering it by hand, with tracking updates and automated answers</h1>
+<p class="byline">By Babar Lal &nbsp;&middot;&nbsp; <time datetime="2026-10-06">6 October 2026</time> &nbsp;&middot;&nbsp; 9 min read</p>
+<p>On Friday evening, a customer orders an $85 skincare set from a Shopify store. The store packs it on Monday. Nobody adds the tracking number until Tuesday afternoon, so no shipping email goes out. On Tuesday morning she emails to ask where it is. That evening she emails again. On Wednesday she opens the chat and gets "We reply within 48 hours."</p>
+<p>On Wednesday afternoon she calls her bank and files a chargeback for an item not received. The parcel arrives on Thursday. The store now has a dispute on an order it delivered.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/where-is-my-order-automation/hero-mobile.png" width="750" height="1096"><img src="/assets/img/blog/where-is-my-order-automation/hero.png" width="1200" height="630" alt="The same online order two ways. On the left, no shipping email from Friday to Monday, two emails and a chat on Tuesday, and a chargeback for not received on Wednesday. On the right, a delivery estimate at checkout, a shipped text with a tracking link on Saturday and a delay alert on Monday with a new date, so no ticket and no chargeback." fetchpriority="high" decoding="async"></picture></figure>
+<h2>The short answer</h2>
+<p>Tell customers where their order is before they ask. Then let a chat answer from the real order for anyone who still does.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Question</th><th scope="col">Short answer</th></tr></thead>
+<tbody>
+<tr><td>What WISMO automation is</td><td>Delivery estimates, tracking updates, delay alerts and automated answers from live order and carrier data</td></tr>
+<tr><td>What it is not</td><td>A bot that guesses delivery dates, or a way to avoid lost-parcel problems</td></tr>
+<tr><td>Who it suits</td><td>US Shopify stores whose inbox is mostly order-status questions, especially on more than one channel</td></tr>
+<tr><td>Cost range</td><td>Shopify's notifications are included; tracking apps from about $29 a month; a custom AI build has a setup fee and a monthly fee</td></tr>
+<tr><td>What to do first</td><td>Tag one week of support messages and count how many ask where an order is</td></tr>
+</tbody>
+</table></div>
+<h2>How big the problem is</h2>
+<p>Most of the data here comes from vendors who sell helpdesks or tracking tools. I label each one.</p>
+<p>Gorgias, a helpdesk vendor, <a href="https://www.gorgias.com/blog/automate-wismo-requests" target="_blank" rel="noopener">says WISMO is the most common question in ecommerce</a>. It puts the share at 18% of incoming requests on average, from its own customer data. The article is from 2023 and does not give a sample size.</p>
+<p>Narvar, a post-purchase vendor, surveyed 3,461 US online shoppers in August 2025 for its <a href="https://corp.narvar.com/press/new-narvar-state-of-post-purchase-report" target="_blank" rel="noopener">State of Post-Purchase report</a>. Two-thirds said they feel anxious after clicking buy. 74% had experienced a late delivery. 73% said delivery estimates affect whether they buy, and 40% said they will not buy without one. When something goes wrong, shoppers wanted acknowledgement, a clear explanation and real-time updates without having to ask.</p>
+<p>In a <a href="https://community.shopify.com/t/how-do-you-handle-where-is-my-order-messages/644210" target="_blank" rel="noopener">2026 Shopify Community thread</a>, one contributor estimated that around 40% of support queries are order status. That is a guess from one person, not a study. Your own share could be higher or lower, so count it.</p>
+<h2>Why WISMO tickets happen</h2>
+<p>No shipping confirmation. The email never went out, or it went to spam. A merchant on the <a href="https://community.shopify.com/t/customers-keep-asking-for-tracking-numbers-even-though-i-have-the-email-tracking-updates-set-up/162221/1" target="_blank" rel="noopener">Shopify Community</a> wrote: "I keep getting emails from customers asking me if their orders have shipped. I have enabled shipping and tracking emails and notifications."</p>
+<p>Tracking that does not update. A label is printed, but the carrier has not scanned the parcel yet. The customer sees no movement for days.</p>
+<p>Carrier delays. The parcel is stuck in a hub, and nobody tells the customer.</p>
+<p>Split shipments. Two items arrive, one is missing, and the customer thinks it is lost.</p>
+<p>Marketplace orders the store cannot see. An order on Amazon or TikTok Shop lives in another system. It is the same split-systems problem I described in our post on <a href="/blog/shopify-overselling-multi-channel-fix">stopping overselling across Shopify, Amazon and TikTok Shop</a>.</p>
+<p>Unclear delivery estimates. "Ships in 3 to 5 days" gets read as "arrives in 3 to 5 days".</p>
+<h2>How to fix it, step by step</h2>
+<ol>
+<li>Show a clear delivery estimate at checkout and on the product page. Give a date range, not "fast shipping".</li>
+<li>Use a branded order status page. Shopify's <a href="https://help.shopify.com/en/manual/orders/status-tracking" target="_blank" rel="noopener">order status page</a> lets customers check their shipment without contacting you. A tracking app can add your branding and clearer carrier statuses.</li>
+<li>Send proactive updates: shipped, delayed, out for delivery and delivered. The delay alert matters most, because it answers the question before the customer has to ask.</li>
+<li>Answer anyone who still asks with a chat or AI that looks up the real order. It asks for the order number and email, then reads the order and the carrier's tracking. Our posts on <a href="/blog/ai-website-chat">AI website chat</a> and <a href="/blog/whatsapp-sms-customer-support">WhatsApp and SMS customer support</a> cover how those conversations work.</li>
+<li>Hand lost, damaged and "delivered but not here" cases to a person, with the order details already attached.</li>
+</ol>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/where-is-my-order-automation/order-journey-mobile.png" width="750" height="1124"><img src="/assets/img/blog/where-is-my-order-automation/order-journey.png" width="1200" height="640" alt="The order journey with an answer at every step: a delivery estimate at checkout, an order confirmation with a link to the status page, a tracking link when it ships, a delay alert in transit, an out-for-delivery heads-up, and a way to report a problem once delivered. Lost, damaged or stuck parcels go to a person with the order details." loading="lazy" decoding="async"></picture></figure>
+<p>The AI should answer from your order data, plus your shipping and returns policies. Our <a href="/services/rag-knowledge-base">knowledge base service</a> is how we load those policies so it quotes them instead of guessing.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/where-is-my-order-automation/answer-vs-handoff-mobile.png" width="750" height="1212"><img src="/assets/img/blog/where-is-my-order-automation/answer-vs-handoff.png" width="1200" height="660" alt="Two columns. The AI answers where an order is from a live lookup, when it will arrive using the carrier's date, which items shipped in a split order, marketplace order status if connected, address changes before dispatch if allowed, and return and exchange policy questions. A person handles lost or stolen parcels, damaged items, delivered but not received, refunds and reships, angry or repeat contacts, and chargeback threats. The AI only quotes dates the carrier gave." loading="lazy" decoding="async"></picture></figure>
+<p>Returns are the next question after delivery. Our post on <a href="/blog/returns-refunds-automation-2026">returns that handle themselves</a> covers that part.</p>
+<h2>The rules</h2>
+<p>This is a plain summary, not legal advice. Check your situation with a lawyer.</p>
+<p>The FTC's <a href="https://www.ftc.gov/business-guidance/resources/business-guide-ftcs-mail-internet-or-telephone-order-merchandise-rule" target="_blank" rel="noopener">Mail, Internet, or Telephone Order Merchandise Rule</a> covers shipping times. You need a reasonable basis for any shipping time you state. If you state no time, you must ship within 30 days. If you cannot ship on time, you must tell the customer. The notice needs a revised date, or a statement that you do not know one, and a way to cancel at your expense. If you cannot get their consent to the delay, you must cancel and refund promptly. So an honest delay alert is not just good service.</p>
+<p>Shipping updates by text need the customer's agreement, usually a checkbox at checkout. Honor STOP replies straight away. I covered carrier registration and STOP rules in our post on <a href="/blog/missed-call-text-back">missed call text back and the US texting rules</a>.</p>
+<h2>Your options compared</h2>
+<p>Prices come from each provider's own page, checked in October 2026.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Option</th><th scope="col">Typical cost</th><th scope="col">Good at</th><th scope="col">Trade-offs</th></tr></thead>
+<tbody>
+<tr><td>Shopify order status page and notifications</td><td>Included with Shopify; <a href="https://help.shopify.com/en/manual/fulfillment/setup/notifications/customer-notifications" target="_blank" rel="noopener">four shipping notifications</a> on by default</td><td>Shipping confirmation, updates, out for delivery and delivered emails</td><td>The last two depend on carrier data; no delay alert of its own</td></tr>
+<tr><td>AfterShip tracking</td><td><a href="https://www.aftership.com/pricing/tracking" target="_blank" rel="noopener">Essentials $29 a month</a> for 6,000 shipments a year; Premium $59</td><td>Branded tracking page, email and SMS at every milestone</td><td>Shipment caps, then $0.08 to $0.12 per extra shipment</td></tr>
+<tr><td>Gorgias helpdesk</td><td><a href="https://www.gorgias.com/pricing" target="_blank" rel="noopener">Priced by tickets, not seats</a>; AI Agent charged per resolved conversation</td><td>One inbox for email and chat, with AI on every plan</td><td>Its page did not show plan prices in a form I could read; get a quote</td></tr>
+<tr><td>Klaviyo shipping flows</td><td><a href="https://www.klaviyo.com/pricing" target="_blank" rel="noopener">Free plan to start</a>; paid prices depend on contacts</td><td>Shipping emails and texts in the same tool as your marketing</td><td>Needs shipping events from Shopify or a tracking app; prices load dynamically, so check them</td></tr>
+<tr><td>Custom AI build</td><td>Setup fee plus monthly fee; our builds start at <a href="/pricing">$200</a></td><td>Answers on chat, WhatsApp and email from live order and carrier data, across channels</td><td>More setup; worth it only at real ticket volume</td></tr>
+</tbody>
+</table></div>
+<h2>What owners and the industry are saying</h2>
+<p>I only list pages I could open. Reddit would not open for me. Vendors are labelled.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Where</th><th scope="col">Who</th><th scope="col">What they said</th><th scope="col">What it tells you</th></tr></thead>
+<tbody>
+<tr><td><a href="https://community.shopify.com/t/customers-keep-asking-for-tracking-numbers-even-though-i-have-the-email-tracking-updates-set-up/162221/1" target="_blank" rel="noopener">Shopify Community, Oct 2022</a></td><td>A store owner</td><td>Customers kept asking whether orders had shipped, despite shipping emails being switched on</td><td>Check the emails actually arrive</td></tr>
+<tr><td><a href="https://community.shopify.com/t/chargeback-product-not-received-banks-side-with-customers-far-too-much/106372" target="_blank" rel="noopener">Shopify Community, Mar 2022</a></td><td>A store owner of five years</td><td>"No matter what evidence I provide the banks - they always side with the customer."</td><td>Preventing the dispute beats fighting it</td></tr>
+<tr><td><a href="https://community.shopify.com/t/chargeback-for-product-not-received-before-i-have-had-reasonable-time-to-deliver/62994" target="_blank" rel="noopener">Shopify Community, Sep 2021</a></td><td>Store owners on a preorder chargeback</td><td>"Communication is key to avoid people making unnecessary claims."</td><td>Silence turns into chargebacks</td></tr>
+<tr><td><a href="https://community.shopify.com/t/how-do-you-handle-where-is-my-order-messages/644210" target="_blank" rel="noopener">Shopify Community, 2026</a></td><td>Merchants and app makers</td><td>"Most WISMO is an expectations problem."</td><td>Fix the delivery estimate first</td></tr>
+<tr><td><a href="https://corp.narvar.com/press/new-narvar-state-of-post-purchase-report" target="_blank" rel="noopener">Narvar, Nov 2025</a></td><td>Post-purchase vendor, 3,461 US shoppers</td><td>40% will not buy without a delivery estimate</td><td>The estimate sells as well as it soothes</td></tr>
+</tbody>
+</table></div>
+<h2>A cost sum you can redo with your own numbers</h2>
+<p>Here is the sum for a store doing 2,000 orders a month. Two of the numbers are my assumptions. Measure your own.</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Line</th><th scope="col">How to get it</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><td>Orders per month</td><td>Your Shopify and marketplace dashboards</td><td>2,000</td></tr>
+<tr><td>Share that trigger a WISMO contact</td><td>Tag a week of tickets</td><td>15% (assumed), so 300</td></tr>
+<tr><td>Minutes per ticket</td><td>Time a few, including the tracking lookup</td><td>6</td></tr>
+<tr><td>Hourly support cost</td><td>Wage plus overheads</td><td>$22</td></tr>
+<tr><td>Support time per month</td><td>300 x 6 minutes = 30 hours, x $22</td><td>$660</td></tr>
+<tr><td>Chargebacks for not received</td><td>Your payment dashboard</td><td>3 a month (assumed), x $85 = $255</td></tr>
+<tr><td>Total per month</td><td>Support time plus lost orders</td><td>About $915, before chargeback fees</td></tr>
+</tbody>
+</table></div>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/where-is-my-order-automation/cost-sum-mobile.png" width="750" height="1033"><img src="/assets/img/blog/where-is-my-order-automation/cost-sum.png" width="1200" height="640" alt="What WISMO costs on example numbers. Support time: 300 order-status tickets a month times 6 minutes times 22 dollars an hour is 660 dollars. Chargebacks: 3 a month for not received times an 85 dollar average order is 255 dollars. About 915 dollars a month in total. The 15 percent ticket share and the 3 chargebacks are marked as assumed." loading="lazy" decoding="async"></picture></figure>
+<p>Compare that with a tracking app at $29 a month. For most stores this size, the first fix pays for itself in days.</p>
+<h2>When it backfires</h2>
+<p>Tracking pages that show wrong data. A page that says "delivered" when the parcel is still in a van causes more tickets, not fewer. Test it with real orders from each carrier you use.</p>
+<p>Too many notifications. Eight emails for one parcel trains people to ignore them. Keep to the ones that change what the customer does: shipped, delayed, out for delivery, delivered.</p>
+<p>An AI that promises dates. If it tells a customer "Thursday" and the carrier says Monday, you made a promise you cannot keep. Quote the carrier's date and say it is the carrier's.</p>
+<p>No route to a person. A customer with a stolen parcel who only gets a tracking link will go to the bank.</p>
+<h2>What we build, and when we say no</h2>
+<p>If you sell on one channel and ship a few hundred orders a month, use Shopify's built-in notifications plus a tracking app. Add a clear delivery estimate, and check your emails are not landing in spam. You do not need us for that.</p>
+<p>We build the next step for stores on several channels, or with real ticket volume. An AI answers on chat, WhatsApp and email from live Shopify, marketplace and carrier data. Delay alerts go out when a parcel slips. Lost and damaged cases reach a person with the order attached. Everything is logged. Our <a href="/services/industries/ecommerce">ecommerce automation work</a> covers the whole order flow. Our <a href="/services/workflow-automation">workflow automation service</a> connects the stores, carriers and helpdesk. Our <a href="/services/ai-automation">AI automation service</a> covers the answering side.</p>
+<p>We say no when volume is low, when the built-in tools are not switched on yet, or when the real problem is slow fulfilment. New to all this? Our <a href="/blog/ai-automation-for-small-business-questions">plain-English answers to 24 questions about AI automation</a> is the place to start.</p>
+<h2>Questions people ask</h2>
+<p><strong>What does WISMO mean?</strong> WISMO stands for "where is my order". It is the name online stores use for messages asking about order status, shipping or delivery. For many stores it is the most common type of support message.</p>
+<p><strong>How do I reduce WISMO tickets on Shopify?</strong> Show a clear delivery estimate before checkout. Make sure shipping emails are switched on and reaching inboxes. Send a delay alert when a parcel slips. Then let a chat or AI look up the real order for anyone who still asks, and hand lost or damaged parcels to a person.</p>
+<p><strong>Does Shopify send tracking updates automatically?</strong> Shopify sends shipping confirmation, shipping update, out for delivery and delivered notifications by default. The last two depend on tracking events from the carrier or fulfillment app, so they vary by carrier. Shopify does not send a delay alert on its own.</p>
+<p><strong>What does the FTC require if an order ships late?</strong> Under the FTC's Mail, Internet, or Telephone Order Merchandise Rule, you need a reasonable basis for any shipping time you state. If you cannot ship on time, you must tell the customer, give a revised date if you can, and offer the option to cancel for a refund. This is not legal advice.</p>
+<p><strong>Can an AI chatbot answer "where is my order"?</strong> Yes, if it can look up the real order and the carrier's tracking. It should ask for the order number and email, quote only the carrier's dates, and hand anything lost, damaged or disputed to a person.</p>
+<p><strong>What should I do when tracking says delivered but the customer says it never arrived?</strong> Hand it to a person straight away. Check the address on the order, the carrier's delivery scan and any photo, and ask the customer to check with neighbors. Then follow your written policy on carrier claims, refunds or reships, and reply before they go to their bank.</p>
+<div class="cta">
+<h2>Find out how much of your inbox is "where is my order".</h2>
+<p>Bring one week of support tickets to the free audit. We tag them with you, run the sum, and tell you whether Shopify's own tools, a tracking app or an AI build is the right step. If the built-in tools cover it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related reading</h2>
+<ul>
+<li><a href="/blog/shopify-overselling-multi-channel-fix">Why your Shopify store keeps overselling, and the fix that is not another app</a>. When the stock count is wrong, orders ship late and the questions start.</li>
+<li><a href="/blog/returns-refunds-automation-2026">Returns That Handle Themselves</a>. The next question after delivery.</li>
+<li><a href="/blog/ai-website-chat">AI website chat that actually knows your business, and knows when to hand off</a>. How the chat side should work.</li>
+</ul>
+</section>
+<h2>Sources</h2>
+<ul class="sources">
+<li><a href="https://www.gorgias.com/blog/automate-wismo-requests" target="_blank" rel="noopener">Gorgias, what's the secret to reducing WISMO requests?</a>, November 2023</li>
+<li><a href="https://corp.narvar.com/press/new-narvar-state-of-post-purchase-report" target="_blank" rel="noopener">Narvar, State of Post-Purchase report press release</a>, November 2025</li>
+<li><a href="https://www.ftc.gov/business-guidance/resources/business-guide-ftcs-mail-internet-or-telephone-order-merchandise-rule" target="_blank" rel="noopener">FTC, Business guide to the Mail, Internet, or Telephone Order Merchandise Rule</a>, edited January 2025</li>
+<li><a href="https://help.shopify.com/en/manual/fulfillment/setup/notifications/customer-notifications" target="_blank" rel="noopener">Shopify Help Center, customer notifications</a>, checked October 2026</li>
+<li><a href="https://help.shopify.com/en/manual/orders/status-tracking" target="_blank" rel="noopener">Shopify Help Center, order status and tracking</a>, checked October 2026</li>
+<li><a href="https://www.aftership.com/pricing/tracking" target="_blank" rel="noopener">AfterShip, tracking pricing</a>, checked October 2026</li>
+<li><a href="https://www.gorgias.com/pricing" target="_blank" rel="noopener">Gorgias, pricing</a>, checked October 2026</li>
+<li><a href="https://www.klaviyo.com/pricing" target="_blank" rel="noopener">Klaviyo, pricing</a>, checked October 2026</li>
+<li><a href="https://community.shopify.com/t/customers-keep-asking-for-tracking-numbers-even-though-i-have-the-email-tracking-updates-set-up/162221/1" target="_blank" rel="noopener">Shopify Community, customers keep asking for tracking numbers</a>, October 2022</li>
+<li><a href="https://community.shopify.com/t/chargeback-product-not-received-banks-side-with-customers-far-too-much/106372" target="_blank" rel="noopener">Shopify Community, chargeback product not received</a>, March 2022</li>
+<li><a href="https://community.shopify.com/t/chargeback-for-product-not-received-before-i-have-had-reasonable-time-to-deliver/62994" target="_blank" rel="noopener">Shopify Community, chargeback before reasonable time to deliver</a>, September 2021</li>
+<li><a href="https://community.shopify.com/t/how-do-you-handle-where-is-my-order-messages/644210" target="_blank" rel="noopener">Shopify Community, how do you handle where is my order messages?</a>, 2026</li>
+</ul>
+<nav class="pn"><a href="/blog/internal-knowledge-assistant-team"><span class="lbl">Previous</span><span class="t">Stop Your Best People Being the Company Search Engine</span></a><a href="/blog/returns-refunds-automation-2026"><span class="lbl">Next</span><span class="t">Returns That Handle Themselves</span></a></nav>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>
