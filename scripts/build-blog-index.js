@@ -19,7 +19,9 @@
 
    Order is newest first. Posts sharing a date keep their series order (the
    "05 / 24" in the kicker), with unnumbered posts such as the "Start here" guide
-   ahead of the numbered ones.
+   ahead of the numbered ones. Any remaining tie is broken by when the file was
+   first committed, newest first; a post not yet committed counts as newest.
+   Published dates are never changed by this.
 
    The cards land between marker comments, so nothing else on either page moves:
      blog.html   <!-- BLOG-INDEX:START -->  ... <!-- BLOG-INDEX:END -->    all posts
@@ -45,6 +47,15 @@ const firstCommitDate = f => {
   } catch (e) { return null; }
 };
 
+// Unix time of the commit that first added the file; uncommitted files sort as newest.
+const firstCommitTime = f => {
+  try {
+    const out = cp.execSync('git log --diff-filter=A --follow --format=%ct -- "' + f + '"', { encoding: 'utf8' }).trim().split('\n');
+    const t = Number(out[out.length - 1]);
+    return Number.isFinite(t) && t > 0 ? t : Infinity;
+  } catch (e) { return Infinity; }
+};
+
 const posts = [];
 for (const name of fs.readdirSync('blog').filter(n => n.endsWith('.html')).sort()) {
   const file = 'blog/' + name;
@@ -67,10 +78,12 @@ for (const name of fs.readdirSync('blog').filter(n => n.endsWith('.html')).sort(
     description,
     date,
     order: num ? Number(num) : 0,
+    added: firstCommitTime(file),
   });
 }
 
-posts.sort((a, b) => b.date.localeCompare(a.date) || a.order - b.order || a.slug.localeCompare(b.slug));
+posts.sort((a, b) => b.date.localeCompare(a.date) || a.order - b.order
+  || (a.added === b.added ? 0 : (b.added > a.added ? 1 : -1)) || a.slug.localeCompare(b.slug));
 
 const human = d => { const [y, m, day] = d.split('-').map(Number); return day + ' ' + MONTHS[m - 1] + ' ' + y; };
 const card = p => [
