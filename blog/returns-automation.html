@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Returns Automation for Shopify Stores: Self-Serve Returns, Auto-Approval Rules and Restocking</title>
+<meta name="description" content="How online stores can automate routine returns: a clear policy, a self-serve portal, auto-approval rules, automatic labels, refunds on receipt and restocking, plus policy disclosure rules, real costs and when it backfires.">
+<meta name="author" content="Babar Lal">
+<link rel="canonical" href="https://www.kabsailabs.com/blog/returns-automation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Returns Automation for Shopify Stores: Self-Serve Returns, Auto-Approval Rules and Restocking">
+<meta property="og:description" content="How online stores can automate routine returns: a clear policy, a self-serve portal, auto-approval rules, automatic labels, refunds on receipt and restocking, plus policy disclosure rules, real costs and when it backfires.">
+<meta property="og:url" content="https://www.kabsailabs.com/blog/returns-automation">
+<meta property="og:site_name" content="KABS AI LABS">
+<meta property="article:published_time" content="2026-10-06">
+<meta property="article:modified_time" content="2026-10-06">
+<meta property="og:image" content="https://www.kabsailabs.com/assets/img/blog/returns-automation/hero.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The same 60 returns after a sale two ways. On the left, return emails, labels made one by one, a refund sent before the parcel is back and a restock forgotten so the site shows zero stock. On the right, the customer starts the return online, it is auto-approved with a label attached, and on receipt the refund is issued and the item restocked.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Returns Automation for Shopify Stores: Self-Serve Returns, Auto-Approval Rules and Restocking">
+<meta name="twitter:description" content="How online stores can automate routine returns: a clear policy, a self-serve portal, auto-approval rules, automatic labels, refunds on receipt and restocking, plus policy disclosure rules, real costs and when it backfires.">
+<meta name="twitter:image" content="https://www.kabsailabs.com/assets/img/blog/returns-automation/hero.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.min.css">
+<link rel="stylesheet" href="/assets/css/audit-patches.min.css">
+<link rel="stylesheet" href="/assets/css/blog-post.min.css">
+<script src="/assets/js/tagging.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Returns automation: handle routine returns without an inbox, so your team only sees the odd ones",
+      "description": "How online stores can automate routine returns: a clear policy, a self-serve portal, auto-approval rules, automatic labels, refunds on receipt and restocking, plus policy disclosure rules, real costs and when it backfires.",
+      "url": "https://www.kabsailabs.com/blog/returns-automation",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kabsailabs.com/blog/returns-automation"
+      },
+      "datePublished": "2026-10-06",
+      "dateModified": "2026-10-06",
+      "image": "https://www.kabsailabs.com/assets/img/blog/returns-automation/hero.png",
+      "author": {
+        "@type": "Person",
+        "name": "Babar Lal"
+      },
+      "publisher": {
+        "@id": "https://www.kabsailabs.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.kabsailabs.com/#organization",
+      "name": "KABS AI LABS",
+      "url": "https://www.kabsailabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kabsailabs.com/assets/img/logo-kabs-black.png",
+        "width": 274,
+        "height": 90
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.kabsailabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://www.kabsailabs.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Returns automation: handle routine returns without an inbox, so your team only sees the odd ones",
+          "item": "https://www.kabsailabs.com/blog/returns-automation"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I automate returns on Shopify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Write a clear return policy, then turn on a self-serve return portal so customers start returns themselves. Set rules for the return window, final-sale items and return shipping. Use an app or a build that approves routine returns, creates labels, refunds on receipt and restocks the item. Send the odd ones to a person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Shopify's self-serve returns approve returns automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not according to Shopify's help pages. Customers can request a return from the order status page, and your return rules decide what is eligible. You still approve or decline each request in your Shopify admin, and you restock after you receive and inspect the item."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I refund before the item comes back?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not. Refund when the parcel arrives, or when the carrier first scans it if you trust the customer and the order is low value. Refunding on request alone invites fraud and leaves you out of pocket for parcels that never come back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to accept returns in the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no single federal law that requires you to accept returns. Some states require you to show your refund policy. New York, for example, requires online retailers to post it near the item or by a link. This is not legal advice, so check the rules where you sell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop return fraud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refund on receipt, not on request. Flag repeat returners and high-value orders for a person. Ask for photos on damage claims. Keep final-sale items out of the portal. The NRF and Happy Returns put fraud at 9% of all returns in their 2025 report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What return rate is normal for an online store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends heavily on what you sell. The NRF and Happy Returns 2025 report puts online returns at 19.3% of online sales, but that came from large retailers. Clothing usually runs higher than most other categories. Measure your own rate by product before you plan around a benchmark."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-path="/blog/returns-automation" data-layout="default">
+<a class="skip" href="#main">Skip to content</a>
+<div id="site-header"><noscript><nav class="nojs-nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/demo">Live demo</a><a href="/pricing">Pricing</a><a href="/case-studies">Work</a><a href="/blog">Blog</a><a href="/contact">Contact</a></nav></noscript></div>
+<main id="main">
+<div class="blogpost">
+<article><div class="wrap">
+<p class="kicker">Ecommerce</p>
+<h1>Returns automation: handle routine returns without an inbox, so your team only sees the odd ones</h1>
+<p class="byline">By Babar Lal &nbsp;&middot;&nbsp; <time datetime="2026-10-06">6 October 2026</time> &nbsp;&middot;&nbsp; 9 min read</p>
+<p>It is the Monday after a big sale. The returns inbox has 60 new emails. Each one needs someone to find the order, check the policy, make a label, email it, wait for the parcel, refund it and put the item back in stock.</p>
+<p>By Friday, one customer has been refunded for a parcel that never came back. A jacket sits in a box by the door while the website says it is sold out. And a customer who wanted a different size got a refund instead, then bought the jacket somewhere else.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/returns-automation/hero-mobile.png" width="750" height="1132"><img src="/assets/img/blog/returns-automation/hero.png" width="1200" height="630" alt="The same 60 returns after a sale two ways. On the left, return emails, labels made one by one, a refund sent before the parcel is back and a restock forgotten so the site shows zero stock. On the right, the customer starts the return online, it is auto-approved with a label attached, and on receipt the refund is issued and the item restocked." fetchpriority="high" decoding="async"></picture></figure>
+<h2>The short answer</h2>
+<p>Let customers start routine returns themselves, approve them by rules, and refund and restock when the parcel arrives. Keep people for the odd ones.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Question</th><th scope="col">Short answer</th></tr></thead>
+<tbody>
+<tr><td>What returns automation is</td><td>A self-serve portal, approval rules, automatic labels, refunds on receipt and restocking into your stock count</td></tr>
+<tr><td>What it is not</td><td>Refunding everyone who asks, or a way around your own return policy</td></tr>
+<tr><td>Who it suits</td><td>Shopify stores, often also on Amazon or TikTok Shop, that handle returns by email and spreadsheet</td></tr>
+<tr><td>Cost range</td><td>Shopify's self-serve returns come with the platform; returns apps from about $16 a month; a custom build has a setup fee and a monthly fee</td></tr>
+<tr><td>What to do first</td><td>Rewrite your return policy so a machine could follow it</td></tr>
+</tbody>
+</table></div>
+<h2>How big returns are for online stores</h2>
+<p>The best recent figures come from the National Retail Federation. Its <a href="https://nrf.com/media-center/press-releases/consumers-expected-to-return-nearly-850-billion-in-merchandise-in-2025" target="_blank" rel="noopener">2025 returns report</a>, published in October 2025, was written with Happy Returns, a returns company owned by UPS. It expected US shoppers to return $849.9 billion of goods in 2025. That is 15.8% of annual retail sales.</p>
+<p>Online, the share is higher, at 19.3% of online sales. The report also estimated that 9% of all returns are fraudulent.</p>
+<p>One caution. The retailer side of that survey came from 358 ecommerce professionals at large US merchants, with over $500 million in revenue. A small store's return rate depends heavily on what it sells. Clothing and shoes usually run higher than most other categories. Measure your own rate by product.</p>
+<h2>Where manual returns go wrong</h2>
+<p>An unclear policy. "Returns accepted within a reasonable time" means a different thing to every customer and every staff member.</p>
+<p>Labels made by hand. Every return is a copy-and-paste job, and the wrong address goes on some of them.</p>
+<p>Refunds before the item arrives. Someone refunds to be kind, and the parcel never comes back.</p>
+<p>Returns never restocked. The item is back in the building, but not back on sale. That is one of the four causes of stock drift in our post on <a href="/blog/shopify-overselling-multi-channel-fix">why Shopify stores keep overselling</a>.</p>
+<p>Exchanges lost. The customer asked for a different size. The email thread falls through, and they get a refund instead.</p>
+<p>Return fraud. Worn items, empty boxes, or a different item sent back. The NRF estimate of 9% is a reminder to check what comes back before you refund.</p>
+<h2>How to automate it, step by step</h2>
+<ol>
+<li>Write a clear policy. Give the return window in days, the condition items must be in, the final-sale items and who pays return shipping.</li>
+<li>Offer a self-serve return portal. Shopify's <a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns" target="_blank" rel="noopener">self-serve returns</a> let customers request a return from their order status page.</li>
+<li>Auto-approve routine returns by rules. Inside the window, not final sale and normal order value means approve. Anything else goes to a person.</li>
+<li>Generate the return label automatically, and email it with the approval.</li>
+<li>Refund or give store credit on receipt. For trusted customers and low-value items, you can choose to release it when the carrier first scans the parcel.</li>
+<li>Restock into your source of truth. That is the one stock count every channel reads, not just Shopify.</li>
+<li>Send a person only the damaged, high-value and out-of-policy returns.</li>
+</ol>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/returns-automation/returns-flow-mobile.png" width="750" height="1124"><img src="/assets/img/blog/returns-automation/returns-flow.png" width="1200" height="640" alt="Six steps from return request to restock: the customer starts the return in a portal, the rules check the window, condition and final-sale status, a label is generated and emailed, store credit can be released on carrier scan, the item is inspected and refunded or exchanged on receipt, and it is restocked into the count every channel reads. Damaged, high-value or out-of-policy returns go to a person." loading="lazy" decoding="async"></picture></figure>
+<p>Customers will still ask where their refund is. A chat that reads the same return data can answer that, as in our posts on <a href="/blog/ai-website-chat">AI website chat</a> and <a href="/blog/whatsapp-sms-customer-support">WhatsApp and SMS support</a>. It is the same idea as our post on <a href="/blog/where-is-my-order-automation">cutting where-is-my-order tickets</a>, run in reverse.</p>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/returns-automation/auto-vs-person-mobile.png" width="750" height="1246"><img src="/assets/img/blog/returns-automation/auto-vs-person.png" width="1200" height="660" alt="Two columns. Auto-approve: inside the return window, unworn or unopened as the customer states, not a final-sale item, normal order value, no fraud or repeat-return flags, and exchanges for a different size or color. Send to a person: damaged or defective items, high-value orders, outside the window or final sale, repeat returners or fraud signals, parcels that never come back, and marketplace returns with their own rules. The rule: refund when the item arrives, unless you choose credit on scan for trusted customers." loading="lazy" decoding="async"></picture></figure>
+<h2>The rules</h2>
+<p>This is a plain summary, not legal advice. Check the rules where you sell.</p>
+<p>There is no single federal law that requires you to accept returns. Some states do require you to tell customers your policy. New York's <a href="https://www.nysenate.gov/legislation/laws/GBS/218-A" target="_blank" rel="noopener">General Business Law section 218-a</a> says online retailers must post their refund policy conspicuously, for example by a notice or link near the item. If they do not, the buyer can claim a cash refund or credit, at the buyer's option, for up to 30 days from purchase. Other states have their own rules.</p>
+<p>So the portal and the written policy must say the same thing. If your policy says 30 days and the portal allows 45, you have two policies.</p>
+<p>Marketplace returns follow the marketplace's own rules. I could not open Amazon's return policy page for this post, so I am not quoting it. Check the current rules in your Seller Central and TikTok Shop accounts before you automate anything on those channels.</p>
+<h2>Your options compared</h2>
+<p>Prices come from each provider's own page, checked in October 2026.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Option</th><th scope="col">Typical cost</th><th scope="col">Good at</th><th scope="col">Trade-offs</th></tr></thead>
+<tbody>
+<tr><td>Shopify self-serve returns</td><td>Comes with Shopify; its help page shows no separate price</td><td>Requests from the order status page, with <a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/return-rules" target="_blank" rel="noopener">rules for window, fees and final sale</a></td><td><a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns/management" target="_blank" rel="noopener">You approve each request by hand</a>, and restock after inspecting it</td></tr>
+<tr><td>Loop Returns</td><td><a href="https://www.loopreturns.com/pricing/" target="_blank" rel="noopener">Core is free software</a> plus return shipping; Essential from $155 a month; Advanced from $340</td><td>Exchanges and automated return policies</td><td>Per-return fees are not shown on the pricing page</td></tr>
+<tr><td>AfterShip Returns</td><td><a href="https://www.aftership.com/pricing/returns" target="_blank" rel="noopener">Essentials $16 a month</a> for 240 returns a year; Premium $99 for 1,200</td><td>Branded returns page, automatic labels, eligibility rules; fraud detection on Premium</td><td>Overage of $0.50 to $1 per extra return</td></tr>
+<tr><td>Return Prime</td><td><a href="https://www.returnprime.com/pricing" target="_blank" rel="noopener">Free for 5 returns a month</a>; paid plans from $100 a month for 200</td><td>Exchanges and return fees on a small budget</td><td>$0.49 to $0.79 per extra return</td></tr>
+<tr><td>Custom build</td><td>Setup fee plus monthly fee; our builds start at <a href="/pricing">$200</a></td><td>Connects returns, refunds and stock across Shopify, Amazon and TikTok Shop</td><td>Only worth it when apps cannot see every channel</td></tr>
+</tbody>
+</table></div>
+<h2>What owners and the industry are saying</h2>
+<p>I only list pages I could open. Reddit would not open for me. Vendors are labelled.</p>
+<div class="table-wrap wide"><table>
+<thead><tr><th scope="col">Where</th><th scope="col">Who</th><th scope="col">What they said</th><th scope="col">What it tells you</th></tr></thead>
+<tbody>
+<tr><td><a href="https://community.shopify.com/t/need-an-app-to-process-refund-for-amazon-returns/410758" target="_blank" rel="noopener">Shopify Community, Apr 2025</a></td><td>A store owner selling on Amazon</td><td>"I haven't found a good solution for managing Amazon returns and refunds directly from Shopify, including applying restocking fees without going through Seller Central."</td><td>Multi-channel returns are where apps stop</td></tr>
+<tr><td><a href="https://community.shopify.com/t/restocking-and-incorrect-inventory/201924/2" target="_blank" rel="noopener">Shopify Community, Mar 2023</a></td><td>A store owner, then other members</td><td>Stock counts went wrong after restocking on refund; the advice was to restock only once items were received and checked</td><td>Restock on receipt, not on refund</td></tr>
+<tr><td><a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns/management" target="_blank" rel="noopener">Shopify Help Center</a></td><td>Platform</td><td>Self-serve requests are approved or declined in the admin; restocking follows inspection</td><td>The built-in tool still needs a person every day</td></tr>
+<tr><td><a href="https://www.aftership.com/pricing/returns" target="_blank" rel="noopener">AfterShip Returns pricing</a></td><td>Returns vendor</td><td>Lists auto-approval for 80% of returns among Essentials features</td><td>A vendor claim; your share depends on your rules</td></tr>
+<tr><td><a href="https://nrf.com/media-center/press-releases/consumers-expected-to-return-nearly-850-billion-in-merchandise-in-2025" target="_blank" rel="noopener">NRF and Happy Returns, Oct 2025</a></td><td>Retail trade body and a UPS-owned returns company</td><td>9% of all returns are fraudulent</td><td>Auto-approval needs fraud checks</td></tr>
+</tbody>
+</table></div>
+<h2>A cost sum you can redo with your own numbers</h2>
+<p>Here is the sum for a store doing 2,000 orders a month. Two of the numbers are my assumptions. Measure your own.</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Line</th><th scope="col">How to get it</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><td>Orders per month</td><td>Your Shopify and marketplace dashboards</td><td>2,000</td></tr>
+<tr><td>Return rate</td><td>Returns divided by orders, last three months</td><td>10% (assumed), so 200</td></tr>
+<tr><td>Minutes per manual return</td><td>Time a few, from email to restock</td><td>12</td></tr>
+<tr><td>Hourly cost</td><td>Wage plus overheads</td><td>$22</td></tr>
+<tr><td>Handling time per month</td><td>200 x 12 minutes = 40 hours, x $22</td><td>$880</td></tr>
+<tr><td>Returns never restocked</td><td>Count returned items not back on sale after two weeks</td><td>5% of returns (assumed), so 10, x $60 resale value = $600</td></tr>
+<tr><td>Total per month</td><td>Handling time plus lost resale</td><td>About $1,480</td></tr>
+</tbody>
+</table></div>
+<figure class="post-img"><picture><source media="(max-width: 560px)" srcset="/assets/img/blog/returns-automation/cost-sum-mobile.png" width="750" height="1033"><img src="/assets/img/blog/returns-automation/cost-sum.png" width="1200" height="640" alt="What manual returns cost on example numbers. Handling time: 200 returns a month times 12 minutes times 22 dollars an hour is 880 dollars. Never restocked: 10 returns times 60 dollars resale value is 600 dollars. About 1,480 dollars a month in total. The 10 percent return rate and the 5 percent never restocked are marked as assumed." loading="lazy" decoding="async"></picture></figure>
+<p>That does not count refunds sent for parcels that never came back. For many stores, that line alone pays for an app.</p>
+<h2>When it backfires</h2>
+<p>Auto-approving fraud. Rules that approve everything inside the window will approve the serial returner too. Add flags for repeat returns and high-value orders.</p>
+<p>Refunds sent before the item comes back. Instant refunds feel generous. They also pay for parcels that never arrive. Keep them for trusted customers and low-value items.</p>
+<p>Store credit customers did not want. Pushing credit instead of money back makes people angry, and in some states it can break the rules if your policy was not clear. Offer credit as a choice.</p>
+<p>A portal that does not match the written policy. Customers will screenshot whichever one suits them. Update both on the same day.</p>
+<h2>What we build, and when we say no</h2>
+<p>If you sell on Shopify with modest volume, start with its built-in self-serve returns. Set your return rules, approve requests once a day, and restock as parcels arrive. You do not need us for that.</p>
+<p>We build the next step for stores on several channels, or with returns piling up after every sale. Routine returns are approved by your rules. Labels go out automatically. Refunds and credit follow the carrier scan or receipt. Each item goes back into the stock count every channel reads. A person sees only the odd ones, with the order attached. Our <a href="/services/industries/ecommerce">ecommerce automation work</a> covers the whole order flow. Our <a href="/services/workflow-automation">workflow automation service</a> connects Shopify, marketplaces, carriers and payments. Our <a href="/services/ai-automation">AI automation service</a> adds the chat that answers "where is my refund".</p>
+<p>We say no when volume is low, when the return policy is not written down yet, or when an app already sees all your channels. New to all this? Our <a href="/blog/ai-automation-for-small-business-questions">plain-English answers to 24 questions about AI automation</a> is the place to start.</p>
+<h2>Questions people ask</h2>
+<p><strong>How do I automate returns on Shopify?</strong> Write a clear return policy, then turn on a self-serve return portal so customers start returns themselves. Set rules for the return window, final-sale items and return shipping. Use an app or a build that approves routine returns, creates labels, refunds on receipt and restocks the item. Send the odd ones to a person.</p>
+<p><strong>Does Shopify's self-serve returns approve returns automatically?</strong> Not according to Shopify's help pages. Customers can request a return from the order status page, and your return rules decide what is eligible. You still approve or decline each request in your Shopify admin, and you restock after you receive and inspect the item.</p>
+<p><strong>Should I refund before the item comes back?</strong> Usually not. Refund when the parcel arrives, or when the carrier first scans it if you trust the customer and the order is low value. Refunding on request alone invites fraud and leaves you out of pocket for parcels that never come back.</p>
+<p><strong>Do I have to accept returns in the US?</strong> There is no single federal law that requires you to accept returns. Some states require you to show your refund policy. New York, for example, requires online retailers to post it near the item or by a link. This is not legal advice, so check the rules where you sell.</p>
+<p><strong>How do I stop return fraud?</strong> Refund on receipt, not on request. Flag repeat returners and high-value orders for a person. Ask for photos on damage claims. Keep final-sale items out of the portal. The NRF and Happy Returns put fraud at 9% of all returns in their 2025 report.</p>
+<p><strong>What return rate is normal for an online store?</strong> It depends heavily on what you sell. The NRF and Happy Returns 2025 report puts online returns at 19.3% of online sales, but that came from large retailers. Clothing usually runs higher than most other categories. Measure your own rate by product before you plan around a benchmark.</p>
+<div class="cta">
+<h2>Find out what your returns really cost.</h2>
+<p>Bring last month's returns to the free audit. We time the steps with you, count what never got restocked, and tell you whether Shopify's own tools, an app or a build is the right step. If the built-in tools cover it, we say so.</p>
+<a class="btn" href="/audit">Book the free audit &#8594;</a>
+</div>
+<section class="related" aria-labelledby="related-h">
+<h2 id="related-h">Related reading</h2>
+<ul>
+<li><a href="/blog/where-is-my-order-automation">Where is my order</a>. The question customers ask before a return.</li>
+<li><a href="/blog/shopify-overselling-multi-channel-fix">Why your Shopify store keeps overselling, and the fix that is not another app</a>. Why returns that never get restocked throw your stock count off.</li>
+<li><a href="/blog/whatsapp-sms-customer-support">WhatsApp and SMS customer support</a>. Where many customers will ask about their refund.</li>
+</ul>
+</section>
+<h2>Sources</h2>
+<ul class="sources">
+<li><a href="https://nrf.com/media-center/press-releases/consumers-expected-to-return-nearly-850-billion-in-merchandise-in-2025" target="_blank" rel="noopener">NRF, consumers expected to return nearly $850 billion in merchandise in 2025</a>, October 2025</li>
+<li><a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns" target="_blank" rel="noopener">Shopify Help Center, self-serve returns</a>, checked October 2026</li>
+<li><a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/self-serve-returns/management" target="_blank" rel="noopener">Shopify Help Center, managing self-serve return requests</a>, checked October 2026</li>
+<li><a href="https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/return-rules" target="_blank" rel="noopener">Shopify Help Center, return rules</a>, checked October 2026</li>
+<li><a href="https://www.nysenate.gov/legislation/laws/GBS/218-A" target="_blank" rel="noopener">New York General Business Law section 218-a</a>, checked October 2026</li>
+<li><a href="https://www.loopreturns.com/pricing/" target="_blank" rel="noopener">Loop Returns, pricing</a>, checked October 2026</li>
+<li><a href="https://www.aftership.com/pricing/returns" target="_blank" rel="noopener">AfterShip Returns, pricing</a>, checked October 2026</li>
+<li><a href="https://www.returnprime.com/pricing" target="_blank" rel="noopener">Return Prime, pricing</a>, checked October 2026</li>
+<li><a href="https://community.shopify.com/t/need-an-app-to-process-refund-for-amazon-returns/410758" target="_blank" rel="noopener">Shopify Community, app to process refunds for Amazon returns</a>, April 2025</li>
+<li><a href="https://community.shopify.com/t/restocking-and-incorrect-inventory/201924/2" target="_blank" rel="noopener">Shopify Community, restocking and incorrect inventory</a>, March 2023</li>
+</ul>
+<nav class="pn"><a href="/blog/where-is-my-order-automation"><span class="lbl">Previous</span><span class="t">Where is my order</span></a><a href="/blog/automatic-business-reporting-2026"><span class="lbl">Next</span><span class="t">The Report That Writes Itself</span></a></nav>
+</div></article>
+</div>
+</main>
+<div id="site-footer"><noscript><nav class="nojs-nav" aria-label="Secondary"><a href="/pricing">Pricing</a><a href="/careers">Careers</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></noscript></div>
+</body>
+</html>

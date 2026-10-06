@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/returns-refunds-automation-2026",
+      "destination": "/blog/returns-automation",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/ecommerce-order-shipping-automation",
       "destination": "/blog/where-is-my-order-automation",
       "statusCode": 301
