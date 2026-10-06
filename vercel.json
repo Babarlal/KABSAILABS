@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/automatic-business-reporting-2026",
+      "destination": "/blog/automated-client-reporting",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/document-data-extraction-ai-2026",
       "destination": "/blog/ai-document-data-extraction",
       "statusCode": 301
