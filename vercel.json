@@ -116,7 +116,7 @@
     },
     {
       "source": "/blog/automatic-review-requests-2026",
-      "destination": "/services/ai-automation",
+      "destination": "/blog/automatic-review-requests",
       "statusCode": 301
     },
     {
