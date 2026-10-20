@@ -51,22 +51,42 @@
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
 
-  /* ---------- Consent Mode v2 ----------
-     Everything denied until the visitor chooses. Google Ads needs ad_storage to
-     match a click to a conversion, so Accept now grants the ad signals as well
-     as analytics. Reject leaves all of them denied. */
+  /* ---------- Consent Mode v2, by region ----------
+     Set before any Google tag loads. Visitors in the EEA, the UK and Switzerland
+     start with every storage signal denied until they choose, because consent law
+     there requires opt in. Everywhere else starts granted. The region specific
+     default wins over the global one for visitors in those regions, whatever the
+     order, so both are set here and Google picks per visitor.
+
+     The banner still shows to everyone. Accept or Reject updates the signals and
+     is remembered, so a visitor outside Europe who rejects stays rejected. */
+  var CONSENT_REGIONS = [
+    // EU member states
+    'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE',
+    'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+    // rest of the EEA, then the UK and Switzerland
+    'IS', 'LI', 'NO', 'GB', 'CH'
+  ];
+  var ALL_GRANTED = { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' };
+  var ALL_DENIED  = { ad_storage: 'denied',  ad_user_data: 'denied',  ad_personalization: 'denied',  analytics_storage: 'denied' };
+
   gtag('consent', 'default', {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
     analytics_storage: 'denied',
-    functionality_storage: 'granted',
-    security_storage: 'granted',
-    wait_for_update: 500
+    wait_for_update: 500,
+    region: CONSENT_REGIONS
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted',
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
+    analytics_storage: 'granted'
   });
 
-  /* Keeps the gclid on the URL so a conversion can still be attributed while
-     storage is denied. Does nothing once consent is granted. */
+  /* Keeps the gclid on the URL, and strips ad identifiers from hits, wherever
+     ad_storage is denied. Neither does anything where it is granted. */
   gtag('set', 'url_passthrough', true);
   gtag('set', 'ads_data_redaction', true);
 
@@ -76,6 +96,11 @@
   function writeConsent(v) {
     try { localStorage.setItem('kabsConsent', v); } catch (e) {}
   }
+
+  // A remembered choice overrides the regional default before any tag reads it.
+  var stored = readConsent();
+  if (stored === 'granted') gtag('consent', 'update', ALL_GRANTED);
+  else if (stored === 'denied') gtag('consent', 'update', ALL_DENIED);
 
   /* ---------- loaders ---------- */
   var gtmLoaded = false;
@@ -112,7 +137,7 @@
   }
 
   /* Google Ads gets its own gtag.js because the GTM container carries GA4 only, no
-     Ads tag. One loader, called from the consent gate, so it runs once per page. */
+     Ads tag. One loader, called once at startup, so it runs once per page. */
   var adsLoaded = false;
   function loadAds() {
     if (adsLoaded || isPlaceholder(TAG.GOOGLE_ADS_ID)) return;
@@ -127,29 +152,19 @@
 
   function grantConsent() {
     writeConsent('granted');
-    gtag('consent', 'update', {
-      ad_storage: 'granted',
-      ad_user_data: 'granted',
-      ad_personalization: 'granted',
-      analytics_storage: 'granted'
-    });
-    gtag('set', 'ads_data_redaction', false);
-    loadGTM();
-    loadGA();
-    loadAds();
+    gtag('consent', 'update', ALL_GRANTED);
   }
   function denyConsent() {
     writeConsent('denied');
-    gtag('consent', 'update', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied'
-    });
+    gtag('consent', 'update', ALL_DENIED);
   }
   window.kabsConsent = { grant: grantConsent, deny: denyConsent, read: readConsent };
 
-  if (readConsent() === 'granted') grantConsent();
+  /* Tags load straight away; Consent Mode, not the banner, decides what they may
+     store and send. The Ads tag still stays off while its IDs are placeholders. */
+  loadGTM();
+  loadGA();
+  loadAds();
 
   /* ---------- the one way anything on this site reports a conversion ----------
      Pushes a named event onto the dataLayer for GTM to trigger on. Safe to call

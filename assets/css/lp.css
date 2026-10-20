@@ -181,6 +181,10 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (min-width:520px){.lp .au-next{flex:0 1 auto;min-width:260px}}
 .lp .au-next[disabled]{opacity:.42;cursor:not-allowed;transform:none}
 .lp .au-note{margin-top:14px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+/* The card is white inside a dark section, so ".lp .dark p" (light text for dark
+   backgrounds) was winning here and left these lines near invisible. Muted text on
+   white is 5.4:1, above the 4.5:1 AA minimum. */
+.lp .dark .au-card .au-sub,.lp .dark .au-card .au-note,.lp .hero .au-card .au-sub,.lp .hero .au-card .au-note{color:var(--muted)}
 .lp .au-err{margin-top:14px;font-size:14px;line-height:1.5;background:#fdecec;border:1px solid var(--warn-soft);color:#9a2f2f;border-radius:10px;padding:10px 14px}
 .lp .au-err[hidden]{display:none}
 .lp .au-cal{margin-top:18px;border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--paper-2)}
