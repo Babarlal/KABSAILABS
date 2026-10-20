@@ -25,20 +25,24 @@
     GTM_ID: 'GTM-NPG4QTSR',      // live container; GA4 is configured inside it
     GA_ID:  'G-EMPMVS2NYX',      // existing GA4 property, kept
 
-    /* The Google Ads conversion, counted on a completed booking. Paste the real value as
-       AW-XXXXXXXXX/AbCdEfGhIjKlMnOp. The leading bracket is what the guard tests, so
-       leave the brackets on until the conversion action exists: nothing fires against a
-       placeholder. Moved here from lp-booking.js, which fired it at lead capture on two
-       pages only; a booking can happen from any page, so the tag layer owns it. */
-    ADS_CONVERSION_ID: '[ADS_CONVERSION_ID_PLACEHOLDER: AW-XXXXXXXXX/label]'
+    /* Google Ads, the conversion counted on a completed Calendly booking. Paste the
+       account ID (AW-...) and the label of the booking conversion action. While either
+       still contains XXXX the Ads tag is not loaded and no conversion fires, so a
+       placeholder can never send a hit. GA4 needs no placeholder here: it is already
+       live through the GTM container above, and loading it a second time would count
+       every pageview twice. */
+    GOOGLE_ADS_ID: 'AW-XXXXXXXXXX',
+    GOOGLE_ADS_BOOKING_LABEL: 'XXXXXXXXXXXXXXX'
   };
   window.KABS_TAG = TAG;
 
-  /* A value is not usable if it is blank, bracketed, or still says PLACEHOLDER.
-     The bracket test is the same guard lp-booking.js already uses for
-     ADS_CONVERSION_ID, kept so both files fail the same way. */
+  /* A value is not usable if it is blank, bracketed, says PLACEHOLDER, or still
+     holds the XXXX of the shipped placeholders. */
   function isPlaceholder(v) {
-    return !v || v.indexOf('[') === 0 || v.indexOf('PLACEHOLDER') !== -1;
+    return !v || v.indexOf('[') === 0 || v.indexOf('PLACEHOLDER') !== -1 || v.indexOf('XXXX') !== -1;
+  }
+  function adsReady() {
+    return !isPlaceholder(TAG.GOOGLE_ADS_ID) && !isPlaceholder(TAG.GOOGLE_ADS_BOOKING_LABEL);
   }
   window.kabsIsPlaceholder = isPlaceholder;
 
@@ -107,6 +111,20 @@
     gtag('config', TAG.GA_ID, { anonymize_ip: true });
   }
 
+  /* Google Ads gets its own gtag.js because the GTM container carries GA4 only, no
+     Ads tag. One loader, called from the consent gate, so it runs once per page. */
+  var adsLoaded = false;
+  function loadAds() {
+    if (adsLoaded || isPlaceholder(TAG.GOOGLE_ADS_ID)) return;
+    adsLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + TAG.GOOGLE_ADS_ID;
+    document.head.appendChild(s);
+    if (!gaLoaded) gtag('js', new Date());
+    gtag('config', TAG.GOOGLE_ADS_ID);
+  }
+
   function grantConsent() {
     writeConsent('granted');
     gtag('consent', 'update', {
@@ -118,6 +136,7 @@
     gtag('set', 'ads_data_redaction', false);
     loadGTM();
     loadGA();
+    loadAds();
   }
   function denyConsent() {
     writeConsent('denied');
@@ -144,6 +163,45 @@
     return payload;
   };
 
+  /* A named GA4 event. Sent with send_to so it reaches the GA4 property only, never
+     the Ads account. The Google tag inside GTM reads gtag() commands off the same
+     dataLayer, so this works without a second GA4 install. Callers pass no personal
+     data: no name, email, phone or store URL in params. */
+  window.kabsGa4Event = function (name, params) {
+    if (isPlaceholder(TAG.GA_ID)) return;
+    var p = { send_to: TAG.GA_ID };
+    if (params) { for (var k in params) if (Object.prototype.hasOwnProperty.call(params, k)) p[k] = params[k]; }
+    gtag('event', name, p);
+  };
+
+  /* ---------- ad click attribution ----------
+     Read once on landing and kept for the session, so the click IDs and UTMs still
+     reach the lead row and the Calendly booking after the visitor scrolls, goes Back,
+     or opens a second page. A later URL without any of these keys leaves the stored
+     set alone; a new ad click with its own keys replaces it. */
+  var ATTR_KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var attrMemory = {};
+  (function captureAttribution() {
+    var q, found = {}, any = false;
+    try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    ATTR_KEYS.forEach(function (k) {
+      var v = q.get(k);
+      if (v) { found[k] = v.slice(0, 200); any = true; }
+    });
+    if (any) {
+      attrMemory = found;
+      try { sessionStorage.setItem('kabsAttribution', JSON.stringify(found)); } catch (e) {}
+    }
+  })();
+  window.kabsAttribution = function () {
+    var stored = null;
+    try { stored = JSON.parse(sessionStorage.getItem('kabsAttribution') || 'null'); } catch (e) {}
+    var out = {}, src = stored || attrMemory;
+    ATTR_KEYS.forEach(function (k) { out[k] = (src && typeof src[k] === 'string') ? src[k] : ''; });
+    return out;
+  };
+  window.kabsAttributionKeys = ATTR_KEYS.slice();
+
   /* ---------- Calendly: a completed booking ----------
      This is the conversion. Calendly posts a message when the visitor actually
      finishes scheduling, which is the moment worth paying for: a lead form
@@ -154,16 +212,38 @@
      The listener is installed on every page, so a booking counts wherever the
      widget is embedded or popped, and it is installed once, so a booking cannot
      be counted twice. */
+  var bookingsSeen = {};
+  function firstTimeFor(key, persist) {
+    if (bookingsSeen[key]) return false;
+    bookingsSeen[key] = true;
+    if (!persist) return true;
+    /* Session memory as well, so a reload of the confirmation, or a second embed of the
+       same booking on another page, cannot count it again. */
+    try {
+      var seen = JSON.parse(sessionStorage.getItem('kabsBookingsSeen') || '[]');
+      if (seen.indexOf(key) !== -1) return false;
+      seen.push(key);
+      sessionStorage.setItem('kabsBookingsSeen', JSON.stringify(seen.slice(-20)));
+    } catch (e) {}
+    return true;
+  }
+
   window.addEventListener('message', function (e) {
-    if (String(e.origin).indexOf('calendly.com') === -1) return;
+    // Exact origin: a substring test would also accept a host like evilcalendly.com.
+    if (e.origin !== 'https://calendly.com') return;
     var d = e.data;
-    if (d && d.event === 'calendly.event_scheduled') {
-      window.kabsTrack('kabs_booking_completed', { method: 'calendly' });
-      /* Direct Ads conversion alongside the dataLayer event, so it keeps working if
-         the container is ever paused. Guarded, so a placeholder never fires. */
-      if (typeof gtag === 'function' && !isPlaceholder(TAG.ADS_CONVERSION_ID)) {
-        gtag('event', 'conversion', { send_to: TAG.ADS_CONVERSION_ID });
-      }
+    if (!d || d.event !== 'calendly.event_scheduled') return;
+    /* The invitee URI identifies one booking and holds no personal data. If Calendly
+       ever drops it, one booking per page view is the safe fallback. */
+    var p = d.payload || {};
+    var uri = (p.invitee && p.invitee.uri) || (p.event && p.event.uri) || '';
+    if (!firstTimeFor(uri || 'this-page', !!uri)) return;
+
+    window.kabsTrack('kabs_booking_completed', { method: 'calendly' });
+    window.kabsGa4Event('book_audit', { method: 'calendly' });
+    /* Direct Ads conversion, guarded, so a placeholder never fires. */
+    if (adsReady()) {
+      gtag('event', 'conversion', { send_to: TAG.GOOGLE_ADS_ID + '/' + TAG.GOOGLE_ADS_BOOKING_LABEL });
     }
   });
 

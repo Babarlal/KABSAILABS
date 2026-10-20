@@ -143,6 +143,15 @@ function buildAnnounce(){
 /* ---------- header ---------- */
 function buildHeader(){
   var layout = document.body.getAttribute('data-layout') || 'default';
+  /* Paid traffic pages (/lp/shopify-inventory-sync). No menu: the logo returns to the
+     top of this page and the one button goes to the form on it, so the ad visitor has
+     nowhere to wander off to. */
+  if (layout === 'ad'){
+    return '<header class="site-header"><div class="container"><div class="nav">'+
+      '<a class="logo" href="#top" aria-label="KABS AI LABS, back to top">'+LOGO+'</a>'+
+      '<div class="nav-right"><a class="btn btn-primary" href="#book">Book the free audit</a></div>'+
+    '</div></div></header>';
+  }
   if (layout === 'lp'){
     return '<header class="site-header"><div class="container"><div class="nav">'+
       '<a class="logo" href="/" aria-label="KABS AI LABS home">'+LOGO+'</a>'+
@@ -182,6 +191,12 @@ function buildHeader(){
 function buildFooter(){
   var layout = document.body.getAttribute('data-layout') || 'default';
   var year = new Date().getFullYear();
+  if (layout === 'ad'){
+    return '<footer class="site-footer"><div class="container"><div class="foot-bottom">'+
+      '<span>&copy; '+year+' '+CONFIG.brand+'. All rights reserved.</span>'+
+      '<span><a href="/privacy" target="_blank" rel="noopener">Privacy</a> &middot; <a href="/terms" target="_blank" rel="noopener">Terms</a></span>'+
+    '</div></div></footer>';
+  }
   if (layout === 'lp'){
     return '<footer class="site-footer"><div class="container"><div class="foot-bottom">'+
       '<span>&copy; '+year+' '+CONFIG.brand+'. All rights reserved.</span><span class="mono">'+CONFIG.email+'</span>'+
@@ -530,10 +545,11 @@ function ensureSkipLink(){
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded', function(){
   var layout = document.body.getAttribute('data-layout') || 'default';
+  var bare = (layout === 'lp' || layout === 'ad');
   var h=document.getElementById('site-header');
-  if(h){ h.innerHTML = (layout!=='lp' ? buildAnnounce() : '') + buildHeader(); }
+  if(h){ h.innerHTML = (bare ? '' : buildAnnounce()) + buildHeader(); }
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=buildFooter();
-  if (layout !== 'lp'){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
+  if (!bare){ document.body.insertAdjacentHTML('beforeend', buildFab()); }
 
   ensureSkipLink();
   setupNav();
@@ -565,7 +581,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
   var path = (document.body && document.body.getAttribute('data-path')) || location.pathname;
   if (SUPPRESS_ON.indexOf(path) !== -1) return;
-  if ((document.body && document.body.getAttribute('data-layout')) === 'lp') return;
+  var popLayout = document.body && document.body.getAttribute('data-layout');
+  if (popLayout === 'lp' || popLayout === 'ad') return;
   try { if (sessionStorage.getItem("kabsPopShown")) return; } catch(e){}
 
   var waHref = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(WA_MSG);

@@ -31,8 +31,12 @@
 #site-header{ min-height: 121px; display: block; }
 body[data-layout="lp"] #site-header{ min-height: 108px; }
 @media (max-width: 820px){ body[data-layout="lp"] #site-header{ min-height: 96px; } }
+/* The ad layout (logo plus one button, no announce bar) measures 73px at every width. */
+body[data-layout="ad"] #site-header{ min-height: 73px; }
 #site-footer{ min-height: 320px; }
 @media (max-width: 820px){ #site-footer{ min-height: 520px; } }
+/* The ad footer is one line, and far below the fold, so it needs no reservation. */
+body[data-layout="ad"] #site-footer{ min-height: 0; }
 
 /* --- 3. Images: stop layout shift while logos decode. --- */
 .tool-pill .tlogo,
