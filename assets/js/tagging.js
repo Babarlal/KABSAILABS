@@ -227,6 +227,16 @@
      The listener is installed on every page, so a booking counts wherever the
      widget is embedded or popped, and it is installed once, so a booking cannot
      be counted twice. */
+  /* TEMPORARY DEBUG, remove after the Calendly booking test. Logs every message
+     event so we can see what the embed actually posts. Vercel previews only, so it
+     can never run on www.kabsailabs.com. */
+  if (/\.vercel\.app$/.test(location.hostname)) {
+    window.addEventListener('message', function (e) {
+      console.log('[kabs debug] message', e.origin, e.data);
+    });
+    console.log('[kabs debug] message logger on');
+  }
+
   var bookingsSeen = {};
   function firstTimeFor(key, persist) {
     if (bookingsSeen[key]) return false;
