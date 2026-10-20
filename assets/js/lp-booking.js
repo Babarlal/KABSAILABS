@@ -39,7 +39,11 @@
     form.querySelectorAll('input[type="hidden"]').forEach(function(el){ lead[el.name]=el.value; });
     function proceed(){ var notes='Store: '+(store||'not given')+' | Channels: '+(channels||'not given')+' | Oversell estimate: '+(est?'$'+est+'/mo':'not run')+' | Mobile: '+(mobile||'not given');
       var url=CALENDLY_URL+'?hide_gdpr_banner=1&name='+encodeURIComponent(name)+'&email='+encodeURIComponent(email)+'&a1='+encodeURIComponent(notes)+calUtm();
-      cal.src=url; calLink.href=url; submitBtn.disabled=false; submitBtn.textContent='Book the free audit';
+      /* embed_domain and embed_type are what Calendly's own widget.js adds. Without them
+         Calendly posts nothing to the parent page, so calendly.event_scheduled never
+         arrived and no booking was counted. The new tab link is not embedded, so it
+         keeps the plain URL. */
+      cal.src=url+'&embed_domain='+encodeURIComponent(location.hostname)+'&embed_type=Inline'; calLink.href=url; submitBtn.disabled=false; submitBtn.textContent='Book the free audit';
       /* Soft signal, not the conversion: the visitor has given us their details and is
          about to see the calendar. The conversion fires when they actually book. */
       if(window.kabsTrack) kabsTrack('kabs_audit_form_success',{form_name:'lp-audit',form_page:location.pathname});
