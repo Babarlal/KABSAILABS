@@ -62,6 +62,9 @@ var NAV = {
     ["Marketing Agencies", "/services/industries/marketing-agencies"],
     ["Real Estate", "/services/industries/real-estate"],
     ["eCommerce", "/services/industries/ecommerce"],
+    /* Sits under eCommerce on purpose: it is the Shopify support service, and this is
+       where a store owner already looks. The /lp/ copy stays out of every menu. */
+    ["Support automation", "/services/shopify-support-automation"],
     ["SaaS Startups", "/services/industries/saas"],
     ["Healthcare", "/services/industries/healthcare"]
   ],

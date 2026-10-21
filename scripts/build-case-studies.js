@@ -171,7 +171,7 @@ ${b.noindex ? '<meta name="robots" content="noindex, follow">\n' : ''}<link rel=
 <link rel="stylesheet" href="/assets/css/audit-patches.min.css">
 <link rel="stylesheet" href="/assets/css/blog-post.min.css">
 <script src="/assets/js/tagging.min.js?v=20261021b" defer></script>
-<script src="/assets/js/main.min.js" defer></script>
+<script src="/assets/js/main.min.js?v=20261021c" defer></script>
 <script type="application/ld+json">
 ${ld(graph)}
 </script>
