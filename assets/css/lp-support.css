@@ -5,7 +5,9 @@
    from lp.css and styles.css. This file only adds what that page does not have.
 
    Everything is scoped to .lp-support and prefixed sp- where a name would collide with
-   lp.css (.steps, .tools, .row, .fields and .hero all mean something else there).
+   lp.css (.steps, .tools, .row and .fields mean something else there). The hero and the
+   booking section deliberately use lp.css' own .hero, .book and .au-* so they match the
+   eCommerce page.
 
    Token map from the design draft, so no colour is defined twice:
      --coral -> --warn        --border -> --rule        --border-2 -> --rule-2
@@ -23,53 +25,56 @@
 .lp-support .sp-card{background:#fff;border:1px solid var(--rule);border-radius:var(--sp-radius-lg);box-shadow:var(--shadow)}
 .lp-support .sp-white .sp-card{box-shadow:none}
 
-/* ---------- hero: the scene band on top, copy underneath, never overlapping ---------- */
-.lp-support .sp-hero{position:relative;background:radial-gradient(1200px 600px at 50% 0%,var(--ink-3) 0%,var(--ink) 60%);color:#fff;overflow:hidden}
-/* A fixed height, so the canvas starting up cannot move anything (no layout shift). */
-.lp-support .sp-scene{position:relative;height:clamp(250px,34vw,380px);border-bottom:1px solid rgba(var(--mint-rgb),.12)}
-.lp-support .sp-scene canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.lp-support .sp-scene-note{position:absolute;right:16px;bottom:12px;margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--scene-dim);text-transform:uppercase}
-.lp-support .sp-tally{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:11.5px;color:var(--scene-sat)}
+/* ---------- hero: the inventory hero, with this page's 2D scene ----------
+   Same structure and classes as the eCommerce page (lp.css .hero, .hero-copy, .up), so
+   sizes, widths, spacing, the H1 highlight and the header-aware height (div.lp>.hero)
+   all come from there. The canvas is the full-bleed background. The scene script lays
+   its nodes out only where the copy is not: to the right of it on a laptop, in the band
+   above it on a phone, and below the label and above the tally either way. */
+/* Nothing in this scene sits under the copy, so it needs no veil. The inventory page
+   has one because its 3D scene runs behind the text. */
+@media (min-width:701px){.lp-support .hero .hero-copy{background:none}}
+/* Phones: lp.css turns the hero into a band of scene above the copy. This band also
+   holds the tally, so it is a fixed 200px rather than the inventory's width-based
+   height. Fixed either way, so nothing moves when the canvas starts. */
+@media (max-width:700px){.lp-support .hero{--scene-band:200px}}
+.lp-support .sp-scene-note{position:absolute;z-index:2;top:16px;right:var(--gutter);max-width:none;margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--scene-dim);text-transform:uppercase;pointer-events:none}
+/* On a laptop the tally sits under the label, top right: the bottom right corner belongs
+   to the floating WhatsApp button. */
+.lp-support .sp-tally{position:absolute;z-index:2;right:var(--gutter);top:40px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px 16px;font-family:var(--mono);font-size:11.5px;color:var(--scene-sat);pointer-events:none}
 .lp-support .sp-tally i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .lp-support .sp-tally .ok{background:var(--scene-halo)}
 .lp-support .sp-tally .warn{background:var(--scene-warn)}
-/* Under 620px the two counters stack, so neither wraps into the bottom nodes. The scene
-   script reads the tally's top edge and keeps every node above it at any width. */
-@media (max-width:620px){.lp-support .sp-scene{height:230px}.lp-support .sp-scene-note{top:10px;bottom:auto;right:12px}.lp-support .sp-tally{font-size:10.5px;flex-direction:column;gap:2px;bottom:8px}}
-/* One line instead of two from 380px, which buys the hero button the room it needs. */
-@media (min-width:380px) and (max-width:620px){.lp-support .sp-hero .sp-band p{font-size:11px;letter-spacing:.1em}}
-/* On laptops the hero button has to fit in the first screen (1280x800) under the site
-   header and above the cookie card, so the scene gives up height above 900px. The
-   headline keeps its size. */
-@media (min-width:901px){.lp-support .sp-scene{height:clamp(220px,17vw,300px)}}
-.lp-support .sp-band{background:rgba(0,0,0,.16);border-bottom:1px solid rgba(var(--mint-rgb),.10)}
-.lp-support .sp-band p{max-width:none;font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mint-2);padding:12px 0}
-/* Spacing above the button is kept tight so it lands in the first screen with the
-   first visit cookie notice showing: clear of the bottom strip on a 390x844 phone and
-   above the corner card on a 1280x800 laptop. */
-.lp-support .sp-hero .hero-copy{background:none;padding-top:clamp(16px,1.5vw,24px);padding-bottom:clamp(48px,6vw,72px);max-width:60rem}
-.lp-support .sp-hero .hero-copy .lede{margin-top:10px}
-.lp-support .sp-hero .hero-copy .cta{margin-top:16px}
-/* lp.css sizes h1 for a full screen hero with nothing above it. Here the scene band
-   takes the top of the screen, so the headline stops at 4rem and the CTA stays in the
-   first screen on a laptop. Phone size is unchanged (2.6rem). */
-.lp-support .sp-hero h1{max-width:20ch;font-size:clamp(2.6rem,5.4vw,4rem)}
-.lp-support .sp-hero .hero-copy .lede{max-width:46rem}
+/* On a phone both sit inside the scene band: the label top right, the tally on the
+   band's bottom edge, both above the copy. */
+@media (max-width:700px){
+  .lp-support .sp-scene-note{top:10px;right:12px}
+  .lp-support .sp-tally{left:12px;right:12px;bottom:auto;top:calc(var(--scene-band) - 8px);transform:translateY(-100%);justify-content:flex-start;gap:2px 14px;font-size:10.5px}
+}
 .lp-support .sp-textlink{color:var(--mint);font-size:.95rem;text-decoration:underline;text-underline-offset:.2em}
 .lp-support .sp-textlink:hover{color:#fff}
 .lp-support .sp-points{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--on-dark);margin-top:22px}
 .lp-support .sp-points span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint-2);margin-right:8px;vertical-align:middle}
 
-/* ---------- booking: form card left, promises right (single column under 980px) ---------- */
-.lp-support .book{padding-top:clamp(40px,6vw,72px)}
-@media (min-width:981px){.lp-support .book-grid{grid-template-columns:1.1fr .9fr}}
-.lp-support .au-prog li{text-transform:none}
+/* ---------- booking: the inventory booking layout ----------
+   lp.css .book, .book-grid and .au-* as on the eCommerce page: heading block on the
+   left, the steps bar and the card on the right. This page also has promises and the
+   proof teaser, which go under the heading on the left. On a phone that reads heading,
+   card, promises (the DOM order); from 981px the card spans both rows. */
+@media (min-width:981px){
+  .lp-support .sp-book-grid{grid-template-areas:"head form" "side form";row-gap:22px}
+  .lp-support .sp-book-head{grid-area:head}
+  .lp-support .sp-book-form{grid-area:form}
+  .lp-support .sp-side{grid-area:side}
+}
 /* The card is white inside a dark section. ".lp .dark p" and ".lp .dark h3" are written
    for dark backgrounds and would paint the card's copy near white, so put the ink back. */
 .lp.lp-support .dark .au-card h2,.lp.lp-support .dark .au-card h3{color:var(--text)}
 .lp.lp-support .dark .au-card p{color:var(--muted)}
 .lp.lp-support .dark .au-card .au-err{color:#9a2f2f}
-.lp-support .au-card .step-title{font-size:clamp(1.6rem,4.5vw,2rem)}
+/* The card titles are H3 here (the section H2 sits outside the card), drawn exactly as
+   the inventory card's "Your details." H2: lp.css .au-card h2. */
+.lp-support .au-card .step-title{font-size:clamp(1.6rem,4.5vw,2rem);line-height:1.02;font-variation-settings:"opsz" 144,"SOFT" 40}
 .lp-support .au-card .step-title:focus{outline:none}
 .lp-support .sp-two{display:grid;gap:0 16px}
 @media (min-width:620px){.lp-support .sp-two{grid-template-columns:1fr 1fr}}
