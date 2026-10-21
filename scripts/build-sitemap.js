@@ -31,7 +31,7 @@ const files = cp.execSync(
   'find . -name "*.html" -not -path "./node_modules/*" -not -path "./kabs-fixes/*" -not -path "./_qa/*"',
   { shell: 'bash' }).toString().trim().split('\n').map(f => f.replace(/^\.\//, '')).sort();
 
-const noindex = f => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(fs.readFileSync(f, 'utf8'));
+const noindex = f => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(fs.readFileSync(f, 'utf8').replace(/\r\n/g, '\n'));
 const urlFor = f => f === 'index.html' ? HOST + '/' : HOST + '/' + f.replace(/\.html$/, '');
 
 const lastmod = f => {
@@ -63,7 +63,7 @@ const xml = header + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9
   + entries.join('\n') + '\n</urlset>\n';
 
 if (process.argv.includes('--check')) {
-  const current = fs.existsSync('sitemap.xml') ? fs.readFileSync('sitemap.xml', 'utf8') : '';
+  const current = fs.existsSync('sitemap.xml') ? fs.readFileSync('sitemap.xml', 'utf8').replace(/\r\n/g, '\n') : '';
   if (current.trim() !== xml.trim()) {
     console.error('sitemap.xml is out of date, run node scripts/build-sitemap.js');
     process.exit(1);

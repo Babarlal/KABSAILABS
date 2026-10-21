@@ -59,7 +59,7 @@ const firstCommitTime = f => {
 const posts = [];
 for (const name of fs.readdirSync('blog').filter(n => n.endsWith('.html')).sort()) {
   const file = 'blog/' + name;
-  const html = fs.readFileSync(file, 'utf8');
+  const html = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   if (/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html)) continue;
 
   const title = pick(html, /<title>([^<]*)<\/title>/i);
@@ -95,7 +95,8 @@ const card = p => [
 ].join('\n');
 
 const fill = (file, marker, list) => {
-  const html = fs.readFileSync(file, 'utf8');
+  /* LF in and out, so a CRLF checkout neither fails --check nor writes mixed endings. */
+  const html = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   const re = new RegExp('(<!-- ' + marker + ':START -->)[\\s\\S]*?(<!-- ' + marker + ':END -->)');
   if (!re.test(html)) { console.error(file + ': markers ' + marker + ':START/END not found'); process.exit(1); }
   return { file, html, next: html.replace(re, '$1\n' + list.map(card).join('\n') + '\n$2') };

@@ -60,7 +60,7 @@ if (process.argv.includes('--check')) {
   let raw = 0, min = 0;
 
   for (const n of CSS) {
-    const src = fs.readFileSync(cssPath(n), 'utf8');
+    const src = fs.readFileSync(cssPath(n), 'utf8').replace(/\r\n/g, '\n');
     const res = new CleanCSS({ level: 2 }).minify(src);
     if (res.errors.length) throw new Error(n + '.css: ' + res.errors.join('; '));
     // A remote @import is left alone on purpose; clean-css warns that it did not inline it.
@@ -69,7 +69,8 @@ if (process.argv.includes('--check')) {
     console.log('  ' + (n + '.css').padEnd(22) + (src.length / 1024).toFixed(1) + 'K -> ' + (res.styles.length / 1024).toFixed(1) + 'K');
   }
   for (const n of JS) {
-    const src = fs.readFileSync(jsPath(n), 'utf8');
+    /* LF, so a CRLF checkout cannot leak a CR into a template literal. */
+    const src = fs.readFileSync(jsPath(n), 'utf8').replace(/\r\n/g, '\n');
     const res = await terser.minify(src, { compress: true, mangle: true, format: { comments: false } });
     if (res.error) throw res.error;
     fs.writeFileSync(jsMin(n), res.code + '\n');

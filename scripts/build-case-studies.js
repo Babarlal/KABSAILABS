@@ -50,7 +50,7 @@ function jpegSize(file) {
 function postTitle(href) {
   const f = href.replace(/^\//, '') + '.html';
   if (!fs.existsSync(f)) throw new Error('linked post missing: ' + href);
-  const t = fs.readFileSync(f, 'utf8').match(/<title>([^<]*)<\/title>/)[1];
+  const t = fs.readFileSync(f, 'utf8').replace(/\r\n/g, '\n').match(/<title>([^<]*)<\/title>/)[1];
   return t.replace(/\s+[—·|-]\s+KABS AI LABS\s*$/i, '').replace(/&amp;/g, '&');
 }
 function pageExists(href) {
@@ -233,7 +233,7 @@ const out = {};
 for (const b of builds) out['case-studies/' + b.slug + '.html'] = page(b);
 
 const hubFile = 'case-studies.html';
-const hubHtml = fs.readFileSync(hubFile, 'utf8');
+const hubHtml = fs.readFileSync(hubFile, 'utf8').replace(/\r\n/g, '\n');
 const A = '<!-- CASE-STUDIES:START -->', Z = '<!-- CASE-STUDIES:END -->';
 const ai = hubHtml.indexOf(A), zi = hubHtml.indexOf(Z);
 if (ai < 0 || zi < ai) throw new Error('case-studies.html needs the CASE-STUDIES markers');
