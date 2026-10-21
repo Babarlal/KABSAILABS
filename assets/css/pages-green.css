@@ -863,6 +863,15 @@
   .pg .links{display:flex}
 }
 .pg-home .hero{position:relative;min-height:100svh;background:var(--deep);color:#EAF4EC; display:flex;align-items:flex-end;overflow:hidden;padding:0;}
+/* The header and announcement bar (121px) sit above the hero in normal flow, so a
+   100svh hero ran 121px past the fold and its buttons ended under the first-visit
+   cookie card. On wider screens it now fills what is left of the first screen, and
+   the copy starts 64px under the header instead of 120px (that much was only needed
+   when the nav floated over the hero), so the buttons clear the card at 1280x800. */
+@media (min-width:768px){
+  .pg-home .hero{min-height:calc(100svh - 121px)}
+  .pg-home .hero .hero-inner{padding-top:64px}
+}
 .pg #field{position:absolute;inset:0;width:100%;height:100%}
 .pg .hero-veil{position:absolute;inset:0;pointer-events:none; background: linear-gradient(180deg,rgba(8,36,25,.6) 0%,rgba(8,36,25,0) 26%,rgba(8,36,25,.15) 50%,rgba(8,36,25,.9) 80%,rgba(8,36,25,.97) 100%);}
 .pg .hero-inner{position:relative;z-index:2;width:100%; padding:120px var(--gutter) clamp(48px,8vw,96px); max-width:1240px;margin:0 auto;}

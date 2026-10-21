@@ -206,6 +206,10 @@ body:has(.sticky-cta.on) .fab{bottom: calc(76px + env(safe-area-inset-bottom));}
 body:has(.sticky.show) .fab{bottom: 85px;}
 body:has(.cookie-bar) .fab{display: none;}
 }
+/* main.js holds the fab while the hero is on screen; see audit-patches.css. */
+@media (max-width: 759px){
+.fab.fab-hold{display: none;}
+}
 .menu-panel::before{content: "";
   position: absolute;
   left: 0;

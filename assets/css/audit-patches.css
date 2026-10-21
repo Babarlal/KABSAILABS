@@ -167,12 +167,14 @@ summary:focus-visible,
   body:has(.sticky-cta.on) .fab{ bottom: calc(76px + env(safe-area-inset-bottom)); }
   body:has(.sticky.show) .fab{ bottom: 85px; }
 
-  /* The cookie bar is 145px tall on a phone now that it names advertising cookies, and it
-     sits 88px up, so it owns the bottom 233px. The old rule lifted the fab to 96px, which
-     put it inside the bar rather than above it. Stacking above 233px would park the fab
-     in the middle of the screen, so it simply waits: the bar is dismissed on first
-     interaction and the fab returns. */
+  /* While the cookie strip is up the fab waits, so the bottom of a first visit holds one
+     thing at a time: the strip is dismissed on first interaction and the fab returns. */
   body:has(.cookie-bar) .fab{ display: none; }
+}
+/* main.js holds the fab while the hero is on screen (.fab-hold), so it can never sit on
+   the hero button. Phones only, under 760px; desktop is unchanged. */
+@media (max-width: 759px){
+  .fab.fab-hold{ display: none; }
 }
 
 /* --- 11. Belt-and-braces: no horizontal scroll anywhere. --- */

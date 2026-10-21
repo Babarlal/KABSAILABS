@@ -275,7 +275,17 @@
      Moved here from main.js so the /lp/ pages get it too. Without a notice on
      those pages consent could never be granted, and an ad visitor would stay
      untracked no matter what the container was set up to do. Self-contained
-     styling, so it renders the same on pages that do not load styles.css. */
+     styling, so it renders the same on pages that do not load styles.css.
+
+     Compact on purpose, so it never sits on a hero button: under 760px a slim strip
+     pinned to the bottom (one row, at most 64px), above that a small card in the
+     bottom left corner. Reject and Accept are the same size, side by side, so saying
+     no is exactly as easy as saying yes.
+
+     While it is open the root carries .kabs-cookie-open and --kabs-cookie-h (the
+     strip's height, or the card's plus its offset). The body gets that much bottom
+     padding, so the end of the page can always be scrolled clear of it, and the
+     sticky booking bars sit on top of the strip instead of under it. */
   function setupCookieNotice() {
     if (readConsent()) return;
     if (document.querySelector('.cookie-bar')) return;
@@ -285,8 +295,7 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Cookie notice');
     bar.innerHTML =
-      '<span>We use analytics and advertising cookies to understand how the site is used '
-    + 'and to measure our ads. See our <a href="/privacy">Privacy Policy</a>.</span>'
+      '<span class="cookie-txt">We use cookies to measure our ads. <a href="/privacy">Privacy</a></span>'
     + '<span class="cookie-btns">'
     +   '<button type="button" class="cookie-no">Reject</button>'
     +   '<button type="button" class="cookie-ok">Accept</button>'
@@ -294,19 +303,42 @@
 
     var css = document.createElement('style');
     css.textContent =
-      '.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9998;max-width:680px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:#0F2B24;color:#E8F0EA;border:1px solid #1E4638;border-radius:12px;padding:12px 16px;font-family:"Instrument Sans",system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -20px rgba(15,43,36,.6)}'
+      '.cookie-bar{position:fixed;z-index:9998;box-sizing:border-box;display:flex;align-items:center;gap:10px;background:#0F2B24;color:#E8F0EA;font-family:"Instrument Sans",system-ui,sans-serif;font-size:12.5px;line-height:1.3}'
+    + '.cookie-txt{flex:1 1 auto;min-width:0}'
     + '.cookie-bar a{color:#7CCFA0;text-decoration:underline}'
-    + '.cookie-btns{display:flex;gap:8px;flex:none}'
-    + '.cookie-ok,.cookie-no{min-height:44px;border-radius:8px;padding:10px 18px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;border:1px solid transparent}'
+    + '.cookie-btns{display:flex;gap:6px;flex:none}'
+    + '.cookie-ok,.cookie-no{box-sizing:border-box;min-width:72px;min-height:40px;margin:0;border-radius:8px;padding:0 12px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;font-family:inherit;border:1px solid transparent}'
     + '.cookie-ok{background:#1F6B4E;color:#fff}'
     + '.cookie-ok:hover{background:#174F3A}'
-    + '.cookie-no{background:transparent;color:#B7CBC0;border-color:#2A5546}'
-    + '.cookie-no:hover{background:#173A30;color:#E8F0EA}'
-    + '@media(max-width:520px){.cookie-bar{bottom:88px}.cookie-btns{width:100%}.cookie-ok,.cookie-no{flex:1}}';
+    + '.cookie-no{background:transparent;color:#E8F0EA;border-color:#4C7464}'
+    + '.cookie-no:hover{background:#173A30}'
+    + '@media(max-width:759px){.cookie-bar{left:0;right:0;bottom:0;max-height:64px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));border-top:1px solid #2A5546}.cookie-ok,.cookie-no{min-height:44px}}'
+    + '@media(min-width:760px){.cookie-bar{left:16px;bottom:16px;width:360px;max-width:calc(100vw - 32px);padding:10px 10px 10px 14px;border:1px solid #1E4638;border-radius:12px;box-shadow:0 20px 40px -20px rgba(15,43,36,.6)}}'
+    + 'html.kabs-cookie-open body{padding-bottom:var(--kabs-cookie-h,64px)}'
+    + '@media(max-width:759px){'
+    +   'html.kabs-cookie-open .lp .sticky{bottom:var(--kabs-cookie-h,64px)}'
+    +   'html.kabs-cookie-open .pg .sticky-cta{bottom:calc(12px + var(--kabs-cookie-h,64px))}'
+    + '}';
     document.head.appendChild(css);
     document.body.appendChild(bar);
 
-    function close() { if (bar.parentNode) bar.parentNode.removeChild(bar); }
+    var root = document.documentElement;
+    function measure() {
+      if (!bar.parentNode) return;
+      var r = bar.getBoundingClientRect();
+      root.style.setProperty('--kabs-cookie-h', Math.ceil(window.innerHeight - r.top) + 'px');
+    }
+    root.classList.add('kabs-cookie-open');
+    measure();
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    function close() {
+      if (bar.parentNode) bar.parentNode.removeChild(bar);
+      root.classList.remove('kabs-cookie-open');
+      root.style.removeProperty('--kabs-cookie-h');
+      window.removeEventListener('resize', measure);
+    }
     bar.querySelector('.cookie-ok').addEventListener('click', function () { grantConsent(); close(); });
     bar.querySelector('.cookie-no').addEventListener('click', function () { denyConsent(); close(); });
   }

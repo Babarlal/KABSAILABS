@@ -339,6 +339,20 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   .lp .hero .node-label .st,.lp .hero .node-label.hub .st{font-size:9px}
 }
 
+/* ---- hero under a site header (the eCommerce page and its /lp/ copy) ----
+   There the header is in normal flow above the hero, so a 100svh hero ended one header
+   below the fold and its button with it (825px on a 1280x800 screen). The hero now
+   fills what is left of the first screen. The copy also stops 88px short of the bottom,
+   which keeps the button clear of the first-visit cookie card in the bottom left
+   corner. 73px is the ad header, 121px the site header plus announcement bar, the same
+   heights #site-header reserves. The floating-nav landing pages (body.lp) are not
+   matched and keep their full-screen hero. */
+@media (min-width:701px){
+  body[data-layout="ad"] div.lp>.hero{min-height:calc(100vh - 73px);min-height:calc(100svh - 73px)}
+  body[data-layout="default"] div.lp>.hero{min-height:calc(100vh - 121px);min-height:calc(100svh - 121px)}
+  div.lp>.hero .hero-copy{padding-bottom:calc(88px + var(--sab))}
+}
+
 /* ---- short desktop heroes: trade label size for scene size ----
    On a laptop the headline sits high and the band left above it is short. The
    label block's own pixel height is a fixed cost in that band, so shrinking the
