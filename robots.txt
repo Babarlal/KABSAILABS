@@ -9,59 +9,59 @@
 
 # --- Standard search engines ---
 User-agent: *
-Allow: /
+Allow: /
 
 # --- AI: live-answer / retrieval bots (cite us in real-time answers) ---
 User-agent: OAI-SearchBot
-Allow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Allow: /
+Allow: /
 
 User-agent: PerplexityBot
-Allow: /
+Allow: /
 
 User-agent: Perplexity-User
-Allow: /
+Allow: /
 
 User-agent: Google-Extended
-Allow: /
+Allow: /
 
 User-agent: Applebot
-Allow: /
+Allow: /
 
 User-agent: Applebot-Extended
-Allow: /
+Allow: /
 
 User-agent: Amazonbot
-Allow: /
+Allow: /
 
 User-agent: Bytespider
-Allow: /
+Allow: /
 
 # --- AI: training / dataset crawlers (build brand familiarity in models) ---
 User-agent: GPTBot
-Allow: /
+Allow: /
 
 User-agent: ClaudeBot
-Allow: /
+Allow: /
 
 User-agent: Claude-Web
-Allow: /
+Allow: /
 
 User-agent: anthropic-ai
-Allow: /
+Allow: /
 
 User-agent: CCBot
-Allow: /
+Allow: /
 
 User-agent: cohere-ai
-Allow: /
+Allow: /
 
 User-agent: Meta-ExternalAgent
-Allow: /
+Allow: /
 
 User-agent: Meta-ExternalFetcher
-Allow: /
+Allow: /
 
 Sitemap: https://www.kabsailabs.com/sitemap.xml
