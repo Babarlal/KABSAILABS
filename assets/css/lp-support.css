@@ -33,15 +33,24 @@
 .lp-support .sp-tally i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .lp-support .sp-tally .ok{background:var(--scene-halo)}
 .lp-support .sp-tally .warn{background:var(--scene-warn)}
-@media (max-width:620px){.lp-support .sp-scene-note{top:10px;bottom:auto;right:12px}.lp-support .sp-tally{font-size:10.5px}}
+/* Under 620px the two counters stack, so neither wraps into the bottom nodes. The scene
+   script reads the tally's top edge and keeps every node above it at any width. */
+@media (max-width:620px){.lp-support .sp-scene-note{top:10px;bottom:auto;right:12px}.lp-support .sp-tally{font-size:10.5px;flex-direction:column;gap:2px}}
+/* On laptops the hero button has to fit in the first screen (1280x800) under the site
+   header, so the scene gives up height above 900px. The headline keeps its size. */
+@media (min-width:901px){.lp-support .sp-scene{height:clamp(220px,20vw,300px)}}
 .lp-support .sp-band{background:rgba(0,0,0,.16);border-bottom:1px solid rgba(var(--mint-rgb),.10)}
-.lp-support .sp-band p{max-width:none;font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mint-2);padding:18px 0}
-.lp-support .sp-hero .hero-copy{background:none;padding-top:clamp(36px,5vw,60px);padding-bottom:clamp(48px,6vw,72px);max-width:60rem}
+.lp-support .sp-band p{max-width:none;font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mint-2);padding:12px 0}
+/* Spacing above the button is kept tight so it lands in the first screen: under 844px
+   tall on a 390px phone and under 800px on a 1280px laptop. */
+.lp-support .sp-hero .hero-copy{background:none;padding-top:clamp(20px,2.5vw,32px);padding-bottom:clamp(48px,6vw,72px);max-width:60rem}
+.lp-support .sp-hero .hero-copy .lede{margin-top:14px}
+.lp-support .sp-hero .hero-copy .cta{margin-top:20px}
 /* lp.css sizes h1 for a full screen hero with nothing above it. Here the scene band
    takes the top of the screen, so the headline stops at 4rem and the CTA stays in the
    first screen on a laptop. Phone size is unchanged (2.6rem). */
 .lp-support .sp-hero h1{max-width:20ch;font-size:clamp(2.6rem,5.4vw,4rem)}
-.lp-support .sp-hero .hero-copy .lede{max-width:40rem}
+.lp-support .sp-hero .hero-copy .lede{max-width:46rem}
 .lp-support .sp-textlink{color:var(--mint);font-size:.95rem;text-decoration:underline;text-underline-offset:.2em}
 .lp-support .sp-textlink:hover{color:#fff}
 .lp-support .sp-points{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--on-dark);margin-top:22px}

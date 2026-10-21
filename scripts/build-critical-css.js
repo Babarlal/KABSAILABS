@@ -46,7 +46,12 @@ process.chdir(ROOT);
 const PAGES = [
   'index.html',
   'lp/inventory-sync.html',
-  'lp/oversell-risk.html'
+  'lp/oversell-risk.html',
+  /* The ad copy is generated from the service page by build-ad-pages.js, which keeps
+     the copy's own block, so each page gets CSS extracted from its own first screen.
+     Order after editing the source: build-ad-pages, this, then build-ad-pages --check. */
+  'services/shopify-support-automation.html',
+  'lp/shopify-support-automation.html'
 ];
 
 const WIDTHS = [390, 768, 1280];

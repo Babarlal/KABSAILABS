@@ -23,7 +23,8 @@
      new tab. A new outbound link on the source page fails the build here rather
      than leaking ad visitors off the page.
 
-   RUN THIS AFTER EDITING ANY SOURCE PAGE LISTED BELOW.
+   RUN THIS AFTER EDITING ANY SOURCE PAGE LISTED BELOW. Where the pages are also in
+   build-critical-css.js, run that next, then this script's --check.
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
@@ -127,10 +128,30 @@ function build(p) {
   return h;
 }
 
+/* The inlined critical CSS belongs to build-critical-css.js, not to this script. A copy
+   inherits the source's block on its first build; after that the copy keeps its own,
+   which build-critical-css.js extracts from the copy itself (it has no announcement bar
+   and a different header, so its first screen is not the source's). Without this the
+   two scripts would each keep rewriting the other's output. build-critical-css.js
+   --check is what catches a stale block. */
+const CRIT_START = '<!-- critical:start';
+const CRIT_END = '<!-- critical:end -->';
+function critBlock(html) {
+  const a = html.indexOf(CRIT_START);
+  if (a === -1) return null;
+  const b = html.indexOf(CRIT_END, a);
+  return b === -1 ? null : [a, b + CRIT_END.length];
+}
+function keepOwnCritical(html, current) {
+  const mine = current && critBlock(current), theirs = critBlock(html);
+  if (!mine || !theirs) return html;
+  return html.slice(0, theirs[0]) + current.slice(mine[0], mine[1]) + html.slice(theirs[1]);
+}
+
 let stale = 0;
 for (const p of PAGES) {
-  const html = build(p);
   const current = fs.existsSync(p.out) ? fs.readFileSync(p.out, 'utf8').replace(/\r\n/g, '\n') : null;
+  const html = keepOwnCritical(build(p), current);
   if (CHECK) {
     if (current !== html) { console.error('STALE ' + p.out + ', run node scripts/build-ad-pages.js'); stale++; }
     continue;

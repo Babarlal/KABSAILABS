@@ -31,8 +31,19 @@
     var b = cv.getBoundingClientRect(); dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = b.width; H = b.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
     var narrow = W < 620;
-    nodes.forEach(function(n){ n.px = n.x * W; n.py = n.y * H; n.pr = narrow && n.core ? 26 : n.r; });
-    if (narrow){ byId.email.px = W*.12; byId.desk.px = W*.86; byId.team.px = W*.86; }
+    /* Nodes are laid out in the band above the tally, so no node or label can sit on
+       the counters whatever the scene height or how the tally wraps. */
+    var tally = document.querySelector(".sp-tally"), U = H;
+    if (tally){ var tt = tally.getBoundingClientRect().top - b.top; if (tt > 0) U = Math.min(H, tt - 6); }
+    nodes.forEach(function(n){ n.px = n.x * W; n.py = n.y * U; n.pr = narrow && n.core ? 26 : n.r; });
+    if (narrow){
+      byId.email.px = W*.12; byId.desk.px = W*.86; byId.team.px = W*.86;
+      /* On a phone the hub sits a little higher and WhatsApp moves up and in, so its
+         label clears both the hub caption and the Chat node at 320px. Helpdesk drops
+         below the "Illustration" note, which sits top right at this width. */
+      byId.shop.py = U*.46; byId.wa.px = W*.28; byId.wa.py = U - byId.wa.r - 5;
+      byId.desk.py = U*.33;
+    }
   }
   function ctrl(a, b){ var mx = (a.px + b.px)/2, my = (a.py + b.py)/2; return {x: mx, y: my - Math.abs(a.px - b.px)*.18 - 14}; }
   function bez(a, c, b, t){ var u = 1 - t; return {x: u*u*a.px + 2*u*t*c.x + t*t*b.px, y: u*u*a.py + 2*u*t*c.y + t*t*b.py}; }
@@ -101,7 +112,10 @@
   }
   /* Resizing clears the canvas. A paused scene repaints where it stopped, without
      advancing, so the counters keep their numbers. */
-  size(); window.addEventListener("resize", function(){ size(); if (reduce) still(); else if (!running) paint(performance.now(), 0); });
+  function relayout(){ size(); if (reduce) still(); else if (!running) paint(performance.now(), 0); }
+  size(); window.addEventListener("resize", relayout);
+  /* The tally's height, and so the band above it, depends on the web font. */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
   if (reduce){ still(); return; }
   /* Runs only while the canvas is on screen and the tab is visible. */
   var inView = !("IntersectionObserver" in window);
