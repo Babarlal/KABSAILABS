@@ -60,9 +60,23 @@
     return {lead:{name:name,email:email,mobile:'',store:store,orders_month:orders,helpdesk:helpdesk,industry:'Retail and ecommerce',task_time_sink:'Customer support automation',source:(($('book')&&$('book').dataset.source)||'support_automation_lp'),page_url:location.href,timestamp_utc:new Date().toISOString()},
       notes:'Store: '+store+' | Orders/mo: '+orders+' | Helpdesk: '+(helpdesk||'not given')+' | Page: support automation'};
   }
+  /* Budget and timing: asked, and required, on the eCommerce page and the support page in
+     both modes, after that page's own checks. A form that does not ask them
+     (/lp/inventory-sync, /lp/oversell-risk) skips the check and keeps its notes and lead
+     row exactly as before. The answers go to the lead row and the Calendly notes only,
+     never into a tracking event. */
+  function choice(n){ var r=form.querySelector('input[name="'+n+'"]:checked'); return r?r.value:''; }
+  function budgetTiming(){
+    var b=form.querySelector('input[name="budget"]'), t=form.querySelector('input[name="timing"]');
+    if(b&&!choice('budget')) return fail('Pick a budget range.',b);
+    if(t&&!choice('timing')) return fail("Pick when you'd like to start.",t);
+    return {asked:!!(b||t), budget:choice('budget'), timing:choice('timing')};
+  }
   form.addEventListener('submit',function(e){ e.preventDefault(); errBox.hidden=true;
     var got=SUPPORT?supportLead():inventoryLead(); if(!got) return;
+    var bt=budgetTiming(); if(!bt) return;
     var lead=got.lead, notes=got.notes;
+    if(bt.asked){ lead.budget=bt.budget; lead.timing=bt.timing; notes+=' | Budget: '+bt.budget+' | Timing: '+bt.timing; }
     submitBtn.disabled=true; submitBtn.textContent='One moment';
     form.querySelectorAll('input[type="hidden"]').forEach(function(el){ lead[el.name]=el.value; });
     function proceed(){
