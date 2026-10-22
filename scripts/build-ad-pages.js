@@ -66,7 +66,7 @@ const PAGES = [
 
 /* Outbound links the ad copy keeps. Each opens in a new tab so the visitor still
    has this page. The FAQ blog links are kept only inside the FAQ section. */
-const KEEP_ANYWHERE = [/^\/privacy$/, /^\/terms$/, /^\/case-studies$/, /^https:\/\/calendly\.com\//];
+const KEEP_ANYWHERE = [/^\/privacy$/, /^\/terms$/, /^\/case-studies$/, /^\/services\/shopify-support-automation$/, /^https:\/\/calendly\.com\//];
 const KEEP_IN_FAQ = [/^\/blog\//];
 
 function once(html, from, to, label) {

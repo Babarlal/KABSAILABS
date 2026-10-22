@@ -386,3 +386,48 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 .lp.scenecard .node-label .nm{font-size:.76rem}
 .lp.scenecard .node-label.hub .nm{font-size:.92rem}
 .lp.scenecard .node-label .st,.lp.scenecard .node-label.hub .st{font-size:9.5px}
+
+/* ---- proof and trust blocks, shared by the eCommerce page and the support pages ----
+   Moved here from lp-support.css unchanged apart from scope (.lp-support became .lp),
+   so both pages draw them from one set of rules: the section head, white cards, the
+   architecture figure, the check list, the "what this proves" note, and the
+   "Teams we've built automation for" / "On the call" lines by the booking form. */
+.lp{--sp-radius:14px;--sp-radius-lg:16px;--sp-max:72rem}
+.lp .sp-white{background:#fff}
+.lp .sp-head{display:grid;gap:14px;margin-bottom:36px;max-width:48rem}
+.lp .sp-head .eyebrow{margin-bottom:0}
+.lp .sp-head .lede{max-width:40rem}
+.lp .sp-card{background:#fff;border:1px solid var(--rule);border-radius:var(--sp-radius-lg);box-shadow:var(--shadow)}
+.lp .sp-white .sp-card{box-shadow:none}
+.lp .sp-built{display:grid;gap:4px;padding:4px 2px}
+.lp .sp-built span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--scene-dim)}
+.lp .dark .sp-built p,.lp .dark .sp-next{font-size:14px;color:var(--on-dark-3)}
+.lp .sp-next{padding:4px 2px}
+.lp .sp-next b{color:#fff}
+.lp .sp-proof{display:grid;gap:24px;max-width:var(--sp-max)}
+@media (min-width:980px){.lp .sp-proof{grid-template-columns:1fr 1fr;align-items:start}}
+.lp .sp-proof>*{min-width:0}
+.lp .sp-arch{padding:20px}
+.lp .sp-arch svg{display:block;width:100%;height:auto}
+.lp .sp-arch figcaption{font-size:13px;color:var(--muted);margin-top:10px}
+.lp .sp-honest{margin-top:22px;display:grid;gap:8px;padding:18px 20px;border-radius:var(--sp-radius);background:var(--brand-soft);font-size:15px}
+.lp .sp-honest b{color:var(--text)}
+.lp .sp-checks{list-style:none;display:grid;gap:12px}
+.lp .sp-checks li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start}
+.lp .sp-checks li::before{content:"\2713";color:var(--ok);font-weight:700}
+.lp .sp-checks.warn li::before{content:"\2192";color:var(--warn)}
+.lp .sp-checks b{color:var(--text)}
+.lp .sp-checks span{display:block;color:var(--muted);font-size:14.5px}
+/* Section heads carry long H2s; the support page already sets 22ch on every H2. */
+.lp .sp-head h2{max-width:22ch}
+/* On the eCommerce page the two trust lines follow the promises directly. The support
+   page spaces them with a grid gap instead, and neither selector matches there. */
+.lp .feats+.sp-built{margin-top:18px}
+.lp .feats+.sp-built+.sp-next{margin-top:10px}
+
+/* ---- eCommerce hero on a phone: clear of the first-visit cookie strip ----
+   At 390x844 the button ended 1px under the strip. 8px less above the eyebrow clears
+   it; the H1 is unchanged. The support pages have their own band and are not matched. */
+@media (max-width:700px){
+  div.lp:not(.lp-support)>.hero .hero-copy{padding-top:12px}
+}

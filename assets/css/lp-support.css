@@ -16,14 +16,7 @@
      radius of the booking card on the eCommerce page.
    ============================================================ */
 
-.lp-support{--sp-radius:14px;--sp-radius-lg:16px;--sp-max:72rem}
 .lp-support h2{max-width:22ch}
-.lp-support .sp-white{background:#fff}
-.lp-support .sp-head{display:grid;gap:14px;margin-bottom:36px;max-width:48rem}
-.lp-support .sp-head .eyebrow{margin-bottom:0}
-.lp-support .sp-head .lede{max-width:40rem}
-.lp-support .sp-card{background:#fff;border:1px solid var(--rule);border-radius:var(--sp-radius-lg);box-shadow:var(--shadow)}
-.lp-support .sp-white .sp-card{box-shadow:none}
 
 /* ---------- hero: the inventory hero, with this page's 2D scene ----------
    Same structure and classes as the eCommerce page (lp.css .hero, .hero-copy, .up), so
@@ -90,11 +83,6 @@
 .lp-support .sp-teaser b{font-weight:600;font-size:15.5px;line-height:1.45}
 .lp-support .sp-teaser .arrow{font-size:14px;color:var(--mint);text-decoration:underline;text-underline-offset:3px}
 .lp-support .sp-teaser:hover{background:rgba(var(--mint-rgb),.13)}
-.lp-support .sp-built{display:grid;gap:4px;padding:4px 2px}
-.lp-support .sp-built span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--scene-dim)}
-.lp.lp-support .dark .sp-built p,.lp.lp-support .dark .sp-next{font-size:14px;color:var(--on-dark-3)}
-.lp-support .sp-next{padding:4px 2px}
-.lp-support .sp-next b{color:#fff}
 
 /* ---------- calculator ---------- */
 .lp-support .sp-calc{display:grid;gap:24px;padding:clamp(22px,3vw,34px);max-width:var(--sp-max)}
@@ -111,12 +99,6 @@
 .lp-support .sp-out .small{color:var(--on-dark-2)}
 
 /* ---------- proof ---------- */
-.lp-support .sp-proof{display:grid;gap:24px;max-width:var(--sp-max)}
-@media (min-width:980px){.lp-support .sp-proof{grid-template-columns:1fr 1fr;align-items:start}}
-.lp-support .sp-proof>*{min-width:0}
-.lp-support .sp-arch{padding:20px}
-.lp-support .sp-arch svg{display:block;width:100%;height:auto}
-.lp-support .sp-arch figcaption{font-size:13px;color:var(--muted);margin-top:10px}
 .lp-support .sp-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .lp-support .sp-tab{font-size:14px;min-height:44px;padding:9px 16px;border-radius:999px;border:1px solid var(--rule-2);background:#fff;color:var(--body)}
 .lp-support .sp-tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -132,8 +114,6 @@
 .lp-support .sp-behind{margin-top:12px;padding:14px 16px;border:1px dashed var(--rule-2);border-radius:12px;font-size:14px;color:var(--muted)}
 .lp-support .sp-behind ol{margin:6px 0 0 18px;display:grid;gap:4px}
 .lp-support .sp-behind b{color:var(--text)}
-.lp-support .sp-honest{margin-top:22px;display:grid;gap:8px;padding:18px 20px;border-radius:var(--sp-radius);background:var(--brand-soft);font-size:15px}
-.lp-support .sp-honest b{color:var(--text)}
 .lp-support .sp-tech{margin-top:18px;border:1px solid var(--rule);border-radius:var(--sp-radius);background:#fff}
 .lp-support .sp-tech summary{cursor:pointer;padding:16px 20px;font-weight:600;color:var(--text);list-style:none;display:flex;justify-content:space-between;gap:16px}
 .lp-support .sp-tech summary::-webkit-details-marker{display:none}
@@ -151,12 +131,6 @@
 .lp-support .sp-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
 .lp-support .sp-dot.ok{background:var(--ok)}
 .lp-support .sp-dot.warn{background:var(--warn)}
-.lp-support .sp-checks{list-style:none;display:grid;gap:12px}
-.lp-support .sp-checks li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start}
-.lp-support .sp-checks li::before{content:"\2713";color:var(--ok);font-weight:700}
-.lp-support .sp-checks.warn li::before{content:"\2192";color:var(--warn)}
-.lp-support .sp-checks b{color:var(--text)}
-.lp-support .sp-checks span{display:block;color:var(--muted);font-size:14.5px}
 .lp-support .sp-card-note{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}
 
 /* ---------- how it works ---------- */
