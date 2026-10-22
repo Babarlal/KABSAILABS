@@ -431,3 +431,11 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (max-width:700px){
   div.lp:not(.lp-support)>.hero .hero-copy{padding-top:12px}
 }
+
+/* ---- inventory hero scene on desktop, 960px and wider only ----
+   lp-scene.js lays the scene out beside the copy from this width, never behind it, so
+   the copy no longer needs the scrim that kept it readable over the scene; left in, it
+   would darken the scene where it now sits. Nothing below 960px is affected. */
+@media (min-width: 960px){
+  .lp .hero .hero-copy{background:none}
+}

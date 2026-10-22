@@ -143,6 +143,7 @@ window.__three = new Promise(function(res){
        so the scene gets the whole box. A tall box is the full bleed hero, where
        the copy sits over the lower part and the scene has to stay above it. */
     var band=(canvas.dataset.frame==='card' || h<540 || w<700);
+    if(!band && window.matchMedia('(min-width: 960px)').matches){ layoutBesideCopy(w,h,pad); return; }
     /* The band framing lifts the camera further than the hero's. The ring is a
        shallow ellipse at the hero's angle, so in a short wide band it would draw
        as a flat line with empty space under it; the extra tilt opens it into a
@@ -205,6 +206,96 @@ window.__three = new Promise(function(res){
     if(fb2.l<pad) dx=pad-fb2.l; else if(fb2.r>w-pad) dx=(w-pad)-fb2.r;
     if(yb2.t<pad) dy=pad-yb2.t; else if(yb2.b>bandB) dy=bandB-yb2.b;
     if(dx||dy) frameTo((fb2.l+fb2.r)/2+dx,(yb2.t+yb2.b)/2+dy,yLabels);
+  }
+  /* ---- desktop framing, 960px and wider only --------------------------------
+     On a laptop the full-bleed solve above put the cluster behind the headline. Here
+     the copy's real text is measured (line boxes, not element boxes, so a wide H1 box
+     with short lines does not count as text) and the scene is fitted into a clear area
+     at least 32px from it: the full-height strip right of all the copy, or on a narrow
+     desktop the area right of the lede and button below the headline, whichever lets
+     the scene be larger. Inside it the scene takes the largest scale up to the hero's
+     usual maximum and sits as close as it can to 70% of the width and the middle of
+     the H1. Narrower screens never reach this function. */
+  function copyRects(){
+    var out=[], copy=wrap.querySelector('.hero-copy'); if(!copy) return out;
+    var cr=canvas.getBoundingClientRect(), rng=document.createRange();
+    [].slice.call(copy.children).forEach(function(el){
+      var parts=el.children.length&&getComputedStyle(el).display.indexOf('flex')!==-1?[].slice.call(el.children):[el];
+      parts.forEach(function(k){
+        var rs=/inline-flex|inline-block/.test(getComputedStyle(k).display)?[k.getBoundingClientRect()]:(rng.selectNodeContents(k),[].slice.call(rng.getClientRects()));
+        rs.forEach(function(r){ if(r.width&&r.height) out.push({l:r.left-cr.left,t:r.top-cr.top,r:r.right-cr.left,b:r.bottom-cr.top,h1:el.tagName==='H1'}); });
+      });
+    });
+    return out;
+  }
+  function layoutBesideCopy(w,h,pad){
+    var GAP=32, rects=copyRects();
+    var top=pad+topObstruction(), bottom=h-pad, h1T=1e9, h1B=-1e9, right=0, lowRight=0;
+    rects.forEach(function(r){ right=Math.max(right,r.r); if(r.h1){ h1T=Math.min(h1T,r.t); h1B=Math.max(h1B,r.b); } });
+    if(h1B<0){ h1T=h*.3; h1B=h*.5; }
+    rects.forEach(function(r){ if(r.t>=h1B) lowRight=Math.max(lowRight,r.r); });
+    /* Candidate areas, each already GAP clear of every line of copy beside it. */
+    var areas=[{x0:right+GAP,x1:w-pad,y0:top,y1:bottom},{x0:lowRight+GAP,x1:w-pad,y0:h1B+GAP,y1:bottom}];
+    var sMax=Math.min(Math.max(1,1040/h),1.60);
+    /* The orbit ring is drawn flat by the 2D renderer (the model sceneBox samples) and
+       upright by three.js. Either way, over the sway it reaches, it may run past the
+       area but never across a line of copy. */
+    function ringClear(){ var keep=rotY, ok=true;
+      for(var k=0;k<3&&ok;k++){ rotY=(k-1)*ROT_MAX;
+        for(var j=0;j<48&&ok;j++){ var a=j*Math.PI/24, ps=[[Math.cos(a)*R,0,Math.sin(a)*R],[Math.cos(a)*R,Math.sin(a)*R,0]];
+          for(var m=0;m<2&&ok;m++){ var q=project(world(ps[m]));
+            for(var i=0;i<rects.length;i++){ var r=rects[i]; if(q[0]>r.l-8&&q[0]<r.r+8&&q[1]>r.t-8&&q[1]<r.b+8){ ok=false; break; } } } } }
+      rotY=keep; return ok; }
+    /* Labels must also stay apart from each other: at seven points across the sway, no
+       two label boxes overlap, margins included. */
+    function labelsApart(){ var keep=rotY, ok=true;
+      for(var k=0;k<7&&ok;k++){ rotY=(k/3-1)*ROT_MAX; var bx=[];
+        for(var i=0;i<5;i++){ var wp=world(P[i]); wp[1]+=(i?0.34:0.62)*view.scale; var q=project(wp), lw=lbox[i][0], lh=lbox[i][1]; bx.push([q[0]-lw/2,q[1]-lh,q[0]+lw/2,q[1]]); }
+        for(var i2=0;i2<5&&ok;i2++) for(var j2=i2+1;j2<5;j2++){ var A=bx[i2], B=bx[j2]; if(A[0]<B[2]&&A[2]>B[0]&&A[1]<B[3]&&A[3]>B[1]){ ok=false; break; } } }
+      rotY=keep; return ok; }
+    function inside(a){ var b=sceneBox(false); return b.l>=a.x0-0.5&&b.r<=a.x1+0.5&&b.t>=a.y0-0.5&&b.b<=a.y1+0.5&&ringClear(); }
+    /* Largest scale that fits the area (the fit only gets easier as the scene shrinks),
+       then whether the labels are still apart at that scale (that only gets harder). */
+    function fitIn(a){ if(a.x1-a.x0<40||a.y1-a.y0<40) return {s:0,apart:false};
+      function ok(sv){ view.scale=sv; frameTo((a.x0+a.x1)/2,(a.y0+a.y1)/2,false); return inside(a); }
+      var s=0;
+      if(ok(sMax)) s=sMax;
+      else { var lo=0.05, hi=sMax; for(var g=0;g<16;g++){ var mid=(lo+hi)/2; if(ok(mid)) lo=mid; else hi=mid; } s=ok(lo)?lo:0; }
+      return {s:s, apart:s>0&&ok(s)&&labelsApart()}; }
+    /* The strip beside the headline is the composition we want. The lower area is only
+       for a narrow desktop, where that strip cannot hold a readable scene with its
+       labels apart and the lower one does better. */
+    /* Camera heights to try, lowest first (the hero's own, then higher). A higher camera looks further down on the
+       ring, so the cluster turns rounder and taller: it fits a tall, narrow strip with
+       its labels apart where the hero's own low angle would stack them in one row. */
+    var CAMS=[[[0,1.7,7.6],[0,.4,0]],[[0,2.55,8.0],[0,.15,0]],[[0,4.0,7.0],[0,0,0]],[[0,5.4,5.6],[0,0,0]]];
+    function tryArea(a){ var pick=null;
+      CAMS.forEach(function(c,ci){ view.cam=c[0]; view.look=c[1]; var f=fitIn(a); f.cam=ci;
+        if(!pick || (f.apart&&!pick.apart) || (f.apart===pick.apart&&f.s>pick.s)) pick=f; });
+      return pick; }
+    /* The strip beside the headline is the composition we want. The lower area is only
+       for a narrow desktop, where that strip cannot hold a readable scene with its
+       labels apart and the lower one does better. */
+    var f1=tryArea(areas[0]), f2=tryArea(areas[1]);
+    var useLow=!(f1.s>=0.3&&f1.apart) && f2.s>f1.s && (f2.apart||!f1.apart);
+    var fit=useLow?f2:f1, best=useLow?areas[1]:areas[0], bestS=fit.s||0.05;
+    view.cam=CAMS[fit.cam][0]; view.look=CAMS[fit.cam][1];
+    function place(sv){
+      view.scale=sv; view.gx=0; view.gy=0;
+      frameTo((best.x0+best.x1)/2,(best.y0+best.y1)/2,false);
+      var b=sceneBox(false), hw=b.w/2, hh=b.h/2;
+      var cx=Math.max(best.x0+hw,Math.min(w*0.70,best.x1-hw)), cy=Math.max(best.y0+hh,Math.min((h1T+h1B)/2,best.y1-hh));
+      frameTo(cx,cy,false);
+      /* Last guard, as in layout(): whatever the iteration left, nothing crosses the area. */
+      var b2=sceneBox(false), dx=0, dy=0;
+      if(b2.l<best.x0) dx=best.x0-b2.l; else if(b2.r>best.x1) dx=best.x1-b2.r;
+      if(b2.t<best.y0) dy=best.y0-b2.t; else if(b2.b>best.y1) dy=best.y1-b2.b;
+      if(dx||dy) frameTo((b2.l+b2.r)/2+dx,(b2.t+b2.b)/2+dy,false);
+      return inside(best);
+    }
+    /* Moving the cluster off centre changes its perspective a little, so the size that
+       fitted at the centre of the area can overflow where it finally sits: step down. */
+    for(var k=0;k<24&&!place(bestS);k++) bestS*=0.96;
   }
   function step(now){ px+=(tx-px)*.05; var t=now/1000; rotY=Math.sin(t*.12)*.28+px; haloScale+=(1-haloScale)*.08;
     for(var fi=0;fi<4;fi++){ var f=flows[fi], c=curves[fi];
