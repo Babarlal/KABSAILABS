@@ -32,7 +32,7 @@
 <script src="/assets/js/tagging.min.js?v=20261021e" defer></script>
 <script src="/assets/js/main.min.js?v=20261021e" defer></script>
 <script src="/assets/js/lp-scene.min.js?v=20261022a" defer></script>
-<script src="/assets/js/lp-booking.min.js?v=20261023a" defer></script>
+<script src="/assets/js/lp-booking.min.js?v=20261023b" defer></script>
 </head>
 <body data-path="/lp/shopify-inventory-sync" data-layout="ad">
 <a class="skip" href="#main">Skip to content</a>
@@ -86,22 +86,8 @@
                 <label class="au-chip"><input type="radio" name="tap" value="multi"><span>Several channels</span></label>
               </div>
             </fieldset>
-            <fieldset class="au-field" style="border:0;padding:0;min-width:0" aria-required="true"><legend class="au-label">What is your budget for the build?</legend>
-              <div class="au-chips">
-                <label class="au-chip"><input type="radio" name="budget" value="Under $2,000" required><span>Under $2,000</span></label>
-                <label class="au-chip"><input type="radio" name="budget" value="$2,000–$5,000" required><span>$2,000–$5,000</span></label>
-                <label class="au-chip"><input type="radio" name="budget" value="$5,000–$10,000" required><span>$5,000–$10,000</span></label>
-                <label class="au-chip"><input type="radio" name="budget" value="Over $10,000" required><span>Over $10,000</span></label>
-                <label class="au-chip"><input type="radio" name="budget" value="Not sure yet" required><span>Not sure yet</span></label>
-              </div>
-            </fieldset>
-            <fieldset class="au-field" style="border:0;padding:0;min-width:0" aria-required="true"><legend class="au-label">When are you willing to start?</legend>
-              <div class="au-chips">
-                <label class="au-chip"><input type="radio" name="timing" value="This month" required><span>This month</span></label>
-                <label class="au-chip"><input type="radio" name="timing" value="In 1–3 months" required><span>In 1–3 months</span></label>
-                <label class="au-chip"><input type="radio" name="timing" value="Just exploring" required><span>Just exploring</span></label>
-              </div>
-            </fieldset>
+            <div class="au-field"><label class="au-label" for="auBudget">What is your budget for the build?</label><input class="au-input" type="text" id="auBudget" name="budget" placeholder="e.g. $3,000" autocomplete="off" maxlength="80" required></div>
+            <div class="au-field"><label class="au-label" for="auTiming">When are you willing to start?</label><input class="au-input" type="text" id="auTiming" name="timing" placeholder="e.g. next month" autocomplete="off" maxlength="80" required></div>
             <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content">
             <p class="au-err" id="auError" role="alert" hidden></p>
             <div class="au-actions"><button class="btn au-next" type="submit" id="auSubmit">Book the free audit</button></div>

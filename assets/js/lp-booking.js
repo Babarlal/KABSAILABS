@@ -63,14 +63,13 @@
   /* Budget and timing: asked, and required, on the eCommerce page and the support page in
      both modes, after that page's own checks. A form that does not ask them
      (/lp/inventory-sync, /lp/oversell-risk) skips the check and keeps its notes and lead
-     row exactly as before. The answers go to the lead row and the Calendly notes only,
-     never into a tracking event. */
-  function choice(n){ var r=form.querySelector('input[name="'+n+'"]:checked'); return r?r.value:''; }
+     row exactly as before. Both are free text boxes; the answers go to the lead row and
+     the Calendly notes only, never into a tracking event. */
   function budgetTiming(){
-    var b=form.querySelector('input[name="budget"]'), t=form.querySelector('input[name="timing"]');
-    if(b&&!choice('budget')) return fail('Pick a budget range.',b);
-    if(t&&!choice('timing')) return fail("Pick when you'd like to start.",t);
-    return {asked:!!(b||t), budget:choice('budget'), timing:choice('timing')};
+    var b=$('auBudget'), t=$('auTiming'), bv=b?b.value.trim():'', tv=t?t.value.trim():'';
+    if(b&&!bv) return fail('Add your budget for the build.',b);
+    if(t&&!tv) return fail("Add when you'd like to start.",t);
+    return {asked:!!(b||t), budget:bv, timing:tv};
   }
   form.addEventListener('submit',function(e){ e.preventDefault(); errBox.hidden=true;
     var got=SUPPORT?supportLead():inventoryLead(); if(!got) return;
