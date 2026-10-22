@@ -31,8 +31,8 @@
        placeholder can never send a hit. GA4 needs no placeholder here: it is already
        live through the GTM container above, and loading it a second time would count
        every pageview twice. */
-    GOOGLE_ADS_ID: 'AW-11086913678',
-    GOOGLE_ADS_BOOKING_LABEL: 'HsA0CPz52qMdEI7B06Yp'
+    GOOGLE_ADS_ID: 'AW-18531760695',
+    GOOGLE_ADS_BOOKING_LABEL: 'M92xCInRp6YdELf00IRF'
   };
   window.KABS_TAG = TAG;
 
