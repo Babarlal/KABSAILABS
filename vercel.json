@@ -15,6 +15,16 @@
       "statusCode": 301
     },
     {
+      "source": "/shopify/ai-support",
+      "destination": "/lp/shopify-support-automation",
+      "statusCode": 308
+    },
+    {
+      "source": "/shopify/inventory-sync",
+      "destination": "/lp/shopify-inventory-sync",
+      "statusCode": 308
+    },
+    {
       "source": "/about",
       "destination": "/",
       "statusCode": 301
