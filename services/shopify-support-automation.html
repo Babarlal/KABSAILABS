@@ -39,7 +39,7 @@
 <script src="/assets/js/tagging.min.js?v=20261023a" defer></script>
 <script src="/assets/js/main.min.js?v=20261021e" defer></script>
 <script src="/assets/js/lp-support-scene.min.js?v=20261021f" defer></script>
-<script src="/assets/js/lp-booking.min.js?v=20261023b" defer></script>
+<script src="/assets/js/lp-booking.min.js?v=20261023c" defer></script>
 <script src="/assets/js/lp-support.min.js?v=20261021c" defer></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -85,7 +85,7 @@
       <h2 id="bookTitle">Book the free support audit</h2>
       <p class="lede" style="margin-top:12px">30 minutes. We read your store and your support setup before the call, so it starts where you actually are.</p>
     </div>
-    <div class="sp-book-form">
+    <div class="sp-book-form" id="booking">
       <ol class="au-prog" id="auProg" aria-label="Booking steps"><li data-on="1" aria-current="step">Details</li><li>Time</li></ol>
       <div class="au-card">
         <div class="au-panel" id="auStep1">
@@ -154,7 +154,7 @@
   </div>
 </section>
 
-<section class="wrap" aria-labelledby="calcTitle">
+<section class="wrap" id="calculator" aria-labelledby="calcTitle">
   <div class="sp-head">
     <p class="eyebrow">The arithmetic</p>
     <h2 id="calcTitle">Work out what repetitive tickets cost you</h2>
@@ -341,7 +341,7 @@
   <div class="sp-tools"><span class="lbl">Plugs into</span><span class="t">Shopify</span><span class="t">Gorgias</span><span class="t">Zendesk</span><span class="t">Shopify Inbox</span><span class="t">Intercom</span><span class="t">Gmail and Outlook</span><span class="t">WhatsApp</span><span class="t">Your 3PL</span></div>
 </section>
 
-<section class="wrap" aria-labelledby="chatbotTitle">
+<section class="wrap" id="compare" aria-labelledby="chatbotTitle">
   <div class="sp-head">
     <p class="eyebrow">Not another app</p>
     <h2 id="chatbotTitle">More than a Shopify AI chatbot</h2>

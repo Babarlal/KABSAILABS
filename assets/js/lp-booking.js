@@ -110,3 +110,22 @@
   var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.target===top) topOut=!en.isIntersecting; if(en.target===book) bookIn=en.isIntersecting; }); bar.classList.toggle('show',topOut&&!bookIn); },{threshold:.1});
   if(top) io.observe(top); io.observe(book);
 })();
+
+/* Section deep links (#booking, #proof, #faq ...), used by ads. The browser jumps to the
+   anchor on first paint, before the header, the web fonts and the hero scene have
+   settled, so the section drifted up to 137px off by the time the page was done. Once
+   everything has loaded, put the section's top back at the top of the screen, unless
+   the visitor has already started scrolling. Links clicked on the page are unaffected:
+   those jump after layout and already land exactly. */
+(function(){
+  'use strict';
+  if(!location.hash || location.hash.length<2) return;
+  var t; try{ t=document.getElementById(decodeURIComponent(location.hash.slice(1))); }catch(e){ return; }
+  if(!t) return;
+  var moved=false;
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(ev){ addEventListener(ev,function(){ moved=true; },{passive:true,once:true}); });
+  function align(){ if(moved) return; var y=t.getBoundingClientRect().top; if(Math.abs(y)>1) window.scrollTo({top:y+window.scrollY,behavior:'instant'}); }
+  function settle(){ align(); setTimeout(align,250); setTimeout(align,800); }
+  if(document.readyState==='complete') settle(); else addEventListener('load',settle,{once:true});
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(align,0); });
+})();

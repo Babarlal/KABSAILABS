@@ -43,7 +43,7 @@ const PAGES = [
     path: '/lp/shopify-inventory-sync',
     source: 'shopify_inventory_sync_lp',
     canonical: 'https://www.kabsailabs.com/services/industries/ecommerce',
-    faq: '<section class="faq wrap">',
+    faq: '<section class="faq wrap" id="faq">',
     strip(h) {
       // The oversell calculator is another page; on an ad page the form is the only next step.
       h = h.replace(/\s*<p class="hero-alt">[\s\S]*?<\/p>/, '');
