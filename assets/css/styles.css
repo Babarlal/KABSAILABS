@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 /* ============================================================
    KABS AI LABS — global stylesheet (light / white theme)
    One file controls the look of every page.
@@ -29,9 +28,13 @@
   --shadow:0 1px 2px rgba(20,24,31,.04), 0 12px 32px -18px rgba(20,24,31,.18);
   --shadow-lg:0 30px 70px -40px rgba(20,24,31,.35);
 
-  /* These are the loaded faces, see the @import at the top of the file. The
-     green skin block further down restates them; keeping the base in step
-     means nothing renders in a system fallback if that block is ever moved. */
+  /* These are the loaded faces. Every page loads them itself: the Google Fonts
+     stylesheet in its <head>, or self-hosted @font-face rules on the two ad
+     landing pages and their source pages. This file used to @import the Google
+     stylesheet as well; that was a duplicate on every page and made the self-hosted
+     pages fetch Google Fonts again. The green skin block further down restates
+     them; keeping the base in step means nothing renders in a system fallback if
+     that block is ever moved. */
   --font-display:'Fraunces',Georgia,serif;
   --font-body:'Instrument Sans',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,monospace;
@@ -965,9 +968,8 @@ a:focus-visible,.btn:focus-visible,summary:focus-visible,input:focus-visible,but
 /* ============================================================
    v4 — green skin (appended, cascade-safe: later rules win)
    Palette and type from the inventory-sync mockup.
-   Fonts: Fraunces (display), Instrument Sans (body), JetBrains Mono (mono).
-   The @import for the fonts is inserted at the TOP of styles.css by apply-green-skin.sh
-   because @import is only valid before other rules.
+   Fonts: Fraunces (display), Instrument Sans (body), JetBrains Mono (mono),
+   loaded by each page's <head> (see the note in the first :root block).
    ============================================================ */
 
 :root{
