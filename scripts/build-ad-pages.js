@@ -68,7 +68,7 @@ const PAGES = [
 
 /* Outbound links the ad copy keeps. Each opens in a new tab so the visitor still
    has this page. The FAQ blog links are kept only inside the FAQ section. */
-const CLARITY_TAG = '<script src="/assets/js/clarity.min.js?v=20261028a" defer></script>';
+const CLARITY_TAG = '<script src="/assets/js/clarity.min.js?v=20261028b" defer></script>';
 
 const KEEP_ANYWHERE = [/^\/privacy$/, /^\/terms$/, /^\/case-studies$/, /^\/services\/shopify-support-automation$/, /^https:\/\/calendly\.com\//];
 const KEEP_IN_FAQ = [/^\/blog\//];

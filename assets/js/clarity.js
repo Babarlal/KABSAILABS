@@ -25,7 +25,7 @@
 (function () {
   'use strict';
 
-  var CLARITY_ID = 'CLARITY_ID';
+  var CLARITY_ID = 'z4vwrps1oh';
   /* A real project ID is a short run of lowercase letters and digits. The
      placeholder (capitals, underscore) can never pass, so this cannot switch
      itself off by accident when the ID is pasted in. */
