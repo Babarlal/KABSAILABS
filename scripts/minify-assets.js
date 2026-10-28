@@ -28,7 +28,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const CSS = ['styles', 'audit-patches', 'pages-green', 'lp', 'lp-support', 'site-chrome', 'blog-post'];
-const JS  = ['main', 'tagging', 'proof-gallery', 'lp-scene', 'lp-support-scene', 'lp-booking', 'lp-picker', 'lp-support', 'receipt', 'scorecard'];
+const JS  = ['main', 'tagging', 'clarity', 'proof-gallery', 'lp-scene', 'lp-support-scene', 'lp-booking', 'lp-picker', 'lp-support', 'receipt', 'scorecard'];
 
 const cssPath = n => path.join(ROOT, 'assets/css', n + '.css');
 const cssMin  = n => path.join(ROOT, 'assets/css', n + '.min.css');

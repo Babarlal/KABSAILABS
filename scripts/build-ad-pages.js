@@ -19,6 +19,8 @@
    - data-layout="ad": main.js paints a logo and one booking button, no menu,
      and a footer with Privacy and Terms only
    - the lead source on the form, so ad leads are told apart in the sheet
+   - the Microsoft Clarity tag (assets/js/clarity.js), consent gated, which runs
+     on the ad copies and nowhere else
    - links that leave the page are removed, except an allowlist that opens in a
      new tab. A new outbound link on the source page fails the build here rather
      than leaking ad visitors off the page.
@@ -66,6 +68,8 @@ const PAGES = [
 
 /* Outbound links the ad copy keeps. Each opens in a new tab so the visitor still
    has this page. The FAQ blog links are kept only inside the FAQ section. */
+const CLARITY_TAG = '<script src="/assets/js/clarity.min.js?v=20261028a" defer></script>';
+
 const KEEP_ANYWHERE = [/^\/privacy$/, /^\/terms$/, /^\/case-studies$/, /^\/services\/shopify-support-automation$/, /^https:\/\/calendly\.com\//];
 const KEEP_IN_FAQ = [/^\/blog\//];
 
@@ -97,6 +101,10 @@ function build(p) {
   if (!h.includes('<meta name="robots" content="noindex, follow">')) throw new Error('robots meta not inserted');
   if (!h.includes('<link rel="canonical" href="' + p.canonical + '">')) throw new Error(p.src + ': canonical missing on source');
   h = h.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n/, '');
+
+  // Session recordings run on the ad copies only (assets/js/clarity.js, consent gated).
+  h = h.replace(/(<script src="\/assets\/js\/tagging\.min\.js[^"]*" defer><\/script>\n)/, '$1' + CLARITY_TAG + '\n');
+  if (!h.includes(CLARITY_TAG)) throw new Error(p.src + ': clarity tag not inserted');
 
   h = h.replace(/<body data-path="[^"]*" data-layout="[^"]*">/, '<body data-path="' + p.path + '" data-layout="ad">');
   if (!h.includes('data-layout="ad"')) throw new Error('body attributes not rewritten');
